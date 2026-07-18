@@ -56,7 +56,13 @@ Phase 1: upgrade Next.js redesign (content truth, central link config, real form
 - `npm run build` clean (26 routes). `npm run lint` clean.
 - All 37 referenced media files → HTTP 200; zero unreferenced files in bundle. All routes 200. 596 internal links OK. Event modal verified interactively.
 
-## Verdict
-Phase 1 media + content + forms accepted (build/lint/routes/media all verified).
-Phase 2 accepted: `wix-migration-kit/` docs 00–06 complete (setup, CMS schemas, page guide, forms/automations/AI/mailing, members/payments, QA/cutover/rollback).
-Phase 3 (pair-build) is user-interactive by design — blocked on Aryan opening Wix Studio; start at `wix-migration-kit/01-SETUP.md`.
+## Round 6 (user fixes: hero crops, market media, real map, protection)
+- Diagnosed "images aren't there": Vercel deployment protection serving an SSO wall — permanent fix is Aryan's dashboard toggle (Settings → Deployment Protection → Disabled); 23h share links issued meanwhile.
+- heroPosition (object-position) support; membership/coop/market/volunteer heroes no longer crop subjects.
+- Co-op Market pages now use the live site's REAL market photos (vendors table hero, Community Market mural split, craft/jewelry/produce gallery) — all eyes-verified.
+- Impact map rebuilt on a real OpenStreetMap Irvington basemap (stitched z17 tiles, Nominatim-geocoded pins for all 4 projects + HQ, exact 4:3 frame, OSM attribution). Two corner pins approximate (marked in code).
+- Tool Bank media confirmed the archive's only genuine tool imagery.
+
+## Verdict (final)
+All phases of the autonomous build COMPLETE and verified: build+lint clean, 22/22 routes 200, 94/94 media 200, sliders/map/directory/forms interactively confirmed. Both repos committed. Latest deploy: ccd-website-1uwibym3q…vercel.app (protection toggle pending user).
+Phase 3 (Wix Studio pair-build) is user-interactive by design — start at `wix-migration-kit/01-SETUP.md` with the seed CSVs.
