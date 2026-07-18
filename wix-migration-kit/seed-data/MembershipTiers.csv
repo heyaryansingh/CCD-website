@@ -1,0 +1,6 @@
+name,price,setup,eligibility,benefits,vote,featured,order
+"Non-Resident","$10/mo","+$5 setup","Live outside the 21229","Event discounts; Discounted Tool Bank access; Access to green spaces","FALSE","FALSE","1"
+"Resident","$20/mo","+$5 setup","Live, work, or worship in the 21229","FREE Tool Bank access; 15% off Clean & Green; Government advocacy; Access to green spaces","TRUE","TRUE","2"
+"Small Org / Business","$100/mo","+$5 setup","Business entity, 1–25 employees, Baltimore City","Advocacy; Access to green spaces; Discounted Tool Bank; 15% off Clean & Green","TRUE","FALSE","3"
+"Medium Org / Business","$250/mo","+$5 setup","Business entity, 26–100 employees, Baltimore City","Advocacy; Access to green spaces; Discounted Tool Bank; 15% off Clean & Green","TRUE","FALSE","4"
+"Large Org / Business","$400/mo","+$5 setup","Business entity, 101+ employees, Baltimore City","Advocacy; Access to green spaces; Discounted Tool Bank; 15% off Clean & Green","TRUE","FALSE","5"
