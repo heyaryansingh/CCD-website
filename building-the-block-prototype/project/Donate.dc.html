@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ovo&amp;family=Ropa+Sans&amp;family=Sue+Ellen+Francisco&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#000000;-webkit-font-smoothing:antialiased}
+@keyframes heroZoom{0%{transform:scale(1.06)}50%{transform:scale(1.15)}100%{transform:scale(1.06)}}@keyframes photoDrift{0%{transform:scale(1.06) translate(0,0)}50%{transform:scale(1.13) translate(-1.4%,-1%)}100%{transform:scale(1.06) translate(0,0)}}
+@keyframes revealUp{from{transform:translateY(22px)}to{transform:none}}[data-reveal]{animation:revealUp .7s cubic-bezier(.2,.65,.2,1) both}[data-reveal="0"]{animation-delay:0ms}[data-reveal^="6"],[data-reveal^="7"],[data-reveal^="8"],[data-reveal^="9"]{animation-delay:70ms}[data-reveal^="1"]{animation-delay:150ms}[data-reveal^="2"]{animation-delay:230ms}[data-reveal^="3"]{animation-delay:290ms}::selection{background:#FEC630;color:#000000}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(254,198,48,.5)}70%{box-shadow:0 0 0 12px rgba(254,198,48,0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+[data-reveal-left]{animation:slideInLeft .75s cubic-bezier(.2,.65,.2,1) both}
+[data-reveal-right]{animation:slideInRight .75s cubic-bezier(.2,.65,.2,1) both}
+a[style*="background:#FEC630"]:hover{animation:pulseGold .6s ease-out}
+a[style*="background:#209765"]:hover{box-shadow:0 8px 28px rgba(32,151,101,.4);transition:box-shadow .3s}
+a[style*="background:#0797D4"]:hover{box-shadow:0 8px 28px rgba(7,151,212,.4);transition:box-shadow .3s}
+img[style*="object-fit:cover"]{transition:filter .4s}
+img[style*="object-fit:cover"]:hover{filter:brightness(1.06) saturate(1.12)}
+
+</style>
+</helmet>
+<div style="font-family:'Ropa Sans',ui-sans-serif,system-ui,sans-serif">
+  <dc-import name="SiteHeader" active="involved" style="position:sticky;top:-34px;z-index:500;display:block" hint-size="100%,110px"></dc-import>
+
+  <!-- HERO -->
+  <div style="position:relative;height:60vh;min-height:460px;overflow:hidden">
+    <img src="media/drone-garden-1.jpg" alt="Aerial view of a CCD community day" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroZoom 26s ease-in-out infinite">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.15))"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:0 64px 68px;display:flex;justify-content:center">
+      <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:18px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">DONATE</div>
+        <h1 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:clamp(50px,6vw,88px);line-height:1;color:#FFFFFF">Invest in <em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">Irvington.</em></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- GIVING -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:1fr 460px;gap:80px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:36px">
+        <div data-reveal="0" style="display:flex;flex-direction:column;gap:16px">
+          <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:48px;line-height:1.04">Every dollar stays<br>on the block.</h2>
+          <p style="margin:0;font-size:16px;line-height:1.75;color:#37474F;max-width:520px">CCD is member-governed, so gifts go where neighbors decide they matter most — gardens, tools, training, and the Center for Social Impact.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;border-top:1px solid rgba(26,26,26,.12)">
+          <div data-reveal="0" style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid rgba(26,26,26,.12);align-items:baseline"><span style="font-family:'Ovo',serif;font-size:28px;color:#209765;width:90px;flex:none">$25</span><span style="font-size:15px;color:#37474F;line-height:1.6">Seeds and starts for the community gardens</span></div>
+          <div data-reveal="60" style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid rgba(26,26,26,.12);align-items:baseline"><span style="font-family:'Ovo',serif;font-size:28px;color:#209765;width:90px;flex:none">$50</span><span style="font-size:15px;color:#37474F;line-height:1.6">One named brick in the Center for Social Impact</span></div>
+          <div data-reveal="120" style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid rgba(26,26,26,.12);align-items:baseline"><span style="font-family:'Ovo',serif;font-size:28px;color:#209765;width:90px;flex:none">$100</span><span style="font-size:15px;color:#37474F;line-height:1.6">Supplies for a full Clean &amp; Green service day</span></div>
+          <div data-reveal="180" style="display:flex;gap:24px;padding:20px 0;border-bottom:1px solid rgba(26,26,26,.12);align-items:baseline"><span style="font-family:'Ovo',serif;font-size:28px;color:#209765;width:90px;flex:none">$500</span><span style="font-size:15px;color:#37474F;line-height:1.6">One month of Tool Bank operations</span></div>
+        </div>
+        <div data-reveal="0" style="background:#EEF1F2;padding:32px 36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-family:'Ovo',serif;font-size:24px">Want your gift set in stone?</span>
+            <span style="color:#5B6B72;font-size:14px">A $50 named brick becomes part of the building itself.</span>
+          </div>
+          <a href="BrickCampaign.dc.html" style="background:#0797D4;color:#FFF;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.05em;padding:14px 24px" style-hover="background:#2E3A40">BRICK CAMPAIGN →</a>
+        </div>
+      </div>
+      <div data-reveal="120" style="background:#209765;padding:44px;display:flex;flex-direction:column;gap:22px;position:sticky;top:140px">
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.18em;color:#FEC630">MAKE A GIFT</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <sc-for list="{{ amounts }}" as="amt" hint-placeholder-count="4">
+            <button onClick="{{ amt.pick }}" style="{{ amt.style }}">{{ amt.label }}</button>
+          </sc-for>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.6)">OR CUSTOM AMOUNT</span>
+          <input value="{{ custom }}" onChange="{{ onCustom }}" placeholder="$" style="padding:13px 14px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#FFFFFF;font-size:15px;font-family:'Ropa Sans',sans-serif;outline:none">
+        </label>
+        <a href="#" style="background:#FEC630;color:#000000;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:17px;text-align:center" style-hover="background:#E6AC00">DONATE {{ chosen }} VIA PAYPAL →</a>
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;line-height:1.7;color:rgba(255,255,255,.5)">// routes to CCD's existing PayPal.<br>// 501(c)(3) status note to confirm with leadership.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOLUNTEER -->
+  <div id="volunteer" style="background:#EEF1F2;padding:110px 64px;display:flex;justify-content:center;scroll-margin-top:110px">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:22px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">VOLUNTEER</div>
+        <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:48px;line-height:1.04">Give time,<br>not just money.</h2>
+        <p style="margin:0;font-size:15.5px;line-height:1.75;color:#37474F">Garden days, market setup, tool maintenance, walking tours — there's a job for every skill and schedule. Tell us what you're good at and when you're free.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:6px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11.5px;letter-spacing:.12em;color:#5B6B72">CURRENT NEEDS</span>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <span style="background:#FFFFFF;border:1px solid rgba(26,26,26,.12);padding:8px 14px;font-size:13px">Garden hands — weekly</span>
+            <span style="background:#FFFFFF;border:1px solid rgba(26,26,26,.12);padding:8px 14px;font-size:13px">Market day crew</span>
+            <span style="background:#FFFFFF;border:1px solid rgba(26,26,26,.12);padding:8px 14px;font-size:13px">Photographers</span>
+            <span style="background:#FFFFFF;border:1px solid rgba(26,26,26,.12);padding:8px 14px;font-size:13px">Tour guides</span>
+          </div>
+        </div>
+      </div>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="100" style="background:#FFFFFF;padding:44px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">NAME</span><input value="{{ vName }}" onChange="{{ onVName }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">EMAIL</span><input value="{{ vEmail }}" onChange="{{ onVEmail }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">SKILLS &amp; INTERESTS</span><input value="{{ vSkills }}" onChange="{{ onVSkills }}" placeholder="e.g. gardening, carpentry, photography" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">AVAILABILITY</span>
+            <select value="{{ vAvail }}" onChange="{{ onVAvail }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none;background:#FFFFFF">
+              <option>Weekends</option><option>Weekday evenings</option><option>Weekday daytime</option><option>Flexible</option>
+            </select>
+          </label>
+          <button onClick="{{ onVSubmit }}" style="background:#209765;color:#FFFFFF;border:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:17px;cursor:pointer;font-family:'Ropa Sans',sans-serif" style-hover="background:#124A34">SIGN UP TO VOLUNTEER</button>
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}"><span style="color:#0797D4;font-size:13px">Please add your name and email.</span></sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#FFFFFF;padding:60px 44px;display:flex;flex-direction:column;gap:16px;justify-content:center;text-align:center">
+          <span style="font-family:'Ovo',serif;font-size:38px;color:#209765">Welcome aboard.</span>
+          <p style="margin:0;color:#5B6B72;font-size:15.5px;line-height:1.7">Thanks, {{ vName }} — we'll reach out about upcoming volunteer days that match your availability.</p>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { amount: 50, custom: '', vName: '', vEmail: '', vSkills: '', vAvail: 'Weekends', sent: false, error: false };
+  componentDidMount() {
+    import('./reveal.js').then((m) => m.initReveal());
+  }
+  renderVals() {
+    const s = this.state;
+    const base = 'padding:14px;border:1px solid rgba(255,255,255,.35);font-weight:700;font-size:15px;cursor:pointer;font-family:Instrument Sans,sans-serif;';
+    const amounts = [25, 50, 100, 500].map((v) => ({
+      label: '$' + v,
+      pick: () => this.setState({ amount: v, custom: '' }),
+      style: s.amount === v && !s.custom
+        ? base + 'background:#FEC630;color:#000000;border-color:#FEC630'
+        : base + 'background:transparent;color:#FFFFFF',
+    }));
+    const chosen = s.custom ? ('$' + s.custom.replace(/[^0-9]/g, '')) : ('$' + s.amount);
+    return {
+      amounts,
+      custom: s.custom,
+      chosen: chosen === '$' ? '' : chosen,
+      onCustom: (e) => this.setState({ custom: e.target.value }),
+      vName: s.vName, vEmail: s.vEmail, vSkills: s.vSkills, vAvail: s.vAvail,
+      sent: s.sent, notSent: !s.sent, showError: s.error,
+      onVName: (e) => this.setState({ vName: e.target.value }),
+      onVEmail: (e) => this.setState({ vEmail: e.target.value }),
+      onVSkills: (e) => this.setState({ vSkills: e.target.value }),
+      onVAvail: (e) => this.setState({ vAvail: e.target.value }),
+      onVSubmit: () => {
+        if (!s.vName.trim() || !s.vEmail.trim()) { this.setState({ error: true }); return; }
+        this.setState({ sent: true, error: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

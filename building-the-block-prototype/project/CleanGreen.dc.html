@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ovo&amp;family=Ropa+Sans&amp;family=Sue+Ellen+Francisco&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#000000;-webkit-font-smoothing:antialiased}
+@keyframes heroZoom{0%{transform:scale(1.06)}50%{transform:scale(1.15)}100%{transform:scale(1.06)}}@keyframes photoDrift{0%{transform:scale(1.06) translate(0,0)}50%{transform:scale(1.13) translate(-1.4%,-1%)}100%{transform:scale(1.06) translate(0,0)}}
+@keyframes revealUp{from{transform:translateY(22px)}to{transform:none}}[data-reveal]{animation:revealUp .7s cubic-bezier(.2,.65,.2,1) both}[data-reveal="0"]{animation-delay:0ms}[data-reveal^="6"],[data-reveal^="7"],[data-reveal^="8"],[data-reveal^="9"]{animation-delay:70ms}[data-reveal^="1"]{animation-delay:150ms}[data-reveal^="2"]{animation-delay:230ms}[data-reveal^="3"]{animation-delay:290ms}::selection{background:#FEC630;color:#000000}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(254,198,48,.5)}70%{box-shadow:0 0 0 12px rgba(254,198,48,0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+[data-reveal-left]{animation:slideInLeft .75s cubic-bezier(.2,.65,.2,1) both}
+[data-reveal-right]{animation:slideInRight .75s cubic-bezier(.2,.65,.2,1) both}
+a[style*="background:#FEC630"]:hover{animation:pulseGold .6s ease-out}
+a[style*="background:#209765"]:hover{box-shadow:0 8px 28px rgba(32,151,101,.4);transition:box-shadow .3s}
+a[style*="background:#0797D4"]:hover{box-shadow:0 8px 28px rgba(7,151,212,.4);transition:box-shadow .3s}
+img[style*="object-fit:cover"]{transition:filter .4s}
+img[style*="object-fit:cover"]:hover{filter:brightness(1.06) saturate(1.12)}
+
+</style>
+</helmet>
+<div style="font-family:'Ropa Sans',ui-sans-serif,system-ui,sans-serif">
+  <dc-import name="SiteHeader" active="programs" style="position:sticky;top:-34px;z-index:500;display:block" hint-size="100%,110px"></dc-import>
+
+  <!-- HERO -->
+  <div style="position:relative;height:66vh;min-height:500px;overflow:hidden">
+    <img src="media/cleangreen-4.jpg" alt="Clean and Green team member breaking ground" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroZoom 26s ease-in-out infinite">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.18))"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:0 64px 72px;display:flex;justify-content:center">
+      <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">CLEAN &amp; GREEN TEAM</div>
+        <h1 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:clamp(52px,6.4vw,92px);line-height:1;color:#FFFFFF">Your yard.<br><em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">Our pride.</em></h1>
+        <div style="display:flex;gap:14px;margin-top:4px">
+          <a href="#estimate" style="background:#FEC630;color:#000000;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:17px 30px" style-hover="background:#E6AC00">GET A FREE ESTIMATE</a>
+          <a href="tel:4102052488" style="border:1.5px solid rgba(255,255,255,.7);color:#FFFFFF;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.05em;padding:17px 30px" style-hover="background:rgba(255,255,255,.12)">(410) 205-2488</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:48px">
+      <div data-reveal="0" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">NINE SERVICES</div>
+          <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:54px;line-height:1.02">Everything outside<br>your four walls.</h2>
+        </div>
+        <div style="background:#209765;color:#FFFFFF;padding:20px 26px;display:flex;flex-direction:column;gap:4px;max-width:300px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:#FEC630">MEMBER PERK</span>
+          <span style="font-weight:700;font-size:16px">Resident Members get 15% off all services.</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(26,26,26,.1)">
+        <div data-reveal="0" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">01</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Basic Cut &amp; Trim</span><span style="color:#5B6B72;font-size:13.5px">Lawn mowing, edging, cleanup</span></div></div>
+        <div data-reveal="40" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">02</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Hedging</span><span style="color:#5B6B72;font-size:13.5px">Shaping &amp; maintaining hedges</span></div></div>
+        <div data-reveal="80" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">03</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Flower Beds</span><span style="color:#5B6B72;font-size:13.5px">Planting, mulching, weeding</span></div></div>
+        <div data-reveal="120" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">04</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Tree Pruning</span><span style="color:#5B6B72;font-size:13.5px">Healthy cuts, safe clearances</span></div></div>
+        <div data-reveal="160" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">05</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Gutter Cleaning</span><span style="color:#5B6B72;font-size:13.5px">Clear flow before the storm</span></div></div>
+        <div data-reveal="200" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">06</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Hardscaping</span><span style="color:#5B6B72;font-size:13.5px">Paths, patios &amp; edging stone</span></div></div>
+        <div data-reveal="240" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">07</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Trash Removal</span><span style="color:#5B6B72;font-size:13.5px">Haul-away, lot &amp; alley cleanup</span></div></div>
+        <div data-reveal="280" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">08</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Snow Removal</span><span style="color:#5B6B72;font-size:13.5px">Walks, steps &amp; small lots</span></div></div>
+        <div data-reveal="320" style="background:#FFFFFF;padding:30px;display:flex;gap:16px;align-items:baseline"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">09</span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:17px">Shed &amp; Basement Clean Out</span><span style="color:#5B6B72;font-size:13.5px">Clear it out, start fresh</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK GALLERY -->
+  <div style="padding:0 64px 110px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:32px">
+      <div data-reveal="0" style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">REAL CREWS, REAL WORK</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <img data-reveal="0" src="media/cleangreen-1.jpg" alt="Team member working curbside with equipment" style="width:100%;aspect-ratio:4/5;object-fit:cover;animation:photoDrift 20s ease-in-out infinite">
+        <img data-reveal="80" src="media/cleangreen-2.jpg" alt="Crew member clearing a lot" style="width:100%;aspect-ratio:4/5;object-fit:cover;margin-top:24px;animation:photoDrift 24s ease-in-out infinite">
+        <img data-reveal="160" src="media/cleangreen-3.jpg" alt="Crew members with power tools on site" style="width:100%;aspect-ratio:4/5;object-fit:cover;animation:photoDrift 22s ease-in-out infinite">
+        <img data-reveal="240" src="media/cleangreen-4.jpg" alt="Breaking ground on a community space" style="width:100%;aspect-ratio:4/5;object-fit:cover;margin-top:24px;animation:photoDrift 26s ease-in-out infinite">
+      </div>
+      <p data-reveal="0" style="margin:0;font-family:'Ropa Sans',sans-serif;font-size:12px;color:#78878D">// before/after pairs to be added as jobs are documented</p>
+    </div>
+  </div>
+
+  <!-- ESTIMATE FORM -->
+  <div id="estimate" style="background:#209765;padding:110px 64px;display:flex;justify-content:center;scroll-margin-top:110px">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:22px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">FREE ESTIMATE</div>
+        <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:52px;line-height:1.04;color:#FFFFFF">Tell us about<br>the job.</h2>
+        <p style="margin:0;color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.7">We'll come out, look it over, and give you a straight price. No obligation. Booking a service supports every CCD program — your yard funds the mission.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:12.5px;color:#E7ECEE">SERVICE AREA — IRVINGTON / 21229 &amp; SURROUNDING</span>
+          <a href="tel:4102052488" style="color:#FEC630;text-decoration:none;font-size:17px;font-weight:700" style-hover="color:#FFFFFF">(410) 205-2488</a>
+          <a href="mailto:francis@ccdgroup.org" style="color:#FEC630;text-decoration:none;font-size:17px;font-weight:700" style-hover="color:#FFFFFF">francis@ccdgroup.org</a>
+        </div>
+      </div>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="100" style="background:#FFFFFF;padding:44px;display:flex;flex-direction:column;gap:18px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">NAME</span><input value="{{ name }}" onChange="{{ onName }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">PHONE</span><input value="{{ phone }}" onChange="{{ onPhone }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">PROPERTY ADDRESS</span><input value="{{ address }}" onChange="{{ onAddress }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">SERVICE NEEDED</span>
+            <select value="{{ service }}" onChange="{{ onService }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none;background:#FFFFFF">
+              <option>Basic Cut &amp; Trim</option><option>Hedging</option><option>Flower Beds</option><option>Tree Pruning</option><option>Gutter Cleaning</option><option>Hardscaping</option><option>Trash Removal</option><option>Snow Removal</option><option>Shed / Basement Clean Out</option><option>Multiple / not sure</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">DETAILS</span><textarea value="{{ details }}" onChange="{{ onDetails }}" rows="3" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none;resize:vertical"></textarea></label>
+          <button onClick="{{ onSubmit }}" style="background:#FEC630;color:#000000;border:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:17px;cursor:pointer;font-family:'Ropa Sans',sans-serif" style-hover="background:#E6AC00">REQUEST MY FREE ESTIMATE</button>
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}"><span style="color:#0797D4;font-size:13px">Please add your name and phone so we can reach you.</span></sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#FFFFFF;padding:60px 44px;display:flex;flex-direction:column;gap:16px;justify-content:center;text-align:center">
+          <span style="font-family:'Ovo',serif;font-size:40px;color:#209765">Request received.</span>
+          <p style="margin:0;color:#5B6B72;font-size:15.5px;line-height:1.7">Thanks, {{ name }} — Francis and the crew will call you within 2 business days to set up your free estimate.</p>
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;color:#78878D">// prototype: submissions route to francis@ccdgroup.org</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { name: '', phone: '', address: '', service: 'Basic Cut & Trim', details: '', sent: false, error: false };
+  componentDidMount() {
+    import('./reveal.js').then((m) => m.initReveal());
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      name: s.name, phone: s.phone, address: s.address, service: s.service, details: s.details,
+      sent: s.sent, notSent: !s.sent, showError: s.error,
+      onName: (e) => this.setState({ name: e.target.value }),
+      onPhone: (e) => this.setState({ phone: e.target.value }),
+      onAddress: (e) => this.setState({ address: e.target.value }),
+      onService: (e) => this.setState({ service: e.target.value }),
+      onDetails: (e) => this.setState({ details: e.target.value }),
+      onSubmit: () => {
+        if (!s.name.trim() || !s.phone.trim()) { this.setState({ error: true }); return; }
+        this.setState({ sent: true, error: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

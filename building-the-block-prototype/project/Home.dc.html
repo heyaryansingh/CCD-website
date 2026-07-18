@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ovo&amp;family=Ropa+Sans&amp;family=Sue+Ellen+Francisco&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#000000;-webkit-font-smoothing:antialiased}
+@keyframes heroZoom{0%{transform:scale(1.06)}50%{transform:scale(1.15)}100%{transform:scale(1.06)}}@keyframes photoDrift{0%{transform:scale(1.06) translate(0,0)}50%{transform:scale(1.13) translate(-1.4%,-1%)}100%{transform:scale(1.06) translate(0,0)}}
+@keyframes heroRise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes revealUp{from{transform:translateY(22px)}to{transform:none}}[data-reveal]{animation:revealUp .7s cubic-bezier(.2,.65,.2,1) both}[data-reveal="0"]{animation-delay:0ms}[data-reveal^="6"],[data-reveal^="7"],[data-reveal^="8"],[data-reveal^="9"]{animation-delay:70ms}[data-reveal^="1"]{animation-delay:150ms}[data-reveal^="2"]{animation-delay:230ms}[data-reveal^="3"]{animation-delay:290ms}::selection{background:#FEC630;color:#000000}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(254,198,48,.5)}70%{box-shadow:0 0 0 12px rgba(254,198,48,0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+[data-reveal-left]{animation:slideInLeft .75s cubic-bezier(.2,.65,.2,1) both}
+[data-reveal-right]{animation:slideInRight .75s cubic-bezier(.2,.65,.2,1) both}
+a[style*="background:#FEC630"]:hover{animation:pulseGold .6s ease-out}
+a[style*="background:#209765"]:hover{box-shadow:0 8px 28px rgba(32,151,101,.4);transition:box-shadow .3s}
+a[style*="background:#0797D4"]:hover{box-shadow:0 8px 28px rgba(7,151,212,.4);transition:box-shadow .3s}
+img[style*="object-fit:cover"]{transition:filter .4s}
+img[style*="object-fit:cover"]:hover{filter:brightness(1.06) saturate(1.12)}
+@keyframes kb0{0%{transform:scale(1.0) translate(0,0)}100%{transform:scale(1.14) translate(-1.5%,-1%)}}
+@keyframes kb1{0%{transform:scale(1.1) translate(2%,0)}100%{transform:scale(1.0) translate(-1.5%,.5%)}}
+@keyframes kb2{0%{transform:scale(1.08) translate(0,1.5%)}100%{transform:scale(1.18) translate(-.5%,-1.5%)}}
+@keyframes kb3{0%{transform:scale(1.04) translate(-1.5%,.5%)}100%{transform:scale(1.14) translate(1.5%,-.5%)}}
+@keyframes kb4{0%{transform:scale(1.15) translate(1%,-1%)}100%{transform:scale(1.03) translate(-1%,1%)}}
+[data-si="0"] .sb{animation:kb0 20s ease-in-out infinite alternate}
+[data-si="1"] .sb{animation:kb1 18s ease-in-out infinite alternate}
+[data-si="2"] .sb{animation:kb2 22s ease-in-out infinite alternate}
+[data-si="3"] .sb{animation:kb3 17s ease-in-out infinite alternate}
+[data-si="4"] .sb{animation:kb4 21s ease-in-out infinite alternate}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(8px);opacity:1}}
+@keyframes wordReveal0{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+</style>
+</helmet>
+<div style="font-family:'Ropa Sans',ui-sans-serif,system-ui,sans-serif">
+  <dc-import name="SiteHeader" active="home" style="position:sticky;top:-34px;z-index:500;display:block" hint-size="100%,110px"></dc-import>
+
+  <!-- HERO SLIDESHOW -->
+  <div style="{{ heroWrapStyle }}">
+
+    <!-- SLIDE IMAGES — ken burns via [data-si] CSS selectors -->
+    <sc-for list="{{ heroSlides }}" as="sl" hint-placeholder-count="5">
+      <div data-si="{{ $index }}" style="{{ sl.wrapStyle }}">
+        <div class="sb" style="{{ sl.bgStyle }}"></div>
+      </div>
+    </sc-for>
+
+    <!-- GRADIENT OVERLAYS — 3 vibe variants via sc-if, all static styles -->
+    <sc-if value="{{ isVibeBold }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;inset:0;z-index:5;background:linear-gradient(to top, rgba(0,0,0,.84) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,.04) 100%)"></div>
+    </sc-if>
+    <sc-if value="{{ isVibeDark }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:5;background:linear-gradient(to top, rgba(0,0,0,.94) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.22) 100%)"></div>
+    </sc-if>
+    <sc-if value="{{ isVibeWarm }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;inset:0;z-index:5;background:linear-gradient(to top, rgba(18,6,0,.88) 0%, rgba(18,6,0,.28) 52%, rgba(18,6,0,.06) 100%)"></div>
+    </sc-if>
+
+    <!-- DECORATIVE RINGS -->
+    <div style="position:absolute;right:-70px;top:50%;transform:translateY(-50%);width:520px;height:520px;border:1px solid rgba(254,198,48,.15);border-radius:50%;z-index:6;animation:spinSlow 60s linear infinite"></div>
+    <div style="position:absolute;right:50px;top:50%;transform:translateY(-50%);width:300px;height:300px;border:1px solid rgba(254,198,48,.1);border-radius:50%;z-index:6;animation:spinSlow 38s linear infinite reverse"></div>
+    <div style="position:absolute;right:110px;top:50%;transform:translateY(-50%);width:140px;height:140px;border:1px solid rgba(254,198,48,.22);border-radius:50%;z-index:6;animation:spinSlow 24s linear infinite"></div>
+
+    <!-- CORNER ACCENT LINE -->
+    <div style="position:absolute;left:64px;top:0;width:1px;height:120px;background:linear-gradient(to bottom, transparent, rgba(254,198,48,.6), transparent);z-index:6;animation:wordReveal0 1.4s .5s both"></div>
+
+    <!-- SLIDE COUNTER -->
+    <div style="position:absolute;top:34px;right:64px;z-index:10;font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.24em;color:rgba(255,255,255,.38)">{{ heroCounter }}</div>
+
+    <!-- HERO TEXT -->
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:0 64px 108px;display:flex;justify-content:center;z-index:10">
+      <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12.5px;letter-spacing:.24em;color:#FEC630;animation:wordReveal0 1s .1s both">{{ heroKicker }}</div>
+        <h1 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:clamp(60px,7.6vw,110px);line-height:.94;color:#FFFFFF;letter-spacing:-.02em;animation:wordReveal0 1s .3s cubic-bezier(.2,.65,.2,1) both">Building<br>the block.<br><em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal;font-size:.88em">Brick by brick.</em></h1>
+        <p style="margin:0;max-width:540px;font-size:17px;line-height:1.65;color:rgba(255,255,255,.82);animation:wordReveal0 1s .55s cubic-bezier(.2,.65,.2,1) both">Member-owned. Baltimore-built. A replicable model for any community that refuses to wait for investment that never comes.</p>
+        <div style="display:flex;gap:14px;margin-top:8px;animation:wordReveal0 1s .8s cubic-bezier(.2,.65,.2,1) both">
+          <a href="Membership.dc.html" style="background:#FEC630;color:#000000;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:18px 34px" style-hover="background:#E6AC00">BECOME A MEMBER</a>
+          <a href="Projects.dc.html" style="border:1.5px solid rgba(255,255,255,.6);color:#FFFFFF;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.05em;padding:18px 34px" style-hover="background:rgba(255,255,255,.12)">EXPLORE OUR WORK</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOT INDICATORS -->
+    <div style="position:absolute;bottom:42px;right:64px;z-index:10;display:flex;gap:8px;align-items:center;animation:wordReveal0 1s 1s both">
+      <sc-for list="{{ heroDots }}" as="dot" hint-placeholder-count="0">
+        <button onClick="{{ dot.go }}" style="{{ dot.style }}"></button>
+      </sc-for>
+    </div>
+
+    <!-- SCROLL CUE -->
+    <div style="position:absolute;bottom:36px;left:64px;z-index:10;display:flex;align-items:center;gap:12px;animation:wordReveal0 1s 1.2s both">
+      <div style="width:24px;height:24px;border:1.5px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center">
+        <div style="width:2px;height:7px;background:rgba(255,255,255,.7);border-radius:1px;animation:scrollBounce 2s ease-in-out infinite"></div>
+      </div>
+      <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.38)">SCROLL</span>
+    </div>
+  </div>
+
+  <!-- QUICK ACCESS STRIP -->
+  <div style="display:flex;justify-content:center;padding:0 64px;margin-top:-64px;position:relative;z-index:10">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:#37474F;box-shadow:0 24px 60px rgba(26,26,26,.22)">
+      <a href="CleanGreen.dc.html" style="background:#FFFFFF;padding:28px 30px;text-decoration:none;display:flex;flex-direction:column;gap:6px" style-hover="background:#EEF1F2">
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.18em;color:#209765">SERVICE</span>
+        <span style="color:#000000;font-weight:700;font-size:19px">Clean &amp; Green</span>
+        <span style="color:#5B6B72;font-size:13.5px">Schedule yard &amp; property services →</span>
+      </a>
+      <a href="Programs.dc.html#toolbank" style="background:#FFFFFF;padding:28px 30px;text-decoration:none;display:flex;flex-direction:column;gap:6px" style-hover="background:#EEF1F2">
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.18em;color:#209765">BORROW</span>
+        <span style="color:#000000;font-weight:700;font-size:19px">Tool Bank</span>
+        <span style="color:#5B6B72;font-size:13.5px">Borrow tools, don't buy them →</span>
+      </a>
+      <a href="Programs.dc.html#market" style="background:#FFFFFF;padding:28px 30px;text-decoration:none;display:flex;flex-direction:column;gap:6px" style-hover="background:#EEF1F2">
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.18em;color:#209765">SHOP</span>
+        <span style="color:#000000;font-weight:700;font-size:19px">Co-op Market</span>
+        <span style="color:#5B6B72;font-size:13.5px">Shop &amp; sell local →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- MISSION / H.E.A.R.T. -->
+  <div id="mission" style="background:#209765;margin-top:96px;padding:120px 64px;display:flex;justify-content:center;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-80px;right:-60px;width:420px;height:420px;border:1.5px solid rgba(254,198,48,.18);border-radius:50%"></div>
+    <div style="position:absolute;top:20px;right:40px;width:220px;height:220px;border:1.5px solid rgba(254,198,48,.14);border-radius:50%"></div>
+    <div style="max-width:1100px;width:100%;display:flex;flex-direction:column;gap:56px;align-items:center;text-align:center">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:22px;align-items:center">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">OUR MISSION</div>
+        <div style="font-family:'Ovo',serif;font-size:clamp(44px,5.4vw,76px);line-height:1.05;color:#FFFFFF">To restore <em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">H.E.A.R.T.</em><br>to every community.</div>
+        <p style="margin:0;max-width:640px;font-size:17px;line-height:1.7;color:rgba(255,255,255,.82)">What we're building in Irvington is a proof of concept — a working model of cooperative economics that Baltimore can scale, and that cities across the country can replicate. Five pillars. One block at a time.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;width:100%;background:rgba(254,198,48,.25)">
+        <div data-reveal="0" style="background:#209765;padding:26px 18px;display:flex;flex-direction:column;gap:8px;align-items:center"><span style="font-family:'Ovo',serif;font-size:44px;color:#FEC630">H</span><span style="color:#E7ECEE;font-size:13px;line-height:1.45">Homeownership &amp; affordable housing</span></div>
+        <div data-reveal="80" style="background:#209765;padding:26px 18px;display:flex;flex-direction:column;gap:8px;align-items:center"><span style="font-family:'Ovo',serif;font-size:44px;color:#FEC630">E</span><span style="color:#E7ECEE;font-size:13px;line-height:1.45">Economic independence</span></div>
+        <div data-reveal="160" style="background:#209765;padding:26px 18px;display:flex;flex-direction:column;gap:8px;align-items:center"><span style="font-family:'Ovo',serif;font-size:44px;color:#FEC630">A</span><span style="color:#E7ECEE;font-size:13px;line-height:1.45">Agricultural access</span></div>
+        <div data-reveal="240" style="background:#209765;padding:26px 18px;display:flex;flex-direction:column;gap:8px;align-items:center"><span style="font-family:'Ovo',serif;font-size:44px;color:#FEC630">R</span><span style="color:#E7ECEE;font-size:13px;line-height:1.45">Retail revitalization</span></div>
+        <div data-reveal="320" style="background:#209765;padding:26px 18px;display:flex;flex-direction:column;gap:8px;align-items:center"><span style="font-family:'Ovo',serif;font-size:44px;color:#FEC630">T</span><span style="color:#E7ECEE;font-size:13px;line-height:1.45">Tranquil community spaces</span></div>
+      </div>
+      <a data-reveal="120" href="About.dc.html" style="color:#FEC630;text-decoration:none;font-family:'Ropa Sans',sans-serif;font-size:13px;letter-spacing:.14em;border-bottom:1px solid rgba(254,198,48,.5);padding-bottom:4px" style-hover="border-color:#FEC630">READ OUR STORY →</a>
+    </div>
+  </div>
+
+  <!-- IMPACT STATS -->
+  <div style="padding:104px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:48px">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:8px;border-top:2px solid #FEC630;padding-top:22px">
+        <span style="font-family:'Ovo',serif;font-size:64px;line-height:1;color:#000000">2020</span>
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.14em;color:#209765">FOUNDED — MEMBER-OWNED FROM DAY ONE</span>
+      </div>
+      <div data-reveal="80" style="display:flex;flex-direction:column;gap:8px;border-top:2px solid #FEC630;padding-top:22px">
+        <div style="display:flex;align-items:baseline;gap:4px"><span data-count="10" data-suffix="+" style="font-family:'Ovo',serif;font-size:64px;line-height:1;color:#000000">0</span></div>
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.14em;color:#209765">CITY &amp; CORPORATE PARTNERS</span>
+      </div>
+      <div data-reveal="160" style="display:flex;flex-direction:column;gap:8px;border-top:2px solid #FEC630;padding-top:22px">
+        <div style="display:flex;align-items:baseline;gap:4px"><span data-count="5000" style="font-family:'Ovo',serif;font-size:64px;line-height:1;color:#000000">0</span><span style="font-family:'Ropa Sans',sans-serif;font-size:22px;color:#209765">sq ft</span></div>
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.14em;color:#209765">CENTER FOR SOCIAL IMPACT — IN CONSTRUCTION</span>
+      </div>
+      <div data-reveal="240" style="display:flex;flex-direction:column;gap:8px;border-top:2px solid #FEC630;padding-top:22px">
+        <div style="display:flex;align-items:baseline;gap:4px"><span data-count="9" style="font-family:'Ovo',serif;font-size:64px;line-height:1;color:#000000">0</span></div>
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.14em;color:#209765">COMMUNITY SERVICES OFFERED TODAY</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <div style="padding:24px 64px 110px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:48px">
+      <div data-reveal="0" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">WHAT WE DO</div>
+          <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:54px;line-height:1.02">Programs built by neighbors,<br>owned by members.</h2>
+        </div>
+        <a href="Programs.dc.html" style="color:#000000;text-decoration:none;font-family:'Ropa Sans',sans-serif;font-size:13px;letter-spacing:.12em;border-bottom:1px solid #FEC630;padding-bottom:4px" style-hover="color:#209765">ALL PROGRAMS →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+        <a data-reveal="0" href="Programs.dc.html#market" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden"><img src="media/drone-garden-2.jpg" alt="Community market event under tents" style="width:100%;height:100%;object-fit:cover;animation:photoDrift 20s ease-in-out infinite"></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">PROGRAM</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Community Co-op Market</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">A community-owned cooperative grocery &amp; vendor market.</span>
+          </div>
+        </a>
+        <a data-reveal="90" href="SocialImpact.dc.html" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden"><img src="media/mural-marketplace-1.jpg" alt="3932 Frederick Ave with community marketplace mural" style="width:100%;height:100%;object-fit:cover;animation:photoDrift 22s ease-in-out infinite"></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">SIGNATURE PROJECT</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Center for Social Impact</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">Our future innovation hub at 3932 Frederick Ave.</span>
+          </div>
+        </a>
+        <a data-reveal="180" href="CleanGreen.dc.html" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden"><img src="media/cleangreen-2.jpg" alt="Clean and Green team member at work" style="width:100%;height:100%;object-fit:cover;animation:photoDrift 24s ease-in-out infinite"></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">SERVICE</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Clean &amp; Green Team</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">Residential &amp; commercial outdoor maintenance services.</span>
+          </div>
+        </a>
+        <a data-reveal="0" href="Programs.dc.html#toolbank" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden;background:repeating-linear-gradient(-45deg,#EEF1F2,#EEF1F2 14px,#E7E0D3 14px,#E7E0D3 28px);display:flex;align-items:center;justify-content:center"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.1em;color:#78878D">[ tool bank photo — to shoot ]</span></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">PROGRAM</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Tool Bank</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">Borrow tools so you don't have to buy them.</span>
+          </div>
+        </a>
+        <a data-reveal="90" href="Programs.dc.html#workforce" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden"><img src="media/community-smile.jpg" alt="Community leader speaking to a group" style="width:100%;height:100%;object-fit:cover;animation:photoDrift 21s ease-in-out infinite"></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">PROGRAM</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Workforce Development</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">Connecting residents to skills, partners &amp; opportunity.</span>
+          </div>
+        </a>
+        <a data-reveal="180" href="Projects.dc.html" style="text-decoration:none;background:#FFFFFF;display:flex;flex-direction:column;border:1px solid rgba(26,26,26,.08)" style-hover="box-shadow:0 20px 44px rgba(26,26,26,.14);transform:translateY(-4px);transition:all .3s">
+          <div style="height:220px;overflow:hidden"><img src="media/drone-3.jpg" alt="Aerial view of community garden path" style="width:100%;height:100%;object-fit:cover;animation:photoDrift 23s ease-in-out infinite"></div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.18em;color:#0797D4">PILOT</span>
+            <span style="color:#000000;font-weight:700;font-size:20px">Farming Pilot Program</span>
+            <span style="color:#5B6B72;font-size:14px;line-height:1.55">Community-managed agriculture on vacant city lots.</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE STORY -->
+  <div style="background:#37474F;display:grid;grid-template-columns:1fr 1fr;min-height:560px">
+    <div style="overflow:hidden;position:relative">
+      <img src="media/mural-marketplace-1.jpg" alt="The former Jarbo Brothers building at 3932 Frederick Ave" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;animation:photoDrift 28s ease-in-out infinite">
+    </div>
+    <div style="padding:96px 88px;display:flex;flex-direction:column;justify-content:center;gap:26px">
+      <div data-reveal="0" style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">3932 FREDERICK AVE</div>
+      <h2 data-reveal="80" style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:50px;line-height:1.05;color:#FFFFFF">What was once abandoned<br>can become <em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">a beacon.</em></h2>
+      <p data-reveal="160" style="margin:0;color:rgba(255,255,255,.75);font-size:16px;line-height:1.7;max-width:480px">In 2023, CCD acquired the former Jarbo Brothers Storage facility — a 5,000-square-foot building that sat empty while the neighborhood was told to wait. We stopped waiting. Backed by BRED, the Neighborhood Design Center, and ReGEN Consulting, we're turning decades of disinvestment into Baltimore's most compelling cooperative infrastructure project.</p>
+      <div data-reveal="240" style="display:flex;gap:14px;margin-top:8px">
+        <a href="BrickCampaign.dc.html" style="background:#FEC630;color:#000000;text-decoration:none;font-weight:700;font-size:13.5px;letter-spacing:.05em;padding:16px 26px" style-hover="background:#E6AC00">SEE THE BRICK CAMPAIGN →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS TEASER -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#EEF1F2">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:420px 1fr;gap:64px;align-items:center">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">OUR WORK IN THE 21229</div>
+        <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:50px;line-height:1.04">Four corners of<br>one neighborhood.</h2>
+        <div style="display:flex;flex-direction:column">
+          <a href="Projects.dc.html" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(26,26,26,.14);text-decoration:none" style-hover="padding-left:8px;transition:padding .25s"><span style="color:#000000;font-weight:600;font-size:16px">Oasis @ 240</span><span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;color:#209765;border:1px solid #209765;padding:3px 8px">COMPLETED</span></a>
+          <a href="Projects.dc.html" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(26,26,26,.14);text-decoration:none" style-hover="padding-left:8px;transition:padding .25s"><span style="color:#000000;font-weight:600;font-size:16px">Community Center for Change</span><span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;color:#0797D4;border:1px solid #0797D4;padding:3px 8px">IN PROGRESS</span></a>
+          <a href="Projects.dc.html" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(26,26,26,.14);text-decoration:none" style-hover="padding-left:8px;transition:padding .25s"><span style="color:#000000;font-weight:600;font-size:16px">Little Memorial Garden</span><span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;color:#0797D4;border:1px solid #0797D4;padding:3px 8px">IN PROGRESS</span></a>
+          <a href="Projects.dc.html" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(26,26,26,.14);text-decoration:none" style-hover="padding-left:8px;transition:padding .25s"><span style="color:#000000;font-weight:600;font-size:16px">Botanical Bus Stop</span><span style="font-family:'Ropa Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;color:#5B6B72;border:1px solid #5B6B72;padding:3px 8px">PLANNED</span></a>
+        </div>
+        <a href="Projects.dc.html" style="color:#000000;text-decoration:none;font-family:'Ropa Sans',sans-serif;font-size:13px;letter-spacing:.12em;border-bottom:1px solid #FEC630;padding-bottom:4px;align-self:flex-start" style-hover="color:#209765">VISIT THE PROJECTS →</a>
+      </div>
+      <div data-reveal="120" style="position:relative;box-shadow:0 24px 60px rgba(26,26,26,.18)">
+        <img src="media/drone-garden-1.jpg" alt="Aerial view of the Memorial Garden community day, 2025" style="width:100%;display:block;aspect-ratio:4/3;object-fit:cover">
+        <div style="position:absolute;left:24px;bottom:24px;background:rgba(26,26,26,.82);color:#FFFFFF;padding:12px 18px;font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.1em">MEMORIAL GARDEN COMMUNITY DAY · 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GET INVOLVED -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;min-height:480px">
+    <a href="Membership.dc.html" style="position:relative;overflow:hidden;text-decoration:none;display:flex">
+      <img src="media/community-together-2.jpg" alt="Together We Can Do Great Things mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s" style-hover="transform:scale(1.04)">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.2))"></div>
+      <div style="position:relative;margin-top:auto;padding:36px;display:flex;flex-direction:column;gap:8px;width:100%">
+        <span style="font-family:'Ovo',serif;font-size:32px;color:#FFFFFF">Become a Member</span>
+        <span style="color:rgba(255,255,255,.8);font-size:14px">From $10/month. One member, one vote.</span>
+        <span style="color:#FEC630;font-weight:700;font-size:13px;letter-spacing:.06em;margin-top:8px">JOIN NOW →</span>
+      </div>
+    </a>
+    <a href="BrickCampaign.dc.html" style="position:relative;overflow:hidden;text-decoration:none;display:flex">
+      <img src="media/drone-2.jpg" alt="Aerial view of a community gathering at a brick building" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s" style-hover="transform:scale(1.04)">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.2))"></div>
+      <div style="position:relative;margin-top:auto;padding:36px;display:flex;flex-direction:column;gap:8px;width:100%">
+        <span style="font-family:'Ovo',serif;font-size:32px;color:#FFFFFF">Support the Brick Campaign</span>
+        <span style="color:rgba(255,255,255,.8);font-size:14px">Donate a named brick. Build the Center.</span>
+        <span style="color:#FEC630;font-weight:700;font-size:13px;letter-spacing:.06em;margin-top:8px">DONATE A BRICK →</span>
+      </div>
+    </a>
+    <a href="CleanGreen.dc.html" style="position:relative;overflow:hidden;text-decoration:none;display:flex">
+      <img src="media/cleangreen-1.jpg" alt="Clean and Green team member working curbside" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s" style-hover="transform:scale(1.04)">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.2))"></div>
+      <div style="position:relative;margin-top:auto;padding:36px;display:flex;flex-direction:column;gap:8px;width:100%">
+        <span style="font-family:'Ovo',serif;font-size:32px;color:#FFFFFF">Book Clean &amp; Green</span>
+        <span style="color:rgba(255,255,255,.8);font-size:14px">Nine services. Free estimates.</span>
+        <span style="color:#FEC630;font-weight:700;font-size:13px;letter-spacing:.06em;margin-top:8px">BOOK NOW →</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- NEWS -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:44px">
+      <div data-reveal="0" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">NEWS</div>
+          <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:54px;line-height:1.02">What's happening at CCD</h2>
+        </div>
+        <a href="NewsEvents.dc.html" style="color:#000000;text-decoration:none;font-family:'Ropa Sans',sans-serif;font-size:13px;letter-spacing:.12em;border-bottom:1px solid #FEC630;padding-bottom:4px" style-hover="color:#209765">ALL NEWS &amp; EVENTS →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+        <a data-reveal="0" href="NewsEvents.dc.html" style="text-decoration:none;display:flex;flex-direction:column;gap:16px" style-hover="opacity:.85">
+          <div style="height:240px;overflow:hidden"><img src="media/shoedrive-flyer.png" alt="Shoe Drive flyer" style="width:100%;height:100%;object-fit:cover;object-position:top"></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:#0797D4">JUNE 2026 · CAMPAIGN</span>
+            <span style="color:#000000;font-weight:700;font-size:19px;line-height:1.3">Summer Shoe Drive: give your old pairs a second life</span>
+            <span style="color:#FEC630;font-weight:700;font-size:12.5px;letter-spacing:.08em">READ →</span>
+          </div>
+        </a>
+        <a data-reveal="90" href="NewsEvents.dc.html" style="text-decoration:none;display:flex;flex-direction:column;gap:16px" style-hover="opacity:.85">
+          <div style="height:240px;overflow:hidden"><img src="media/drone-garden-3.jpg" alt="Memorial Garden community day" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:#0797D4">MAY 2026 · PROJECTS</span>
+            <span style="color:#000000;font-weight:700;font-size:19px;line-height:1.3">Memorial Garden community day draws the whole block</span>
+            <span style="color:#FEC630;font-weight:700;font-size:12.5px;letter-spacing:.08em">READ →</span>
+          </div>
+        </a>
+        <a data-reveal="180" href="NewsEvents.dc.html" style="text-decoration:none;display:flex;flex-direction:column;gap:16px" style-hover="opacity:.85">
+          <div style="height:240px;overflow:hidden"><img src="media/event-coopway-1.jpg" alt="Cooperative Way street celebration with balloons" style="width:100%;height:100%;object-fit:cover"></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:#0797D4">NOV 2024 · COMMUNITY</span>
+            <span style="color:#000000;font-weight:700;font-size:19px;line-height:1.3">"Cooperative Way" — Irvington celebrates its new street name</span>
+            <span style="color:#FEC630;font-weight:700;font-size:12.5px;letter-spacing:.08em">READ →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNERS MARQUEE -->
+  <div style="border-top:1px solid rgba(26,26,26,.1);border-bottom:1px solid rgba(26,26,26,.1);background:#FFFFFF;padding:34px 0;overflow:hidden">
+    <div style="display:flex;width:max-content;animation:marquee 36s linear infinite;gap:72px;align-items:center;padding-right:72px">
+      <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.16em;color:#78878D">OUR PARTNERS</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">MANO</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">BRED</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Civic Works Baltimore</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Chesapeake Bay Trust</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">T.A.P. Inc.</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Spring Meadow Farms</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Neighborhood Design Center</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">ReGEN Consulting</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">The 4th Brew</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">DeWalt</span>
+      <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.16em;color:#78878D">OUR PARTNERS</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">MANO</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">BRED</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Civic Works Baltimore</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Chesapeake Bay Trust</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">T.A.P. Inc.</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Spring Meadow Farms</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">Neighborhood Design Center</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">ReGEN Consulting</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">The 4th Brew</span>
+      <span style="font-family:'Ovo',serif;font-size:22px;color:#37474F">DeWalt</span>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;heroVibe&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Bold &amp; Gold&quot;, &quot;Dark Cinematic&quot;, &quot;Warm Community&quot;],
+    &quot;default&quot;: &quot;Bold &amp; Gold&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Hero Feel&quot;
+  },
+  &quot;slideStory&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;The Block&quot;, &quot;The Building&quot;, &quot;The People&quot;],
+    &quot;default&quot;: &quot;The Block&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Hero Feel&quot;
+  },
+  &quot;heroScale&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;Hero-first&quot;, &quot;Action-first&quot;, &quot;Story-first&quot;],
+    &quot;default&quot;: &quot;Hero-first&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Hero Feel&quot;
+  }
+}">
+class Component extends DCLogic {
+  state = { slide: 0 };
+
+  storyData() {
+    const story = this.props.slideStory ?? 'The Block';
+    const stories = {
+      'The Block': [
+        { src: 'media/drone-1.jpg',        alt: 'Frederick Avenue aerial',          kicker: 'IRVINGTON · BALTIMORE · EST. 2020' },
+        { src: 'media/drone-garden-1.jpg', alt: 'Memorial Garden aerial 2025',      kicker: 'LITTLE MEMORIAL GARDEN · 2025' },
+        { src: 'media/drone-2.jpg',        alt: 'Cooperative Way aerial',           kicker: 'COOPERATIVE WAY · IRVINGTON' },
+        { src: 'media/drone-3.jpg',        alt: 'Community garden path aerial',     kicker: 'AGRICULTURAL ACCESS · FOOD SOVEREIGNTY' },
+        { src: 'media/drone-garden-2.jpg', alt: 'Community event under tents',      kicker: 'COMMUNITY CO-OP MARKET · SEASONAL' },
+      ],
+      'The Building': [
+        { src: 'media/mural-marketplace-1.jpg', alt: '3932 Frederick Ave mural',   kicker: '3932 FREDERICK AVE · CENTER FOR SOCIAL IMPACT' },
+        { src: 'media/mural-marketplace-3.jpg', alt: 'Marketplace mural detail',   kicker: 'ARTIST PARRIS ASHLEY · COMMUNITY MARKETPLACE' },
+        { src: 'media/cleangreen-4.jpg',        alt: 'Clean and Green crew',       kicker: 'CLEAN & GREEN TEAM · NINE SERVICES' },
+        { src: 'media/community-oasis.jpg',     alt: 'Oasis walking tour',         kicker: 'OASIS @ 240 · RECLAIMED FROM VACANCY' },
+        { src: 'media/drone-2.jpg',             alt: 'Aerial view of the block',   kicker: 'IRVINGTON · WHERE IT ALL STARTED' },
+      ],
+      'The People': [
+        { src: 'media/community-citychill.jpg',   alt: 'Neighbors at City Chill',  kicker: 'CITY CHILL · THE BLOCK COMES TOGETHER' },
+        { src: 'media/community-together-2.jpg',  alt: 'Together We Can mural',    kicker: 'TOGETHER WE CAN DO GREAT THINGS' },
+        { src: 'media/community-smile.jpg',       alt: 'Community leader speaking',kicker: 'ONE MEMBER · ONE VOTE' },
+        { src: 'media/community-barbershop.jpg',  alt: 'Tour at BMore Fresh',      kicker: 'IRVINGTON WALKING TOUR · 5-MINUTE HISTORIES' },
+        { src: 'media/event-coopway-2.jpg',       alt: 'Cooperative Way celebration', kicker: 'COOPERATIVE WAY · NOV 2024' },
+      ],
+    };
+    return stories[story] || stories['The Block'];
+  }
+
+  componentDidMount() {
+    import('./reveal.js').then((m) => m.initReveal());
+    this._interval = setInterval(() => {
+      const slides = this.storyData();
+      this.setState((s) => ({ slide: (s.slide + 1) % slides.length }));
+    }, 5800);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._interval);
+  }
+
+  renderVals() {
+    const vibe  = this.props.heroVibe  ?? 'Bold & Gold';
+    const scale = this.props.heroScale ?? 'Hero-first';
+    const slides = this.storyData();
+    const cur = this.state.slide % slides.length;
+
+    const heroHeight = { 'Hero-first': '92vh', 'Action-first': '68vh', 'Story-first': '86vh' }[scale] || '92vh';
+
+    const heroSlides = slides.map((sl, i) => ({
+      src: sl.src, alt: sl.alt,
+      wrapStyle: {
+        position: 'absolute', inset: '0',
+        opacity: i === cur ? 1 : 0,
+        zIndex:  i === cur ? 2 : 1,
+        transition: 'opacity 1.6s cubic-bezier(.4,0,.2,1)',
+      },
+      bgStyle: {
+        position: 'absolute', inset: '0',
+        backgroundImage: `url(${sl.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      },
+    }));
+
+    const heroDots = slides.map((_, i) => ({
+      go: () => this.setState({ slide: i }),
+      style: {
+        width: i === cur ? '28px' : '8px',
+        height: '8px', borderRadius: '4px',
+        background: i === cur ? '#FEC630' : 'rgba(255,255,255,.4)',
+        border: 'none', cursor: 'pointer', padding: '0',
+        transition: 'all .45s cubic-bezier(.4,0,.2,1)',
+      },
+    }));
+
+    return {
+      heroSlides, heroDots,
+      heroKicker:  slides[cur]?.kicker || '',
+      heroCounter: `${String(cur + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`,
+      heroWrapStyle: { position: 'relative', height: heroHeight, minHeight: '640px', overflow: 'hidden', background: '#000000' },
+      isVibeBold: vibe === 'Bold & Gold',
+      isVibeDark: vibe === 'Dark Cinematic',
+      isVibeWarm: vibe === 'Warm Community',
+    };
+  }
+}
+</script>
+</body>
+</html>

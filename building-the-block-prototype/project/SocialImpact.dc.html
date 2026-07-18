@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ovo&amp;family=Ropa+Sans&amp;family=Sue+Ellen+Francisco&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#000000;-webkit-font-smoothing:antialiased}
+@keyframes heroZoom{0%{transform:scale(1.06)}50%{transform:scale(1.15)}100%{transform:scale(1.06)}}@keyframes photoDrift{0%{transform:scale(1.06) translate(0,0)}50%{transform:scale(1.13) translate(-1.4%,-1%)}100%{transform:scale(1.06) translate(0,0)}}
+@keyframes revealUp{from{transform:translateY(22px)}to{transform:none}}[data-reveal]{animation:revealUp .7s cubic-bezier(.2,.65,.2,1) both}[data-reveal="0"]{animation-delay:0ms}[data-reveal^="6"],[data-reveal^="7"],[data-reveal^="8"],[data-reveal^="9"]{animation-delay:70ms}[data-reveal^="1"]{animation-delay:150ms}[data-reveal^="2"]{animation-delay:230ms}[data-reveal^="3"]{animation-delay:290ms}::selection{background:#FEC630;color:#000000}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(254,198,48,.5)}70%{box-shadow:0 0 0 12px rgba(254,198,48,0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+[data-reveal-left]{animation:slideInLeft .75s cubic-bezier(.2,.65,.2,1) both}
+[data-reveal-right]{animation:slideInRight .75s cubic-bezier(.2,.65,.2,1) both}
+a[style*="background:#FEC630"]:hover{animation:pulseGold .6s ease-out}
+a[style*="background:#209765"]:hover{box-shadow:0 8px 28px rgba(32,151,101,.4);transition:box-shadow .3s}
+a[style*="background:#0797D4"]:hover{box-shadow:0 8px 28px rgba(7,151,212,.4);transition:box-shadow .3s}
+img[style*="object-fit:cover"]{transition:filter .4s}
+img[style*="object-fit:cover"]:hover{filter:brightness(1.06) saturate(1.12)}
+
+</style>
+</helmet>
+<div style="font-family:'Ropa Sans',ui-sans-serif,system-ui,sans-serif">
+  <dc-import name="SiteHeader" active="programs" style="position:sticky;top:-34px;z-index:500;display:block" hint-size="100%,110px"></dc-import>
+
+  <!-- HERO -->
+  <div style="position:relative;height:74vh;min-height:540px;overflow:hidden;background:#37474F">
+    <img src="media/mural-marketplace-1.jpg" alt="3932 Frederick Ave with the community marketplace mural" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:heroZoom 26s ease-in-out infinite;opacity:.85">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.88), rgba(0,0,0,.2))"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:0 64px 72px;display:flex;justify-content:center">
+      <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">3932–3934 FREDERICK AVE · SIGNATURE PROJECT</div>
+        <h1 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:clamp(48px,5.8vw,86px);line-height:1;color:#FFFFFF">The Center for<br><em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">Social Impact.</em></h1>
+        <p style="margin:0;max-width:560px;font-size:16.5px;line-height:1.65;color:rgba(255,255,255,.85)">What was once abandoned can become a beacon. A community-owned innovation hub for the 21229.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:380px 1fr;gap:72px">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">THE VISION</div>
+        <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:46px;line-height:1.05">5,000 square feet<br>of possibility.</h2>
+      </div>
+      <div data-reveal="100" style="display:flex;flex-direction:column;gap:22px;font-size:16.5px;line-height:1.75;color:#37474F;max-width:640px">
+        <p style="margin:0">The former Jarbo Brothers Storage facility at 3932–3934 Frederick Avenue is becoming the Center for Social Impact: a cooperative grocery store, a multimedia center, retail stalls for local makers, and flexible space for training and gathering — all owned by the community it serves.</p>
+        <p style="margin:0">CCD acquired the building in 2023 with our partners at BRED, the Baltimore Roundtable for Economic Democracy. The Neighborhood Design Center and ReGEN Consulting Group are shaping its design and development.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <div style="padding:0 64px 110px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(26,26,26,.1)">
+      <div data-reveal="0" style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">A</span><span style="font-weight:700;font-size:18px">Co-op grocery</span><span style="color:#5B6B72;font-size:13.5px;line-height:1.55">Fresh food access, member-owned</span></div>
+      <div data-reveal="70" style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">B</span><span style="font-weight:700;font-size:18px">Multimedia center</span><span style="color:#5B6B72;font-size:13.5px;line-height:1.55">Production &amp; digital skills space</span></div>
+      <div data-reveal="140" style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">C</span><span style="font-weight:700;font-size:18px">Retail stalls</span><span style="color:#5B6B72;font-size:13.5px;line-height:1.55">Storefronts for local makers</span></div>
+      <div data-reveal="210" style="background:#FFFFFF;padding:34px 28px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'Ropa Sans',sans-serif;font-size:13px;color:#0797D4">D</span><span style="font-weight:700;font-size:18px">Gathering space</span><span style="color:#5B6B72;font-size:13.5px;line-height:1.55">Training, meetings &amp; events</span></div>
+    </div>
+  </div>
+
+  <!-- HISTORY / TIMELINE -->
+  <div style="background:#37474F;padding:110px 64px;display:flex;justify-content:center">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:52px">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">THE HISTORY</div>
+        <h2 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:50px;line-height:1.04;color:#FFFFFF">From storage facility<br>to social infrastructure.</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.2)">
+        <div data-reveal="0" style="padding:28px 24px 0 0;display:flex;flex-direction:column;gap:10px;position:relative"><span style="position:absolute;top:-5px;left:0;width:9px;height:9px;background:#FEC630;border-radius:50%"></span><span style="font-family:'Ovo',serif;font-size:30px;color:#FFFFFF">Before</span><span style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.6)">Jarbo Brothers Storage — decades as a warehouse on a disinvested corridor.</span></div>
+        <div data-reveal="80" style="padding:28px 24px 0 0;display:flex;flex-direction:column;gap:10px;position:relative"><span style="position:absolute;top:-5px;left:0;width:9px;height:9px;background:#FEC630;border-radius:50%"></span><span style="font-family:'Ovo',serif;font-size:30px;color:#FFFFFF">2023</span><span style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.6)">CCD acquires the building with BRED — community ownership begins.</span></div>
+        <div data-reveal="160" style="padding:28px 24px 0 0;display:flex;flex-direction:column;gap:10px;position:relative"><span style="position:absolute;top:-5px;left:0;width:9px;height:9px;background:#FEC630;border-radius:50%"></span><span style="font-family:'Ovo',serif;font-size:30px;color:#FFFFFF">2024–26</span><span style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.6)">Design with Neighborhood Design Center; murals &amp; the Brick Campaign bring the block along.</span></div>
+        <div data-reveal="240" style="padding:28px 0 0 0;display:flex;flex-direction:column;gap:10px;position:relative"><span style="position:absolute;top:-5px;left:0;width:9px;height:9px;background:#209765;border:1px solid #FEC630;border-radius:50%"></span><span style="font-family:'Ovo',serif;font-size:30px;color:#FEC630;font-style:italic">Opening</span><span style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.6)">Construction milestones &amp; target dates — to be announced.</span></div>
+      </div>
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.5);margin-right:8px">KEY PARTNERS:</span>
+        <span style="font-family:'Ovo',serif;font-size:19px;color:#E7ECEE;padding:6px 14px;border:1px solid rgba(255,255,255,.25)">BRED</span>
+        <span style="font-family:'Ovo',serif;font-size:19px;color:#E7ECEE;padding:6px 14px;border:1px solid rgba(255,255,255,.25)">Neighborhood Design Center</span>
+        <span style="font-family:'Ovo',serif;font-size:19px;color:#E7ECEE;padding:6px 14px;border:1px solid rgba(255,255,255,.25)">ReGEN Consulting Group</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div style="padding:110px 64px;display:flex;justify-content:center;background:#EEF1F2">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:32px">
+      <div data-reveal="0" style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#209765">THE BUILDING TODAY</div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px">
+        <img data-reveal="0" src="media/mural-marketplace-1.jpg" alt="Community marketplace mural taking shape on the building" style="width:100%;height:440px;object-fit:cover;animation:photoDrift 26s ease-in-out infinite">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <img data-reveal="80" src="media/mural-marketplace-3.jpg" alt="Detail of the marketplace mural line art" style="width:100%;height:213px;object-fit:cover;animation:photoDrift 22s ease-in-out infinite">
+          <div data-reveal="160" style="height:213px;background:repeating-linear-gradient(-45deg,#FFFFFF,#FFFFFF 14px,#EEF1F2 14px,#EEF1F2 28px);border:1px solid rgba(26,26,26,.1);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;line-height:1.7;color:#78878D">[ architectural rendering —<br>from Neighborhood Design Center ]</span></div>
+        </div>
+      </div>
+      <p data-reveal="0" style="margin:0;font-family:'Ropa Sans',sans-serif;font-size:12px;color:#78878D">// 3932 Frederick interior photos exist as HEIC — convert for a before/current gallery</p>
+    </div>
+  </div>
+
+  <!-- BRICK CTA -->
+  <div style="background:#0797D4;padding:96px 64px;display:flex;justify-content:center">
+    <div style="max-width:1240px;width:100%;display:flex;justify-content:space-between;align-items:center;gap:44px;flex-wrap:wrap">
+      <div data-reveal="0" style="display:flex;flex-direction:column;gap:12px">
+        <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:rgba(255,255,255,.75)">THE BRICK CAMPAIGN</div>
+        <span style="font-family:'Ovo',serif;font-size:48px;line-height:1.05;color:#FFFFFF">Put your name on this building.<br>Literally.</span>
+      </div>
+      <a data-reveal="100" href="BrickCampaign.dc.html" style="background:#37474F;color:#FFFFFF;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:19px 34px;flex:none" style-hover="background:#209765">BUY A BRICK &amp; JOIN THE MOVEMENT →</a>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() {
+    import('./reveal.js').then((m) => m.initReveal());
+  }
+}
+</script>
+</body>
+</html>

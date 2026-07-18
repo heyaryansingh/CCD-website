@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ovo&amp;family=Ropa+Sans&amp;family=Sue+Ellen+Francisco&amp;display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#000000;-webkit-font-smoothing:antialiased}
+@keyframes revealUp{from{transform:translateY(22px)}to{transform:none}}[data-reveal]{animation:revealUp .7s cubic-bezier(.2,.65,.2,1) both}[data-reveal="0"]{animation-delay:0ms}[data-reveal^="6"],[data-reveal^="7"],[data-reveal^="8"],[data-reveal^="9"]{animation-delay:70ms}[data-reveal^="1"]{animation-delay:150ms}[data-reveal^="2"]{animation-delay:230ms}[data-reveal^="3"]{animation-delay:290ms}::selection{background:#FEC630;color:#000000}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(254,198,48,.5)}70%{box-shadow:0 0 0 12px rgba(254,198,48,0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+[data-reveal-left]{animation:slideInLeft .75s cubic-bezier(.2,.65,.2,1) both}
+[data-reveal-right]{animation:slideInRight .75s cubic-bezier(.2,.65,.2,1) both}
+a[style*="background:#FEC630"]:hover{animation:pulseGold .6s ease-out}
+a[style*="background:#209765"]:hover{box-shadow:0 8px 28px rgba(32,151,101,.4);transition:box-shadow .3s}
+a[style*="background:#0797D4"]:hover{box-shadow:0 8px 28px rgba(7,151,212,.4);transition:box-shadow .3s}
+img[style*="object-fit:cover"]{transition:filter .4s}
+img[style*="object-fit:cover"]:hover{filter:brightness(1.06) saturate(1.12)}
+
+</style>
+</helmet>
+<div style="font-family:'Ropa Sans',ui-sans-serif,system-ui,sans-serif">
+  <dc-import name="SiteHeader" active="contact" style="position:sticky;top:-34px;z-index:500;display:block" hint-size="100%,110px"></dc-import>
+
+  <!-- HERO -->
+  <div style="background:#209765;padding:96px 64px 72px;display:flex;justify-content:center">
+    <div style="max-width:1240px;width:100%;display:flex;flex-direction:column;gap:18px">
+      <div style="font-family:'Ropa Sans',sans-serif;font-size:12px;letter-spacing:.22em;color:#FEC630">CONTACT</div>
+      <h1 style="margin:0;font-family:'Ovo',serif;font-weight:400;font-size:clamp(48px,5.6vw,80px);line-height:1;color:#FFFFFF">Come find us<br><em style="color:#FEC630;font-family:'Sue Ellen Francisco',cursive;font-style:normal">on Frederick Ave.</em></h1>
+    </div>
+  </div>
+
+  <!-- INFO + FORM -->
+  <div style="padding:100px 64px;display:flex;justify-content:center;background:#FFFFFF">
+    <div style="max-width:1240px;width:100%;display:grid;grid-template-columns:420px 1fr;gap:80px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:36px">
+        <div data-reveal="0" style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.16em;color:#209765">VISIT</span>
+          <span style="font-family:'Ovo',serif;font-size:26px;line-height:1.3">4004 Frederick Ave<br>Baltimore, MD 21229</span>
+        </div>
+        <div data-reveal="60" style="display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(26,26,26,.12);padding-top:28px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.16em;color:#209765">REACH US</span>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15px">
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#5B6B72">General</span><a href="mailto:info@ccdgroup.org" style="color:#000000;font-weight:600;text-decoration:none" style-hover="color:#209765">info@ccdgroup.org</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#5B6B72">Clean &amp; Green</span><a href="mailto:francis@ccdgroup.org" style="color:#000000;font-weight:600;text-decoration:none" style-hover="color:#209765">francis@ccdgroup.org</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#5B6B72">Market &amp; events</span><a href="mailto:theREC@ccdgroup.org" style="color:#000000;font-weight:600;text-decoration:none" style-hover="color:#209765">theREC@ccdgroup.org</a></div>
+            <div style="display:flex;justify-content:space-between;gap:16px"><span style="color:#5B6B72">Phone</span><a href="tel:4102052488" style="color:#000000;font-weight:600;text-decoration:none" style-hover="color:#209765">(410) 205-2488</a></div>
+          </div>
+        </div>
+        <div id="booking" data-reveal="120" style="background:#EEF1F2;padding:30px 32px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:130px">
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.16em;color:#0797D4">FACILITIES BOOKING</span>
+          <span style="font-weight:700;font-size:17px;line-height:1.4">Need space for a meeting or event?</span>
+          <span style="color:#5B6B72;font-size:14px;line-height:1.6">Request CCD facilities through our booking form.</span>
+          <a href="#" style="background:#37474F;color:#FFFFFF;text-decoration:none;font-weight:700;font-size:12.5px;letter-spacing:.06em;padding:13px 20px;align-self:flex-start" style-hover="background:#209765">REQUEST FORM →</a>
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;color:#78878D">// links to Microsoft Forms</span>
+        </div>
+        <div data-reveal="180" style="aspect-ratio:4/3;background:repeating-linear-gradient(-45deg,#EEF1F2,#EEF1F2 14px,#E7E0D3 14px,#E7E0D3 28px);border:1px solid rgba(26,26,26,.1);display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center">
+          <span style="width:14px;height:14px;background:#0797D4;border-radius:50% 50% 50% 0;transform:rotate(-45deg)"></span>
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:11px;color:#78878D;text-align:center;line-height:1.7">[ embedded map — 4004 Frederick Ave ]<br>custom dark-green Google Maps style</span>
+        </div>
+      </div>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="100" style="background:#FFFFFF;border:1px solid rgba(26,26,26,.08);padding:48px;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:'Ovo',serif;font-size:32px">Send us a message</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">FIRST NAME</span><input value="{{ first }}" onChange="{{ onFirst }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+            <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">LAST NAME</span><input value="{{ last }}" onChange="{{ onLast }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">EMAIL</span><input value="{{ email }}" onChange="{{ onEmail }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none"></label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">TOPIC</span>
+            <select value="{{ topic }}" onChange="{{ onTopic }}" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none;background:#FFFFFF">
+              <option>General question</option><option>Membership</option><option>Clean &amp; Green services</option><option>Tool Bank</option><option>Co-op Market / vendors</option><option>Brick Campaign / donations</option><option>Volunteering</option><option>Facilities booking</option><option>Press / partnership</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px"><span style="font-family:'Ropa Sans',sans-serif;font-size:11px;letter-spacing:.12em;color:#209765">MESSAGE</span><textarea value="{{ message }}" onChange="{{ onMessage }}" rows="5" style="padding:13px 14px;border:1px solid rgba(26,26,26,.2);font-size:14px;font-family:'Ropa Sans',sans-serif;outline:none;resize:vertical"></textarea></label>
+          <button onClick="{{ onSubmit }}" style="background:#FEC630;color:#000000;border:none;font-weight:700;font-size:14px;letter-spacing:.05em;padding:17px;cursor:pointer;font-family:'Ropa Sans',sans-serif" style-hover="background:#E6AC00">SEND MESSAGE</button>
+          <sc-if value="{{ showError }}" hint-placeholder-val="{{ false }}"><span style="color:#0797D4;font-size:13px">Please add your name, email, and a message.</span></sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#FFFFFF;border:1px solid rgba(26,26,26,.08);padding:80px 48px;display:flex;flex-direction:column;gap:16px;justify-content:center;text-align:center">
+          <span style="font-family:'Ovo',serif;font-size:40px;color:#209765">Message sent.</span>
+          <p style="margin:0;color:#5B6B72;font-size:15.5px;line-height:1.7">Thanks, {{ first }} — we'll get back to you at {{ email }} within a couple of business days.</p>
+          <span style="font-family:'Ropa Sans',sans-serif;font-size:12px;color:#78878D">// prototype: submissions route to info@ccdgroup.org</span>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+
+  <dc-import name="SiteFooter" hint-size="100%,640px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = { first: '', last: '', email: '', topic: 'General question', message: '', sent: false, error: false };
+  componentDidMount() {
+    import('./reveal.js').then((m) => m.initReveal());
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      first: s.first, last: s.last, email: s.email, topic: s.topic, message: s.message,
+      sent: s.sent, notSent: !s.sent, showError: s.error,
+      onFirst: (e) => this.setState({ first: e.target.value }),
+      onLast: (e) => this.setState({ last: e.target.value }),
+      onEmail: (e) => this.setState({ email: e.target.value }),
+      onTopic: (e) => this.setState({ topic: e.target.value }),
+      onMessage: (e) => this.setState({ message: e.target.value }),
+      onSubmit: () => {
+        if (!s.first.trim() || !s.email.trim() || !s.message.trim()) { this.setState({ error: true }); return; }
+        this.setState({ sent: true, error: false });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
