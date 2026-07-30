@@ -238,3 +238,9 @@ Recipe amendment: text elements = select glyphs → Edit Text → wait 3s → ve
 
 `#button4` finished: label "Become a member", links to the Membership page, accessible name set. Home hero = H1 + body + working CTA, all live and autosaved.
 Button recipe (final): select via Layers -> Change Text -> the Button Settings panel opens -> the Text field is already focused with content selected -> type replacement directly (no triple-click; a stray click defocuses and the typed text is lost). Links: the link icon in the same panel -> Page -> type-to-filter -> Done.
+
+### Session close (canvas)
+
+Designed-section presets: inserting works (About gallery), but retexting preset internals via automation compounds errors (nested Cell/Stack hit-targets, edit-mode races) — after a duplicated-headline artifact appeared, the added sections 5/6 were deleted. Final Home state: clean hero (H1 headline, body, CTA linked to Membership with accessible name) over the original header/footer. Everything autosaved.
+
+Lesson for next session: per-element automation is reliable ONLY with the verify-screenshot-between-steps recipe on TOP-LEVEL elements. For designed-section presets, retext by a HUMAN in the editor (seconds each) or via renderer IDs once siteData is pasted. The hero pattern (Title/Paragraph/Button quick-add + recipe) is the proven automated path.
