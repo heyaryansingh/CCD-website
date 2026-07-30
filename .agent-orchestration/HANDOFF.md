@@ -291,3 +291,6 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Intro paragraphs + title width done: About, What Is A Coop, Team (3/17)
 - Insert-quirk: Quick Add drops element at viewport center — if header is centered it lands IN the header (delete + rescroll). Deselect before opening Add panel.
 - Partners done (4/17): title widened, intro para placed
+- Programs done (5/17): title X340/W600, intro para X340/Y320/W600
+- Streamlined per-page recipe: nav+wait ~110s -> click title x2 -> X340 Tab, W600 Return (retry once if zoom shows old vals) -> Escape, click empty canvas, + panel, Paragraph card click (verify panel open first; if inserted into header: Delete + rescroll) -> select para x2 -> Edit Text (verify blue) -> type intro -> Escape -> X340, Y=(117+titleH+30), W600 -> zoom verify
+- Intro texts remaining: coop-market/tool-bank/csi/clean-and-green/projects/membership/brick-campaign/news/events/donate/volunteer/contact per page-copy packets
