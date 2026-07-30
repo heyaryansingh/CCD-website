@@ -244,3 +244,6 @@ Button recipe (final): select via Layers -> Change Text -> the Button Settings p
 Designed-section presets: inserting works (About gallery), but retexting preset internals via automation compounds errors (nested Cell/Stack hit-targets, edit-mode races) — after a duplicated-headline artifact appeared, the added sections 5/6 were deleted. Final Home state: clean hero (H1 headline, body, CTA linked to Membership with accessible name) over the original header/footer. Everything autosaved.
 
 Lesson for next session: per-element automation is reliable ONLY with the verify-screenshot-between-steps recipe on TOP-LEVEL elements. For designed-section presets, retext by a HUMAN in the editor (seconds each) or via renderer IDs once siteData is pasted. The hero pattern (Title/Paragraph/Button quick-add + recipe) is the proven automated path.
+
+### H1 pass progress
+Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop stable: page dropdown -> wait 15s+ for canvas -> Quick Add Title -> click glyphs x2 -> Edit Text -> VERIFY screenshot (mandatory; the one skipped verify failed) -> type -> Escape.
