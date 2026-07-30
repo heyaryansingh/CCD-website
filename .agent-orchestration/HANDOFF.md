@@ -290,3 +290,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Remaining 16: what-is-a-coop, team, partners, programs, coop-market, tool-bank, csi, clean-and-green, projects, membership, brick-campaign, news, events, donate, volunteer, contact
 - Intro paragraphs + title width done: About, What Is A Coop, Team (3/17)
 - Insert-quirk: Quick Add drops element at viewport center — if header is centered it lands IN the header (delete + rescroll). Deselect before opening Add panel.
+- Partners done (4/17): title widened, intro para placed
