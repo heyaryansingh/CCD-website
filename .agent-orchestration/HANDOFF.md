@@ -261,3 +261,8 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - News: 'What'\''s happening at CCD.' live
 - Events: 'Events on the block.' live
 - 15/17 done. Remaining: Donate, Volunteer, Contact (last two need dropdown scroll).
+- Donate: 'Invest in Irvington.' live
+- Volunteer: 'Give time, not just money.' live
+- Contact: 'Come find us on Frederick Ave.' live
+
+## H1 PASS COMPLETE: all 17 pages have native H1 hero titles (visual Heading style; semantic tag pass next)
