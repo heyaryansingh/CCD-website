@@ -213,3 +213,14 @@ Authenticated session via Claude in Chrome. Guardrail held throughout: staging s
 ### Data-layer fixes baked into ready-to-paste/siteData.js
 
 All 19 link-label fixes (verified per-card after a regex reached into an adjacent card and was caught), plus renderer support for `heroAlt`, `bullets`, `images`.
+
+### Canvas automation: proven working recipe (for the next session)
+
+The Home page now carries its first native element: the H1 headline "Building the block. Brick by brick." (element `#text13`, Ovo, added via Add Elements → Title). The reliable retext sequence, confirmed after two failed variants:
+
+1. Click the text element's glyphs directly (not its label chip — that selects the section)
+2. Click the floating **Edit Text** button
+3. **Wait 3s** — the inline editor opens with all text pre-selected
+4. Type the replacement (no Ctrl+A needed), then Escape
+
+Double-click entry and immediate typing both fail silently. Set the semantic heading tag afterward via the text settings (Style dropdown is visual-only). Remaining per-page work: paste copy from `handoff/page-copy/<page>.md` using this recipe, headings per `handoff/HEADING-OUTLINES.md`.
