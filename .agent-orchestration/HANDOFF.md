@@ -277,3 +277,9 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - H1+Fade sweep: Tool Bank, Coop Market, Programs done (12/17). Remaining: Partners, Team, What Is A Coop, About, Home, Membership
 - H1+Fade sweep: Partners, Team, What Is A Coop done (15/17). Remaining: About, Home, Membership
 - Note: Autosave silently toggled off once (~13th page); pressed ctrl+s and clicked autosave label to re-enable — verify 'Autosave on' after each nav
+
+## H1 + ANIMATION SWEEP COMPLETE (all 18 pages)
+- Every page's hero title: semantic Heading 1 tag (72px theme size; Home kept 42px custom size to avoid CTA overlap, tag still H1)
+- Every page's hero title: Fade entrance animation (respects prefers-reduced-motion via global.css)
+- Autosave verified on; manual ctrl+s at close
+- Remaining user-gated work: paste ready-to-paste/ files in Wix IDE + Sync; drag 45 media files into Media Manager; publish decision
