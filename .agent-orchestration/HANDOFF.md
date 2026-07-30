@@ -233,3 +233,8 @@ Double-click entry and immediate typing both fail silently. Set the semantic hea
 - Known cleanups: #text13 tag is H2 → set to H1 (Accessibility Wizard, "Organize heading structure"); widen #text13 (W field edit didn't take; drag handles or retry); position button right of paragraph
 
 Recipe amendment: text elements = select glyphs → Edit Text → wait 3s → verify-screenshot → type → Escape. Buttons = Change Text opens a PANEL, type into its label field instead.
+
+### Hero complete (continued session)
+
+`#button4` finished: label "Become a member", links to the Membership page, accessible name set. Home hero = H1 + body + working CTA, all live and autosaved.
+Button recipe (final): select via Layers -> Change Text -> the Button Settings panel opens -> the Text field is already focused with content selected -> type replacement directly (no triple-click; a stray click defocuses and the typed text is lost). Links: the link icon in the same panel -> Page -> type-to-filter -> Done.
