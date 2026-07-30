@@ -294,3 +294,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Programs done (5/17): title X340/W600, intro para X340/Y320/W600
 - Streamlined per-page recipe: nav+wait ~110s -> click title x2 -> X340 Tab, W600 Return (retry once if zoom shows old vals) -> Escape, click empty canvas, + panel, Paragraph card click (verify panel open first; if inserted into header: Delete + rescroll) -> select para x2 -> Edit Text (verify blue) -> type intro -> Escape -> X340, Y=(117+titleH+30), W600 -> zoom verify
 - Intro texts remaining: coop-market/tool-bank/csi/clean-and-green/projects/membership/brick-campaign/news/events/donate/volunteer/contact per page-copy packets
+- Coop Market done (6/17). Layers-select para (#text14 P row) is the reliable selection method when canvas clicks grab the section. Field coords shift between 1512/1566-wide screenshots — zoom-verify after typing.
