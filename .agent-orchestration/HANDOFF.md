@@ -266,3 +266,7 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Contact: 'Come find us on Frederick Ave.' live
 
 ## H1 PASS COMPLETE: all 17 pages have native H1 hero titles (visual Heading style; semantic tag pass next)
+
+## Phase: semantic H1 + entrance animation sweep
+- Recipe: select title -> Animations tab -> Entrance Add -> Fade (click may need 2-3 tries; verify tile highlighted) -> Edit Text -> Style dropdown -> Heading 1 (sets semantic H1 + 72px theme size)
+- Done: Contact, Volunteer, Donate, Events (4/17)
