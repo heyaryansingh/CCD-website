@@ -224,3 +224,12 @@ The Home page now carries its first native element: the H1 headline "Building th
 4. Type the replacement (no Ctrl+A needed), then Escape
 
 Double-click entry and immediate typing both fail silently. Set the semantic heading tag afterward via the text settings (Style dropdown is visual-only). Remaining per-page work: paste copy from `handoff/page-copy/<page>.md` using this recipe, headings per `handoff/HEADING-OUTLINES.md`.
+
+### Canvas progress (this session, all autosaved on the staging Home page)
+
+- `#text13` (H2, Ovo 42px): **"Building the block. Brick by brick."** — live
+- `#text14` (Paragraph, Ropa Sans 16px): **"A member-owned cooperative turning vacant spaces into markets, gardens, services, and neighborhood wealth in Baltimore's 21229."** — live
+- `#button4`: added, still default "Start Now" label — button labels do NOT retext inline; "Change Text" opens a settings panel with a label input (next session: use that input, then the link icon to set /membership)
+- Known cleanups: #text13 tag is H2 → set to H1 (Accessibility Wizard, "Organize heading structure"); widen #text13 (W field edit didn't take; drag handles or retry); position button right of paragraph
+
+Recipe amendment: text elements = select glyphs → Edit Text → wait 3s → verify-screenshot → type → Escape. Buttons = Change Text opens a PANEL, type into its label field instead.
