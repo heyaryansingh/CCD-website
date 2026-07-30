@@ -283,3 +283,8 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Every page's hero title: Fade entrance animation (respects prefers-reduced-motion via global.css)
 - Autosave verified on; manual ctrl+s at close
 - Remaining user-gated work: paste ready-to-paste/ files in Wix IDE + Sync; drag 45 media files into Media Manager; publish decision
+
+## Phase: hero intro-paragraph sweep + title width fix
+- About done: title W 232->600 X340 (was mid-word wrapping at 72px), intro paragraph added below (X340 Y330 W600), Fade retained
+- Recipe: select title -> X/W fields; Add panel -> Paragraph (click ONCE, only after canvas loaded — double-insert lands one in header, delete it); select para -> Edit Text (verify blue) -> ctrl+a -> type intro -> X340/Y330/W600
+- Remaining 16: what-is-a-coop, team, partners, programs, coop-market, tool-bank, csi, clean-and-green, projects, membership, brick-campaign, news, events, donate, volunteer, contact
