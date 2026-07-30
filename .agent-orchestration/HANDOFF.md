@@ -288,3 +288,5 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - About done: title W 232->600 X340 (was mid-word wrapping at 72px), intro paragraph added below (X340 Y330 W600), Fade retained
 - Recipe: select title -> X/W fields; Add panel -> Paragraph (click ONCE, only after canvas loaded — double-insert lands one in header, delete it); select para -> Edit Text (verify blue) -> ctrl+a -> type intro -> X340/Y330/W600
 - Remaining 16: what-is-a-coop, team, partners, programs, coop-market, tool-bank, csi, clean-and-green, projects, membership, brick-campaign, news, events, donate, volunteer, contact
+- Intro paragraphs + title width done: About, What Is A Coop, Team (3/17)
+- Insert-quirk: Quick Add drops element at viewport center — if header is centered it lands IN the header (delete + rescroll). Deselect before opening Add panel.
