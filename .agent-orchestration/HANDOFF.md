@@ -247,3 +247,9 @@ Lesson for next session: per-element automation is reliable ONLY with the verify
 
 ### H1 pass progress
 Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop stable: page dropdown -> wait 15s+ for canvas -> Quick Add Title -> click glyphs x2 -> Edit Text -> VERIFY screenshot (mandatory; the one skipped verify failed) -> type -> Escape.
+
+### H1 pass checkpoint 05:43
+- Programs: 'Built by the block, for the block.' live
+- Coop Market: 'The Community Co-op Market.' live
+- Tool Bank: 'Borrow it. Don'\''t buy it.' live
+- 9/17 pages have native H1 titles. Next: Center For Social Impact, Clean And Green, Projects.
