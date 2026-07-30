@@ -257,3 +257,7 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Clean And Green: 'Your yard. Our pride.' live
 - Projects: 'Our work in the 21229.' live
 - 12/17 pages done. Remaining: Brick Campaign, News, Events, Donate, Volunteer, Contact.
+- Brick Campaign: 'What was once abandoned can become a beacon.' live
+- News: 'What'\''s happening at CCD.' live
+- Events: 'Events on the block.' live
+- 15/17 done. Remaining: Donate, Volunteer, Contact (last two need dropdown scroll).
