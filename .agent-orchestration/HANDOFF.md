@@ -275,3 +275,5 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Brick Campaign canvas briefly rendered text invisible; text intact (rendering glitch), retyped as safety
 - H1+Fade sweep: Clean And Green, Center For Social Impact done (9/17). Remaining: Tool Bank, Coop Market, Programs, Partners, Team, What Is A Coop, About, Home, Membership
 - H1+Fade sweep: Tool Bank, Coop Market, Programs done (12/17). Remaining: Partners, Team, What Is A Coop, About, Home, Membership
+- H1+Fade sweep: Partners, Team, What Is A Coop done (15/17). Remaining: About, Home, Membership
+- Note: Autosave silently toggled off once (~13th page); pressed ctrl+s and clicked autosave label to re-enable — verify 'Autosave on' after each nav
