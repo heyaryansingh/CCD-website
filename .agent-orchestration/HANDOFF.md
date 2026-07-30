@@ -253,3 +253,7 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Coop Market: 'The Community Co-op Market.' live
 - Tool Bank: 'Borrow it. Don'\''t buy it.' live
 - 9/17 pages have native H1 titles. Next: Center For Social Impact, Clean And Green, Projects.
+- Center For Social Impact: 'The Center for Social Impact.' live
+- Clean And Green: 'Your yard. Our pride.' live
+- Projects: 'Our work in the 21229.' live
+- 12/17 pages done. Remaining: Brick Campaign, News, Events, Donate, Volunteer, Contact.
