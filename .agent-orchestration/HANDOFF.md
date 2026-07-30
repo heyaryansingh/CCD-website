@@ -298,3 +298,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Tool Bank done (7/17). Fix: ctrl+a/type without confirmed edit-mode = silent no-op. Always click Edit Text button, screenshot-verify highlighted blue text before typing.
 - Clean And Green done (8/17): title X340/W600, intro para X340/Y320/W600
 - Center For Social Impact done (9/17): title X340/W600, intro para X340/Y320/W600
+- Projects done (10/17): title X340/W600, intro para X340/Y320/W600. Halfway on intro sweep.
