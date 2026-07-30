@@ -299,3 +299,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Clean And Green done (8/17): title X340/W600, intro para X340/Y320/W600
 - Center For Social Impact done (9/17): title X340/W600, intro para X340/Y320/W600
 - Projects done (10/17): title X340/W600, intro para X340/Y320/W600. Halfway on intro sweep.
+- Membership done (11/17): title X340/W600, intro para X340/Y320/W600. Autosave briefly toggled off mid-page (reopening Add Elements re-enabled it) — verify Autosave-on label after each nav.
