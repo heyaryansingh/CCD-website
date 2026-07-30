@@ -273,3 +273,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - H1+Fade sweep done: Contact, Volunteer, Donate, Events, News, Brick Campaign, Projects (7/17)
 - Quirk: first click after panel switch is swallowed; Fade needs up to 3 clicks (verify tile highlighted); Style dropdown needs 1-3 clicks (verify open before choosing Heading 1)
 - Brick Campaign canvas briefly rendered text invisible; text intact (rendering glitch), retyped as safety
+- H1+Fade sweep: Clean And Green, Center For Social Impact done (9/17). Remaining: Tool Bank, Coop Market, Programs, Partners, Team, What Is A Coop, About, Home, Membership
