@@ -302,3 +302,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Membership done (11/17): title X340/W600, intro para X340/Y320/W600. Autosave briefly toggled off mid-page (reopening Add Elements re-enabled it) — verify Autosave-on label after each nav.
 - Brick Campaign done (12/17): title X300/W700 (long headline needed extra width), intro para X300/Y400/W700
 - Events done (13/17): title X340/W600, intro para X340/Y330/W600. Remaining: News, Donate, Volunteer, Contact.
+- Donate done (14/17): title X340/W600 fits 1 line, intro para X340/Y240/W600. Remaining: News, Volunteer, Contact.
