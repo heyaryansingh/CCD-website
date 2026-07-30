@@ -304,3 +304,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Events done (13/17): title X340/W600, intro para X340/Y330/W600. Remaining: News, Donate, Volunteer, Contact.
 - Donate done (14/17): title X340/W600 fits 1 line, intro para X340/Y240/W600. Remaining: News, Volunteer, Contact.
 - News done (15/17): title X340/W600, intro para X340/Y330/W600. Remaining: Volunteer, Contact.
+- Volunteer done (16/17): title X340/W600, intro para X340/Y300/W600. Final page: Contact.
