@@ -296,3 +296,4 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - Intro texts remaining: coop-market/tool-bank/csi/clean-and-green/projects/membership/brick-campaign/news/events/donate/volunteer/contact per page-copy packets
 - Coop Market done (6/17). Layers-select para (#text14 P row) is the reliable selection method when canvas clicks grab the section. Field coords shift between 1512/1566-wide screenshots — zoom-verify after typing.
 - Tool Bank done (7/17). Fix: ctrl+a/type without confirmed edit-mode = silent no-op. Always click Edit Text button, screenshot-verify highlighted blue text before typing.
+- Clean And Green done (8/17): title X340/W600, intro para X340/Y320/W600
