@@ -14,7 +14,7 @@ Build a non-destructive, website-focused media filebase from the local CCD repo 
 - Main: locate likely roots, define category rules, implement sorter, run inventory, review results.
 - Main: implemented `scripts/organize_ccd_media.py`.
 - Main: generated `website-media-filebase/`, `media-catalog.csv`, `README.md`, and `google-stitch-prompt-pack.md`.
-- Main: appended the July 2026 media/Stitch addendum to `CCD_New_Website_Plan.md`.
+- Main: appended the July 2026 media/Stitch addendum to `docs/CCD_New_Website_Plan.md`.
 - Main: added `scripts/create_stitch_upload_files.py`.
 - Main: generated `website-media-filebase/stitch-upload-files/` with uploadable visual boards and prompt TXT files so Google Stitch can ingest media as files.
 

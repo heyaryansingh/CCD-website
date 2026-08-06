@@ -2,6 +2,15 @@
 Cooperative Community Development Inc/
 website-media-filebase/
 Shoe Drive CCD/
-ccd-website/
-nul
 building-the-block-prototype/project/media/
+
+# The Next.js app has its own repo
+ccd-website/
+
+# OS / tooling junk
+nul
+desktop.ini
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
