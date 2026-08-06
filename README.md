@@ -1,34 +1,88 @@
 # CCD — Cooperative Community Development Inc.
 
-Baltimore member-owned cooperative, Irvington / 21229. Live site: [ccdgroup.org](https://ccdgroup.org).
+A Baltimore member-owned cooperative building food access, green space, local
+services, and community-owned infrastructure in Irvington (21229).
 
-## There are two websites in here
+Founded 2020 · 4004 Frederick Ave, Baltimore MD 21229 · info@ccdgroup.org · (410) 205-2488
 
-| | Path | What | Status |
-|---|---|---|---|
-| **A** | `ccd-website/` | Next.js 16 app — the rebuild | Vercel. **Own git repo, gitignored here.** Not committed by this repo. |
-| **B** | `wix-migration-kit/` | Docs, CSV seed data, and Velo JS for the Wix Studio build | Drives the live ccdgroup.org |
+| | |
+|---|---|
+| **New site (this repo)** | https://ccdgroup.vercel.app |
+| **Current live site** | https://ccdgroup.org — still the old Wix site, untouched |
 
-Most commits in this repo are Wix work. Application code lives in `ccd-website/` and is tracked separately.
+The new site is **not** yet on `ccdgroup.org`. Pointing the real domain at it is a
+deliberate, separate decision.
 
-## Layout
+## Start here
 
-```
-.agent-orchestration/   HANDOFF logs — read HANDOFF.md before picking up any in-flight work
-assets/                 Flyers, slides, and campaign graphics (see docs/ShoeDrive_Website_PostingGuide.md)
-ccd-website/            Next.js app (gitignored — separate repo)
-building-the-block-prototype/  Static HTML design prototype
-docs/                   Plans, content audits, meeting notes
-scripts/                Media organizer + content/link/contrast audit tooling
-wix-migration-kit/      Wix build guide, seed CSVs, handoff kit for nontechnical staff
+```bash
+cd ccd-website
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Gitignored media archives (61GB+ of originals, not in version control):
+That is the website. `ccd-website/README.md` explains how it is built — read it
+before changing anything in there.
+
+## What is in this repo
+
+```
+ccd-website/       THE WEBSITE — Next.js 16, deployed to Vercel
+wix-migration-kit/ The Wix Studio build: guide, CMS seed CSVs, and the handoff
+                   kit written for non-technical CCD staff
+docs/              Plans, content audits, the shoe-drive posting guide, meeting notes
+assets/            Flyers, event slides, campaign graphics
+scripts/           Media organizer + content/link/contrast audit tooling
+building-the-block-prototype/  Early static HTML design prototype
+.agent-orchestration/          Working logs — read HANDOFF.md before picking up
+                               anything half-finished
+```
+
+Not in version control (61GB+ of originals, kept locally):
 `Cooperative Community Development Inc/`, `website-media-filebase/`, `Shoe Drive CCD/`.
+
+### Two sites, one repo
+
+There are two builds of the CCD site here, and they are not the same thing:
+
+- **`ccd-website/`** — the Next.js rebuild. This is where new work goes.
+- **`wix-migration-kit/`** — everything for the Wix Studio site that currently
+  serves `ccdgroup.org`, including a handbook so staff can edit it without a
+  developer.
+
+Most of this repo's commit history is Wix work. The Next.js app was folded in on
+2026-08-06; its earlier history is preserved at
+`.agent-orchestration/ccd-website-git-history.txt`.
+
+## The site at a glance
+
+**21 pages**, all generated from one data file (`ccd-website/lib/siteData.ts`) through
+four route files. To add a page you add a key to that file — you do not create a
+route. Runtime dependencies are exactly three: `next`, `react`, `react-dom`.
+
+Sections include the CCD programs — Center for Social Impact, Clean & Green, Co-op
+Market, Tool Bank — plus projects, membership, events, and **The 4th Brew**, CCD's
+coffee brand, whose store, story, and brewing guide now live on this site with
+Shopify acting only as the checkout backend.
+
+## Rules worth knowing before you edit
+
+**Colour.** Gold `#fec630` on white is 1.57:1 and fails WCAG AA. Gold is a fill behind
+dark text, or text on dark — never text on a light background. Eyebrows on light use
+`#8a6d00`. The same applies to The 4th Brew tan `#c2b27f`. Measured table for every
+token pair: `.agent-orchestration/HANDOFF.md`.
+
+**Two addresses, both correct.** 4004 Frederick Ave is CCD's own address.
+3932-3934 Frederick Ave is the Center for Social Impact. They are different
+buildings — this is not a typo to fix.
+
+**Shopify.** `siteConfig.links.brewShop` must point at Shopify's *primary* domain.
+Shopify redirects every cart link to whatever that is, so retiring `the4thbrew.com`
+before moving the primary domain to `shop.the4thbrew.com` would break every checkout.
 
 ## Scripts
 
-Run from the repo root. `scripts/*.py` resolve paths relative to it.
+Run from the repo root; the Python scripts resolve paths relative to it.
 
 | Script | Does |
 |---|---|
@@ -37,8 +91,4 @@ Run from the repo root. `scripts/*.py` resolve paths relative to it.
 | `scripts/export_page_copy.mjs` | Turns `wix-migration-kit/velo/siteData.js` into paste-ready copy packets. |
 | `scripts/audit_content.mjs` | Heading outlines + link-text audit. |
 | `scripts/check_handoff_links.mjs` | Validates every relative link in the handoff kit. |
-| `wix-migration-kit/handoff/contrast-check.js` | WCAG regression guard. Exit 1 if a prescribed color fix is reverted. |
-
-## Color rule (do not break)
-
-Gold `#fec630` on white is **1.57:1** and fails WCAG. Gold is a fill behind dark text, or text on dark — never text on light. Eyebrows use `#8a6d00`. Full measured table in `.agent-orchestration/HANDOFF.md`.
+| `wix-migration-kit/handoff/contrast-check.js` | WCAG regression guard. Exits 1 if a prescribed colour fix is reverted. |

@@ -349,3 +349,93 @@ Native H1s live: Home (+body/CTA), About, Membership, What Is A Coop, Team. Loop
 - All verified: correct file (confirmed via search-result filename label before every Update click), #heroImage ID set, X~870-950/Y80/W450/H380.
 - Remaining 6: Brick Campaign(drone-2.jpg), News(event-coopway-1.jpg), Events(event-coopway-3.jpg), Donate(drone-garden-1.jpg), Volunteer(farm-youth-harvest.jpg), Contact(ccd-hq-crew.jpg)
 - Pattern holding steady: Update button click needs 1-2 attempts (screenshot-verify the real photo replaced the placeholder, not just that the dialog closed); Rename field needs a second click after "Rename" is chosen from the "..." menu before typing registers.
+
+---
+
+## Phase: The 4th Brew absorbed into the Next.js site (2026-08-06)
+
+**Goal.** CCD becomes the canonical home for The 4th Brew — story, brewing guide, and
+storefront — with Shopify demoted to a catalog and checkout backend. Previously the
+brand was a partner logo linking away to `the4thbrew.com`.
+
+### Frozen contract
+
+- Target is `ccd-website/` (Next.js), **not** the Wix site.
+- No new runtime dependencies. The app stays on `next` / `react` / `react-dom`.
+- Editorial lives in `siteData.ts`; Shopify owns price, stock, and product photo.
+- The build must never fail because the store is unreachable.
+
+### The Buy Button was not an option
+
+The plan started as Shopify Buy Button embeds. **The JS Buy SDK was deprecated
+Jan 2025 and its final v3.0 lost support Jan 1 2026.** Embeds still run but get no
+fixes and ignore Markets pricing.
+
+With three products, the replacement is *smaller* than the SDK: **Shopify cart
+permalinks.** `Add to cart` is a plain `<a>` to `{brewShop}/cart/{variantId}:1`, which
+opens Shopify checkout with the item. No SDK, no token, no cart state, nothing that
+can be deprecated. `BrewProducts.tsx` reads `{brewShop}/products.json` (public, no
+auth) at build time and falls back to captured data on any failure — verified by
+building against an unreachable host.
+
+### Domain finding that changes the retirement plan
+
+**Shopify 301s every cart link to whatever its primary domain currently is.** Verified:
+the raw `nxvrcp-ea.myshopify.com` handle redirects to `the4thbrew.com`, and a cart
+permalink lands on a real Shop Pay checkout.
+
+Consequence: **redirecting `the4thbrew.com` to CCD while it is still Shopify's primary
+domain breaks every checkout.** Move the primary to `shop.the4thbrew.com` first, then
+update `siteConfig.links.brewShop`. This gates the whole domain-retirement phase.
+
+### Built
+
+| | |
+|---|---|
+| Routes | `/4th-brew`, `/shop`, `/brewing` — all through the existing `[slug]` route, no new route files |
+| Section kinds added | `products`, `band`, `values`, `faq` (native `<details>`, no client JS) |
+| Nav | 4th group in `navGroups`; `ActiveNav` gained `"brew"` |
+| Aliases | `/collections`, `/coffee`, `/coffee-brewing-methods`, `/the-4th-brew`, `/fourth-brew` — so inbound Shopify links survive |
+| Skin | `brand: "brew"` puts `.brew` on `<main>`, reassigning colour/type tokens. Header and footer sit outside `<main>` and stay CCD |
+
+### Storefront facts (harvested publicly; admin was never reachable)
+
+Theme is **Dawn 15.2.0** (live theme named "Working"), plus GemPages. Fonts Inknut
+Antiqua + Libre Baskerville. Colours `#108474` teal, `#C2B27F` tan, `#231F20` ink.
+39 images pulled from the public storefront — the useful find was **one line-art icon
+per brewing method**, which now illustrates the eight cards. Originals archived at
+`website-media-filebase/11-4th-brew-shopify/`.
+
+**Not obtained:** the theme ZIP, `settings_data.json`, unpublished themes. The Chrome
+extension never connected (`list_connected_browsers` returned `[]`, `switch_browser`
+found nothing to broadcast to), so Shopify admin was unreachable this phase. A theme
+named "Zoe" was asked about and does not exist among published themes — it would be an
+unpublished one, still unverified.
+
+### Measured, not assumed
+
+- Built CSS md5 identical before and after removing Tailwind
+  (`7100d8630771071cc9fba041de753f40`, 35209 bytes) — it was a genuine no-op.
+- Contrast against the actual band photos: eyebrow 5.34–7.89:1, body 8.16–11.48:1,
+  values 5.16:1, headings 15:1. All AA.
+- Tan `#c2b27f` measures **2.11:1** on white — fill only, same rule as CCD gold. It
+  would fall to 3.77:1 as an eyebrow over a *bright* band photo; the current photos are
+  dark. Re-check if anyone swaps one.
+- 111 local media references, 0 broken. `public/media/brew` 10.7MB → 2.55MB.
+
+### Repo changes
+
+Root reorganised into `docs/` and `assets/`; `__pycache__` untracked. **The Next.js app
+was folded into this repo** — it had been gitignored with its own remote-less git, so
+cloning this project did not get you the website. Its nine commits are preserved at
+`.agent-orchestration/ccd-website-git-history.txt`.
+
+### Still human-only
+
+1. Shopify admin → Settings → Domains: add `shop.the4thbrew.com`, set primary, then
+   update `siteConfig.links.brewShop`. **Blocks the domain retirement.**
+2. `ccdgroup.vercel.app` is a manually pinned alias — it does **not** follow production
+   deploys. Add it under Project Settings → Domains, or re-alias after each deploy.
+3. Decide whether `ccdgroup.org` moves off Wix to this app.
+4. `next.config.ts` redirects for `the4thbrew.com` — deliberately not written, since
+   the project does not own that domain yet.
