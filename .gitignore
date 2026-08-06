@@ -14,3 +14,4 @@ desktop.ini
 Thumbs.db
 __pycache__/
 *.pyc
+.playwright-mcp/
