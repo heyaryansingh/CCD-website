@@ -1,0 +1,224 @@
+0df1f16|2026-08-06|Drop dead Tailwind, right-size brew media
+6869ea4|2026-08-06|Flesh out the 4th Brew pages with the brand's real story and art
+42800d4|2026-08-06|Bring The 4th Brew's real media over from Shopify
+78a4589|2026-08-06|Absorb The 4th Brew: story, brewing guide, and storefront
+2b4574b|2026-07-22|Real social links, scroll progress bar, and micro-interaction polish
+a57c557|2026-07-17|Fix hero crops, real market media, true Irvington map
+e8f438c|2026-07-17|Sync live ccdgroup.org content: real people, real media, real before/afters
+b7f2a3a|2026-07-17|Rebuild CCD site: real content, verified media, hardened forms, new pages
+9f81781|2026-07-02|Initial commit from Create Next App
+## 0df1f16 — 2026-08-06
+Drop dead Tailwind, right-size brew media
+
+Tailwind was installed but never imported and no component used a utility
+class. Verified it was a true no-op: built CSS md5 is byte-identical before
+and after removal (7100d8630771071cc9fba041de753f40, 35209 bytes). Removing
+it closes the trap where a new contributor writes className="flex gap-4"
+and nothing happens.
+
+Media: removed six unreferenced files (6.76MB) after copying each into
+website-media-filebase/11-4th-brew-shopify/, and right-sized the rest. The
+product bag PNGs are build-time fallbacks that render ~380px wide in a card,
+so 1512px was 4x oversized. public/media/brew is 10.7MB -> 2.55MB.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+## 6869ea4 — 2026-08-06
+Flesh out the 4th Brew pages with the brand's real story and art
+
+Adds three reusable section types and uses them to turn the placeholder brew
+pages into the full brand experience:
+
+  band    full-bleed centered statement over a photo, dark scrim by default
+  values  icon-free 3-up of brand promises
+  faq     native <details> accordion — no client JS, keyboard-accessible
+
+/4th-brew now runs promises -> story -> mission band -> why coffee -> where
+every bag goes -> why it lives with CCD -> the roasts -> closing band -> FAQ.
+/shop gains a promises strip. Copy is The 4th Brew's own, including sourcing
+(Colombia, Central and South America) and the payment/security answers.
+
+Product photos moved to local copies in public/media/brew/, but BrewProducts
+still prefers the live Shopify photo when the catalog fetch succeeds — so a
+teammate can swap a product image in Shopify and it flows through, while the
+local file keeps the coffee visible during an outage or domain migration.
+
+Verified before deploy: tsc clean, build green (29 static pages), 111 local
+media references with 0 broken, no .brew leakage onto CCD pages, and measured
+contrast against the actual band photos — eyebrow 5.34-7.89:1, body 8.2-11.5:1,
+values 5.16:1, all AA.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+## 42800d4 — 2026-08-06
+Bring The 4th Brew's real media over from Shopify
+
+Harvested every image the storefront serves (39 originals, 18.2MB) and split
+them two ways rather than dumping all of it into the web app:
+
+  website-media-filebase/11-4th-brew-shopify/   all 39, untouched, gitignored
+                                                (the repo's existing media
+                                                archive convention)
+  public/media/brew/                            the 13 the site renders,
+                                                resized to 2000px max and
+                                                re-encoded — 1.7MB total
+
+The find that mattered: the store ships one line-art icon per brewing method,
+so the eight cards on /brewing now carry The 4th Brew's own artwork instead of
+being text-only. Filenames mapped 1:1 to the methods, no guessing.
+
+Heroes and split images moved from Shopify's CDN to local copies — those are
+editorial and should not depend on a storefront we are about to retire.
+Product photography still comes from Shopify at build time, which is correct:
+it should track whatever the merchant uploads.
+
+Encoding notes: the method icons are dark line art on solid white, so
+`.brew .feature-card img` contains rather than cover-crops them. Palette
+quantization inflated the photographic PNGs (512K -> 1.4M), so anything
+photographic without transparency is JPEG.
+
+Also replaced public/media/logo-4th-brew.png in place with the store's current
+1080x1080 mark — higher resolution at a third the file size, and keeping the
+path means no reference had to change.
+
+Storefront identity, for the record: Shopify theme is Dawn 15.2.0 (live theme
+named "Working"), fonts Inknut Antiqua + Libre Baskerville, which is what the
+.brew skin already reproduces.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+## 78a4589 — 2026-08-06
+Absorb The 4th Brew: story, brewing guide, and storefront
+
+The 4th Brew is CCD's coffee brand but lived entirely on its own Shopify
+site, surfaced here only as a partner logo that linked away. It now has
+three first-class pages on ccdgroup.org, with Shopify demoted to a catalog
+and checkout backend.
+
+New routes (all through the existing [slug] route — no new route files):
+  /4th-brew   the brand story, tied back to CCD's workforce programs
+  /shop       the three roasts, live prices, add-to-cart
+  /brewing    the eight-method brewing guide
+
+No Buy Button, no SDK, no dependencies. Shopify's JS Buy SDK was deprecated
+in Jan 2025 and lost support Jan 1 2026, and with three products it was
+never the smaller option anyway. Instead:
+
+  - BrewProducts fetches {brewShop}/products.json at build time (public,
+    unauthenticated, revalidated hourly) so price and stock cannot drift.
+  - "Add to cart" is a plain <a> to a Shopify cart permalink,
+    {brewShop}/cart/{variantId}:1, which opens checkout with the item.
+  - siteData owns the editorial (which coffees, described how); Shopify owns
+    the commerce. Merged by handle.
+  - If the fetch fails the build falls back to captured variant data rather
+    than breaking — verified by building against an unreachable host.
+
+Brand skin is token reassignment, not new components. `brand: "brew"` on a
+page puts `.brew` on <main>, which overrides --green/--gold/--font-head
+inside it. The CCD header and footer sit outside <main> and are unchanged.
+Teal #108474 is 4.59:1 on white and safe as text; tan #c2b27f is 2.11:1 and
+is used only as a fill behind ink, matching the existing rule for CCD gold.
+
+Also:
+  - Card gains optional `bullets`, rendered as a spec list. The brewing
+    guide needs scannable grind/temp/ratio lines, not a paragraph.
+  - PartnerWallSection no longer forces target="_blank" on every partner
+    card. Partners CCD hosts itself now carry an internal path, and those
+    must open in the same tab.
+  - Aliases cover the old Shopify paths (/collections, /coffee-brewing-
+    methods) so inbound links survive the domain retirement.
+
+siteConfig.links.brewShop must stay pointed at Shopify's PRIMARY domain —
+Shopify 301s every cart link to whatever that currently is. Move the primary
+to shop.the4thbrew.com before retiring the4thbrew.com, or checkout breaks.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
+
+
+## 2b4574b — 2026-07-22
+Real social links, scroll progress bar, and micro-interaction polish
+
+Points socials at the live ccdgroupinc accounts (Facebook/Instagram), fixes
+a pre-existing flexbox bug that collapsed the mobile hamburger icon to
+0-height, and layers in a scroll progress bar, animated FAQ/hamburger
+icons, hover lift on buttons/cards, and a signature gradient rule under
+section headings — all built on the site's existing reveal-on-scroll system.
+
+
+## a57c557 — 2026-07-17
+Fix hero crops, real market media, true Irvington map
+
+- heroPosition (object-position) support; membership/what-is-a-coop/
+  coop-market/volunteer heroes no longer crop subjects at the top
+- Co-op Market now uses actual market media from the live site: vendors
+  at stocked table (hero + home card), Community Market mural (split),
+  craft-vendor + jewelry-booth + produce-beds gallery
+- Impact map rebuilt on a real OpenStreetMap Irvington basemap (stitched
+  tiles, z17): pins placed by geocoded lat/lon for Oasis @ 240, Center
+  for Social Impact, Botanical Bus Stop (approx corner), Little Memorial
+  Garden (approx corner), CCD HQ; exact 4:3 frame keeps pins
+  geographically true; OSM attribution shown
+- Tool Bank media verified as the archive's only real tool imagery
+  (deployment auth wall was why images "weren't there")
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+
+## e8f438c — 2026-07-17
+Sync live ccdgroup.org content: real people, real media, real before/afters
+
+- Real staff directory from the live site: Tracy Hill (Special Assistant,
+  tracy@), Marquita Fullard (Events Manager), Alex Bull (Community Resource
+  Coordinator), Robert Morina IV (robert@, green space); new service
+  directory section on /contact (Community Market, Reasonable
+  Accommodations, Community Resources, ARTS w/ Andi Kennedy, Green Space)
+- Harvested + visually audited all 98 live-site images; imported 55 keepers
+  (14 photos/renderings + 41 logos), all personally verified
+- REAL before/after pairs (same-house verified) power the Clean & Green
+  slider — now live and draggable
+- NDC facade rendering (March 2024) on CSI page; Community Center for
+  Change concept rendering; Memorial Garden watercolor concept; Oasis @ 240
+  grand-opening aerial + ribbon-cutting + Arts Project youth fence
+- About hero: Historic Irvington 1874 mosaic sign; partner wall: logos on
+  core partners + 29-logo Friends & Supporters wall; Maryland Nonprofits
+  badge in footer; Mastermind Photography credits
+- Press items (Making Headlines, Five Minute Histories/Baltimore Heritage)
+  and May 17 Seed & Plant Swap added to news; market vendor photo in gallery
+- Wix seed CSVs regenerated incl. new SupporterLogos/ServiceDirectory/
+  BeforeAfterPairs collections
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+
+## b7f2a3a — 2026-07-17
+Rebuild CCD site: real content, verified media, hardened forms, new pages
+
+- Central siteConfig for every external link/social/contact; blank values
+  degrade to mailto fallbacks; all 17 external links verified live
+- Real data: 5 real membership tiers (+$5 setup, voting), real 9 Clean &
+  Green services, real contacts/socials, official H.E.A.R.T. framework
+- 7 new pages + 4 project detail pages (26 routes) with new section types:
+  steps, tiers, testimonials, impact map, partner wall, before/after slider
+- Visual media audit of 173 images across the archive: removed dupes/misuse,
+  imported 13 real keepers (tools, farmers market, workforce, HQ, memorial
+  aerial), cropped timestamps, every page hero distinct
+- Events/news enriched with cost, instructions, directions, contact buttons;
+  shoe drive matches the real flyer (Jun 8 - Jul 24, 2026)
+- Forms wired to /api/submit (Supabase-ready via env, schema included) with
+  field allowlists, length caps, honeypot, rate limit, no error echo
+- A11y: dialog semantics + focus trap on modals, aria-expanded/pressed,
+  role=alert errors, eyebrow contrast fix, 32px tap targets, reduced-motion
+  + pause control on hero, keyboard dropdown close
+- Fixes: ScrollFX StrictMode re-entrancy, nav active state derived from page
+  data, donate amount carried to PayPal, copyright hydration
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+
+## 9f81781 — 2026-07-02
+Initial commit from Create Next App
+
+
