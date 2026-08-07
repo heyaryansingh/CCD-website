@@ -3,31 +3,29 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { aliases, navGroups, pages, siteConfig, type ActiveNav } from "@/lib/siteData";
+import { aliases, navigation, navGroups, siteConfig, type ActiveNav } from "@/lib/siteData";
 import { activeSocials } from "@/lib/siteConfig";
 import { CartIndicator } from "@/components/ClientBits";
 
 const socials = activeSocials();
 
-const simpleLinks = [
-  { label: "Projects", href: "/projects", active: "projects" },
-  { label: "News", href: "/news", active: "news" },
-  { label: "Contact", href: "/contact", active: "contact" },
-] as const;
+const simpleLinks = navigation.simpleLinks;
 
 // Derive the active nav section from the pages data itself, so the header can
 // never drift out of sync with what each page declares.
-function activeFromPath(pathname: string): ActiveNav {
+function activeFromPath(pathname: string, activeMap: Record<string, ActiveNav>): ActiveNav {
   if (pathname === "/") return "home";
   const first = pathname.split("/")[1] ?? "";
   if (first === "projects") return "projects";
   const key = aliases[first] ?? first;
-  return pages[key]?.active ?? "home";
+  return activeMap[key] ?? "home";
 }
 
-export function SiteHeader() {
+// activeMap comes from the server layout — this component cannot read the
+// filesystem, but the nav must still be derived from the pages themselves.
+export function SiteHeader({ activeMap }: { activeMap: Record<string, ActiveNav> }) {
   const pathname = usePathname();
-  const active = activeFromPath(pathname);
+  const active = activeFromPath(pathname, activeMap);
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -39,9 +37,11 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="utility-bar">
-        <Link href="/clean-and-green">Clean &amp; Green Services</Link>
-        <Link href="/tool-bank">Tool Bank</Link>
-        <Link href="/contact#booking">Facilities Booking</Link>
+        {navigation.utilityLinks.map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
         <a href={siteConfig.contact.phoneHref}>{siteConfig.contact.phone}</a>
         <span className="utility-socials">
           {socials.map((s) => (
@@ -115,8 +115,8 @@ export function SiteHeader() {
             </Link>
           ))}
           <CartIndicator />
-          <Link className="nav-donate" href="/donate" onClick={closeMenus}>
-            Donate
+          <Link className="nav-donate" href={navigation.donateCta.href} onClick={closeMenus}>
+            {navigation.donateCta.label}
           </Link>
         </nav>
       </div>

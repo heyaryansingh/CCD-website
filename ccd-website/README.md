@@ -3,6 +3,8 @@
 The Next.js rebuild of [ccdgroup.org](https://ccdgroup.org) for Cooperative Community Development Inc.
 
 **Live:** https://ccdgroup.vercel.app
+**Editing (CCD staff):** https://ccdgroup.vercel.app/admin — see
+[docs/EDITING-THE-WEBSITE.md](../docs/EDITING-THE-WEBSITE.md)
 
 ```bash
 npm install
@@ -25,26 +27,48 @@ npm run build    # must pass before you push
 | `app/projects/[project]/page.tsx` | the 4 project detail pages |
 | `app/api/submit/route.ts` | form intake (the only dynamic route) |
 
-**To add a page you do not create a file.** You add a key to `pages` in
-`lib/siteData.ts` and it appears — routed, statically generated, in the nav,
-with its own metadata.
+**Content is not in the code.** It lives as JSON in `content/` and is edited by
+CCD staff at **/admin** (Sveltia CMS). Adding a page means adding a file in
+`content/pages/` — which the CMS does for you — and it appears: routed,
+statically generated, with its own metadata.
 
 ```
-lib/siteData.ts       every page, section, and collection on the site (~1800 lines)
-lib/siteConfig.ts     every external URL, social, and contact detail — one place
+content/settings.json      contact details, socials, every external + payment URL
+content/navigation.json    menus, footer columns, legacy URL aliases
+content/pages/*.json       one file per page (hero + the list of blocks)
+content/projects/*.json    project detail pages
+content/collections/*.json news, events, team, partners, tiers, brew products…
+
+lib/types.ts          the shapes content must match (Section union lives here)
+lib/siteData.ts       loads the collections — CLIENT-SAFE, no fs
+lib/pages.server.ts   loads pages via fs — SERVER ONLY, never import from a client component
+lib/content.ts        resolves {{settings}} tokens inside content
+lib/siteConfig.ts     loads settings.json, keeps the link helpers
 components/PageView.tsx   RenderSection(): maps a section `type` to a component
-components/ClientBits.tsx every "use client" island (forms, carousels, pickers)
-components/BrewProducts.tsx  build-time Shopify catalog fetch
+components/ClientBits.tsx every "use client" island (forms, carousels, cart)
 app/globals.css       the entire stylesheet, hand-written
+public/admin/         the CMS itself (index.html + config.yml)
 ```
+
+**The one rule that will bite you:** `lib/siteData.ts` is imported by
+`ClientBits.tsx` (`"use client"`), so nothing in its import chain may touch the
+filesystem. That is why pages live in `pages.server.ts` and reach client
+components as props — see `activeMap` in `app/layout.tsx`.
 
 ### Sections
 
-A page is a list of typed sections. `Section` in `siteData.ts` is a discriminated
-union of ~25 kinds — `split`, `cards`, `stats`, `steps`, `band`, `values`, `faq`,
+A page is a list of typed sections. `Section` in `lib/types.ts` is a discriminated
+union of ~26 kinds — `split`, `cards`, `stats`, `steps`, `band`, `values`, `faq`,
 `products`, `gallery`, `cta`, and so on. `RenderSection()` in `PageView.tsx` is the
-switch that renders each one. Adding a section kind means: add to the union, add a
-case, add the CSS. TypeScript will tell you if you miss the case.
+switch that renders each one. Adding a section kind means **four** edits:
+
+1. the union in `lib/types.ts`
+2. a `case` in `RenderSection()`
+3. the CSS in `app/globals.css`
+4. an entry under `sections` → `types:` in `public/admin/config.yml`
+
+Miss step 4 and the section works but editors cannot create one. TypeScript
+catches the first two; nothing catches the fourth, so do not skip it.
 
 ### Styling
 
@@ -79,10 +103,12 @@ and checkout backend; every page a customer reads lives here.
 - `components/BrewProducts.tsx` fetches `{brewShop}/products.json` at build time
   (public, no token, revalidated hourly). If that fetch fails it falls back to the
   captured data in `brewProducts` so a deploy never breaks.
-- "Add to cart" is a plain `<a>` to a Shopify **cart permalink**
-  (`{brewShop}/cart/{variantId}:1`). There is no cart state and no SDK. Shopify's JS
-  Buy SDK was deprecated in Jan 2025 and lost support Jan 2026; with three products
-  this is smaller than the SDK ever was.
+- The cart lives in the browser (`lib/brewCart.ts`, a module store read through
+  `useSyncExternalStore`, persisted to localStorage). At checkout it becomes ONE
+  Shopify **multi-line cart permalink** — `{brewShop}/cart/{id}:{qty},{id}:{qty}` —
+  so a shopper can buy three coffees in a single handoff. No SDK, no access token,
+  no server-side cart. Shopify's JS Buy SDK was deprecated Jan 2025 and lost support
+  Jan 2026; this is smaller than the SDK ever was. `npm test` covers the logic.
 - `siteData` owns the editorial (which coffees, described how). Shopify owns the
   commerce (price, stock, photo). Merged by handle.
 
@@ -123,11 +149,23 @@ the bug.
 
 `ccdgroup.org` itself still points at the old Wix site and is untouched.
 
+## Content scripts
+
+```bash
+npm run content:verify   # proves the JSON content still matches the baseline
+```
+
+`content:extract` was the one-time migration from the old `siteData.ts`. It now
+refuses to run — content lives in `content/` and is edited at `/admin`.
+
+`scripts/ts-resolve.mjs` is what lets these plain-Node scripts import the app's
+real `.ts` modules (extensionless imports, the `@/` alias, and JSON without an
+import attribute). Next handles all three natively; bare Node does not.
+
 ## Before you push
 
 ```bash
-npx tsc --noEmit
-npm run build
+npm run check   # tsc + tests + build
 ```
 
 Check any colour you add against the rule above, and confirm new images are sized for

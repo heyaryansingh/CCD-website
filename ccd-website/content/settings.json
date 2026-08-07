@@ -1,0 +1,39 @@
+{
+  "org": {
+    "name": "Cooperative Community Development",
+    "shortName": "CCD",
+    "legalName": "Cooperative Community Development Inc.",
+    "tagline": "A Baltimore cooperative building food access, green space, local services, and community-owned infrastructure in Irvington.",
+    "founded": 2020
+  },
+  "contact": {
+    "email": "info@ccdgroup.org",
+    "cleanGreenEmail": "francis@ccdgroup.org",
+    "facilitiesEmail": "theREC@ccdgroup.org",
+    "phone": "(410) 205-2488",
+    "phoneHref": "tel:+14102052488",
+    "addressLine1": "4004 Frederick Ave",
+    "addressLine2": "Baltimore, MD 21229",
+    "mapQuery": "4004 Frederick Ave, Baltimore, MD 21229"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/CCDGroupInc",
+    "instagram": "https://www.instagram.com/ccdgroupinc/",
+    "linkedin": "",
+    "youtube": ""
+  },
+  "links": {
+    "paypalDonate": "https://www.paypal.com/donate/?hosted_button_id=D4UMVJ4YRXDQE",
+    "brickCampaign": "https://www.fundraisingbrick.com/online-orders/ccd/",
+    "facilitiesBooking": "https://forms.cloud.microsoft/r/Z7RnPBQuim",
+    "cleanGreenEstimate": "https://forms.cloud.microsoft/r/Zc3eJk1sZj",
+    "vendorRegistration": "https://forms.gle/mfhVo1yEZbZwre5r8",
+    "brewShop": "https://the4thbrew.com",
+    "membershipSignup": "",
+    "privacyPolicy": "",
+    "instagramFeedEmbed": ""
+  },
+  "analytics": {
+    "ga4": ""
+  }
+}

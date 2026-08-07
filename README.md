@@ -8,6 +8,7 @@ Founded 2020 · 4004 Frederick Ave, Baltimore MD 21229 · info@ccdgroup.org · (
 | | |
 |---|---|
 | **New site (this repo)** | https://ccdgroup.vercel.app |
+| **Edit the site (CCD staff)** | https://ccdgroup.vercel.app/admin — guide: [docs/EDITING-THE-WEBSITE.md](docs/EDITING-THE-WEBSITE.md) |
 | **Current live site** | https://ccdgroup.org — still the old Wix site, untouched |
 
 The new site is **not** yet on `ccdgroup.org`. Pointing the real domain at it is a
@@ -56,9 +57,11 @@ Most of this repo's commit history is Wix work. The Next.js app was folded in on
 
 ## The site at a glance
 
-**21 pages**, all generated from one data file (`ccd-website/lib/siteData.ts`) through
-four route files. To add a page you add a key to that file — you do not create a
-route. Runtime dependencies are exactly three: `next`, `react`, `react-dom`.
+**21 pages**, all generated through four route files from JSON content in
+`ccd-website/content/`. CCD staff edit that content at **/admin** — pages, blocks,
+photos, menus, and contact details — with no code and no git. Every save is a commit,
+so anything can be reverted. Runtime dependencies are exactly three: `next`, `react`,
+`react-dom`.
 
 Sections include the CCD programs — Center for Social Impact, Clean & Green, Co-op
 Market, Tool Bank — plus projects, membership, events, and **The 4th Brew**, CCD's

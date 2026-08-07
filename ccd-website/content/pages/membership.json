@@ -1,0 +1,22 @@
+{
+  "key": "membership",
+  "slug": "membership",
+  "title": "Membership",
+  "description": "Join CCD as a resident, supporter, organization, or business member.",
+  "active": "involved",
+  "heroTitle": "This is your co-op.",
+  "heroAccent": "Own a piece of it.",
+  "heroBody": "Membership turns support into governance. Dues fund programs directly, and voting members help decide what CCD does next.",
+  "heroImage": "/media/community-together-5.jpg",
+  "heroPosition": "center 30%",
+  "heroAlt": "Artist beside the Together We Can Do Great Things mural",
+  "sections": [
+    {
+      "type": "membershipTiers",
+      "id": "tiers"
+    },
+    {
+      "type": "membershipFaq"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "groups": [
+    {
+      "key": "about",
+      "label": "About",
+      "href": "/about",
+      "active": "about",
+      "items": [
+        {
+          "label": "Our Story",
+          "href": "/about"
+        },
+        {
+          "label": "Mission & H.E.A.R.T.",
+          "href": "/about#heart"
+        },
+        {
+          "label": "What is a Co-op?",
+          "href": "/what-is-a-coop"
+        },
+        {
+          "label": "Team & Partners",
+          "href": "/team"
+        },
+        {
+          "label": "Partners & Funders",
+          "href": "/partners"
+        }
+      ]
+    },
+    {
+      "key": "programs",
+      "label": "Programs",
+      "href": "/programs",
+      "active": "programs",
+      "items": [
+        {
+          "label": "Center for Social Impact",
+          "href": "/center-for-social-impact"
+        },
+        {
+          "label": "Clean & Green Team",
+          "href": "/clean-and-green"
+        },
+        {
+          "label": "Community Co-op Market",
+          "href": "/coop-market"
+        },
+        {
+          "label": "Tool Bank",
+          "href": "/tool-bank"
+        },
+        {
+          "label": "Workforce Development",
+          "href": "/programs#workforce"
+        }
+      ]
+    },
+    {
+      "key": "involved",
+      "label": "Get Involved",
+      "href": "/membership",
+      "active": "involved",
+      "items": [
+        {
+          "label": "Become a Member",
+          "href": "/membership"
+        },
+        {
+          "label": "Volunteer",
+          "href": "/volunteer"
+        },
+        {
+          "label": "Donate",
+          "href": "/donate"
+        },
+        {
+          "label": "Brick Campaign",
+          "href": "/brick-campaign"
+        },
+        {
+          "label": "Events",
+          "href": "/events"
+        }
+      ]
+    },
+    {
+      "key": "brew",
+      "label": "4th Brew",
+      "href": "/4th-brew",
+      "active": "brew",
+      "items": [
+        {
+          "label": "Shop Coffee",
+          "href": "/shop"
+        },
+        {
+          "label": "Our Story",
+          "href": "/4th-brew"
+        },
+        {
+          "label": "Brewing Methods",
+          "href": "/brewing"
+        }
+      ]
+    }
+  ],
+  "simpleLinks": [
+    {
+      "label": "Projects",
+      "href": "/projects",
+      "active": "projects"
+    },
+    {
+      "label": "News",
+      "href": "/news",
+      "active": "news"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact",
+      "active": "contact"
+    }
+  ],
+  "utilityLinks": [
+    {
+      "label": "Clean & Green Services",
+      "href": "/clean-and-green"
+    },
+    {
+      "label": "Tool Bank",
+      "href": "/tool-bank"
+    },
+    {
+      "label": "Facilities Booking",
+      "href": "/contact#booking"
+    }
+  ],
+  "donateCta": {
+    "label": "Donate",
+    "href": "/donate"
+  },
+  "footerColumns": [
+    {
+      "title": "Quick Links",
+      "links": [
+        {
+          "label": "About",
+          "href": "/about"
+        },
+        {
+          "label": "Membership",
+          "href": "/membership"
+        },
+        {
+          "label": "Projects",
+          "href": "/projects"
+        },
+        {
+          "label": "News & Events",
+          "href": "/news"
+        }
+      ]
+    },
+    {
+      "title": "Programs",
+      "links": [
+        {
+          "label": "Center for Social Impact",
+          "href": "/center-for-social-impact"
+        },
+        {
+          "label": "Clean & Green",
+          "href": "/clean-and-green"
+        },
+        {
+          "label": "Co-op Market",
+          "href": "/coop-market"
+        },
+        {
+          "label": "Tool Bank",
+          "href": "/tool-bank"
+        },
+        {
+          "label": "4th Brew Coffee",
+          "href": "/shop"
+        }
+      ]
+    }
+  ],
+  "aliases": {
+    "social-impact": "center-for-social-impact",
+    "clean-green": "clean-and-green",
+    "news-events": "news",
+    "involved": "membership",
+    "what-is-a-co-op": "what-is-a-coop",
+    "join": "membership",
+    "coop-market-page": "coop-market",
+    "toolbank": "tool-bank",
+    "the-4th-brew": "4th-brew",
+    "fourth-brew": "4th-brew",
+    "coffee": "shop",
+    "collections": "shop",
+    "brewing-methods": "brewing",
+    "coffee-brewing-methods": "brewing"
+  }
+}

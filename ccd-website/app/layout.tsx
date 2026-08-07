@@ -3,6 +3,7 @@ import "./globals.css";
 import { ScrollFX } from "@/components/ScrollFX";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { activeNavMap } from "@/lib/pages.server";
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SiteHeader />
+        <SiteHeader activeMap={activeNavMap()} />
         {children}
         <SiteFooter />
         <ScrollFX />

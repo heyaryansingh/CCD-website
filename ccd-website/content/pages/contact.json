@@ -1,0 +1,24 @@
+{
+  "key": "contact",
+  "slug": "contact",
+  "title": "Contact CCD",
+  "description": "Contact CCD, request facilities, or visit Frederick Avenue.",
+  "active": "contact",
+  "heroTitle": "Come find us",
+  "heroAccent": "on Frederick Ave.",
+  "heroBody": "Reach the team, ask about membership, book facilities, or start a conversation about bringing cooperative development to your block.",
+  "heroImage": "/media/ccd-hq-crew.jpg",
+  "heroAlt": "The CCD building at 4004 Frederick Avenue with its painted logo and crew outside",
+  "sections": [
+    {
+      "type": "directory",
+      "id": "directory",
+      "title": "Start with the right door.",
+      "body": "Every CCD service area has a real person behind it. Reach out directly, or call (410) 205-2488 for anything else."
+    },
+    {
+      "type": "contactPanel",
+      "id": "booking"
+    }
+  ]
+}

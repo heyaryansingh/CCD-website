@@ -1,0 +1,54 @@
+{
+  "key": "center-for-social-impact",
+  "slug": "center-for-social-impact",
+  "title": "Center for Social Impact",
+  "description": "The 3932 Frederick Avenue cooperative infrastructure project.",
+  "active": "programs",
+  "heroTitle": "The Center for",
+  "heroAccent": "Social Impact.",
+  "heroBody": "A 5,000-square-foot former storage facility is becoming a cooperative grocery, multimedia center, maker marketplace, and flexible training space.",
+  "heroImage": "/media/mural-marketplace-1.jpg",
+  "heroAlt": "3932 Frederick Avenue with the community marketplace mural",
+  "sections": [
+    {
+      "type": "split",
+      "title": "5,000 square feet of possibility.",
+      "body": "The former Jarbo Brothers Storage facility at 3932-3934 Frederick Avenue is becoming shared social infrastructure owned by the community it serves. CCD is working with BRED, ReGEN Consulting, and the Neighborhood Design Center to finalize the plans.",
+      "bullets": [
+        "Co-op grocery store",
+        "Multimedia center",
+        "Retail stalls for local makers",
+        "Training and gathering space"
+      ],
+      "image": "/media/rendering-csi-facade.jpg",
+      "alt": "Neighborhood Design Center facade rendering of the Center for Social Impact (March 2024)"
+    },
+    {
+      "type": "stats",
+      "theme": "green",
+      "title": "From storage facility to social infrastructure.",
+      "stats": [
+        {
+          "value": "5,000",
+          "label": "Square feet"
+        },
+        {
+          "value": "4",
+          "label": "Core uses"
+        },
+        {
+          "value": "2023",
+          "label": "Year acquired"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "gold",
+      "title": "Put your name into the wall.",
+      "body": "The brick campaign helps turn the building into a beacon for cooperative ownership.",
+      "href": "/brick-campaign",
+      "label": "Support the brick campaign"
+    }
+  ]
+}

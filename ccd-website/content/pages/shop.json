@@ -1,0 +1,61 @@
+{
+  "key": "shop",
+  "slug": "shop",
+  "title": "Shop 4th Brew Coffee",
+  "description": "Buy The 4th Brew's small-batch coffee — The Pawn, The Knight, and The Rook, in 12oz or 5lb, whole bean or ground.",
+  "active": "brew",
+  "brand": "brew",
+  "eyebrow": "SHOP THE COFFEE",
+  "heroTitle": "Pick your side",
+  "heroAccent": "of the board.",
+  "heroBody": "Small-batch coffee from The 4th Brew — The Pawn, The Knight, and The Rook. Roasted for flavor rather than shelf life, and shipped straight from the roaster.",
+  "heroImage": "/media/brew/brew-cup.jpg",
+  "heroPosition": "center 38%",
+  "heroAlt": "A hand holding a branded The 4th Brew coffee cup",
+  "sections": [
+    {
+      "type": "products",
+      "id": "coffee",
+      "eyebrow": "THE ROASTS",
+      "title": "Pick your side of the board.",
+      "body": "Every bag comes in 12oz or 5lb, whole bean or ground. Checkout runs on The 4th Brew's own store — your cart carries over automatically."
+    },
+    {
+      "type": "values",
+      "id": "promises",
+      "items": [
+        {
+          "title": "Roasted in small batches",
+          "body": "Shipped straight from the roaster, so every bag arrives fresh rather than sitting on a shelf."
+        },
+        {
+          "title": "Two sizes, two grinds",
+          "body": "12oz or 5lb, whole bean or ground — pick what fits your routine."
+        },
+        {
+          "title": "Secure checkout",
+          "body": "Payment runs on The 4th Brew's own Shopify store — encrypted and PCI-compliant."
+        }
+      ]
+    },
+    {
+      "type": "split",
+      "reverse": true,
+      "eyebrow": "WHERE THE MONEY GOES",
+      "title": "The margin has a job.",
+      "body": "Revenue from every bag is reinvested into brand growth, local partnerships, and the community-centered spaces CCD is building on Frederick Avenue — green space, the co-op market, and workforce training in the trades behind the counter.",
+      "image": "/media/cleangreen-garden-hero.jpg",
+      "alt": "CCD's Clean & Green crew working a restored garden bed",
+      "ctaText": "See what CCD builds with it",
+      "ctaHref": "/programs"
+    },
+    {
+      "type": "cta",
+      "theme": "green",
+      "title": "Not sure how to brew it?",
+      "body": "Grind, temperature, and ratio for eight methods — from a drip machine to a siphon. Written so it actually helps.",
+      "href": "/brewing",
+      "label": "Read the brewing guide"
+    }
+  ]
+}

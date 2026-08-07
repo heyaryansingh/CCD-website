@@ -1,0 +1,27 @@
+{
+  "key": "partners",
+  "slug": "partners",
+  "title": "Partners & Funders",
+  "description": "The organizations that make CCD's cooperative work possible.",
+  "active": "about",
+  "eyebrow": "PARTNERS & FUNDERS",
+  "heroTitle": "Stronger",
+  "heroAccent": "together.",
+  "heroBody": "Every CCD program is strengthened by the vision, resources, and dedication of our partners and funders across Baltimore.",
+  "heroImage": "/media/drone-1.jpg",
+  "heroAlt": "Aerial view over the Irvington neighborhood",
+  "sections": [
+    {
+      "type": "partnerWall",
+      "title": "Our partners & funders."
+    },
+    {
+      "type": "cta",
+      "theme": "green",
+      "title": "Become a partner.",
+      "body": "Businesses, funders, and organizations can invest in the cooperative corridor. Let's build together.",
+      "href": "{{mailto:Partnership with CCD}}",
+      "label": "Start a conversation"
+    }
+  ]
+}

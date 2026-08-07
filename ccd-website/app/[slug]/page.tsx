@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { PageView } from "@/components/PageView";
-import { aliases, pages } from "@/lib/siteData";
+import { aliases } from "@/lib/siteData";
+import { pages } from "@/lib/pages.server";
 
 type Props = {
   params: Promise<{ slug: string }>;

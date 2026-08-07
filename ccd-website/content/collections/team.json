@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "name": "Johnny Martin Jr.",
+      "role": "CHIEF EXECUTIVE OFFICER",
+      "tagline": "Founder and visionary driving CCD's cooperative model.",
+      "bio": "Johnny Martin Jr. is an Irvington native who founded Cooperative Community Development in January 2020 after years of watching investment promises fail to materialize in his neighborhood. Starting with a single reclaimed vacant lot in 2019, he built a member-governed co-op that now owns a 5,000 sq ft building on Frederick Avenue and operates programs across housing, food, green space, and enterprise.",
+      "quote": "\"The community does not need saving from outside. It needs ownership from within.\"",
+      "email": "johnny@ccdgroup.org",
+      "photo": "",
+      "order": 1
+    },
+    {
+      "name": "Robert Morina IV",
+      "role": "OPERATIONS COORDINATOR",
+      "tagline": "Coordinates operations, partners, and CCD's green spaces.",
+      "bio": "Robert keeps CCD's day-to-day moving by managing partner relationships, coordinating operations, and leading the co-op's green space work across Irvington.",
+      "email": "robert@ccdgroup.org",
+      "photo": "",
+      "order": 2
+    },
+    {
+      "name": "Tracy Hill",
+      "role": "SPECIAL ASSISTANT",
+      "tagline": "Supports CCD's programs and handles reasonable accommodations.",
+      "bio": "Tracy Hill supports CCD's leadership and programs, and is the point of contact for reasonable accommodations across CCD's spaces and events.",
+      "email": "tracy@ccdgroup.org",
+      "photo": "",
+      "order": 3
+    },
+    {
+      "name": "Marquita Fullard",
+      "role": "EVENTS MANAGER",
+      "tagline": "Runs the Community Market and CCD's public events.",
+      "bio": "Marquita Fullard manages CCD's events program, from the Community Co-op Market to seasonal celebrations and facilities bookings.",
+      "email": "{{contact.facilitiesEmail}}",
+      "photo": "",
+      "order": 4
+    },
+    {
+      "name": "Alex Bull",
+      "role": "COMMUNITY RESOURCE COORDINATOR",
+      "tagline": "Connects neighbors to community resources.",
+      "bio": "Alex Bull coordinates community resources at CCD, helping neighbors find the programs, services, and support they need.",
+      "email": "{{contact.email}}",
+      "photo": "",
+      "order": 5
+    },
+    {
+      "name": "Francis",
+      "role": "CLEAN & GREEN LEAD",
+      "tagline": "Leads nine outdoor services across Irvington.",
+      "bio": "Francis leads the Clean & Green crew, delivering outdoor maintenance services across Irvington and nearby communities.",
+      "email": "{{contact.cleanGreenEmail}}",
+      "photo": "",
+      "order": 6
+    },
+    {
+      "name": "Arianna",
+      "role": "COMMUNITY ENGAGEMENT COORDINATOR",
+      "tagline": "Keeps members and neighbors connected to the co-op.",
+      "bio": "Arianna manages member relationships and outreach so people know what is happening, feel welcomed into the co-op, and have clear ways to get involved.",
+      "email": "{{contact.email}}",
+      "photo": "",
+      "order": 7
+    }
+  ]
+}

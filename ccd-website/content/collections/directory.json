@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "area": "Community Market",
+      "person": "Marquita Fullard",
+      "title": "Events Manager",
+      "email": "{{contact.facilitiesEmail}}"
+    },
+    {
+      "area": "Reasonable Accommodations",
+      "person": "Tracy Hill",
+      "title": "Special Assistant",
+      "email": "tracy@ccdgroup.org"
+    },
+    {
+      "area": "Community Resources",
+      "person": "Alex Bull",
+      "title": "Community Resource Coordinator",
+      "email": "{{contact.email}}"
+    },
+    {
+      "area": "ARTS",
+      "person": "Andi Kennedy",
+      "title": "Visionary — The ARTS Project Inc",
+      "email": "contact@theartsprojectinc.org"
+    },
+    {
+      "area": "Green Space",
+      "person": "Robert Morina IV",
+      "title": "Operations Coordinator",
+      "email": "robert@ccdgroup.org"
+    },
+    {
+      "area": "Clean & Green Services",
+      "person": "Francis",
+      "title": "Clean & Green Lead",
+      "email": "{{contact.cleanGreenEmail}}"
+    }
+  ]
+}

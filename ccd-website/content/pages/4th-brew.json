@@ -1,0 +1,164 @@
+{
+  "key": "4th-brew",
+  "slug": "4th-brew",
+  "title": "The 4th Brew",
+  "description": "The 4th Brew is CCD's coffee brand — sustainably sourced, roasted in small batches, and reinvested into Baltimore.",
+  "active": "brew",
+  "brand": "brew",
+  "eyebrow": "THE 4TH BREW",
+  "heroTitle": "Not just coffee.",
+  "heroAccent": "A starting point.",
+  "heroBody": "Freshly roasted, always. Sustainably sourced, exceptionally roasted, and built so that something people already do every day pays back into the block it came from.",
+  "heroImage": "/media/brew/brew-hero-beans.jpg",
+  "heroPosition": "center 55%",
+  "heroAlt": "A close bed of freshly roasted coffee beans",
+  "heroCta": {
+    "label": "Shop the coffee",
+    "href": "/shop"
+  },
+  "sections": [
+    {
+      "type": "values",
+      "id": "promises",
+      "items": [
+        {
+          "title": "Freshly roasted, always",
+          "body": "Small batches, roasted for flavor rather than shelf life, and shipped straight from the roaster."
+        },
+        {
+          "title": "Sustainably sourced",
+          "body": "Beans from Colombia, Central and South America — chosen for quality and the character of their origin."
+        },
+        {
+          "title": "Every bag gives back",
+          "body": "Revenue is reinvested into green space, local partnerships, and community-owned spaces in Irvington."
+        }
+      ]
+    },
+    {
+      "type": "split",
+      "id": "story",
+      "eyebrow": "ABOUT THE 4TH BREW",
+      "title": "More than coffee. A foundation for something bigger.",
+      "body": "The 4th Brew is a small-batch coffee brand built on quality, creativity, and purpose. It started in Baltimore from a simple observation: coffee is something people buy every day, yet most brands stop at the product and never connect it back to the community.",
+      "image": "/media/brew/brew-barista.jpg",
+      "alt": "A barista pulling a fresh espresso into two cups",
+      "bullets": [
+        "Sustainably sourced and roasted to keep the natural flavor — no artificial anything.",
+        "Revenue reinvested into green space, local partnerships, and community-centered spaces.",
+        "Deliberate growth: quality and transparency before scale."
+      ]
+    },
+    {
+      "type": "band",
+      "id": "mission",
+      "eyebrow": "OUR MISSION",
+      "title": "Turn everyday coffee into a tool for community growth.",
+      "body": "Through quality products, intentional reinvestment, and long-term vision — not just a brand, but a starting point for something bigger.",
+      "image": "/media/brew/brew-hero-beans.jpg",
+      "alt": "Roasted coffee beans"
+    },
+    {
+      "type": "split",
+      "reverse": true,
+      "eyebrow": "WHY COFFEE?",
+      "title": "Coffee is the habit. The block is the point.",
+      "body": "Coffee is already part of people's daily lives — it brings them together at home, at work, and in the neighborhood. The 4th Brew uses that everyday habit as a foundation. Instead of stopping at the product, we build something bigger through it: every bag supports community growth, shared spaces, and local impact.",
+      "image": "/media/brew/brew-lifestyle-4.jpg",
+      "alt": "Friends sharing coffee around a table"
+    },
+    {
+      "type": "steps",
+      "id": "support",
+      "theme": "green",
+      "eyebrow": "WHERE EVERY BAG GOES",
+      "title": "Three ways your cup builds the block.",
+      "body": "The 4th Brew reinvests on purpose. Every purchase moves money into three places at once.",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Grow the brand",
+          "body": "Covers roasting, inventory, and day-to-day operations so the coffee stays small-batch and consistent."
+        },
+        {
+          "n": "02",
+          "title": "Build partnerships",
+          "body": "Connects The 4th Brew with the local organizations and community initiatives across Baltimore it plans to support and collaborate with."
+        },
+        {
+          "n": "03",
+          "title": "Create future spaces",
+          "body": "Moves toward community-centered spaces — starting with the counter planned into the Center for Social Impact — where people connect beyond just buying coffee."
+        }
+      ]
+    },
+    {
+      "type": "split",
+      "theme": "green",
+      "eyebrow": "WHY IT LIVES WITH CCD",
+      "title": "A coffee brand is a workforce program in disguise.",
+      "body": "Roasting, packing, service, and retail are teachable trades. The 4th Brew is CCD's coffee-culture and entrepreneurship partner, and its counter is planned into the Center for Social Impact at 3932-3934 Frederick Avenue alongside the co-op grocery and maker stalls. Buying a bag funds the training, not just the roast.",
+      "image": "/media/brew/brew-lifestyle-1.jpg",
+      "alt": "A 4th Brew bag and a poured cup on a workbench",
+      "ctaText": "See the Center for Social Impact",
+      "ctaHref": "/center-for-social-impact"
+    },
+    {
+      "type": "products",
+      "id": "coffee",
+      "eyebrow": "THE ROASTS",
+      "title": "Three roasts. One board.",
+      "body": "Pawn, Knight, Rook — named for the pieces that do the real work. Pick a size and a grind; checkout is handled by The 4th Brew's own store."
+    },
+    {
+      "type": "band",
+      "id": "start",
+      "theme": "dark",
+      "eyebrow": "START HERE",
+      "title": "It's a simple purchase — but it's part of something bigger.",
+      "body": "Take the 4th. Every bag pours back into Irvington.",
+      "image": "/media/brew/brew-lifestyle-2.jpg",
+      "alt": "A hand holding a bag of 4th Brew coffee",
+      "cta": {
+        "label": "Shop the coffee",
+        "href": "/shop"
+      }
+    },
+    {
+      "type": "faq",
+      "id": "faq",
+      "eyebrow": "GOOD TO KNOW",
+      "title": "Frequently asked questions.",
+      "items": [
+        {
+          "q": "What makes The 4th Brew different?",
+          "a": "The 4th Brew is built around a simple idea: coffee is something people already buy every day, so we use it as a starting point to build something bigger. Every purchase helps grow the brand, develop local partnerships, and work toward community-centered spaces — it's not just the coffee, but what it supports over time."
+        },
+        {
+          "q": "How does buying coffee help the community?",
+          "a": "Every purchase contributes to the foundation we're building. Right now it helps The 4th Brew operate, grow, and connect with local initiatives. Over time the goal is to turn that support into real partnerships, community projects, and physical spaces on Frederick Avenue where people can gather — it starts with a cup of coffee and builds into something more."
+        },
+        {
+          "q": "Where is your coffee sourced from?",
+          "a": "From regions in Colombia, Central America, and South America, where climate and elevation produce rich, balanced flavors. We focus on quality sourcing that lets the natural character of the bean come through."
+        },
+        {
+          "q": "What payment methods do you accept?",
+          "a": "Major credit and debit cards, PayPal, and secure gateways. Checkout runs on The 4th Brew's own Shopify store, so paying is easy and familiar — your cart carries over automatically."
+        },
+        {
+          "q": "Is my payment information secure?",
+          "a": "Yes. Checkout uses secured, encrypted transactions handled entirely by Shopify's PCI-compliant checkout, so your payment details stay safe."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "dark",
+      "title": "Life's too short for average brews.",
+      "body": "Take the 4th. Every bag pours back into Irvington — and if you want to know exactly how to brew it, we wrote that down too.",
+      "href": "/brewing",
+      "label": "Read the brewing guide"
+    }
+  ]
+}

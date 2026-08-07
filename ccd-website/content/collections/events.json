@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "id": "ev1",
+      "date": "Jul 18",
+      "day": "SATURDAY",
+      "title": "Community Co-op Market",
+      "thumb": "/media/market-vendors-table.jpg",
+      "tag": "FREE - ALL AGES",
+      "tagColor": "#209765",
+      "blurb": "Local produce, neighborhood makers, and live music on the block.",
+      "time": "9:00 AM - 2:00 PM",
+      "location": "4004 Frederick Ave, Baltimore, MD 21229",
+      "cost": "Free to attend - no ticket needed",
+      "body": "Local produce, neighborhood makers, and live music on the block. CCD's table will have Tool Bank sign-ups and membership info on site.",
+      "instructions": [
+        "Just show up - no registration needed to shop or browse.",
+        "Bring a reusable bag for produce and goods.",
+        "Vendors: register ahead through the vendor registration form (link on the Co-op Market page).",
+        "Street parking on Frederick Ave; the market area is stroller and wheelchair accessible."
+      ],
+      "contactEmail": "{{contact.facilitiesEmail}}",
+      "contactLabel": "Questions? Email Marquita",
+      "photos": [
+        "/media/event-coopway-1.jpg",
+        "/media/event-coopway-2.jpg",
+        "/media/event-coopway-3.jpg"
+      ]
+    },
+    {
+      "id": "ev2",
+      "date": "Aug 1",
+      "day": "SATURDAY",
+      "title": "Irvington Walking Tour - 5-Minute Histories",
+      "thumb": "/media/community-oasis.jpg",
+      "tag": "FREE",
+      "tagColor": "#209765",
+      "blurb": "A guided walk through murals, gardens, and local landmarks.",
+      "time": "10:00 AM",
+      "location": "Meet at Oasis @ 240, 240 S Monastery Ave",
+      "cost": "Free - donations welcome",
+      "body": "An hour-long guided walk through murals, gardens, and local landmarks with the stories behind them, led by neighbors who lived it.",
+      "instructions": [
+        "Meet at the Oasis @ 240 garden ten minutes before start.",
+        "Wear comfortable walking shoes; the route is about one mile at an easy pace.",
+        "Water and sunscreen recommended in summer.",
+        "Groups of 6+ should email ahead so we can add a guide."
+      ],
+      "contactEmail": "{{contact.email}}",
+      "contactLabel": "Questions? Email CCD",
+      "photos": [
+        "/media/community-citychill.jpg",
+        "/media/community-together-2.jpg",
+        "/media/community-smile.jpg",
+        "/media/community-barbershop.jpg"
+      ]
+    },
+    {
+      "id": "ev3",
+      "date": "Jul 24",
+      "day": "FRIDAY",
+      "title": "Shoe Drive - final collection week",
+      "thumb": "/media/shoedrive-shoes.png",
+      "tag": "DROP-OFF",
+      "tagColor": "#0797D4",
+      "blurb": "The summer drive wraps July 24 - last chance to donate gently-worn shoes.",
+      "time": "Tuesdays 12:00-3:00 PM (CCD) and 4:30-8:00 PM (Catonsville), through July 24",
+      "location": "4003 Frederick Ave, Baltimore 21229 · Catonsville Cooperative Market, 1905 Edmondson Ave, 21228",
+      "cost": "Free - every donated pair funds CCD programs",
+      "body": "Every pair funds CCD's Center for Social Impact and keeps usable shoes out of landfills. Gently worn, used, and new shoes all help.",
+      "instructions": [
+        "Shoes should be wearable: pairs bound together (laces tied or rubber-banded), no single shoes.",
+        "All types help: sneakers, boots, sandals, dress shoes, kids' sizes.",
+        "Drop into the marked collection boxes at either location during the hours above.",
+        "Want a collection box at your business or church? Email us and we'll set one up."
+      ],
+      "contactEmail": "{{contact.email}}",
+      "contactLabel": "Host a box or ask a question",
+      "photos": [
+        "/media/shoedrive-boxes.jpg",
+        "/media/shoedrive-flyer.png"
+      ]
+    }
+  ]
+}

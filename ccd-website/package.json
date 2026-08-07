@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types lib/brewCart.test.mts"
+    "test": "node --experimental-strip-types lib/brewCart.test.mts",
+    "content:extract": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/extract-content.mjs",
+    "content:verify": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/verify-content.mjs",
+    "check": "npx tsc --noEmit && npm test && npm run build"
   },
   "dependencies": {
     "next": "16.2.10",

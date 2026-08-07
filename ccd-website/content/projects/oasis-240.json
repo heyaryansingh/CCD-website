@@ -1,0 +1,54 @@
+{
+  "key": "oasis-240",
+  "slug": "oasis-240",
+  "title": "Oasis @ 240",
+  "description": "A reclaimed community green space at 240 S Monastery Avenue.",
+  "active": "projects",
+  "eyebrow": "COMPLETED — 240 S MONASTERY AVE",
+  "heroTitle": "Oasis",
+  "heroAccent": "@ 240.",
+  "heroBody": "Once a poorly-maintained, illegally-dumped city lot, the Oasis @ 240 is now a reclaimed community space with native flowers, a rain-catchment system, seating, and original art.",
+  "heroImage": "/media/oasis-opening-aerial.jpg",
+  "heroAlt": "Aerial view of the Oasis @ 240 grand opening ceremony",
+  "sections": [
+    {
+      "type": "split",
+      "title": "From dumping ground to green anchor.",
+      "body": "Owned by the City of Baltimore, the lot at 240 S Monastery Avenue was adopted in 2019 by former resident Chanelle Austin and Visionaries Development Cooperative, then developed in partnership with Civic Works Baltimore, the Chesapeake Bay Trust, and CCD. The space features native flowers, a rain catchment system, seating, and original art by Jasmine Martin-Wilson and the youth of T.A.P. Inc.",
+      "bullets": [
+        "Native flowers and rain catchment",
+        "Community seating and original art",
+        "Anchor stop on the Irvington walking tour"
+      ],
+      "image": "/media/oasis-ribbon.jpg",
+      "alt": "Partners holding the carved Oasis @ 240 sign at the ribbon cutting"
+    },
+    {
+      "type": "gallery",
+      "title": "Opening day at the Oasis.",
+      "credit": "Media by Mastermind Photography & Designs",
+      "images": [
+        {
+          "src": "/media/oasis-arts-fence.jpg",
+          "alt": "Youth art fence by The Arts Project with painted messages"
+        },
+        {
+          "src": "/media/drone-3.jpg",
+          "alt": "Aerial of the reclaimed Oasis garden corridor"
+        },
+        {
+          "src": "/media/community-oasis.jpg",
+          "alt": "Walking tour group in the Oasis garden"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "green",
+      "title": "See it on the walking tour.",
+      "body": "The Oasis is a key stop on the Irvington 5-Minute Histories walking tour.",
+      "href": "/events",
+      "label": "See events"
+    }
+  ]
+}

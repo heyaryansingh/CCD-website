@@ -1,0 +1,133 @@
+{
+  "items": [
+    {
+      "id": "n0a",
+      "meta": "PRESS",
+      "title": "Making headlines: CCD's Community Marketplace",
+      "thumb": "/media/mural-marketplace-1.jpg",
+      "excerpt": "CCD's Community Marketplace and the transformation of Frederick Avenue draw press attention.",
+      "body": "CCD's Community Marketplace project and the broader transformation of the 21229 corridor have been featured in local coverage of Baltimore's cooperative movement.",
+      "photos": [
+        "/media/mural-marketplace-1.jpg",
+        "/media/mural-marketplace-3.jpg"
+      ]
+    },
+    {
+      "id": "n0b",
+      "meta": "PRESS - BALTIMORE HERITAGE",
+      "title": "Five Minute Histories features Irvington",
+      "thumb": "/media/irvington-sign.jpg",
+      "excerpt": "Baltimore Heritage's Five Minute Histories series walks the Irvington story.",
+      "body": "Baltimore Heritage's Five Minute Histories series highlighted Irvington's landmarks and CCD's walking tour, connecting the neighborhood's past to its cooperative future. Watch at baltimoreheritage.org.",
+      "photos": [
+        "/media/irvington-sign.jpg",
+        "/media/community-smile.jpg",
+        "/media/community-barbershop.jpg"
+      ]
+    },
+    {
+      "id": "n0c",
+      "meta": "MAY 2026 - MARKET",
+      "title": "Seed & Plant Swap brings the market back",
+      "thumb": "/media/market-beds-flag.jpg",
+      "excerpt": "The Community Market returned May 17 with a Seed & Plant Swap hosted by Catonsville Cooperative Market.",
+      "body": "The market's return celebrated community green-space pioneers with a Seed & Plant Swap hosted by Catonsville Cooperative Market, a Fish Fry fundraiser, local flower and plant vendors, and expert talks on composting, permaculture, and pollinators.",
+      "photos": [
+        "/media/market-beds-flag.jpg",
+        "/media/market-compost.jpg"
+      ]
+    },
+    {
+      "id": "n1",
+      "meta": "JUN 2026 - CAMPAIGN",
+      "title": "Summer Shoe Drive: give your old pairs a second life",
+      "thumb": "/media/shoedrive-shoes.png",
+      "excerpt": "Gently-worn shoes fund the Center for Social Impact and stay out of landfills.",
+      "body": "Drop-off boxes are live through July 24. Every pair collected funds the Center for Social Impact and keeps usable shoes out of landfills.",
+      "instructions": [
+        "Tuesdays 12:00-3:00 PM: CCD, 4003 Frederick Ave, Baltimore 21229.",
+        "Tuesdays 4:30-8:00 PM: Catonsville Cooperative Market, 1905 Edmondson Ave, 21228.",
+        "Tie or band pairs together; all styles and sizes accepted.",
+        "Businesses and churches can host a collection box - email us to arrange it."
+      ],
+      "contactEmail": "{{contact.email}}",
+      "contactLabel": "Ask about the shoe drive",
+      "photos": [
+        "/media/shoedrive-boxes.jpg",
+        "/media/shoedrive-flyer.png"
+      ]
+    },
+    {
+      "id": "n2",
+      "meta": "MAY 2026 - PROJECTS",
+      "title": "Memorial Garden community day draws the whole block",
+      "thumb": "/media/drone-garden-1.jpg",
+      "excerpt": "Neighbors gathered for planting, remembrance, and food.",
+      "body": "Neighbors gathered for a full day of planting, remembrance, and shared food at the Little Memorial Garden.",
+      "photos": [
+        "/media/drone-garden-1.jpg",
+        "/media/drone-garden-2.jpg",
+        "/media/drone-garden-3.jpg"
+      ]
+    },
+    {
+      "id": "n3",
+      "meta": "NOV 2024 - COMMUNITY",
+      "title": "Cooperative Way - Irvington celebrates its new street name",
+      "thumb": "/media/event-coopway-1.jpg",
+      "excerpt": "Balloons, neighbors, and a new sign mark the block's cooperative future.",
+      "body": "The block officially bears the name of its cooperative future after a celebration with residents, partners, and city officials.",
+      "photos": [
+        "/media/event-coopway-1.jpg",
+        "/media/event-coopway-2.jpg",
+        "/media/event-coopway-3.jpg"
+      ]
+    },
+    {
+      "id": "n4",
+      "meta": "2025 - MURALS",
+      "title": "Together We Can Do Great Things mural unveiled at City Chill",
+      "thumb": "/media/community-together-5.jpg",
+      "excerpt": "Artist Latosha Maddox's mural anchors a new stop on the walking tour.",
+      "body": "The mural transformed a once-blank wall at City Chill into a rallying message for the neighborhood.",
+      "photos": [
+        "/media/community-together-2.jpg",
+        "/media/community-together-5.jpg",
+        "/media/community-citychill.jpg"
+      ]
+    },
+    {
+      "id": "n5",
+      "meta": "2025 - MURALS",
+      "title": "Community Marketplace mural takes shape on Frederick Ave",
+      "thumb": "/media/mural-marketplace-3.jpg",
+      "excerpt": "Artist Parris Ashley's design previews the marketplace coming to the Center.",
+      "body": "The mural wraps the building in a preview of the marketplace planned inside the Center for Social Impact.",
+      "photos": [
+        "/media/mural-marketplace-1.jpg",
+        "/media/mural-marketplace-3.jpg"
+      ]
+    },
+    {
+      "id": "n6",
+      "meta": "2025 - CLEAN & GREEN",
+      "title": "Clean & Green crews take on summer season bookings",
+      "thumb": "/media/cleangreen-crew.jpg",
+      "excerpt": "Nine services, one crew from the neighborhood - booking now.",
+      "body": "Clean & Green is booking for the season across Irvington and surrounding communities.",
+      "instructions": [
+        "Request a free estimate with the form on the Clean & Green page - name, phone, address, and the service you need.",
+        "The crew follows up within two business days to schedule a walkthrough.",
+        "CCD resident members automatically get 15% off every service."
+      ],
+      "contactEmail": "{{contact.cleanGreenEmail}}",
+      "contactLabel": "Email Francis directly",
+      "photos": [
+        "/media/cleangreen-1.jpg",
+        "/media/cleangreen-sidewalk.jpg",
+        "/media/cleangreen-garden-wide.jpg",
+        "/media/cleangreen-2.jpg"
+      ]
+    }
+  ]
+}

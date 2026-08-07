@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Edit the CCD website</title>
+    <link rel="icon" href="/media/ccd-logo.png" />
+    <style>
+      /* Shown only until the editor loads, and if it never does. */
+      .boot {
+        font: 16px/1.6 system-ui, sans-serif;
+        color: #1a1a1a;
+        max-width: 34rem;
+        margin: 12vh auto;
+        padding: 0 1.5rem;
+      }
+      .boot h1 {
+        font: 400 30px/1.2 Georgia, serif;
+        margin: 0 0 0.75rem;
+      }
+      .boot p {
+        color: #5b6b72;
+      }
+      .boot code {
+        background: #eef1f2;
+        padding: 2px 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="boot" id="boot">
+      <h1>Loading the editor…</h1>
+      <p>
+        If this message stays on screen, the editor could not load. Check your
+        internet connection and refresh. If it keeps happening, send a developer
+        this address: <code>/admin</code>.
+      </p>
+      <p>
+        You will be asked to sign in with GitHub. If you do not have an account
+        yet, or you see “not authorised”, ask whoever manages the website to add
+        you as a collaborator.
+      </p>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script>
+      // The CMS replaces the page body once it mounts. If it has not after a few
+      // seconds, leave the explanation above on screen rather than a blank page.
+      setTimeout(() => {
+        const boot = document.getElementById("boot");
+        if (boot && document.querySelector("#nc-root, #app, .sveltia-cms")) boot.remove();
+      }, 4000);
+    </script>
+  </body>
+</html>

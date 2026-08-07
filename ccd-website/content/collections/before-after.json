@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "before": "/media/ba1-before.jpg",
+      "after": "/media/ba1-after.jpg",
+      "label": "Full yard & exterior transformation"
+    },
+    {
+      "before": "/media/ba2-before.jpg",
+      "after": "/media/ba2-after.jpg",
+      "label": "Foundation beds & fresh planting"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "key": "donate",
+  "slug": "donate",
+  "title": "Donate",
+  "description": "Invest in CCD's Irvington work or volunteer with the co-op.",
+  "active": "involved",
+  "heroTitle": "Invest in",
+  "heroAccent": "Irvington.",
+  "heroBody": "Every dollar supports community-owned programs, green spaces, markets, tools, and the Center for Social Impact.",
+  "heroImage": "/media/drone-garden-1.jpg",
+  "heroAlt": "Aerial view of a CCD community day",
+  "sections": [
+    {
+      "type": "split",
+      "title": "Every dollar stays on the block.",
+      "body": "Donations help CCD maintain public spaces, run events, support the Tool Bank, and build the Center for Social Impact.",
+      "bullets": [
+        "Program support",
+        "Clean & Green operations",
+        "Events and markets",
+        "Building campaign support"
+      ],
+      "image": "/media/drone-3.jpg",
+      "alt": "Aerial of the reclaimed Oasis garden corridor",
+      "ctaText": "Donate now",
+      "ctaHref": "{{action:links.paypalDonate|Donation to CCD}}"
+    },
+    {
+      "type": "donatePanel",
+      "id": "volunteer"
+    }
+  ]
+}

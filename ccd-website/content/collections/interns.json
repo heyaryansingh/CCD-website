@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "name": "Aryan",
+      "role": "STRATEGY & DIGITAL",
+      "bio": "Aryan joined CCD as a Strategy & Digital intern in summer 2026, translating community context, planning docs, and real media into the new website direction.",
+      "email": "{{contact.email}}",
+      "photo": "",
+      "order": 1
+    },
+    {
+      "name": null,
+      "role": "PROGRAMS"
+    },
+    {
+      "name": null,
+      "role": "MARKETING & COMMS"
+    },
+    {
+      "name": null,
+      "role": "COMMUNITY OUTREACH"
+    },
+    {
+      "name": null,
+      "role": "DESIGN & MEDIA"
+    },
+    {
+      "name": null,
+      "role": "CLEAN & GREEN"
+    }
+  ]
+}

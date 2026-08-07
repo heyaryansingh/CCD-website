@@ -1,0 +1,42 @@
+{
+  "key": "brick-campaign",
+  "slug": "brick-campaign",
+  "title": "Brick Campaign",
+  "description": "Support the Center for Social Impact brick campaign.",
+  "active": "involved",
+  "heroTitle": "What was once abandoned can become",
+  "heroAccent": "a beacon.",
+  "heroBody": "Help transform 3932 Frederick Avenue into a cooperative landmark by putting your name, family, or organization into the wall.",
+  "heroImage": "/media/drone-2.jpg",
+  "heroAlt": "Aerial view of the community gathered at a brick building",
+  "sections": [
+    {
+      "type": "split",
+      "title": "One building. A thousand names.",
+      "body": "Every brick is a visible commitment to community ownership. The campaign funds the conversion of the Center for Social Impact from vacant storage into shared neighborhood infrastructure.",
+      "bullets": [
+        "Individual, family, and business recognition",
+        "Permanent placement in the wall",
+        "Funds stay tied to the building campaign"
+      ],
+      "image": "/media/mural-marketplace-3.jpg",
+      "alt": "Community marketplace mural detail"
+    },
+    {
+      "type": "cta",
+      "theme": "gold",
+      "title": "Buy your brick.",
+      "body": "Named bricks are handled through CCD's fundraising partner. Every brick helps build the Center for Social Impact.",
+      "href": "{{action:links.brickCampaign|Brick Campaign}}",
+      "label": "Buy a brick"
+    },
+    {
+      "type": "cta",
+      "theme": "green",
+      "title": "Prefer to give directly?",
+      "body": "General donations support every CCD program, from green spaces to the Tool Bank.",
+      "href": "{{action:links.paypalDonate|Donation to CCD}}",
+      "label": "Make a donation"
+    }
+  ]
+}

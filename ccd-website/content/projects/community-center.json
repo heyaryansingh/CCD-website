@@ -1,0 +1,54 @@
+{
+  "key": "community-center",
+  "slug": "community-center",
+  "title": "Community Center for Change",
+  "description": "3932-3934 Frederick Ave — the future Center for Social Impact.",
+  "active": "projects",
+  "eyebrow": "IN PROGRESS — 3932-3934 FREDERICK AVE",
+  "heroTitle": "Community Center",
+  "heroAccent": "for Change.",
+  "heroBody": "Redeveloping a 5,000 sq ft former shipping company into an innovation hub for the 21229 — with a co-op grocery, multimedia center, and retail vending stalls.",
+  "heroImage": "/media/mural-marketplace-1.jpg",
+  "heroAlt": "3932 Frederick Avenue with community marketplace mural",
+  "sections": [
+    {
+      "type": "split",
+      "title": "An innovation hub owned by the neighborhood.",
+      "body": "The Cooperative is redeveloping 3932-3934 Frederick Ave into the Community Center for Change: a 5,000-square-foot business-incubator hub where minority-owned businesses are welcomed. The space is envisioned as a community-owned co-op grocery, multimedia center, and retail vending stalls. CCD is finalizing plans with ReGEN Consulting and the Neighborhood Design Center.",
+      "bullets": [
+        "Co-op grocery store",
+        "Multimedia center",
+        "Retail vending stalls",
+        "Business incubator network"
+      ],
+      "image": "/media/rendering-ccc.jpg",
+      "alt": "Concept rendering of the Community Center for Change with its tagline banner"
+    },
+    {
+      "type": "gallery",
+      "title": "From concept to corner landmark.",
+      "images": [
+        {
+          "src": "/media/rendering-csi-facade.jpg",
+          "alt": "Neighborhood Design Center facade rendering of the Center for Social Impact"
+        },
+        {
+          "src": "/media/csi-mural-panels.jpg",
+          "alt": "Marketplace mural panels taking shape on the building"
+        },
+        {
+          "src": "/media/mural-marketplace-3.jpg",
+          "alt": "Mural underdrawing detail"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "gold",
+      "title": "Put your name in the wall.",
+      "body": "The brick campaign funds the transformation of this building.",
+      "href": "/brick-campaign",
+      "label": "Support the brick campaign"
+    }
+  ]
+}

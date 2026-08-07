@@ -1,0 +1,85 @@
+{
+  "key": "projects",
+  "slug": "projects",
+  "title": "Projects",
+  "description": "CCD projects across Irvington and Baltimore's 21229.",
+  "active": "projects",
+  "heroTitle": "Our work in",
+  "heroAccent": "the 21229.",
+  "heroBody": "Gardens, murals, markets, walking tours, and reclaimed spaces show what cooperative development looks like at street level.",
+  "heroImage": "/media/drone-3.jpg",
+  "heroAlt": "Aerial view of a reclaimed green path in Irvington",
+  "sections": [
+    {
+      "type": "cards",
+      "title": "Projects with roots.",
+      "cards": [
+        {
+          "title": "Oasis @ 240",
+          "body": "A reclaimed community space and anchor on the Irvington walking tour.",
+          "image": "/media/community-oasis.jpg",
+          "alt": "Walking tour group in the Oasis garden",
+          "meta": "COMPLETED",
+          "href": "/projects/oasis-240"
+        },
+        {
+          "title": "Community Center for Change",
+          "body": "The 3932 Frederick Avenue building becoming the Center for Social Impact.",
+          "image": "/media/mural-marketplace-1.jpg",
+          "alt": "Marketplace mural",
+          "meta": "IN PROGRESS",
+          "href": "/projects/community-center"
+        },
+        {
+          "title": "Botanical Bus Stop",
+          "body": "A future transit stop shaped by food access, beauty, and care.",
+          "image": "/media/cleangreen-1.jpg",
+          "alt": "Clean and Green crew maintaining a streetside site",
+          "meta": "PLANNED",
+          "href": "/projects/bus-stop"
+        },
+        {
+          "title": "Little Memorial Garden",
+          "body": "A space for remembrance, planting, food, and neighborhood gathering.",
+          "image": "/media/drone-garden-2.jpg",
+          "alt": "Community ceremony in the Memorial Garden",
+          "meta": "IN PROGRESS",
+          "href": "/projects/memorial-garden"
+        }
+      ]
+    },
+    {
+      "type": "projectMap",
+      "title": "Mapping the work."
+    },
+    {
+      "type": "split",
+      "theme": "dark",
+      "title": "Walk the block with us.",
+      "body": "The Irvington walking tour links murals, gardens, businesses, and neighborhood histories into a route that makes local memory visible.",
+      "image": "/media/irvington-tour.jpg",
+      "alt": "Irvington walking tour map",
+      "ctaText": "See events",
+      "ctaHref": "/events"
+    },
+    {
+      "type": "gallery",
+      "title": "The proof is the people.",
+      "credit": "Media by Mastermind Photography & Designs, unless otherwise noted.",
+      "images": [
+        {
+          "src": "/media/community-together-5.jpg",
+          "alt": "Artist Latosha Maddox beside the Together We Can mural"
+        },
+        {
+          "src": "/media/community-barbershop.jpg",
+          "alt": "Tour group outside BMore Fresh Barbershop"
+        },
+        {
+          "src": "/media/memorial-garden.jpg",
+          "alt": "Walking tour gathering in Irvington"
+        }
+      ]
+    }
+  ]
+}

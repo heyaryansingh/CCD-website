@@ -1,0 +1,29 @@
+{
+  "key": "memorial-garden",
+  "slug": "memorial-garden",
+  "title": "Little Memorial Garden",
+  "description": "Restoring a garden honoring Mr. Little at Old Frederick Rd & Irving St.",
+  "active": "projects",
+  "eyebrow": "IN PROGRESS — OLD FREDERICK RD & IRVING ST",
+  "heroTitle": "Little",
+  "heroAccent": "Memorial Garden.",
+  "heroBody": "In honor of Mr. Little, who tirelessly gardened this plot, CCD is restoring the garden to its former glory with raised beds, native plants, fruit trees, and an original mural.",
+  "heroImage": "/media/memorial-aerial.jpg",
+  "heroAlt": "Drone aerial of the Memorial Garden dedication with canopy, tables, and speaker",
+  "sections": [
+    {
+      "type": "split",
+      "title": "A living memorial.",
+      "body": "At the corner of Old Frederick Rd & Irving Street, CCD is restoring Mr. Little's garden in partnership with Spring Meadow Farms. The space will feature raised beds available to families, native plants, fruit trees, crape myrtles, and an original mural honoring Mr. Little's life and legacy.",
+      "bullets": [
+        "Raised beds available to families",
+        "Native plants and fruit trees",
+        "Original mural honoring Mr. Little"
+      ],
+      "image": "/media/rendering-memorial-garden.jpg",
+      "alt": "Watercolor concept rendering of the restored Memorial Garden",
+      "ctaText": "Volunteer for this",
+      "ctaHref": "/volunteer"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "items": [
+    {
+      "name": "Baltimore Roundtable for Economic Democracy (BRED)",
+      "description": "Supported CCD's acquisition of the Jarbo Brothers facility and the co-op's economic-democracy work.",
+      "url": "https://www.baltimoreroundtable.org",
+      "category": "funder",
+      "logo": "/media/logo-bred.png"
+    },
+    {
+      "name": "Neighborhood Design Center",
+      "description": "Helps CCD finalize site plans and engage residents on the Center for Social Impact.",
+      "url": "https://ndc-md.org/",
+      "category": "design"
+    },
+    {
+      "name": "ReGEN Consulting Group",
+      "description": "Finalizing site plans and preliminary renderings for the Frederick Avenue development.",
+      "url": "https://www.instagram.com/regenconsultinggroup/",
+      "category": "design"
+    },
+    {
+      "name": "Civic Works Baltimore",
+      "description": "Partner on the Oasis @ 240 reclaimed green space.",
+      "url": "http://civicworks.com/",
+      "category": "community",
+      "logo": "/media/logo-civic-works.png"
+    },
+    {
+      "name": "Chesapeake Bay Trust",
+      "description": "Supported native plantings and green infrastructure at the Oasis.",
+      "url": "https://cbtrust.org/",
+      "category": "funder"
+    },
+    {
+      "name": "T.A.P. Inc. (The Arts Project)",
+      "description": "Youth arts partner led by visionary Andi Kennedy — original art at the Oasis @ 240 and CCD's ARTS programming.",
+      "url": "https://www.theartsprojectinc.org/",
+      "category": "community",
+      "logo": "/media/logo-arts-project.png"
+    },
+    {
+      "name": "Baltimore Heritage",
+      "description": "Walking-tour partner whose Five Minute Histories series features Irvington's landmarks.",
+      "url": "https://baltimoreheritage.org",
+      "category": "community",
+      "logo": "/media/logo-baltimore-heritage.png"
+    },
+    {
+      "name": "Baltimore Children & Youth Fund",
+      "description": "Funder supporting CCD's youth programming.",
+      "url": "https://www.bcyfund.org/",
+      "category": "funder",
+      "logo": "/media/logo-bcyf.png"
+    },
+    {
+      "name": "Spring Meadow Farms",
+      "description": "Partner on the Little Memorial Garden restoration.",
+      "url": "https://springmeadowfarms.com/",
+      "category": "program"
+    },
+    {
+      "name": "The 4th Brew",
+      "description": "CCD's coffee brand and its entrepreneurship arm — now hosted here, on this site.",
+      "url": "/4th-brew",
+      "category": "program",
+      "logo": "/media/logo-4th-brew.png"
+    },
+    {
+      "name": "DeWalt",
+      "description": "Tools and construction-trades support for workforce development.",
+      "url": "https://www.dewalt.com/",
+      "category": "program",
+      "logo": "/media/logo-dewalt.png"
+    },
+    {
+      "name": "Catonsville Cooperative Market",
+      "description": "Partner co-op supporting CCD's community market events and shoe drive drop-offs.",
+      "url": "",
+      "category": "community"
+    },
+    {
+      "name": "City Chill",
+      "description": "Neighborhood partner and mural site on the walking tour.",
+      "url": "",
+      "category": "community"
+    },
+    {
+      "name": "BMore Fresh",
+      "description": "Neighborhood barbershop partner on the walking tour.",
+      "url": "",
+      "category": "community"
+    },
+    {
+      "name": "Maryland Nonprofits",
+      "description": "CCD is a proud member of Maryland Nonprofits.",
+      "url": "https://www.marylandnonprofits.org/",
+      "category": "member",
+      "logo": "/media/logo-maryland-nonprofits.png"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "key": "what-is-a-coop",
+  "slug": "what-is-a-coop",
+  "title": "What is a Co-op?",
+  "description": "How cooperatives work and why CCD is member-owned and governed.",
+  "active": "about",
+  "eyebrow": "THE MODEL",
+  "heroTitle": "A co-op is",
+  "heroAccent": "yours.",
+  "heroBody": "A cooperative is an autonomous association of people united voluntarily to meet common economic, social, and cultural needs through a jointly-owned, democratically-controlled enterprise.",
+  "heroImage": "/media/community-together-2.jpg",
+  "heroPosition": "center 35%",
+  "heroAlt": "Together We Can Do Great Things mural",
+  "sections": [
+    {
+      "type": "steps",
+      "eyebrow": "HOW IT WORKS",
+      "title": "Members, governance, shared benefit.",
+      "theme": "green",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Members join",
+          "body": "Residents, businesses, and supporters pay dues that fund the shared work of the co-op."
+        },
+        {
+          "n": "02",
+          "title": "Members govern",
+          "body": "Voting members each get one vote. Major decisions come back to the membership."
+        },
+        {
+          "n": "03",
+          "title": "Members share benefits",
+          "body": "Tool access, service discounts, markets, and neighborhood improvements stay local."
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "title": "The cooperative principles.",
+      "body": "CCD follows the internationally recognized cooperative principles, adapted for Irvington and Baltimore's 21229.",
+      "cards": [
+        {
+          "title": "Voluntary & open membership",
+          "body": "Open to all who can use the co-op's services and accept the responsibilities of membership."
+        },
+        {
+          "title": "Democratic member control",
+          "body": "One member, one vote. Members set direction and hold leadership accountable."
+        },
+        {
+          "title": "Member economic participation",
+          "body": "Members contribute dues and share in the benefits the co-op creates."
+        },
+        {
+          "title": "Autonomy & independence",
+          "body": "CCD is a self-help organization controlled by its members."
+        },
+        {
+          "title": "Education & training",
+          "body": "The co-op invests in members so they can contribute to its development."
+        },
+        {
+          "title": "Concern for community",
+          "body": "CCD works for the sustainable development of Irvington and the wider 21229."
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "gold",
+      "title": "This is your co-op. Own a piece of it.",
+      "body": "Membership turns support into governance, and dues into visible community benefit.",
+      "href": "/membership",
+      "label": "Become a member"
+    }
+  ]
+}

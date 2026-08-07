@@ -1,0 +1,60 @@
+{
+  "key": "tool-bank",
+  "slug": "tool-bank",
+  "title": "The Tool Bank",
+  "description": "Borrow tools instead of buying them — free for CCD resident members.",
+  "active": "programs",
+  "heroTitle": "Borrow it.",
+  "heroAccent": "Don't buy it.",
+  "heroBody": "The CCD Tool Bank lets resident members borrow tools for home repairs, garden work, and block projects — making ownership cheaper and collective.",
+  "heroImage": "/media/toolbank-wheelbarrow.jpg",
+  "heroAlt": "Young gardener with gloves, wheelbarrow, and trowel at the community beds",
+  "sections": [
+    {
+      "type": "steps",
+      "eyebrow": "HOW IT WORKS",
+      "title": "Three steps to borrow.",
+      "theme": "green",
+      "steps": [
+        {
+          "n": "01",
+          "title": "Become a member",
+          "body": "Resident members get free Tool Bank access; others get discounted access."
+        },
+        {
+          "n": "02",
+          "title": "Reserve a tool",
+          "body": "Request the tool you need for your home, garden, or block project."
+        },
+        {
+          "n": "03",
+          "title": "Pick up & return",
+          "body": "Grab it, do the work, and return it for the next neighbor."
+        }
+      ]
+    },
+    {
+      "type": "split",
+      "reverse": true,
+      "title": "Made for real neighborhood work.",
+      "body": "From lawn and garden equipment to basic home-repair tools, the Tool Bank is built around neighbor-to-neighbor repair. Full tool inventory is being catalogued — reach out and we'll tell you what's available.",
+      "bullets": [
+        "Free for resident members",
+        "Discounted for other members",
+        "Seasonal and basic equipment"
+      ],
+      "image": "/media/cleangreen-sidewalk.jpg",
+      "alt": "CCD work truck loaded with rakes and tools on a job site",
+      "ctaText": "Ask about a tool",
+      "ctaHref": "{{mailto:Tool Bank request}}"
+    },
+    {
+      "type": "cta",
+      "theme": "gold",
+      "title": "Free for resident members.",
+      "body": "Join CCD as a resident member for free Tool Bank access and a vote in the co-op.",
+      "href": "/membership",
+      "label": "Become a member"
+    }
+  ]
+}

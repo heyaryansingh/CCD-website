@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "src": "/media/drone-1.jpg",
+      "alt": "Aerial of an Irvington intersection with kids on bikes",
+      "kicker": "IRVINGTON - BALTIMORE - EST. 2020"
+    },
+    {
+      "src": "/media/drone-garden-1.jpg",
+      "alt": "Aerial of the Memorial Garden dedication ceremony",
+      "kicker": "LITTLE MEMORIAL GARDEN - 2025"
+    },
+    {
+      "src": "/media/drone-2.jpg",
+      "alt": "CCD headquarters with the logo mural and neighbors outside",
+      "kicker": "COOPERATIVE WAY - IRVINGTON"
+    },
+    {
+      "src": "/media/drone-3.jpg",
+      "alt": "Aerial of the reclaimed Oasis garden corridor",
+      "kicker": "AGRICULTURAL ACCESS - FOOD SOVEREIGNTY"
+    },
+    {
+      "src": "/media/event-coopway-2.jpg",
+      "alt": "Crowd photographing the new Cooperative Way street sign",
+      "kicker": "COOPERATIVE WAY - CELEBRATION"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "name": "Oasis @ 240",
+      "status": "Completed",
+      "href": "/projects/oasis-240",
+      "x": 56.6,
+      "y": 51.8
+    },
+    {
+      "name": "Center for Social Impact",
+      "status": "In Progress",
+      "href": "/projects/community-center",
+      "x": 52.2,
+      "y": 68.4
+    },
+    {
+      "name": "Botanical Bus Stop",
+      "status": "Planned",
+      "href": "/projects/bus-stop",
+      "x": 62,
+      "y": 30
+    },
+    {
+      "name": "Little Memorial Garden",
+      "status": "In Progress",
+      "href": "/projects/memorial-garden",
+      "x": 43.4,
+      "y": 43.4
+    },
+    {
+      "name": "CCD Headquarters",
+      "status": "4004 Frederick Ave",
+      "href": "/contact",
+      "x": 47.1,
+      "y": 70.7
+    }
+  ]
+}

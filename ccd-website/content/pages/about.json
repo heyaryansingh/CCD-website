@@ -1,0 +1,90 @@
+{
+  "key": "about",
+  "slug": "about",
+  "title": "About CCD",
+  "description": "CCD's story, mission, co-op model, team, and partners.",
+  "active": "about",
+  "eyebrow": "OUR STORY",
+  "heroTitle": "We are Baltimore's cooperative future.",
+  "heroBody": "Cooperative Community Development started with one reclaimed lot and grew into a member-governed blueprint for food, housing, green space, and ownership.",
+  "heroImage": "/media/irvington-sign.jpg",
+  "heroAlt": "Welcome to Historic Irvington 1874 mosaic sign — where houses become homes and neighbors become friends",
+  "sections": [
+    {
+      "type": "split",
+      "eyebrow": "SINCE 2020",
+      "title": "A co-op grown from the block up.",
+      "body": "CCD was founded by Johnny Martin Jr. after years of watching investment promises miss Irvington. The answer was not another outside rescue plan. It was ownership from within: neighbors pooling dues, decisions, work, and vision.",
+      "bullets": [
+        "Started from the Oasis @ 240 and reclaimed vacant land.",
+        "Acquired 3932-3934 Frederick Avenue for the Center for Social Impact.",
+        "Built programs that turn dues into visible community benefit."
+      ],
+      "image": "/media/volunteers-bed-build.jpg",
+      "alt": "Volunteers beside a newly built raised garden bed between rowhouses"
+    },
+    {
+      "type": "timeline",
+      "title": "From one lot to a cooperative corridor.",
+      "items": [
+        {
+          "year": "2019",
+          "title": "The first lot",
+          "body": "Neighbors began reclaiming neglected land and proving the model in public at Oasis @ 240."
+        },
+        {
+          "year": "2020",
+          "title": "CCD founded",
+          "body": "Cooperative Community Development formalized the work with member governance in January 2020."
+        },
+        {
+          "year": "2023",
+          "title": "3932-3934 acquired",
+          "body": "The former Jarbo Brothers facility at 3932-3934 Frederick Avenue became the future Center for Social Impact, with support from BRED."
+        },
+        {
+          "year": "2024",
+          "title": "Cooperative Way",
+          "body": "The block celebrated a new name and a visible cooperative identity."
+        },
+        {
+          "year": "Next",
+          "title": "The center opens",
+          "body": "A co-op grocery, media center, maker stalls, and training space come online."
+        }
+      ]
+    },
+    {
+      "type": "heart",
+      "id": "heart"
+    },
+    {
+      "type": "cards",
+      "id": "coop",
+      "theme": "gray",
+      "title": "What is a co-op?",
+      "body": "A cooperative is owned and governed by the people who use it. CCD keeps the benefits local and keeps decision-making in the hands of members.",
+      "cards": [
+        {
+          "title": "Members join",
+          "body": "Residents, businesses, nonprofits, and supporters pay dues that fund the shared work.",
+          "href": "/what-is-a-coop"
+        },
+        {
+          "title": "Members govern",
+          "body": "One member gets one vote. Big decisions come back to the people closest to the work.",
+          "href": "/what-is-a-coop"
+        },
+        {
+          "title": "Members share benefits",
+          "body": "Tool access, service discounts, markets, events, and neighborhood improvements stay local.",
+          "href": "/membership"
+        }
+      ]
+    },
+    {
+      "type": "aboutTeam",
+      "id": "team"
+    }
+  ]
+}

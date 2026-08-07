@@ -1,0 +1,146 @@
+{
+  "key": "brewing",
+  "slug": "brewing",
+  "title": "Coffee Brewing Methods",
+  "description": "A simple guide to eight brewing methods — grind, water temperature, ratio, and steps for each.",
+  "active": "brew",
+  "brand": "brew",
+  "eyebrow": "BREWING METHODS",
+  "heroTitle": "Brew it the way",
+  "heroAccent": "it was intended.",
+  "heroBody": "A simple guide to eight methods, with the grind, water temperature, and ratio that each one actually wants. Start anywhere.",
+  "heroImage": "/media/brew/brew-lifestyle-3.jpg",
+  "heroPosition": "center 38%",
+  "heroAlt": "A pour-over brewing in progress",
+  "sections": [
+    {
+      "type": "cards",
+      "id": "methods",
+      "eyebrow": "EIGHT WAYS",
+      "title": "Find your method.",
+      "body": "Ratios are a starting point, not a rule — taste and adjust. If one number matters most, it's the grind.",
+      "cards": [
+        {
+          "title": "Drip / Automatic",
+          "image": "/media/brew/method-drip.png",
+          "alt": "Line icon of a drip coffee maker",
+          "meta": "BALANCED · RELIABLE · EVERYDAY",
+          "body": "Designed for consistency and ease. Produces a smooth, well-rounded cup with dependable flavor.",
+          "bullets": [
+            "Grind: medium, like sea salt",
+            "Water: 195-205°F, ratio about 1:16",
+            "Filter, grounds, cold water in the reservoir, press start",
+            "Done in 5-7 minutes",
+            "Pre-wet the filter to lose the paper taste"
+          ]
+        },
+        {
+          "title": "Pour-Over",
+          "image": "/media/brew/method-pour-over.png",
+          "alt": "Line icon of a pour-over dripper and kettle",
+          "meta": "SMOOTH · BOLD · BRIGHT",
+          "body": "A hands-on method that brings clarity and brightness to each cup. Ideal for highlighting subtle tasting notes.",
+          "bullets": [
+            "Grind: medium-fine",
+            "Water: 195-205°F, ratio about 1:16",
+            "Rinse the filter and warm the dripper first",
+            "Bloom with a little water for 30-45 seconds, then pour in steady circles",
+            "Total brew 3-4 minutes — keep the flow even for even extraction"
+          ]
+        },
+        {
+          "title": "French Press",
+          "image": "/media/brew/method-french-press.png",
+          "alt": "Line icon of a French press",
+          "meta": "BOLD · STRONG · RICH",
+          "body": "An immersion method that pulls deeper flavors and oils through, for a heavier mouthfeel and a robust finish.",
+          "bullets": [
+            "Grind: coarse",
+            "Water: 195-205°F, ratio about 1:16",
+            "Saturate the grounds, stir, and steep about 4 minutes",
+            "Press slowly and evenly",
+            "Decant right away — coffee left on the grounds over-extracts"
+          ]
+        },
+        {
+          "title": "Espresso",
+          "image": "/media/brew/method-espresso.png",
+          "alt": "Line icon of an espresso machine portafilter",
+          "meta": "INTENSE · STRONG · POWERFUL",
+          "body": "A fast, high-pressure method that delivers a rich, concentrated shot under a thick crema.",
+          "bullets": [
+            "Grind: fine, table salt to powder",
+            "Water: 190-196°F, yield about 1:2 (18g in, 36-40g out)",
+            "Dose, distribute, tamp with even pressure",
+            "Aim for a 25-30 second extraction",
+            "Small grind and pressure changes move the taste a long way"
+          ]
+        },
+        {
+          "title": "AeroPress",
+          "image": "/media/brew/method-aeropress.png",
+          "alt": "Line icon of an AeroPress",
+          "meta": "SMOOTH · VERSATILE · FAST",
+          "body": "A compact brewer that combines immersion and pressure for a clean, balanced cup in about two minutes.",
+          "bullets": [
+            "Grind: medium-fine",
+            "Water: about 200°F, ratio about 1:13",
+            "Rinse the filter, add grounds, pour",
+            "Stir 10 seconds, steep 1 minute, press gently",
+            "Try the inverted method for more body"
+          ]
+        },
+        {
+          "title": "Cold Brew",
+          "image": "/media/brew/method-cold-brew.png",
+          "alt": "Line icon of a cold brew jar",
+          "meta": "LOW-ACID · SMOOTH · REFRESHING",
+          "body": "Brewed slowly with cold water into a naturally smooth, mellow concentrate. Made ahead, poured all week.",
+          "bullets": [
+            "Grind: extra-coarse, like peppercorns",
+            "Cold water, ratio about 1:5",
+            "Stir to saturate, cover, steep 12-24 hours in the fridge",
+            "Strain through a fine filter or cloth",
+            "Dilute to taste — longer steep means stronger concentrate"
+          ]
+        },
+        {
+          "title": "Siphon / Vacuum",
+          "image": "/media/brew/method-siphon.png",
+          "alt": "Line icon of a siphon vacuum brewer",
+          "meta": "CLEAN · AROMATIC · REFINED",
+          "body": "A visually striking method that uses vapor pressure to produce an exceptionally clean cup.",
+          "bullets": [
+            "Grind: medium-fine",
+            "Water: 195-205°F, ratio about 1:16",
+            "Heat the bottom chamber; add grounds once the water rises",
+            "Stir gently and let it brew",
+            "Pull the heat — the coffee draws back down. Serve immediately"
+          ]
+        },
+        {
+          "title": "Moka Pot",
+          "image": "/media/brew/method-moka-pot.png",
+          "alt": "Line icon of a stovetop moka pot",
+          "meta": "RICH · STRONG · STOVETOP",
+          "body": "A stovetop brewer that makes a bold, espresso-adjacent coffee with real intensity.",
+          "bullets": [
+            "Grind: fine-medium",
+            "Pre-heated water to the valve line",
+            "Fill the basket level — do not tamp",
+            "Assemble and heat on medium; pull it at the first gurgle",
+            "Run the base under cold water to stop extraction instantly"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "theme": "dark",
+      "title": "Got the method. Need the beans.",
+      "body": "The Pawn, The Knight, and The Rook — 12oz or 5lb, whole bean or ground.",
+      "href": "/shop",
+      "label": "Shop the coffee"
+    }
+  ]
+}

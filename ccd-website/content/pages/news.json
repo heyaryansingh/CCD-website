@@ -1,0 +1,18 @@
+{
+  "key": "news",
+  "slug": "news",
+  "title": "News & Events",
+  "description": "Upcoming events and latest CCD updates.",
+  "active": "news",
+  "heroTitle": "What's happening",
+  "heroAccent": "at CCD.",
+  "heroBody": "Markets, tours, drives, garden days, campaign updates, and public moments from the cooperative corridor.",
+  "heroImage": "/media/event-coopway-1.jpg",
+  "heroAlt": "The Cooperative Way street sign unveiling",
+  "sections": [
+    {
+      "type": "newsEvents",
+      "id": "events"
+    }
+  ]
+}

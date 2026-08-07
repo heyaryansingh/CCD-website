@@ -1,0 +1,106 @@
+{
+  "items": [
+    {
+      "handle": "the-pawn",
+      "title": "The Pawn",
+      "roast": "Medium roast",
+      "notes": "Smooth. Strategic. Full of potential. Milk chocolate, balanced sweetness, and a subtle fruity brightness — the everyday cup that never gets in its own way.",
+      "image": "/media/brew/pawn-bag.png",
+      "alt": "The Pawn — 4th Brew medium roast coffee bag",
+      "variants": [
+        {
+          "id": 43079751237691,
+          "title": "12oz / Whole bean",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43079751204923,
+          "title": "12oz / Ground",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43910647087163,
+          "title": "5lb / Whole bean",
+          "price": "94.99",
+          "available": true
+        },
+        {
+          "id": 43910647119931,
+          "title": "5lb / Ground",
+          "price": "94.99",
+          "available": true
+        }
+      ]
+    },
+    {
+      "handle": "the-knight",
+      "title": "The Knight",
+      "roast": "Medium-dark roast",
+      "notes": "Bold. Calculated. Unconventional. Layered with rich cocoa, smooth caramel sweetness, and a subtle turn you don't see coming.",
+      "image": "/media/brew/knight-bag.png",
+      "alt": "The Knight — 4th Brew medium-dark roast coffee bag",
+      "variants": [
+        {
+          "id": 43079751008315,
+          "title": "12oz / Whole bean",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43079750975547,
+          "title": "12oz / Ground",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43910607863867,
+          "title": "5lb / Whole bean",
+          "price": "94.99",
+          "available": true
+        },
+        {
+          "id": 43910607896635,
+          "title": "5lb / Ground",
+          "price": "94.99",
+          "available": true
+        }
+      ]
+    },
+    {
+      "handle": "the_rook",
+      "title": "The Rook",
+      "roast": "Dark roast",
+      "notes": "Built with depth and structure. Bold dark chocolate, a full heavy body, and a pronounced smoky finish that lingers with authority.",
+      "image": "/media/brew/rook-bag.png",
+      "alt": "The Rook — 4th Brew dark roast coffee bag",
+      "variants": [
+        {
+          "id": 43079750877243,
+          "title": "12oz / Whole bean",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43079750910011,
+          "title": "12oz / Ground",
+          "price": "18.99",
+          "available": true
+        },
+        {
+          "id": 43910564053051,
+          "title": "5lb / Whole bean",
+          "price": "94.99",
+          "available": true
+        },
+        {
+          "id": 43910564085819,
+          "title": "5lb / Ground",
+          "price": "94.99",
+          "available": true
+        }
+      ]
+    }
+  ]
+}

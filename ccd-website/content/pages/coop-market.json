@@ -1,0 +1,67 @@
+{
+  "key": "coop-market",
+  "slug": "coop-market",
+  "title": "Community Co-op Market",
+  "description": "CCD's seasonal community market and co-op grocery on Frederick Avenue.",
+  "active": "programs",
+  "heroTitle": "The Community",
+  "heroAccent": "Co-op Market.",
+  "heroBody": "Local produce, neighborhood makers, live music, and a preview of the year-round cooperative grocery coming to the Center for Social Impact.",
+  "heroImage": "/media/market-vendors-table.jpg",
+  "heroPosition": "center 35%",
+  "heroAlt": "Smiling vendors at their stocked co-op market table under the tents",
+  "sections": [
+    {
+      "type": "split",
+      "title": "A market owned by the neighborhood.",
+      "body": "The Community Co-op Market brings fresh produce, local vendors, and community energy to Frederick Avenue through the season, with membership sign-ups and Tool Bank info on site. It is the visible preview of the community-owned grocery planned inside the Center for Social Impact.",
+      "bullets": [
+        "Local fresh-cut flower and produce vendors",
+        "Composting, permaculture, and pollinator learning",
+        "Family-friendly, all ages, free to attend"
+      ],
+      "image": "/media/market-mural.jpg",
+      "alt": "The Community Market mural with joined hands and hearts"
+    },
+    {
+      "type": "cards",
+      "theme": "gray",
+      "title": "Be part of the market.",
+      "cards": [
+        {
+          "title": "Shop local",
+          "body": "Support neighborhood makers, growers, and food vendors every market day.",
+          "href": "/events"
+        },
+        {
+          "title": "Become a vendor",
+          "body": "Local vendors can register to sell at upcoming markets.",
+          "href": "{{action:links.vendorRegistration|Co-op Market vendor registration|contact.facilitiesEmail}}"
+        },
+        {
+          "title": "Bring the family",
+          "body": "Music, food, and learning for all ages. Contact Marquita for details.",
+          "href": "{{mailto:Co-op Market|contact.facilitiesEmail}}"
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "title": "The market, in motion.",
+      "images": [
+        {
+          "src": "/media/market-vendor.jpg",
+          "alt": "Vendor at her jewelry booth under a market tent"
+        },
+        {
+          "src": "/media/market-vendor-craft.jpg",
+          "alt": "Craft vendor showing handmade pieces to a father and child"
+        },
+        {
+          "src": "/media/market-beds-flag.jpg",
+          "alt": "Produce beds beside the Farmers Market flag"
+        }
+      ]
+    }
+  ]
+}

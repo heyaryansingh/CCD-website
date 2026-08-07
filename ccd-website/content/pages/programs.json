@@ -1,0 +1,49 @@
+{
+  "key": "programs",
+  "slug": "programs",
+  "title": "Programs",
+  "description": "CCD programs serving Irvington and Baltimore's 21229.",
+  "active": "programs",
+  "heroTitle": "Built by the block,",
+  "heroAccent": "for the block.",
+  "heroBody": "CCD programs turn cooperative dues and partner support into practical services, food access, tools, training, and neighborhood events.",
+  "heroImage": "/media/cleangreen-garden-hero.jpg",
+  "heroAlt": "Clean and Green crew member at work beside the We Can mural",
+  "sections": [
+    {
+      "type": "split",
+      "id": "market",
+      "title": "Community Co-op Market",
+      "body": "The market brings produce, local vendors, music, membership sign-ups, and neighborhood energy to Frederick Avenue. It previews the year-round co-op grocery planned for the Center for Social Impact.",
+      "image": "/media/event-coopway-2.jpg",
+      "alt": "Street celebration on Cooperative Way",
+      "ctaText": "Explore the market",
+      "ctaHref": "/coop-market"
+    },
+    {
+      "type": "split",
+      "id": "toolbank",
+      "theme": "green",
+      "reverse": true,
+      "title": "The Tool Bank",
+      "body": "Resident members can borrow tools for home repairs, garden work, and block projects. It is a practical way to make ownership cheaper and collective.",
+      "bullets": [
+        "Free for resident members",
+        "Seasonal tools and basic equipment",
+        "Built around neighbor-to-neighbor repair"
+      ],
+      "ctaText": "Visit the Tool Bank",
+      "ctaHref": "/tool-bank"
+    },
+    {
+      "type": "split",
+      "id": "workforce",
+      "title": "Workforce development",
+      "body": "CCD connects training to actual neighborhood work: landscaping, facilities, events, media, market operations, and cooperative business skills. The 4th Brew, CCD's own coffee brand, teaches the roasting and retail trades - and DeWalt backs the construction side.",
+      "image": "/media/farm-team-beds.jpg",
+      "alt": "Youth crew tending raised beds at the community farm training site",
+      "ctaText": "Meet our partners",
+      "ctaHref": "/partners"
+    }
+  ]
+}

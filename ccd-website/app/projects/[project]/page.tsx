@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageView } from "@/components/PageView";
-import { projectDetails } from "@/lib/siteData";
+import { projectDetails } from "@/lib/pages.server";
 
 type Props = {
   params: Promise<{ project: string }>;

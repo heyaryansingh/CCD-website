@@ -1,0 +1,166 @@
+{
+  "key": "home",
+  "slug": "",
+  "title": "Cooperative Community Development",
+  "description": "CCD is building community-owned infrastructure in Irvington, Baltimore.",
+  "active": "home",
+  "heroTitle": "Building the block.",
+  "heroAccent": "Brick by brick.",
+  "heroBody": "A member-owned cooperative turning vacant spaces into markets, gardens, services, and neighborhood wealth in Baltimore's 21229.",
+  "heroCta": {
+    "label": "Become a member",
+    "href": "/membership"
+  },
+  "sections": [
+    {
+      "type": "stats",
+      "eyebrow": "IRVINGTON, BALTIMORE",
+      "title": "Community ownership, visible on the block.",
+      "body": "CCD connects green space, food access, cooperative enterprise, and local services into one neighborhood-owned model.",
+      "stats": [
+        {
+          "value": "2020",
+          "label": "Founded by neighbors"
+        },
+        {
+          "value": "5,000",
+          "label": "Sq ft center underway"
+        },
+        {
+          "value": "9",
+          "label": "Clean & Green services"
+        },
+        {
+          "value": "4",
+          "label": "Active neighborhood projects"
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "title": "Programs built by neighbors, owned by members.",
+      "cards": [
+        {
+          "title": "Community Co-op Market",
+          "body": "Seasonal markets and local food access on Frederick Avenue.",
+          "image": "/media/market-vendors-table.jpg",
+          "alt": "Vendors at a stocked co-op market table under the tents",
+          "href": "/coop-market"
+        },
+        {
+          "title": "Center for Social Impact",
+          "body": "A former storage building becoming a grocery, media center, and maker marketplace.",
+          "image": "/media/mural-marketplace-1.jpg",
+          "alt": "3932 Frederick Avenue mural",
+          "href": "/center-for-social-impact"
+        },
+        {
+          "title": "Clean & Green",
+          "body": "Nine outdoor services that keep the neighborhood clean while funding CCD programs.",
+          "image": "/media/cleangreen-2.jpg",
+          "alt": "Clean and Green crew member working",
+          "href": "/clean-and-green"
+        },
+        {
+          "title": "Tool Bank",
+          "body": "Resident members get free access to shared tools for home and block projects.",
+          "image": "/media/toolbank-wheelbarrow.jpg",
+          "alt": "Young gardener with wheelbarrow and trowel at the community beds",
+          "href": "/tool-bank"
+        },
+        {
+          "title": "Workforce Development",
+          "body": "Training and paid pathways connected to real neighborhood work.",
+          "image": "/media/farm-team-beds.jpg",
+          "alt": "Youth crew tending raised garden beds at the community farm",
+          "href": "/programs#workforce"
+        },
+        {
+          "title": "Projects in the 21229",
+          "body": "Gardens, murals, walking tours, and reclaimed spaces across Irvington.",
+          "image": "/media/drone-3.jpg",
+          "alt": "Aerial view of community garden path",
+          "href": "/projects"
+        }
+      ]
+    },
+    {
+      "type": "heart",
+      "id": "heart"
+    },
+    {
+      "type": "split",
+      "theme": "dark",
+      "title": "What was once abandoned can become a beacon.",
+      "body": "In 2023, CCD acquired the former Jarbo Brothers Storage facility at 3932-3934 Frederick Avenue. With partners and members, it is becoming one of Baltimore's most ambitious cooperative infrastructure projects: a co-op grocery, media center, maker stalls, and training space.",
+      "image": "/media/mural-marketplace-1.jpg",
+      "alt": "The Center for Social Impact mural",
+      "ctaText": "Support the brick campaign",
+      "ctaHref": "/brick-campaign"
+    },
+    {
+      "type": "projectMap",
+      "title": "Our work in the 21229."
+    },
+    {
+      "type": "gallery",
+      "title": "Four corners of one neighborhood.",
+      "images": [
+        {
+          "src": "/media/drone-garden-1.jpg",
+          "alt": "Memorial Garden ceremony from above"
+        },
+        {
+          "src": "/media/community-together-2.jpg",
+          "alt": "Together We Can Do Great Things mural"
+        },
+        {
+          "src": "/media/drone-2.jpg",
+          "alt": "CCD headquarters and neighbors on Cooperative Way"
+        },
+        {
+          "src": "/media/cleangreen-1.jpg",
+          "alt": "Clean and Green crew repairing a sidewalk"
+        }
+      ]
+    },
+    {
+      "type": "testimonials",
+      "title": "Good work changes the block."
+    },
+    {
+      "type": "partnerWall",
+      "title": "Built with our partners."
+    },
+    {
+      "type": "cards",
+      "title": "What's happening at CCD",
+      "cards": [
+        {
+          "meta": "JUN 2026",
+          "title": "Summer Shoe Drive",
+          "body": "Gently-worn shoes fund the Center for Social Impact and stay out of landfills.",
+          "image": "/media/shoedrive-shoes.png",
+          "alt": "Sneaker made of many donated shoes",
+          "href": "/news"
+        },
+        {
+          "meta": "MAY 2026",
+          "title": "Memorial Garden community day",
+          "body": "Neighbors gathered for planting, remembrance, and food.",
+          "image": "/media/drone-garden-1.jpg",
+          "alt": "Aerial of the Memorial Garden community ceremony",
+          "href": "/news"
+        },
+        {
+          "meta": "NOV 2024",
+          "title": "Cooperative Way celebration",
+          "body": "A new street sign marks the block's cooperative future.",
+          "image": "/media/event-coopway-1.jpg",
+          "alt": "Cooperative Way street celebration",
+          "href": "/news"
+        }
+      ]
+    }
+  ]
+}
