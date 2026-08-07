@@ -3,26 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "test": "node --experimental-strip-types lib/brewCart.test.mts",
+    "bundle:pages": "node scripts/bundle-pages.mjs",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf:upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "check": "npm run bundle:pages && npx tsc --noEmit && npm test && npm run build",
     "content:extract": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/extract-content.mjs",
     "content:verify": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/verify-content.mjs",
-    "check": "npx tsc --noEmit && npm test && npm run build"
+    "dev": "next dev",
+    "lint": "eslint",
+    "prebuild": "node scripts/bundle-pages.mjs",
+    "start": "next start",
+    "test": "node --experimental-strip-types lib/brewCart.test.mts"
   },
   "dependencies": {
-    "next": "16.2.10",
+    "next": "16.2.12",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "typescript": "^5"
+    "eslint-config-next": "16.2.12",
+    "typescript": "^5",
+    "wrangler": "^4.119.0"
   }
 }

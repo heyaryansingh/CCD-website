@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "ccdgroup",
+  "compatibility_date": "2026-08-04",
+  // nodejs_compat is required by the OpenNext adapter.
+  // global_fetch_strictly_public makes fetch() behave like a real browser
+  // request rather than looping back inside the Worker.
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
+
+  // Deliberately NOT configured, and why:
+  //
+  // r2_buckets / WORKER_SELF_REFERENCE — the adapter's default sets up an R2
+  //   incremental cache. This site has no ISR: every page is Static or SSG and
+  //   only the three /api routes are dynamic (confirmed in the build output).
+  //   There is nothing to incrementally cache, and adding R2 would mean a
+  //   billable resource — the opposite of why CCD moved here. If ISR is ever
+  //   introduced, restore both from the adapter docs.
+  //
+  // images — image optimization. This site uses plain <img> everywhere and does
+  //   not use next/image, so the binding would sit unused.
+}
