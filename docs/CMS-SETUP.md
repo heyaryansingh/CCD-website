@@ -4,7 +4,10 @@
 with Root Directory `ccd-website`, and the GitHub OAuth App is live with its
 credentials in Vercel. Sign-in at `/admin` works — verified end to end.
 
-**Step 3 is the only thing left**: give your editors access.
+**Step 3 is the only thing left for the CMS**: give your editors access.
+
+⚠️ **Separately, the contact forms do not reach anyone yet** — see step 4. That
+is not a CMS issue, but it is losing real enquiries.
 
 ---
 
@@ -63,6 +66,31 @@ GitHub → `heyaryansingh/CCD-website` → **Settings → Collaborators** → ad
 person with **Write**. They need a free GitHub account.
 
 To revoke someone's editing, remove them here. Nothing else to change.
+
+## 4. Make the contact forms work — ⚠️ NOT DONE
+
+`SUPABASE_URL` and `SUPABASE_SERVICE_KEY` are not set, so nothing is saved when
+somebody submits the contact, volunteer, or estimate form.
+
+Until this is configured the forms tell visitors *"Something went wrong — please
+email info@ccdgroup.org directly"*, so enquiries still reach CCD by email rather
+than vanishing. That is a fallback, not a fix.
+
+1. Create a free Supabase project
+2. Run `ccd-website/supabase/schema.sql` in its SQL editor (4 tables)
+3. Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (the **service role** key) to the
+   host's environment variables
+4. Redeploy, then check with:
+
+   ```bash
+   cd ccd-website && npm run verify:site -- https://ccdgroup.vercel.app
+   ```
+
+   "submissions are actually stored" must pass.
+
+> The service role key bypasses row-level security. It belongs only in the
+> host's environment settings — never in the repo, and never in a `NEXT_PUBLIC_`
+> variable.
 
 ---
 

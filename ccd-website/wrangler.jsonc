@@ -10,6 +10,13 @@
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
+  },
+
+  // Logs are the only way to diagnose a 500 in production. Without this,
+  // Cloudflare keeps nothing and whoever inherits this site is guessing.
+  // Free tier includes observability.
+  "observability": {
+    "enabled": true
   }
 
   // Deliberately NOT configured, and why:

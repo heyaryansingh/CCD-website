@@ -180,8 +180,14 @@ import attribute). Next handles all three natively; bare Node does not.
 ## Before you push
 
 ```bash
-npm run check   # tsc + tests + build
+npm run check                    # tsc + tests + build
+npm run verify:site -- <url>     # 23 end-to-end checks against a deployed site
 ```
+
+`verify:site` exercises everything that has actually broken on this project:
+every route, the legacy addresses, the CMS and its config, sign-in and the CSRF
+guard, form storage, the shop, and content-token resolution. Point it at
+localhost, a Cloudflare preview, or production.
 
 Check any colour you add against the rule above, and confirm new images are sized for
 the web — `public/media/` is served as-is, with no image optimization pipeline

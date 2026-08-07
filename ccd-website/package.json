@@ -16,7 +16,8 @@
     "lint": "eslint",
     "prebuild": "node scripts/bundle-pages.mjs",
     "start": "next start",
-    "test": "node --experimental-strip-types lib/brewCart.test.mts"
+    "test": "node --experimental-strip-types lib/brewCart.test.mts",
+    "verify:site": "node scripts/verify-site.mjs"
   },
   "dependencies": {
     "next": "16.2.12",

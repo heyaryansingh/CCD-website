@@ -36,11 +36,25 @@ Open the preview URL and confirm:
 
 - The home page and a few inner pages load
 - `/shop` shows three coffees with prices
-- `/contact` — submit the form, expect a success message
+- `/contact` — submit the form. Until form storage is configured it correctly
+  says to email CCD directly instead; that is the fallback, not a bug
 - `/admin` loads the editor (sign-in will still fail — that is step 3)
 
-Everything above already passed locally in the real Workers runtime, so surprises
-are unlikely. This is confirming the hosted environment matches.
+Or check the whole thing in one command:
+
+```bash
+npm run verify:site -- https://<your-new-url>
+```
+
+That runs 23 checks — every page, the legacy addresses, the CMS, sign-in and its
+CSRF guard, the forms, the shop, and the content. It exits non-zero on failure,
+so it can gate the cutover.
+
+Two failures are expected until you finish the steps below: `base_url` still
+points at Vercel, and form storage is not configured. Everything else must pass.
+
+All of this already passed locally in the real Workers runtime, so surprises are
+unlikely — this confirms the hosted environment matches.
 
 ## 3. Point sign-in at the new address
 
