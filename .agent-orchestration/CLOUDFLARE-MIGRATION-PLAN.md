@@ -50,6 +50,36 @@ sign-in, and the media library are all unaffected. Three things change:
 Build minutes are not a constraint: free tier gives 3,000/month, builds run ~25s,
 so roughly 7,000 CMS saves a month.
 
+## Outcome (executed 2026-08-07)
+
+**Both risks were real to check, and one of them fired.**
+
+Risk 1 hit immediately: the first workerd preview 500'd with
+`Cannot read properties of undefined (reading 'slug')` — `pages.server.ts` read
+the filesystem at request time and Workers returned nothing. Fixed at the root
+rather than per-host: `scripts/bundle-pages.mjs` collapses the per-page files at
+build time and the app imports the bundle. The site no longer touches fs at
+runtime on **any** host.
+
+Risk 2 did not fire. The OAuth routes work unchanged in workerd — as expected,
+since Sveltia's reference authenticator is itself a Cloudflare Worker.
+
+Verified in the genuine Workers runtime (`wrangler dev`), not inferred:
+
+| Check | Result |
+|---|---|
+| 25 routes | all 200 |
+| `/api/auth` | 302 to GitHub, CSRF cookie set |
+| Mismatched state | `CSRF_DETECTED` |
+| `/api/submit` | `{ok:true}` |
+| Shop | live prices, cart buttons render |
+| Tokens leaked | 0 |
+| Aliases | redirect correctly |
+| Static assets | served |
+| `/admin` | 307 → `/admin/` → CMS loads (Cloudflare directory handling) |
+
+Also confirmed the branch still builds for Vercel, so merging risks nothing.
+
 ## Steps
 
 1. Branch `cloudflare-migration`.
