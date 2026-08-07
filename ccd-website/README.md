@@ -149,6 +149,11 @@ the bug.
 
 `ccdgroup.org` itself still points at the old Wix site and is untouched.
 
+⚠️ **The project is not yet connected to GitHub**, so CMS saves commit but do not
+deploy. Connecting it also requires changing Root Directory to `ccd-website` —
+the CLI deploys run from inside that folder, so it is currently `.`. See
+[docs/CMS-SETUP.md](../docs/CMS-SETUP.md).
+
 ## Content scripts
 
 ```bash
