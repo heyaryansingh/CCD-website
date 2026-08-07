@@ -1,11 +1,15 @@
-// Proves the CMS migration lost nothing.
+// Deep-equality guard for content, used around risky refactors.
 //
-//   --snapshot  reads lib/siteData.ts and writes scripts/.content-baseline.json
-//   (default)   reads lib/siteData.ts again and deep-equals it against that baseline
+//   --snapshot  capture every page, section and collection as a baseline
+//   (default)   compare the current content against that baseline
 //
-// Run --snapshot BEFORE rewriting siteData.ts into a JSON loader, then run the
-// comparison after. Identical output means every page, section, and collection
-// survived the move byte for byte.
+// The workflow is: snapshot BEFORE a refactor, compare AFTER. Identical output
+// means the change did not alter a single piece of content. This is what proved
+// the CMS migration lost nothing.
+//
+// It is NOT a standing check — editors change content on purpose, so a
+// difference here is only meaningful if you did not expect one. Re-run
+// --snapshot after intentional edits.
 //
 //   node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/verify-content.mjs [--snapshot]
 import { readFileSync, writeFileSync, existsSync } from "node:fs";

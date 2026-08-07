@@ -163,8 +163,12 @@ the bug.
 ## Content scripts
 
 ```bash
-npm run content:verify   # proves the JSON content still matches the baseline
+npm run content:verify -- --snapshot   # capture a baseline before a refactor
+npm run content:verify                 # confirm the refactor changed no content
 ```
+
+A deep-equality guard for risky refactors, not a standing check — editors change
+content on purpose. It is what proved the CMS migration lost nothing.
 
 `content:extract` was the one-time migration from the old `siteData.ts`. It now
 refuses to run — content lives in `content/` and is edited at `/admin`.
