@@ -1,4 +1,4 @@
-import { BuyPicker } from "@/components/ClientBits";
+import { BrewCart, BuyPicker } from "@/components/ClientBits";
 import { brewProducts, siteConfig, type BrewProduct, type Section } from "@/lib/siteData";
 
 // Shopify publishes every storefront's catalog as public JSON. No SDK, no
@@ -69,11 +69,16 @@ export async function BrewProducts({
               <span className="product-roast">{product.roast}</span>
               <h3>{product.title}</h3>
               <p>{product.notes}</p>
-              <BuyPicker productTitle={product.title} variants={product.variants} />
+              <BuyPicker
+                productTitle={product.title}
+                image={product.image}
+                variants={product.variants}
+              />
             </div>
           </article>
         ))}
       </div>
+      <BrewCart />
     </section>
   );
 }

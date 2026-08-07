@@ -2662,3 +2662,245 @@ a.partner-card:hover {
   font-size: 17px;
   line-height: 1.72;
 }
+
+/* ============================================================================
+   THE 4TH BREW CART
+
+   Lines are held in the browser (lib/brewCart.ts) and handed to Shopify as one
+   multi-line cart permalink at checkout, so a shopper can buy several coffees
+   in a single handoff without this site running any cart backend.
+   ========================================================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Screen-reader-only confirmation; the cart below is the visible feedback. */
+.buy-added {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.nav-cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.nav-cart span[aria-hidden] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: var(--green-deep);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.brew-cart {
+  margin-top: 44px;
+  border: 1px solid rgba(35, 31, 32, 0.14);
+  background: #fff;
+}
+
+.brew-cart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(35, 31, 32, 0.1);
+}
+
+.brew-cart-head h3 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 22px;
+}
+
+.brew-cart-clear {
+  border: 0;
+  background: none;
+  padding: 6px 4px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.brew-cart-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.brew-cart-lines li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(35, 31, 32, 0.08);
+}
+
+.brew-cart-lines img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  background: var(--soft);
+}
+
+.brew-cart-line-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brew-cart-line-copy strong {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.brew-cart-line-copy span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.brew-cart-qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(35, 31, 32, 0.2);
+}
+
+.brew-cart-qty button {
+  min-width: 40px;
+  min-height: 40px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.brew-cart-qty button:hover {
+  background: var(--soft);
+}
+
+.brew-cart-qty span {
+  min-width: 34px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.brew-cart-price {
+  min-width: 84px;
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.brew-cart-remove {
+  min-width: 40px;
+  min-height: 40px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.brew-cart-remove:hover {
+  color: var(--ink);
+}
+
+.brew-cart-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 22px 24px;
+}
+
+.brew-cart-foot p {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+}
+
+.brew-cart-foot span {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.brew-cart-foot strong {
+  font-family: var(--font-head);
+  font-size: 30px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.brew-cart-note {
+  margin: 0;
+  padding: 0 24px 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .brew-cart-lines li {
+    grid-template-columns: 48px 1fr auto;
+    row-gap: 12px;
+  }
+  .brew-cart-lines img {
+    width: 48px;
+    height: 48px;
+  }
+  /* qty + price drop to a second row under the title */
+  .brew-cart-qty {
+    grid-column: 2;
+  }
+  .brew-cart-price {
+    grid-column: 3;
+    min-width: 0;
+  }
+  .brew-cart-remove {
+    grid-row: 1;
+    grid-column: 3;
+  }
+  .brew-cart-foot .button {
+    flex: 1 1 100%;
+  }
+}

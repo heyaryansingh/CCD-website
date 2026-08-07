@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { aliases, navGroups, pages, siteConfig, type ActiveNav } from "@/lib/siteData";
 import { activeSocials } from "@/lib/siteConfig";
+import { CartIndicator } from "@/components/ClientBits";
 
 const socials = activeSocials();
 
@@ -113,6 +114,7 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <CartIndicator />
           <Link className="nav-donate" href="/donate" onClick={closeMenus}>
             Donate
           </Link>

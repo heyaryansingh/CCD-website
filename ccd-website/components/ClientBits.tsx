@@ -1,6 +1,14 @@
 "use client";
 
-import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import {
+  FormEvent,
+  ReactNode,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import {
@@ -15,6 +23,18 @@ import {
   type BrewVariant,
 } from "@/lib/siteData";
 import { actionLink } from "@/lib/siteConfig";
+import {
+  addLine,
+  cartCount,
+  cartTotal,
+  checkoutUrl,
+  clearCart,
+  getServerSnapshot,
+  getSnapshot,
+  removeLine,
+  setQty,
+  subscribe,
+} from "@/lib/brewCart";
 import { submitForm } from "@/lib/submit";
 
 function initials(name: string | null) {
@@ -522,9 +542,11 @@ export function DonatePanel() {
 // cart — Shopify already has one, and it handles PCI, tax, and shipping.
 export function BuyPicker({
   productTitle,
+  image,
   variants,
 }: {
   productTitle: string;
+  image: string;
   variants: BrewVariant[];
 }) {
   // Shopify variant titles are "<size> / <grind>". Derive the two dropdowns
@@ -533,6 +555,7 @@ export function BuyPicker({
   const grinds = Array.from(new Set(variants.map((v) => v.title.split(" / ")[1] ?? "")));
   const [size, setSize] = useState(sizes[0]);
   const [grind, setGrind] = useState(grinds[0]);
+  const [justAdded, setJustAdded] = useState(false);
   const wanted = [size, grind].filter(Boolean).join(" / ");
   const variant = variants.find((v) => v.title === wanted);
 
@@ -565,19 +588,125 @@ export function BuyPicker({
         </label>
       ) : null}
       {variant?.available ? (
-        <a
+        <button
+          type="button"
           className="button gold"
-          href={`${siteConfig.links.brewShop}/cart/${variant.id}:1`}
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => {
+            addLine({
+              variantId: variant.id,
+              product: productTitle,
+              variant: variant.title,
+              price: variant.price,
+              image,
+            });
+            setJustAdded(true);
+          }}
         >
           Add to cart &mdash; ${variant.price}
-        </a>
+        </button>
       ) : (
         <span className="button gold is-disabled" aria-disabled="true">
           {variant ? "Sold out" : "Unavailable"}
         </span>
       )}
+      {/* Announced to screen readers; the visible cart below is the real feedback. */}
+      <p className="buy-added" role="status" aria-live="polite">
+        {justAdded ? `${productTitle} — ${wanted} added to cart` : ""}
+      </p>
+    </div>
+  );
+}
+
+// Reads the module-level cart store. No Context provider — PageView is a server
+// component, and the header needs the same data from outside the page tree.
+export function useBrewCart() {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+}
+
+// Header cart button. Renders nothing until something is in the cart, so the
+// other 18 CCD pages are visually unchanged.
+export function CartIndicator() {
+  const lines = useBrewCart();
+  const count = cartCount(lines);
+  if (!count) return null;
+  return (
+    <Link className="nav-cart" href="/shop#cart">
+      Cart
+      <span aria-hidden="true">{count}</span>
+      <span className="sr-only">{count === 1 ? "1 item" : `${count} items`} in cart</span>
+    </Link>
+  );
+}
+
+// The cart itself. Every line goes into ONE Shopify permalink, so a shopper can
+// check out with three different coffees in a single handoff.
+export function BrewCart() {
+  const lines = useBrewCart();
+  if (!lines.length) return null;
+
+  const total = cartTotal(lines);
+  const href = checkoutUrl(siteConfig.links.brewShop, lines);
+
+  return (
+    <div className="brew-cart" id="cart">
+      <div className="brew-cart-head">
+        <h3>Your cart</h3>
+        <button type="button" className="brew-cart-clear" onClick={clearCart}>
+          Clear
+        </button>
+      </div>
+      <ul className="brew-cart-lines">
+        {lines.map((line) => (
+          <li key={line.variantId}>
+            <img src={line.image} alt="" loading="lazy" />
+            <div className="brew-cart-line-copy">
+              <strong>{line.product}</strong>
+              <span>{line.variant}</span>
+            </div>
+            <div className="brew-cart-qty">
+              <button
+                type="button"
+                onClick={() => setQty(line.variantId, line.qty - 1)}
+                aria-label={`Decrease ${line.product} ${line.variant}`}
+              >
+                &minus;
+              </button>
+              <span aria-live="polite">{line.qty}</span>
+              <button
+                type="button"
+                onClick={() => setQty(line.variantId, line.qty + 1)}
+                aria-label={`Increase ${line.product} ${line.variant}`}
+              >
+                +
+              </button>
+            </div>
+            <span className="brew-cart-price">
+              ${(Number(line.price) * line.qty).toFixed(2)}
+            </span>
+            <button
+              type="button"
+              className="brew-cart-remove"
+              onClick={() => removeLine(line.variantId)}
+              aria-label={`Remove ${line.product} ${line.variant}`}
+            >
+              &times;
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="brew-cart-foot">
+        <p>
+          <span>Subtotal</span>
+          <strong>${total.toFixed(2)}</strong>
+        </p>
+        <a className="button gold" href={href} target="_blank" rel="noopener noreferrer">
+          Check out &mdash; ${total.toFixed(2)}
+        </a>
+      </div>
+      <p className="brew-cart-note">
+        Shipping and tax are calculated at checkout, which runs on The 4th Brew&rsquo;s
+        secure Shopify store.
+      </p>
     </div>
   );
 }

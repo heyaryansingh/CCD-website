@@ -106,14 +106,20 @@ work with no credentials. Schema: `supabase/schema.sql`.
 npx vercel --prod --yes
 ```
 
-`ccd-website-gamma.vercel.app` is a project domain and updates automatically.
-**`ccdgroup.vercel.app` is a manually pinned alias** and does *not* follow production
-deploys — re-point it after each one, or add it under Project Settings → Domains so
-it stops needing this:
+That is the whole deploy. **`ccdgroup.vercel.app` updates automatically** — it is the
+Vercel project's own domain (the project is named `ccdgroup`, and Vercel assigns
+`<project>.vercel.app` to whatever is in production).
+
+It did not always work that way. It used to be a manual alias pinned to one specific
+build with `vercel alias set`, so production deploys silently did not move it and the
+site appeared not to update. If you ever see stale content there again, check:
 
 ```bash
-npx vercel alias set <new-deployment-url> ccdgroup.vercel.app
+npx vercel projects ls          # "Latest Production URL" must read ccdgroup.vercel.app
 ```
+
+Do **not** run `vercel alias set ccdgroup.vercel.app` — that re-pins it and reintroduces
+the bug.
 
 `ccdgroup.org` itself still points at the old Wix site and is untouched.
 
