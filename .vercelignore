@@ -1,0 +1,20 @@
+# The Vercel project's Root Directory is `ccd-website`, but a CLI deploy run from
+# the repo root still uploads everything here first. Without this it tries to
+# read the 61GB media archives — which are OneDrive-synced and often locked, so
+# the deploy fails with EBUSY.
+#
+# Keep this in step with .gitignore.
+
+Cooperative Community Development Inc/
+website-media-filebase/
+Shoe Drive CCD/
+building-the-block-prototype/project/media/
+
+# Not needed to build the site
+assets/
+docs/
+wix-migration-kit/
+scripts/
+.agent-orchestration/
+node_modules
+.git

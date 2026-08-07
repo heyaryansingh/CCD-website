@@ -13,3 +13,5 @@ Thumbs.db
 __pycache__/
 *.pyc
 .playwright-mcp/
+.vercel
+.env*

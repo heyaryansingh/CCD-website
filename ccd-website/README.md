@@ -128,11 +128,20 @@ work with no credentials. Schema: `supabase/schema.sql`.
 
 ## Deploying
 
+Pushing to `main` deploys automatically — the project is connected to GitHub, so
+a CMS save or a `git push` is all it takes.
+
+To deploy by hand, run it from the **repository root**, not from `ccd-website/`:
+
 ```bash
+cd ..            # repo root
 npx vercel --prod --yes
 ```
 
-That is the whole deploy. **`ccdgroup.vercel.app` updates automatically** — it is the
+The project's Root Directory is `ccd-website`, so running the CLI from inside
+that folder makes Vercel look for `ccd-website/ccd-website` and fail. The root
+also carries a `.vercelignore` — without it the CLI tries to upload the 61GB
+OneDrive media archives and dies with EBUSY. **`ccdgroup.vercel.app` updates automatically** — it is the
 Vercel project's own domain (the project is named `ccdgroup`, and Vercel assigns
 `<project>.vercel.app` to whatever is in production).
 
@@ -149,10 +158,7 @@ the bug.
 
 `ccdgroup.org` itself still points at the old Wix site and is untouched.
 
-⚠️ **The project is not yet connected to GitHub**, so CMS saves commit but do not
-deploy. Connecting it also requires changing Root Directory to `ccd-website` —
-the CLI deploys run from inside that folder, so it is currently `.`. See
-[docs/CMS-SETUP.md](../docs/CMS-SETUP.md).
+
 
 ## Content scripts
 

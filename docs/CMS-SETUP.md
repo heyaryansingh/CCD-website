@@ -1,14 +1,14 @@
 # Finishing the CMS setup
 
-The CMS is built and deployed. Three things remain that can only be done from a
-browser with your accounts. **Until steps 1 and 2 are done, editors cannot sign
-in and their saves will not reach the website.**
+**Steps 1 and 2 are DONE** (completed 2026-08-06): Vercel is connected to GitHub
+with Root Directory `ccd-website`, and the GitHub OAuth App is live with its
+credentials in Vercel. Sign-in at `/admin` works — verified end to end.
 
-Budget about 15 minutes.
+**Step 3 is the only thing left**: give your editors access.
 
 ---
 
-## 1. Connect Vercel to GitHub — REQUIRED
+## 1. Connect Vercel to GitHub — ✅ DONE
 
 Without this, a staff member saves in the CMS, the change lands on GitHub, and
 **the website never updates.** The CMS would look like it works and silently do
@@ -28,7 +28,7 @@ nothing.
 Check it worked: make any small edit at `/admin`, save, and watch a deployment
 start in the Vercel dashboard within a few seconds.
 
-## 2. Create the GitHub OAuth App — REQUIRED
+## 2. Create the GitHub OAuth App — ✅ DONE
 
 This is what "Sign in with GitHub" at `/admin` talks to.
 
@@ -55,7 +55,7 @@ Check it worked: `https://ccdgroup.vercel.app/admin` → **Sign in with GitHub**
 you land in the editor. Before this step it correctly shows a
 "not configured yet" message rather than an error page.
 
-## 3. Give editors access
+## 3. Give editors access — ← DO THIS
 
 Repo write access *is* the permission model — there is no separate CMS user list.
 
