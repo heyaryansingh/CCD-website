@@ -1,20 +1,22 @@
-# The Vercel project's Root Directory is `ccd-website`, but a CLI deploy run from
-# the repo root still uploads everything here first. Without this it tries to
-# read the 61GB media archives — which are OneDrive-synced and often locked, so
-# the deploy fails with EBUSY.
+# Excludes repo-root-only directories from Vercel deploys.
 #
-# Keep this in step with .gitignore.
+# ⚠️ EVERY PATTERN MUST START WITH "/" — these are gitignore-style globs, so an
+# unanchored "scripts/" matches a directory called scripts at ANY depth. That
+# silently excluded ccd-website/scripts/ and broke the build with
+# "Cannot find module .../scripts/bundle-pages.mjs". The leading slash pins each
+# pattern to the repository root.
+#
+# The heavy media directories matter because a CLI deploy from the repo root
+# otherwise walks into 61GB of OneDrive-synced files and fails with EBUSY.
 
-Cooperative Community Development Inc/
-website-media-filebase/
-Shoe Drive CCD/
-building-the-block-prototype/project/media/
+/Cooperative Community Development Inc/
+/website-media-filebase/
+/Shoe Drive CCD/
+/building-the-block-prototype/
 
-# Not needed to build the site
-assets/
-docs/
-wix-migration-kit/
-scripts/
-.agent-orchestration/
-node_modules
-.git
+# Repo-root docs and tooling — not needed to build the site
+/assets/
+/docs/
+/wix-migration-kit/
+/scripts/
+/.agent-orchestration/
