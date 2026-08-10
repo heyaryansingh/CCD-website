@@ -12,9 +12,9 @@
     "title": "Brew it the way",
     "accent": "it was intended.",
     "body": "A simple guide to eight methods, with the grind, water temperature, and ratio that each one actually wants. Start anywhere.",
-    "image": "/media/brew/brew-lifestyle-3.jpg",
-    "alt": "A pour-over brewing in progress",
-    "position": "center 38%"
+    "image": "/media/brew/brew-barista.jpg",
+    "alt": "A barista pouring a fresh brew at the counter",
+    "position": "center 45%"
   },
   "sections": [
     {
@@ -135,6 +135,29 @@
             "Assemble and heat on medium; pull it at the first gurgle",
             "Run the base under cold water to stop extraction instantly"
           ]
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "title": "In the cup, on the block.",
+      "theme": "light",
+      "images": [
+        {
+          "src": "/media/brew/brew-lifestyle-1.jpg",
+          "alt": "A pour-over being brewed by hand"
+        },
+        {
+          "src": "/media/brew/brew-lifestyle-2.jpg",
+          "alt": "A finished cup of 4th Brew coffee on a table"
+        },
+        {
+          "src": "/media/brew/brew-lifestyle-4.jpg",
+          "alt": "Freshly ground coffee ready to brew"
+        },
+        {
+          "src": "/media/brew/brew-cup.jpg",
+          "alt": "A hand holding a branded The 4th Brew coffee cup"
         }
       ]
     },

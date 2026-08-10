@@ -2385,9 +2385,39 @@ a.partner-card:hover {
   color: var(--green-deep);
 }
 
-/* On the dark hero photo the deep-espresso eyebrow disappears — use tan there. */
+/* Hero type sits on busy, mid-tone coffee photography. Tan (#c2a06b) only made
+   ~2.9:1 against the lighter parts of those photos, so the eyebrow and the
+   accent line are white here — the brand colour stays everywhere else. */
 .brew .page-hero .eyebrow {
-  color: var(--gold);
+  color: #fff;
+  /* The photos are noisy behind 12px letterspaced caps; a soft shadow keeps the
+     line readable without a heavier scrim over the whole image. */
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.brew .page-hero h1,
+.brew .page-hero h1 em {
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* Inknut's accent line has deep descenders and h1 line-height is 1, so the
+   script line collided with the hero button. Give the pair room to breathe. */
+.brew .page-hero-inner h1 em {
+  display: inline-block;
+  padding-bottom: 0.12em;
+}
+
+.brew .page-hero-inner .button {
+  margin-top: 22px;
+}
+
+/* Left column of the scrim carries the text; the stock gradient let light beans
+   bleed through behind the headline on wide screens. */
+.brew .hero-scrim {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.28) 62%, rgba(0, 0, 0, 0.6)),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.5), transparent 48%);
 }
 
 /* ============================================================================
