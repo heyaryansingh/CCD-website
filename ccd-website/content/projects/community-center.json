@@ -1,15 +1,19 @@
 {
   "key": "community-center",
   "slug": "community-center",
-  "title": "Community Center for Change",
-  "description": "3932-3934 Frederick Ave — the future Center for Social Impact.",
   "active": "projects",
-  "eyebrow": "IN PROGRESS — 3932-3934 FREDERICK AVE",
-  "heroTitle": "Community Center",
-  "heroAccent": "for Change.",
-  "heroBody": "Redeveloping a 5,000 sq ft former shipping company into an innovation hub for the 21229 — with a co-op grocery, multimedia center, and retail vending stalls.",
-  "heroImage": "/media/mural-marketplace-1.jpg",
-  "heroAlt": "3932 Frederick Avenue with community marketplace mural",
+  "seo": {
+    "title": "Community Center for Change",
+    "description": "3932-3934 Frederick Ave — the future Center for Social Impact."
+  },
+  "hero": {
+    "eyebrow": "IN PROGRESS — 3932-3934 FREDERICK AVE",
+    "title": "Community Center",
+    "accent": "for Change.",
+    "body": "Redeveloping a 5,000 sq ft former shipping company into an innovation hub for the 21229 — with a co-op grocery, multimedia center, and retail vending stalls.",
+    "image": "/media/mural-marketplace-1.jpg",
+    "alt": "3932 Frederick Avenue with community marketplace mural"
+  },
   "sections": [
     {
       "type": "split",

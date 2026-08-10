@@ -1,14 +1,18 @@
 {
   "key": "brick-campaign",
   "slug": "brick-campaign",
-  "title": "Brick Campaign",
-  "description": "Support the Center for Social Impact brick campaign.",
   "active": "involved",
-  "heroTitle": "What was once abandoned can become",
-  "heroAccent": "a beacon.",
-  "heroBody": "Help transform 3932 Frederick Avenue into a cooperative landmark by putting your name, family, or organization into the wall.",
-  "heroImage": "/media/drone-2.jpg",
-  "heroAlt": "Aerial view of the community gathered at a brick building",
+  "seo": {
+    "title": "Brick Campaign",
+    "description": "Support the Center for Social Impact brick campaign."
+  },
+  "hero": {
+    "title": "What was once abandoned can become",
+    "accent": "a beacon.",
+    "body": "Help transform 3932 Frederick Avenue into a cooperative landmark by putting your name, family, or organization into the wall.",
+    "image": "/media/drone-2.jpg",
+    "alt": "Aerial view of the community gathered at a brick building"
+  },
   "sections": [
     {
       "type": "split",

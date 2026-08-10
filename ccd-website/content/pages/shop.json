@@ -1,17 +1,21 @@
 {
   "key": "shop",
   "slug": "shop",
-  "title": "Shop 4th Brew Coffee",
-  "description": "Buy The 4th Brew's small-batch coffee — The Pawn, The Knight, and The Rook, in 12oz or 5lb, whole bean or ground.",
   "active": "brew",
   "brand": "brew",
-  "eyebrow": "SHOP THE COFFEE",
-  "heroTitle": "Pick your side",
-  "heroAccent": "of the board.",
-  "heroBody": "Small-batch coffee from The 4th Brew — The Pawn, The Knight, and The Rook. Roasted for flavor rather than shelf life, and shipped straight from the roaster.",
-  "heroImage": "/media/brew/brew-cup.jpg",
-  "heroPosition": "center 38%",
-  "heroAlt": "A hand holding a branded The 4th Brew coffee cup",
+  "seo": {
+    "title": "Shop 4th Brew Coffee",
+    "description": "Buy The 4th Brew's small-batch coffee — The Pawn, The Knight, and The Rook, in 12oz or 5lb, whole bean or ground."
+  },
+  "hero": {
+    "eyebrow": "SHOP THE COFFEE",
+    "title": "Pick your side",
+    "accent": "of the board.",
+    "body": "Small-batch coffee from The 4th Brew — The Pawn, The Knight, and The Rook. Roasted for flavor rather than shelf life, and shipped straight from the roaster.",
+    "image": "/media/brew/brew-cup.jpg",
+    "alt": "A hand holding a branded The 4th Brew coffee cup",
+    "position": "center 38%"
+  },
   "sections": [
     {
       "type": "products",

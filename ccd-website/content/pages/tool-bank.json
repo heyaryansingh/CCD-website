@@ -1,14 +1,18 @@
 {
   "key": "tool-bank",
   "slug": "tool-bank",
-  "title": "The Tool Bank",
-  "description": "Borrow tools instead of buying them — free for CCD resident members.",
   "active": "programs",
-  "heroTitle": "Borrow it.",
-  "heroAccent": "Don't buy it.",
-  "heroBody": "The CCD Tool Bank lets resident members borrow tools for home repairs, garden work, and block projects — making ownership cheaper and collective.",
-  "heroImage": "/media/toolbank-wheelbarrow.jpg",
-  "heroAlt": "Young gardener with gloves, wheelbarrow, and trowel at the community beds",
+  "seo": {
+    "title": "The Tool Bank",
+    "description": "Borrow tools instead of buying them — free for CCD resident members."
+  },
+  "hero": {
+    "title": "Borrow it.",
+    "accent": "Don't buy it.",
+    "body": "The CCD Tool Bank lets resident members borrow tools for home repairs, garden work, and block projects — making ownership cheaper and collective.",
+    "image": "/media/toolbank-wheelbarrow.jpg",
+    "alt": "Young gardener with gloves, wheelbarrow, and trowel at the community beds"
+  },
   "sections": [
     {
       "type": "steps",

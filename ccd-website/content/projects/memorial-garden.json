@@ -1,15 +1,19 @@
 {
   "key": "memorial-garden",
   "slug": "memorial-garden",
-  "title": "Little Memorial Garden",
-  "description": "Restoring a garden honoring Mr. Little at Old Frederick Rd & Irving St.",
   "active": "projects",
-  "eyebrow": "IN PROGRESS — OLD FREDERICK RD & IRVING ST",
-  "heroTitle": "Little",
-  "heroAccent": "Memorial Garden.",
-  "heroBody": "In honor of Mr. Little, who tirelessly gardened this plot, CCD is restoring the garden to its former glory with raised beds, native plants, fruit trees, and an original mural.",
-  "heroImage": "/media/memorial-aerial.jpg",
-  "heroAlt": "Drone aerial of the Memorial Garden dedication with canopy, tables, and speaker",
+  "seo": {
+    "title": "Little Memorial Garden",
+    "description": "Restoring a garden honoring Mr. Little at Old Frederick Rd & Irving St."
+  },
+  "hero": {
+    "eyebrow": "IN PROGRESS — OLD FREDERICK RD & IRVING ST",
+    "title": "Little",
+    "accent": "Memorial Garden.",
+    "body": "In honor of Mr. Little, who tirelessly gardened this plot, CCD is restoring the garden to its former glory with raised beds, native plants, fruit trees, and an original mural.",
+    "image": "/media/memorial-aerial.jpg",
+    "alt": "Drone aerial of the Memorial Garden dedication with canopy, tables, and speaker"
+  },
   "sections": [
     {
       "type": "split",

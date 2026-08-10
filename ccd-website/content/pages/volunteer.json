@@ -1,15 +1,19 @@
 {
   "key": "volunteer",
   "slug": "volunteer",
-  "title": "Volunteer",
-  "description": "Give time to CCD — garden days, markets, events, and block projects.",
   "active": "involved",
-  "heroTitle": "Give time,",
-  "heroAccent": "not just money.",
-  "heroBody": "Not ready to become a member? Volunteering is the most direct way to help build the block — at markets, garden days, events, and clean-ups.",
-  "heroImage": "/media/farm-youth-harvest.jpg",
-  "heroPosition": "center 30%",
-  "heroAlt": "Smiling youth volunteer kneeling among the community garden beds",
+  "seo": {
+    "title": "Volunteer",
+    "description": "Give time to CCD — garden days, markets, events, and block projects."
+  },
+  "hero": {
+    "title": "Give time,",
+    "accent": "not just money.",
+    "body": "Not ready to become a member? Volunteering is the most direct way to help build the block — at markets, garden days, events, and clean-ups.",
+    "image": "/media/farm-youth-harvest.jpg",
+    "alt": "Smiling youth volunteer kneeling among the community garden beds",
+    "position": "center 30%"
+  },
   "sections": [
     {
       "type": "cards",

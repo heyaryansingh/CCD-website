@@ -1,15 +1,19 @@
 {
   "key": "team",
   "slug": "team",
-  "title": "Team & Partners",
-  "description": "The people and partner organizations moving CCD forward.",
   "active": "about",
-  "eyebrow": "OUR PEOPLE",
-  "heroTitle": "The people moving",
-  "heroAccent": "CCD forward.",
-  "heroBody": "Leadership, interns, open roles, and partner organizations turn the cooperative model into daily work on the block.",
-  "heroImage": "/media/memorial-garden.jpg",
-  "heroAlt": "Neighbors and members gathered on an Irvington walking tour",
+  "seo": {
+    "title": "Team & Partners",
+    "description": "The people and partner organizations moving CCD forward."
+  },
+  "hero": {
+    "eyebrow": "OUR PEOPLE",
+    "title": "The people moving",
+    "accent": "CCD forward.",
+    "body": "Leadership, interns, open roles, and partner organizations turn the cooperative model into daily work on the block.",
+    "image": "/media/memorial-garden.jpg",
+    "alt": "Neighbors and members gathered on an Irvington walking tour"
+  },
   "sections": [
     {
       "type": "teamFull",

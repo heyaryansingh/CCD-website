@@ -1,20 +1,24 @@
 {
   "key": "4th-brew",
   "slug": "4th-brew",
-  "title": "The 4th Brew",
-  "description": "The 4th Brew is CCD's coffee brand — sustainably sourced, roasted in small batches, and reinvested into Baltimore.",
   "active": "brew",
   "brand": "brew",
-  "eyebrow": "THE 4TH BREW",
-  "heroTitle": "Not just coffee.",
-  "heroAccent": "A starting point.",
-  "heroBody": "Freshly roasted, always. Sustainably sourced, exceptionally roasted, and built so that something people already do every day pays back into the block it came from.",
-  "heroImage": "/media/brew/brew-hero-beans.jpg",
-  "heroPosition": "center 55%",
-  "heroAlt": "A close bed of freshly roasted coffee beans",
-  "heroCta": {
-    "label": "Shop the coffee",
-    "href": "/shop"
+  "seo": {
+    "title": "The 4th Brew",
+    "description": "The 4th Brew is CCD's coffee brand — sustainably sourced, roasted in small batches, and reinvested into Baltimore."
+  },
+  "hero": {
+    "eyebrow": "THE 4TH BREW",
+    "title": "Not just coffee.",
+    "accent": "A starting point.",
+    "body": "Freshly roasted, always. Sustainably sourced, exceptionally roasted, and built so that something people already do every day pays back into the block it came from.",
+    "image": "/media/brew/brew-hero-beans.jpg",
+    "alt": "A close bed of freshly roasted coffee beans",
+    "position": "center 55%",
+    "cta": {
+      "label": "Shop the coffee",
+      "href": "/shop"
+    }
   },
   "sections": [
     {

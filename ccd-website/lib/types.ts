@@ -207,24 +207,40 @@ export type Section =
       body?: string;
     };
 
-export type SitePage = {
-  slug: string;
+/** Title and blurb used for the browser tab and search results. Grouped so the
+ *  CMS can collapse them into one row instead of two loose fields. */
+export type PageSeo = {
   title: string;
   description: string;
-  active: ActiveNav;
+};
+
+/** Everything above the first section. Grouped for the same reason as PageSeo —
+ *  eight loose hero fields buried the "Page blocks" list in the editor. */
+export type PageHero = {
   eyebrow?: string;
-  heroTitle: string;
-  heroAccent?: string;
-  heroBody: string;
-  heroImage?: string;
+  title: string;
+  accent?: string;
+  // Written and stored, but no hero layout renders it. Kept so the copy is not
+  // lost; delete the field here, in config.yml and in content/ if it stays unused.
+  body: string;
+  image?: string;
+  alt?: string;
   // CSS object-position for the hero crop (e.g. "center top", "center 30%").
   // Use when the image's subject sits high/low so cover-cropping never cuts it.
-  heroPosition?: string;
-  heroAlt?: string;
-  heroCta?: { label: string; href: string };
+  position?: string;
+  cta?: { label: string; href: string };
+};
+
+export type SitePage = {
+  // Stays flat: routing and the nav highlight read these directly, and the CMS
+  // builds the filename from `key` via `slug: '{{fields.key}}'`.
+  slug: string;
+  active: ActiveNav;
   // Scopes a sub-brand skin onto <main> (see `.brew` in globals.css). The CCD
   // header and footer sit outside <main> and stay CCD-branded.
   brand?: "brew";
+  seo: PageSeo;
+  hero: PageHero;
   sections: Section[];
 };
 

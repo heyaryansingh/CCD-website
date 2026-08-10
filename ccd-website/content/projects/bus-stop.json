@@ -1,15 +1,19 @@
 {
   "key": "bus-stop",
   "slug": "bus-stop",
-  "title": "Botanical Bus Stop",
-  "description": "A beautified transit stop at Old Frederick Rd & S Monastery Ave.",
   "active": "projects",
-  "eyebrow": "PLANNED — OLD FREDERICK RD & S MONASTERY AVE",
-  "heroTitle": "Botanical",
-  "heroAccent": "Bus Stop.",
-  "heroBody": "Turning a constant eyesore and dumping target into a beautified, living transit space shaped by food access, beauty, and care.",
-  "heroImage": "/media/cleangreen-1.jpg",
-  "heroAlt": "Clean and Green crew working on a streetside site in Irvington",
+  "seo": {
+    "title": "Botanical Bus Stop",
+    "description": "A beautified transit stop at Old Frederick Rd & S Monastery Ave."
+  },
+  "hero": {
+    "eyebrow": "PLANNED — OLD FREDERICK RD & S MONASTERY AVE",
+    "title": "Botanical",
+    "accent": "Bus Stop.",
+    "body": "Turning a constant eyesore and dumping target into a beautified, living transit space shaped by food access, beauty, and care.",
+    "image": "/media/cleangreen-1.jpg",
+    "alt": "Clean and Green crew working on a streetside site in Irvington"
+  },
   "sections": [
     {
       "type": "split",

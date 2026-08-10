@@ -1,14 +1,18 @@
 {
   "key": "programs",
   "slug": "programs",
-  "title": "Programs",
-  "description": "CCD programs serving Irvington and Baltimore's 21229.",
   "active": "programs",
-  "heroTitle": "Built by the block,",
-  "heroAccent": "for the block.",
-  "heroBody": "CCD programs turn cooperative dues and partner support into practical services, food access, tools, training, and neighborhood events.",
-  "heroImage": "/media/cleangreen-garden-hero.jpg",
-  "heroAlt": "Clean and Green crew member at work beside the We Can mural",
+  "seo": {
+    "title": "Programs",
+    "description": "CCD programs serving Irvington and Baltimore's 21229."
+  },
+  "hero": {
+    "title": "Built by the block,",
+    "accent": "for the block.",
+    "body": "CCD programs turn cooperative dues and partner support into practical services, food access, tools, training, and neighborhood events.",
+    "image": "/media/cleangreen-garden-hero.jpg",
+    "alt": "Clean and Green crew member at work beside the We Can mural"
+  },
   "sections": [
     {
       "type": "split",

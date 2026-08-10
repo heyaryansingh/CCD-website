@@ -1,14 +1,18 @@
 {
   "key": "contact",
   "slug": "contact",
-  "title": "Contact CCD",
-  "description": "Contact CCD, request facilities, or visit Frederick Avenue.",
   "active": "contact",
-  "heroTitle": "Come find us",
-  "heroAccent": "on Frederick Ave.",
-  "heroBody": "Reach the team, ask about membership, book facilities, or start a conversation about bringing cooperative development to your block.",
-  "heroImage": "/media/ccd-hq-crew.jpg",
-  "heroAlt": "The CCD building at 4004 Frederick Avenue with its painted logo and crew outside",
+  "seo": {
+    "title": "Contact CCD",
+    "description": "Contact CCD, request facilities, or visit Frederick Avenue."
+  },
+  "hero": {
+    "title": "Come find us",
+    "accent": "on Frederick Ave.",
+    "body": "Reach the team, ask about membership, book facilities, or start a conversation about bringing cooperative development to your block.",
+    "image": "/media/ccd-hq-crew.jpg",
+    "alt": "The CCD building at 4004 Frederick Avenue with its painted logo and crew outside"
+  },
   "sections": [
     {
       "type": "directory",

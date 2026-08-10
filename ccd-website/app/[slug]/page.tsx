@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = getPage(slug);
   if (!page) return {};
   return {
-    title: page.title,
-    description: page.description,
+    title: page.seo.title,
+    description: page.seo.description,
   };
 }
 

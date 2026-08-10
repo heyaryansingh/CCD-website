@@ -1,17 +1,21 @@
 {
   "key": "brewing",
   "slug": "brewing",
-  "title": "Coffee Brewing Methods",
-  "description": "A simple guide to eight brewing methods — grind, water temperature, ratio, and steps for each.",
   "active": "brew",
   "brand": "brew",
-  "eyebrow": "BREWING METHODS",
-  "heroTitle": "Brew it the way",
-  "heroAccent": "it was intended.",
-  "heroBody": "A simple guide to eight methods, with the grind, water temperature, and ratio that each one actually wants. Start anywhere.",
-  "heroImage": "/media/brew/brew-lifestyle-3.jpg",
-  "heroPosition": "center 38%",
-  "heroAlt": "A pour-over brewing in progress",
+  "seo": {
+    "title": "Coffee Brewing Methods",
+    "description": "A simple guide to eight brewing methods — grind, water temperature, ratio, and steps for each."
+  },
+  "hero": {
+    "eyebrow": "BREWING METHODS",
+    "title": "Brew it the way",
+    "accent": "it was intended.",
+    "body": "A simple guide to eight methods, with the grind, water temperature, and ratio that each one actually wants. Start anywhere.",
+    "image": "/media/brew/brew-lifestyle-3.jpg",
+    "alt": "A pour-over brewing in progress",
+    "position": "center 38%"
+  },
   "sections": [
     {
       "type": "cards",

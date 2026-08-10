@@ -45,30 +45,29 @@ function ButtonLink({ href, children }: { href: string; children: React.ReactNod
 }
 
 function StandardHero({ page }: { page: SitePage }) {
+  const hero = page.hero;
   return (
     <section className="page-hero">
-      {page.heroImage ? (
+      {hero.image ? (
         <img
-          src={page.heroImage}
-          alt={page.heroAlt ?? ""}
-          style={page.heroPosition ? { objectPosition: page.heroPosition } : undefined}
+          src={hero.image}
+          alt={hero.alt ?? ""}
+          style={hero.position ? { objectPosition: hero.position } : undefined}
         />
       ) : null}
       <div className="hero-scrim" />
       <div className="page-hero-inner">
-        {page.eyebrow ? <p className="eyebrow">{page.eyebrow}</p> : null}
+        {hero.eyebrow ? <p className="eyebrow">{hero.eyebrow}</p> : null}
         <h1>
-          {page.heroTitle}
-          {page.heroAccent ? (
+          {hero.title}
+          {hero.accent ? (
             <>
               <br />
-              <em>{page.heroAccent}</em>
+              <em>{hero.accent}</em>
             </>
           ) : null}
         </h1>
-        {page.heroCta ? (
-          <ButtonLink href={page.heroCta.href}>{page.heroCta.label}</ButtonLink>
-        ) : null}
+        {hero.cta ? <ButtonLink href={hero.cta.href}>{hero.cta.label}</ButtonLink> : null}
       </div>
     </section>
   );

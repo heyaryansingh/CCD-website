@@ -1,14 +1,18 @@
 {
   "key": "clean-and-green",
   "slug": "clean-and-green",
-  "title": "Clean & Green",
-  "description": "Residential and commercial outdoor services from CCD's neighborhood crew.",
   "active": "programs",
-  "heroTitle": "Your yard.",
-  "heroAccent": "Our pride.",
-  "heroBody": "Clean & Green handles residential and commercial outdoor work across Irvington and nearby communities, with every job funding CCD's broader mission.",
-  "heroImage": "/media/cleangreen-garden-wide.jpg",
-  "heroAlt": "Clean and Green crew transforming a community garden beside the Together We Can mural",
+  "seo": {
+    "title": "Clean & Green",
+    "description": "Residential and commercial outdoor services from CCD's neighborhood crew."
+  },
+  "hero": {
+    "title": "Your yard.",
+    "accent": "Our pride.",
+    "body": "Clean & Green handles residential and commercial outdoor work across Irvington and nearby communities, with every job funding CCD's broader mission.",
+    "image": "/media/cleangreen-garden-wide.jpg",
+    "alt": "Clean and Green crew transforming a community garden beside the Together We Can mural"
+  },
   "sections": [
     {
       "type": "cards",

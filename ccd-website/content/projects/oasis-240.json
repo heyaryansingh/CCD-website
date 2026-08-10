@@ -1,15 +1,19 @@
 {
   "key": "oasis-240",
   "slug": "oasis-240",
-  "title": "Oasis @ 240",
-  "description": "A reclaimed community green space at 240 S Monastery Avenue.",
   "active": "projects",
-  "eyebrow": "COMPLETED — 240 S MONASTERY AVE",
-  "heroTitle": "Oasis",
-  "heroAccent": "@ 240.",
-  "heroBody": "Once a poorly-maintained, illegally-dumped city lot, the Oasis @ 240 is now a reclaimed community space with native flowers, a rain-catchment system, seating, and original art.",
-  "heroImage": "/media/oasis-opening-aerial.jpg",
-  "heroAlt": "Aerial view of the Oasis @ 240 grand opening ceremony",
+  "seo": {
+    "title": "Oasis @ 240",
+    "description": "A reclaimed community green space at 240 S Monastery Avenue."
+  },
+  "hero": {
+    "eyebrow": "COMPLETED — 240 S MONASTERY AVE",
+    "title": "Oasis",
+    "accent": "@ 240.",
+    "body": "Once a poorly-maintained, illegally-dumped city lot, the Oasis @ 240 is now a reclaimed community space with native flowers, a rain-catchment system, seating, and original art.",
+    "image": "/media/oasis-opening-aerial.jpg",
+    "alt": "Aerial view of the Oasis @ 240 grand opening ceremony"
+  },
   "sections": [
     {
       "type": "split",

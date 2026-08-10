@@ -1,15 +1,19 @@
 {
   "key": "coop-market",
   "slug": "coop-market",
-  "title": "Community Co-op Market",
-  "description": "CCD's seasonal community market and co-op grocery on Frederick Avenue.",
   "active": "programs",
-  "heroTitle": "The Community",
-  "heroAccent": "Co-op Market.",
-  "heroBody": "Local produce, neighborhood makers, live music, and a preview of the year-round cooperative grocery coming to the Center for Social Impact.",
-  "heroImage": "/media/market-vendors-table.jpg",
-  "heroPosition": "center 35%",
-  "heroAlt": "Smiling vendors at their stocked co-op market table under the tents",
+  "seo": {
+    "title": "Community Co-op Market",
+    "description": "CCD's seasonal community market and co-op grocery on Frederick Avenue."
+  },
+  "hero": {
+    "title": "The Community",
+    "accent": "Co-op Market.",
+    "body": "Local produce, neighborhood makers, live music, and a preview of the year-round cooperative grocery coming to the Center for Social Impact.",
+    "image": "/media/market-vendors-table.jpg",
+    "alt": "Smiling vendors at their stocked co-op market table under the tents",
+    "position": "center 35%"
+  },
   "sections": [
     {
       "type": "split",

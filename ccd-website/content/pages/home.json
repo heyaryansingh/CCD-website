@@ -1,15 +1,19 @@
 {
   "key": "home",
   "slug": "",
-  "title": "Cooperative Community Development",
-  "description": "CCD is building community-owned infrastructure in Irvington, Baltimore.",
   "active": "home",
-  "heroTitle": "Building the block.",
-  "heroAccent": "Brick by brick.",
-  "heroBody": "A member-owned cooperative turning vacant spaces into markets, gardens, services, and neighborhood wealth in Baltimore's 21229.",
-  "heroCta": {
-    "label": "Become a member",
-    "href": "/membership"
+  "seo": {
+    "title": "Cooperative Community Development",
+    "description": "CCD is building community-owned infrastructure in Irvington, Baltimore."
+  },
+  "hero": {
+    "title": "Building the block.",
+    "accent": "Brick by brick.",
+    "body": "A member-owned cooperative turning vacant spaces into markets, gardens, services, and neighborhood wealth in Baltimore's 21229.",
+    "cta": {
+      "label": "Become a member",
+      "href": "/membership"
+    }
   },
   "sections": [
     {

@@ -1,14 +1,18 @@
 {
   "key": "center-for-social-impact",
   "slug": "center-for-social-impact",
-  "title": "Center for Social Impact",
-  "description": "The 3932 Frederick Avenue cooperative infrastructure project.",
   "active": "programs",
-  "heroTitle": "The Center for",
-  "heroAccent": "Social Impact.",
-  "heroBody": "A 5,000-square-foot former storage facility is becoming a cooperative grocery, multimedia center, maker marketplace, and flexible training space.",
-  "heroImage": "/media/mural-marketplace-1.jpg",
-  "heroAlt": "3932 Frederick Avenue with the community marketplace mural",
+  "seo": {
+    "title": "Center for Social Impact",
+    "description": "The 3932 Frederick Avenue cooperative infrastructure project."
+  },
+  "hero": {
+    "title": "The Center for",
+    "accent": "Social Impact.",
+    "body": "A 5,000-square-foot former storage facility is becoming a cooperative grocery, multimedia center, maker marketplace, and flexible training space.",
+    "image": "/media/mural-marketplace-1.jpg",
+    "alt": "3932 Frederick Avenue with the community marketplace mural"
+  },
   "sections": [
     {
       "type": "split",

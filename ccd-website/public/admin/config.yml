@@ -5,6 +5,10 @@
 # If it is missing here, editors simply cannot create one.
 #
 # Paths are relative to the REPOSITORY root, not to ccd-website/.
+#
+# Sidebar order is the order of `collections` below. `icon` uses Material
+# Symbols names; `- divider: true` draws a separator line. Neither touches
+# saved content — they only change what an editor sees.
 
 backend:
   name: github
@@ -27,10 +31,11 @@ public_folder: /media
 publish_mode: simple
 
 collections:
-  # ---------------------------------------------------------------- PAGES ----
+  # ================================================================= PAGES ====
   - name: pages
     label: Pages
     label_singular: Page
+    icon: article
     description: >-
       Every page on the website. Open one to change its wording, or to add,
       remove and reorder the blocks it is built from.
@@ -39,10 +44,13 @@ collections:
     format: json
     create: true
     slug: '{{fields.key}}'
-    identifier_field: title
-    summary: '{{title}}  —  /{{slug}}'
-    sortable_fields: [title, slug]
+    # Nested paths work in summary/sortable_fields, but not in identifier_field —
+    # so there is no identifier_field here and `summary` names the entry instead.
+    summary: '{{seo.title}}  —  /{{slug}}'
+    sortable_fields: [seo.title, slug]
     fields:
+      # --- Identity: where this page lives. Flat on purpose — the code routes
+      # on these, and the filename comes from `key` via the slug template above.
       - name: key
         label: File name
         widget: string
@@ -57,14 +65,6 @@ collections:
         hint: >-
           What comes after ccdgroup.org/ — usually the same as the file name.
           Leave blank only for the home page.
-      - name: title
-        label: Browser tab title
-        widget: string
-        hint: Shown in the browser tab and in Google results.
-      - name: description
-        label: Search description
-        widget: text
-        hint: One or two sentences describing the page, shown under the title in Google.
       - name: active
         label: Highlighted menu item
         widget: select
@@ -78,61 +78,94 @@ collections:
           Leave empty for the normal CCD look. "brew" switches this page to The
           4th Brew's colours and fonts.
         options: ['', brew]
-      - name: eyebrow
-        label: Small label above the headline
-        widget: string
-        required: false
-        hint: Short, usually in capitals. For example ABOUT THE 4TH BREW.
-      - name: heroTitle
-        label: Headline
-        widget: string
-      - name: heroAccent
-        label: Headline second line
-        widget: string
-        required: false
-        hint: Appears under the headline in the handwritten accent style.
-      - name: heroBody
-        label: Opening paragraph
-        widget: text
-      - name: heroImage
-        label: Top image
-        widget: image
-        required: false
-        choose_url: true
-        hint: Wide photos work best. Aim for under 500 KB so the page loads quickly.
-      - name: heroAlt
-        label: Image description
-        widget: string
-        required: false
-        hint: >-
-          Describes the picture for people using a screen reader. Say what is in
-          it, not "photo of".
-      - name: heroPosition
-        label: Image crop position
-        widget: string
-        required: false
-        hint: >-
-          Only needed if the top image is cropped badly. Try "center 30%" to show
-          more of the top.
-      - name: heroCta
-        label: Button
+
+      # --- Google and browser tab ---
+      - name: seo
+        label: Google & browser tab
         widget: object
-        required: false
         collapsed: true
+        hint: What people see in a browser tab and in Google search results.
         fields:
-          - { name: label, label: Button text, widget: string }
-          - { name: href, label: Button link, widget: string, hint: 'A page on this site starts with / — for example /membership' }
+          - name: title
+            label: Browser tab title
+            widget: string
+            hint: Shown in the browser tab and in Google results.
+          - name: description
+            label: Search description
+            widget: text
+            hint: One or two sentences describing the page, shown under the title in Google.
+
+      # --- Top of the page ---
+      - name: hero
+        label: Top of the page
+        widget: object
+        collapsed: true
+        hint: The headline area above the first block.
+        fields:
+          - name: eyebrow
+            label: Small label above the headline
+            widget: string
+            required: false
+            hint: Short, usually in capitals. For example ABOUT THE 4TH BREW.
+          - name: title
+            label: Headline
+            widget: string
+          - name: accent
+            label: Headline second line
+            widget: string
+            required: false
+            hint: Appears under the headline in the handwritten accent style.
+          - name: body
+            label: Opening paragraph
+            widget: text
+            hint: >-
+              Note: no page layout currently displays this. Kept so existing
+              wording is not lost — ask a developer before relying on it.
+          - name: image
+            label: Top image
+            widget: image
+            required: false
+            choose_url: true
+            hint: Wide photos work best. Aim for under 500 KB so the page loads quickly.
+          - name: alt
+            label: Image description
+            widget: string
+            required: false
+            hint: >-
+              Describes the picture for people using a screen reader. Say what is in
+              it, not "photo of".
+          - name: position
+            label: Image crop position
+            widget: string
+            required: false
+            hint: >-
+              Only needed if the top image is cropped badly. Try "center 30%" to show
+              more of the top.
+          - name: cta
+            label: Button
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string, hint: 'A page on this site starts with / — for example /membership' }
+
+      # --- The rest of the page ---
       - name: sections
         label: Page blocks
         label_singular: Block
         widget: list
+        collapsed: true
         hint: >-
           The page is built from these blocks, top to bottom. Drag to reorder,
           use the menu on a block to duplicate or delete it, and press Add to
-          choose a new kind of block.
+          choose a new kind of block. In the Add list, "Text" and "Photos"
+          blocks are ones you fill in here; "Automatic" blocks pull their
+          content from the lists in the sidebar.
         types:
+          # ------ TEXT BLOCKS — you type the content into the block ------
           - name: split
-            label: Text beside an image
+            label: 'Text — beside an image'
             summary: 'Text + image — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false, hint: 'Optional. Lets you link straight to this block with #name' }
@@ -154,8 +187,31 @@ collections:
                 options: [light, green, dark, blue]
               - { name: ctaText, label: Button text, widget: string, required: false }
               - { name: ctaHref, label: Button link, widget: string, required: false }
+          - name: band
+            label: 'Text — full-width statement'
+            summary: 'Statement — {{title}}'
+            fields:
+              - { name: id, label: Link anchor, widget: string, required: false }
+              - { name: eyebrow, label: Small label, widget: string, required: false }
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text, required: false }
+              - { name: image, label: Background image, widget: image, required: false, choose_url: true }
+              - { name: alt, label: Image description, widget: string, required: false }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [light, dark]
+              - name: cta
+                label: Button
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { name: label, label: Button text, widget: string }
+                  - { name: href, label: Button link, widget: string }
           - name: cards
-            label: Row of cards
+            label: 'Text — row of cards'
             summary: 'Cards — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
@@ -184,44 +240,8 @@ collections:
                     widget: list
                     required: false
                     field: { name: item, label: Line, widget: string }
-          - name: cta
-            label: Call to action band
-            summary: 'Call to action — {{title}}'
-            fields:
-              - { name: title, label: Heading, widget: string }
-              - { name: body, label: Paragraph, widget: text }
-              - { name: label, label: Button text, widget: string }
-              - { name: href, label: Button link, widget: string }
-              - name: theme
-                label: Colour
-                widget: select
-                required: false
-                options: [green, dark, gold]
-          - name: band
-            label: Full-width statement
-            summary: 'Statement — {{title}}'
-            fields:
-              - { name: id, label: Link anchor, widget: string, required: false }
-              - { name: eyebrow, label: Small label, widget: string, required: false }
-              - { name: title, label: Heading, widget: string }
-              - { name: body, label: Paragraph, widget: text, required: false }
-              - { name: image, label: Background image, widget: image, required: false, choose_url: true }
-              - { name: alt, label: Image description, widget: string, required: false }
-              - name: theme
-                label: Colour
-                widget: select
-                required: false
-                options: [light, dark]
-              - name: cta
-                label: Button
-                widget: object
-                required: false
-                collapsed: true
-                fields:
-                  - { name: label, label: Button text, widget: string }
-                  - { name: href, label: Button link, widget: string }
           - name: values
-            label: Three promises
+            label: 'Text — three promises'
             summary: 'Promises ({{items.length}})'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
@@ -235,23 +255,8 @@ collections:
                 fields:
                   - { name: title, label: Heading, widget: string }
                   - { name: body, label: Text, widget: text }
-          - name: faq
-            label: Questions and answers
-            summary: 'FAQ — {{title}}'
-            fields:
-              - { name: id, label: Link anchor, widget: string, required: false }
-              - { name: eyebrow, label: Small label, widget: string, required: false }
-              - { name: title, label: Heading, widget: string }
-              - { name: body, label: Intro paragraph, widget: text, required: false }
-              - name: items
-                label: Questions
-                widget: list
-                summary: '{{q}}'
-                fields:
-                  - { name: q, label: Question, widget: string }
-                  - { name: a, label: Answer, widget: text }
           - name: steps
-            label: Numbered steps
+            label: 'Text — numbered steps'
             summary: 'Steps — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
@@ -271,8 +276,36 @@ collections:
                   - { name: n, label: Number, widget: string, hint: 'For example 01' }
                   - { name: title, label: Heading, widget: string }
                   - { name: body, label: Text, widget: text }
+          - name: timeline
+            label: 'Text — history timeline'
+            summary: 'Timeline — {{title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - name: items
+                label: Moments
+                widget: list
+                summary: '{{year}} {{title}}'
+                fields:
+                  - { name: year, label: Year, widget: string }
+                  - { name: title, label: Heading, widget: string }
+                  - { name: body, label: Text, widget: text }
+          - name: faq
+            label: 'Text — questions and answers'
+            summary: 'FAQ — {{title}}'
+            fields:
+              - { name: id, label: Link anchor, widget: string, required: false }
+              - { name: eyebrow, label: Small label, widget: string, required: false }
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Intro paragraph, widget: text, required: false }
+              - name: items
+                label: Questions
+                widget: list
+                summary: '{{q}}'
+                fields:
+                  - { name: q, label: Question, widget: string }
+                  - { name: a, label: Answer, widget: text }
           - name: stats
-            label: Big numbers
+            label: 'Text — big numbers'
             summary: 'Numbers — {{title}}'
             fields:
               - { name: eyebrow, label: Small label, widget: string, required: false }
@@ -290,8 +323,23 @@ collections:
                 fields:
                   - { name: value, label: Number, widget: string, hint: 'For example 120 or $40,000' }
                   - { name: label, label: What it counts, widget: string }
+          - name: cta
+            label: 'Text — call to action band'
+            summary: 'Call to action — {{title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [green, dark, gold]
+
+          # ------ PHOTO BLOCKS — you choose the pictures here ------
           - name: gallery
-            label: Photo gallery
+            label: 'Photos — gallery'
             summary: 'Gallery — {{title}}'
             fields:
               - { name: title, label: Heading, widget: string }
@@ -308,21 +356,8 @@ collections:
                 fields:
                   - { name: src, label: Photo, widget: image, choose_url: true }
                   - { name: alt, label: Photo description, widget: string }
-          - name: timeline
-            label: History timeline
-            summary: 'Timeline — {{title}}'
-            fields:
-              - { name: title, label: Heading, widget: string }
-              - name: items
-                label: Moments
-                widget: list
-                summary: '{{year}} {{title}}'
-                fields:
-                  - { name: year, label: Year, widget: string }
-                  - { name: title, label: Heading, widget: string }
-                  - { name: body, label: Text, widget: text }
           - name: beforeAfter
-            label: Before and after slider
+            label: 'Photos — before and after slider'
             summary: 'Before/after — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
@@ -337,117 +372,145 @@ collections:
                   - { name: before, label: Before photo, widget: image, choose_url: true }
                   - { name: after, label: After photo, widget: image, choose_url: true }
                   - { name: label, label: Caption, widget: string }
+
+          # ------ AUTOMATIC BLOCKS — content comes from the sidebar lists.
+          # Here you only set the heading and intro (if any); to change what is
+          # listed, edit the matching list in the sidebar. ------
+          - name: aboutTeam
+            label: 'Automatic — team preview (People ▸ Team)'
+            summary: 'Team preview'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
+          - name: teamFull
+            label: 'Automatic — full team (People ▸ Team)'
+            summary: 'Full team'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
           - name: directory
-            label: Who to contact list
+            label: 'Automatic — who to contact (People ▸ Who to contact)'
             summary: 'Contacts — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
               - { name: title, label: Heading, widget: string }
               - { name: body, label: Intro paragraph, widget: text, required: false }
-          - name: products
-            label: 4th Brew coffee shop
-            summary: 'Coffee — {{title}}'
+          - name: newsEvents
+            label: 'Automatic — latest news and events'
+            summary: 'News + events'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
+          - name: eventsFull
+            label: 'Automatic — all events (News & events ▸ Events)'
+            summary: 'All events'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
+          - name: membershipTiers
+            label: 'Automatic — membership tiers (Programs ▸ Membership tiers)'
+            summary: 'Membership tiers'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
+          - name: membershipFaq
+            label: 'Automatic — membership questions'
+            summary: 'Membership questions'
+            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
+          - name: testimonials
+            label: 'Automatic — quotes from neighbours (Partners ▸ Quotes)'
+            summary: 'Quotes — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
-              - { name: eyebrow, label: Small label, widget: string, required: false }
               - { name: title, label: Heading, widget: string }
               - { name: body, label: Intro paragraph, widget: text, required: false }
           - name: partnerWall
-            label: Partner logos
+            label: 'Automatic — partner logos (Partners ▸ Supporter logos)'
             summary: 'Partners — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
               - { name: title, label: Heading, widget: string }
               - { name: body, label: Intro paragraph, widget: text, required: false }
           - name: projectMap
-            label: Map of projects
+            label: 'Automatic — map of projects (Photos & map ▸ Map pins)'
             summary: 'Map — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
               - { name: title, label: Heading, widget: string }
               - { name: body, label: Intro paragraph, widget: text, required: false }
-          - name: testimonials
-            label: Quotes from neighbours
-            summary: 'Quotes — {{title}}'
+          - name: products
+            label: 'Automatic — 4th Brew coffee shop (4th Brew ▸ Coffees)'
+            summary: 'Coffee — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
+              - { name: eyebrow, label: Small label, widget: string, required: false }
               - { name: title, label: Heading, widget: string }
               - { name: body, label: Intro paragraph, widget: text, required: false }
-          # Blocks with no settings — the content comes from the lists in the
-          # sidebar (Team, Events, Membership tiers, and so on).
           - name: heart
-            label: 'H.E.A.R.T. framework'
+            label: 'Automatic — H.E.A.R.T. framework'
             summary: 'H.E.A.R.T. framework'
             fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: aboutTeam
-            label: 'Team preview (from the Team list)'
-            summary: 'Team preview'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: teamFull
-            label: 'Full team (from the Team list)'
-            summary: 'Full team'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: membershipTiers
-            label: 'Membership tiers (from the Membership tiers list)'
-            summary: 'Membership tiers'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: membershipFaq
-            label: Membership questions
-            summary: 'Membership questions'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
           - name: estimateForm
-            label: 'Clean & Green estimate form'
+            label: 'Automatic — Clean & Green estimate form'
             summary: 'Estimate form'
             fields: [{ name: id, label: Link anchor, widget: string, required: false }]
           - name: donatePanel
-            label: Donate and volunteer panel
+            label: 'Automatic — donate and volunteer panel'
             summary: 'Donate + volunteer'
             fields: [{ name: id, label: Link anchor, widget: string, required: false }]
           - name: contactPanel
-            label: Contact form and map
+            label: 'Automatic — contact form and map'
             summary: 'Contact form'
             fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: newsEvents
-            label: 'Latest news and events'
-            summary: 'News + events'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
-          - name: eventsFull
-            label: 'All events (from the Events list)'
-            summary: 'All events'
-            fields: [{ name: id, label: Link anchor, widget: string, required: false }]
 
-  # ------------------------------------------------------------- PROJECTS ----
+  # ============================================================== PROJECTS ====
   - name: projects
     label: Project pages
     label_singular: Project page
+    icon: location_on
     description: The detail pages for individual projects, such as Oasis @ 240.
     folder: ccd-website/content/projects
     extension: json
     format: json
     create: true
     slug: '{{fields.key}}'
-    identifier_field: title
-    summary: '{{title}}'
+    summary: '{{seo.title}}'
+    sortable_fields: [seo.title, slug]
     fields:
       - { name: key, label: File name, widget: string, pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and dashes only'] }
       - { name: slug, label: Web address, widget: string, hint: 'Appears as /projects/…' }
-      - { name: title, label: Browser tab title, widget: string }
-      - { name: description, label: Search description, widget: text }
       - { name: active, label: Highlighted menu item, widget: hidden, default: projects }
-      - { name: eyebrow, label: Small label above the headline, widget: string, required: false }
-      - { name: heroTitle, label: Headline, widget: string }
-      - { name: heroAccent, label: Headline second line, widget: string, required: false }
-      - { name: heroBody, label: Opening paragraph, widget: text }
-      - { name: heroImage, label: Top image, widget: image, required: false, choose_url: true }
-      - { name: heroAlt, label: Image description, widget: string, required: false }
-      - { name: heroPosition, label: Image crop position, widget: string, required: false }
+      - name: seo
+        label: Google & browser tab
+        widget: object
+        collapsed: true
+        fields:
+          - { name: title, label: Browser tab title, widget: string }
+          - { name: description, label: Search description, widget: text }
+      - name: hero
+        label: Top of the page
+        widget: object
+        collapsed: true
+        fields:
+          - { name: eyebrow, label: Small label above the headline, widget: string, required: false }
+          - { name: title, label: Headline, widget: string }
+          - { name: accent, label: Headline second line, widget: string, required: false }
+          - name: body
+            label: Opening paragraph
+            widget: text
+            hint: >-
+              Note: no page layout currently displays this. Kept so existing
+              wording is not lost — ask a developer before relying on it.
+          - { name: image, label: Top image, widget: image, required: false, choose_url: true }
+          - { name: alt, label: Image description, widget: string, required: false }
+          - { name: position, label: Image crop position, widget: string, required: false }
+          - name: cta
+            label: Button
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string }
       - name: sections
         label: Page blocks
+        label_singular: Block
         widget: list
         required: false
+        collapsed: true
         types:
           - name: split
-            label: Text beside an image
+            label: 'Text — beside an image'
             summary: 'Text + image — {{title}}'
             fields:
               - { name: id, label: Link anchor, widget: string, required: false }
@@ -469,8 +532,21 @@ collections:
                 options: [light, green, dark, blue]
               - { name: ctaText, label: Button text, widget: string, required: false }
               - { name: ctaHref, label: Button link, widget: string, required: false }
+          - name: cta
+            label: 'Text — call to action band'
+            summary: 'Call to action — {{title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [green, dark, gold]
           - name: gallery
-            label: Photo gallery
+            label: 'Photos — gallery'
             summary: 'Gallery — {{title}}'
             fields:
               - { name: title, label: Heading, widget: string }
@@ -487,26 +563,16 @@ collections:
                 fields:
                   - { name: src, label: Photo, widget: image, choose_url: true }
                   - { name: alt, label: Photo description, widget: string }
-          - name: cta
-            label: Call to action band
-            summary: 'Call to action — {{title}}'
-            fields:
-              - { name: title, label: Heading, widget: string }
-              - { name: body, label: Paragraph, widget: text }
-              - { name: label, label: Button text, widget: string }
-              - { name: href, label: Button link, widget: string }
-              - name: theme
-                label: Colour
-                widget: select
-                required: false
-                options: [green, dark, gold]
 
-  # --------------------------------------------------------------- LISTS -----
-  - name: lists
-    label: Lists
+  - divider: true
+
+  # ========================================================= NEWS & EVENTS ====
+  - name: news-events
+    label: News & events
+    icon: newspaper
     description: >-
-      Content that appears in several places — the team, news, events, partners
-      and so on. Change it once here and it updates everywhere it is shown.
+      Articles and events. These appear wherever a page has a "Latest news and
+      events" or "All events" block.
     files:
       - name: news
         label: News
@@ -575,6 +641,14 @@ collections:
               - { name: contactEmail, label: Contact email, widget: string, required: false }
               - { name: contactLabel, label: Contact button text, widget: string, required: false }
 
+  # ================================================================ PEOPLE ====
+  - name: people
+    label: People
+    icon: group
+    description: >-
+      Staff, interns and who to contact. Change someone here and they update on
+      every page that shows them.
+    files:
       - name: team
         label: Team
         file: ccd-website/content/collections/team.json
@@ -611,6 +685,27 @@ collections:
               - { name: email, label: Email, widget: string, required: false }
               - { name: photo, label: Photo, widget: image, required: false, choose_url: true }
 
+      - name: directory
+        label: Who to contact
+        file: ccd-website/content/collections/directory.json
+        fields:
+          - name: items
+            label: Contacts
+            label_singular: Contact
+            widget: list
+            summary: '{{area}} — {{person}}'
+            fields:
+              - { name: area, label: Area, widget: string }
+              - { name: person, label: Person, widget: string }
+              - { name: title, label: Their role, widget: string }
+              - { name: email, label: Email, widget: string }
+
+  # ================================================ PARTNERS AND SUPPORTERS ====
+  - name: partners
+    label: Partners & supporters
+    icon: handshake
+    description: Organisations that fund or work with CCD, and what neighbours say about it.
+    files:
       - name: partners
         label: Partners and funders
         file: ccd-website/content/collections/partners.json
@@ -643,21 +738,27 @@ collections:
               - { name: src, label: Logo, widget: image, choose_url: true }
               - { name: alt, label: Organisation name, widget: string }
 
-      - name: directory
-        label: Who to contact
-        file: ccd-website/content/collections/directory.json
+      - name: testimonials
+        label: Quotes from neighbours
+        file: ccd-website/content/collections/testimonials.json
         fields:
           - name: items
-            label: Contacts
-            label_singular: Contact
+            label: Quotes
+            label_singular: Quote
             widget: list
-            summary: '{{area}} — {{person}}'
+            summary: '{{name}}'
             fields:
-              - { name: area, label: Area, widget: string }
-              - { name: person, label: Person, widget: string }
-              - { name: title, label: Their role, widget: string }
-              - { name: email, label: Email, widget: string }
+              - { name: quote, label: Quote, widget: text }
+              - { name: name, label: Who said it, widget: string }
+              - { name: role, label: Their role, widget: string, required: false }
+              - { name: photo, label: Photo, widget: image, required: false, choose_url: true }
 
+  # ============================================================== PROGRAMS ====
+  - name: programs
+    label: Programs
+    icon: workspaces
+    description: Membership levels and the services Clean & Green offers.
+    files:
       - name: membership-tiers
         label: Membership tiers
         file: ccd-website/content/collections/membership-tiers.json
@@ -689,6 +790,70 @@ collections:
             widget: list
             field: { name: item, label: Service, widget: string }
 
+  # ============================================================== 4TH BREW ====
+  - name: brew
+    label: 4th Brew coffee
+    icon: local_cafe
+    description: >-
+      The coffee brand's own content. Prices and stock come from Shopify
+      automatically — the details here are only used if Shopify cannot be reached.
+    files:
+      - name: brew-products
+        label: Coffees
+        file: ccd-website/content/collections/brew-products.json
+        fields:
+          - name: items
+            label: Coffees
+            label_singular: Coffee
+            widget: list
+            summary: '{{title}} — {{roast}}'
+            fields:
+              - { name: handle, label: Shopify handle, widget: string, hint: 'Must match the product handle in Shopify exactly, or the live price will not be found.' }
+              - { name: title, label: Name, widget: string }
+              - { name: roast, label: Roast, widget: string, hint: 'For example Medium roast' }
+              - { name: notes, label: Tasting notes, widget: text }
+              - { name: image, label: Photo, widget: image, choose_url: true, hint: 'Only shown if Shopify is unreachable — normally the Shopify photo is used.' }
+              - { name: alt, label: Photo description, widget: string }
+              - name: variants
+                label: Sizes and grinds
+                widget: list
+                collapsed: true
+                summary: '{{title}} — ${{price}}'
+                hint: 'Backup only. Editing this does NOT change what customers are charged — Shopify does that.'
+                fields:
+                  - { name: id, label: Shopify variant ID, widget: number, value_type: int }
+                  - { name: title, label: Size / grind, widget: string, hint: 'Must match Shopify exactly, e.g. "12oz / Whole bean"' }
+                  - { name: price, label: Price, widget: string }
+                  - { name: available, label: In stock, widget: boolean }
+
+      - name: brewing-methods
+        label: Brewing guide
+        file: ccd-website/content/collections/brewing-methods.json
+        fields:
+          - name: items
+            label: Methods
+            label_singular: Method
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - { name: title, label: Method, widget: string }
+              - { name: meta, label: Descriptors, widget: string, hint: 'For example BALANCED · RELIABLE · EVERYDAY' }
+              - { name: body, label: Description, widget: text }
+              - { name: image, label: Icon, widget: image, choose_url: true }
+              - { name: alt, label: Icon description, widget: string }
+              - name: bullets
+                label: How to brew it
+                widget: list
+                field: { name: item, label: Step, widget: string }
+
+  # ========================================================= PHOTOS AND MAP ====
+  - name: photos
+    label: Photos & map
+    icon: photo_library
+    description: >-
+      Picture sets used by blocks on several pages — the home page slideshow,
+      before-and-after pairs, and the pins on the projects map.
+    files:
       - name: home-hero
         label: Home page slideshow
         file: ccd-website/content/collections/home-hero.json
@@ -733,79 +898,13 @@ collections:
               - { name: x, label: Position across (%), widget: number, value_type: float, hint: '0 is the far left, 100 the far right.' }
               - { name: y, label: Position down (%), widget: number, value_type: float, hint: '0 is the top, 100 the bottom.' }
 
-      - name: testimonials
-        label: Quotes from neighbours
-        file: ccd-website/content/collections/testimonials.json
-        fields:
-          - name: items
-            label: Quotes
-            label_singular: Quote
-            widget: list
-            summary: '{{name}}'
-            fields:
-              - { name: quote, label: Quote, widget: text }
-              - { name: name, label: Who said it, widget: string }
-              - { name: role, label: Their role, widget: string, required: false }
-              - { name: photo, label: Photo, widget: image, required: false, choose_url: true }
+  - divider: true
 
-  # ---------------------------------------------------------- 4TH BREW -------
-  - name: brew
-    label: 4th Brew coffee
-    description: >-
-      The coffee brand's own content. Prices and stock come from Shopify
-      automatically — the details here are only used if Shopify cannot be reached.
-    files:
-      - name: brew-products
-        label: Coffees
-        file: ccd-website/content/collections/brew-products.json
-        fields:
-          - name: items
-            label: Coffees
-            label_singular: Coffee
-            widget: list
-            summary: '{{title}} — {{roast}}'
-            fields:
-              - { name: handle, label: Shopify handle, widget: string, hint: 'Must match the product handle in Shopify exactly, or the live price will not be found.' }
-              - { name: title, label: Name, widget: string }
-              - { name: roast, label: Roast, widget: string, hint: 'For example Medium roast' }
-              - { name: notes, label: Tasting notes, widget: text }
-              - { name: image, label: Photo, widget: image, choose_url: true, hint: 'Only shown if Shopify is unreachable — normally the Shopify photo is used.' }
-              - { name: alt, label: Photo description, widget: string }
-              - name: variants
-                label: Sizes and grinds
-                widget: list
-                summary: '{{title}} — ${{price}}'
-                hint: 'Backup only. Editing this does NOT change what customers are charged — Shopify does that.'
-                fields:
-                  - { name: id, label: Shopify variant ID, widget: number, value_type: int }
-                  - { name: title, label: Size / grind, widget: string, hint: 'Must match Shopify exactly, e.g. "12oz / Whole bean"' }
-                  - { name: price, label: Price, widget: string }
-                  - { name: available, label: In stock, widget: boolean }
-
-      - name: brewing-methods
-        label: Brewing guide
-        file: ccd-website/content/collections/brewing-methods.json
-        fields:
-          - name: items
-            label: Methods
-            label_singular: Method
-            widget: list
-            summary: '{{title}}'
-            fields:
-              - { name: title, label: Method, widget: string }
-              - { name: meta, label: Descriptors, widget: string, hint: 'For example BALANCED · RELIABLE · EVERYDAY' }
-              - { name: body, label: Description, widget: text }
-              - { name: image, label: Icon, widget: image, choose_url: true }
-              - { name: alt, label: Icon description, widget: string }
-              - name: bullets
-                label: How to brew it
-                widget: list
-                field: { name: item, label: Step, widget: string }
-
-  # ------------------------------------------------------------ SETTINGS -----
+  # ============================================================== SETTINGS ====
   - name: settings
     label: Settings
-    description: Contact details, social links, and the buttons that lead to payments.
+    icon: settings
+    description: Contact details, social links, menus, and the buttons that lead to payments.
     files:
       - name: contact
         label: Contact and organisation
@@ -814,6 +913,7 @@ collections:
           - name: org
             label: Organisation
             widget: object
+            collapsed: true
             fields:
               - { name: name, label: Name, widget: string }
               - { name: shortName, label: Short name, widget: string }
@@ -823,6 +923,7 @@ collections:
           - name: contact
             label: Contact details
             widget: object
+            collapsed: true
             hint: Changing these updates every page that shows them.
             fields:
               - { name: email, label: General email, widget: string }
@@ -836,6 +937,7 @@ collections:
           - name: social
             label: Social media
             widget: object
+            collapsed: true
             hint: Leave one empty to hide that icon completely.
             fields:
               - { name: facebook, label: Facebook, widget: string, required: false }
@@ -845,6 +947,7 @@ collections:
           - name: links
             label: Buttons and payment links
             widget: object
+            collapsed: true
             hint: >-
               These power the Donate, Brick Campaign and booking buttons. If one
               is left empty its button quietly turns into an email link instead
@@ -869,6 +972,7 @@ collections:
           - name: analytics
             label: Analytics
             widget: object
+            collapsed: true
             fields:
               - { name: ga4, label: Google Analytics ID, widget: string, required: false, hint: 'Looks like G-XXXXXXX. Leave empty for no tracking.' }
 
@@ -879,6 +983,7 @@ collections:
           - name: groups
             label: Main menu dropdowns
             widget: list
+            collapsed: true
             summary: '{{label}}'
             fields:
               - { name: key, label: Internal name, widget: string }
@@ -898,6 +1003,7 @@ collections:
           - name: simpleLinks
             label: Menu links without a dropdown
             widget: list
+            collapsed: true
             summary: '{{label}}'
             fields:
               - { name: label, label: Text, widget: string }
@@ -909,6 +1015,7 @@ collections:
           - name: utilityLinks
             label: Top bar links
             widget: list
+            collapsed: true
             summary: '{{label}}'
             fields:
               - { name: label, label: Text, widget: string }
@@ -916,12 +1023,14 @@ collections:
           - name: donateCta
             label: Donate button
             widget: object
+            collapsed: true
             fields:
               - { name: label, label: Text, widget: string }
               - { name: href, label: Link, widget: string }
           - name: footerColumns
             label: Footer link columns
             widget: list
+            collapsed: true
             summary: '{{title}}'
             fields:
               - { name: title, label: Column heading, widget: string }

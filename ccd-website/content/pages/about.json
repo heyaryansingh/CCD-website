@@ -1,14 +1,18 @@
 {
   "key": "about",
   "slug": "about",
-  "title": "About CCD",
-  "description": "CCD's story, mission, co-op model, team, and partners.",
   "active": "about",
-  "eyebrow": "OUR STORY",
-  "heroTitle": "We are Baltimore's cooperative future.",
-  "heroBody": "Cooperative Community Development started with one reclaimed lot and grew into a member-governed blueprint for food, housing, green space, and ownership.",
-  "heroImage": "/media/irvington-sign.jpg",
-  "heroAlt": "Welcome to Historic Irvington 1874 mosaic sign — where houses become homes and neighbors become friends",
+  "seo": {
+    "title": "About CCD",
+    "description": "CCD's story, mission, co-op model, team, and partners."
+  },
+  "hero": {
+    "eyebrow": "OUR STORY",
+    "title": "We are Baltimore's cooperative future.",
+    "body": "Cooperative Community Development started with one reclaimed lot and grew into a member-governed blueprint for food, housing, green space, and ownership.",
+    "image": "/media/irvington-sign.jpg",
+    "alt": "Welcome to Historic Irvington 1874 mosaic sign — where houses become homes and neighbors become friends"
+  },
   "sections": [
     {
       "type": "split",

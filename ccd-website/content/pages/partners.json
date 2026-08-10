@@ -1,15 +1,19 @@
 {
   "key": "partners",
   "slug": "partners",
-  "title": "Partners & Funders",
-  "description": "The organizations that make CCD's cooperative work possible.",
   "active": "about",
-  "eyebrow": "PARTNERS & FUNDERS",
-  "heroTitle": "Stronger",
-  "heroAccent": "together.",
-  "heroBody": "Every CCD program is strengthened by the vision, resources, and dedication of our partners and funders across Baltimore.",
-  "heroImage": "/media/drone-1.jpg",
-  "heroAlt": "Aerial view over the Irvington neighborhood",
+  "seo": {
+    "title": "Partners & Funders",
+    "description": "The organizations that make CCD's cooperative work possible."
+  },
+  "hero": {
+    "eyebrow": "PARTNERS & FUNDERS",
+    "title": "Stronger",
+    "accent": "together.",
+    "body": "Every CCD program is strengthened by the vision, resources, and dedication of our partners and funders across Baltimore.",
+    "image": "/media/drone-1.jpg",
+    "alt": "Aerial view over the Irvington neighborhood"
+  },
   "sections": [
     {
       "type": "partnerWall",

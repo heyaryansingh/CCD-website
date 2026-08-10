@@ -1,14 +1,18 @@
 {
   "key": "projects",
   "slug": "projects",
-  "title": "Projects",
-  "description": "CCD projects across Irvington and Baltimore's 21229.",
   "active": "projects",
-  "heroTitle": "Our work in",
-  "heroAccent": "the 21229.",
-  "heroBody": "Gardens, murals, markets, walking tours, and reclaimed spaces show what cooperative development looks like at street level.",
-  "heroImage": "/media/drone-3.jpg",
-  "heroAlt": "Aerial view of a reclaimed green path in Irvington",
+  "seo": {
+    "title": "Projects",
+    "description": "CCD projects across Irvington and Baltimore's 21229."
+  },
+  "hero": {
+    "title": "Our work in",
+    "accent": "the 21229.",
+    "body": "Gardens, murals, markets, walking tours, and reclaimed spaces show what cooperative development looks like at street level.",
+    "image": "/media/drone-3.jpg",
+    "alt": "Aerial view of a reclaimed green path in Irvington"
+  },
   "sections": [
     {
       "type": "cards",

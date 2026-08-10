@@ -1,14 +1,18 @@
 {
   "key": "events",
   "slug": "events",
-  "title": "Events",
-  "description": "Upcoming CCD events, markets, tours, and community days.",
   "active": "involved",
-  "heroTitle": "Events on",
-  "heroAccent": "the block.",
-  "heroBody": "Markets, walking tours, drives, and community days across Irvington. Come find us on Frederick Avenue.",
-  "heroImage": "/media/event-coopway-3.jpg",
-  "heroAlt": "Speaker at the CCD table during the Cooperative Way celebration",
+  "seo": {
+    "title": "Events",
+    "description": "Upcoming CCD events, markets, tours, and community days."
+  },
+  "hero": {
+    "title": "Events on",
+    "accent": "the block.",
+    "body": "Markets, walking tours, drives, and community days across Irvington. Come find us on Frederick Avenue.",
+    "image": "/media/event-coopway-3.jpg",
+    "alt": "Speaker at the CCD table during the Cooperative Way celebration"
+  },
   "sections": [
     {
       "type": "eventsFull",

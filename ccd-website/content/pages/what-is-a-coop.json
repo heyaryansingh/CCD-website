@@ -1,16 +1,20 @@
 {
   "key": "what-is-a-coop",
   "slug": "what-is-a-coop",
-  "title": "What is a Co-op?",
-  "description": "How cooperatives work and why CCD is member-owned and governed.",
   "active": "about",
-  "eyebrow": "THE MODEL",
-  "heroTitle": "A co-op is",
-  "heroAccent": "yours.",
-  "heroBody": "A cooperative is an autonomous association of people united voluntarily to meet common economic, social, and cultural needs through a jointly-owned, democratically-controlled enterprise.",
-  "heroImage": "/media/community-together-2.jpg",
-  "heroPosition": "center 35%",
-  "heroAlt": "Together We Can Do Great Things mural",
+  "seo": {
+    "title": "What is a Co-op?",
+    "description": "How cooperatives work and why CCD is member-owned and governed."
+  },
+  "hero": {
+    "eyebrow": "THE MODEL",
+    "title": "A co-op is",
+    "accent": "yours.",
+    "body": "A cooperative is an autonomous association of people united voluntarily to meet common economic, social, and cultural needs through a jointly-owned, democratically-controlled enterprise.",
+    "image": "/media/community-together-2.jpg",
+    "alt": "Together We Can Do Great Things mural",
+    "position": "center 35%"
+  },
   "sections": [
     {
       "type": "steps",
