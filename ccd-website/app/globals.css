@@ -786,6 +786,10 @@ h2 em {
   color: rgba(0, 0, 0, 0.68);
 }
 
+.brew .cta-section.green p {
+  color: #fff;
+}
+
 .cta-section .button {
   margin-top: 20px;
 }

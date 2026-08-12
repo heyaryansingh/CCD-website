@@ -26,7 +26,7 @@
       "cards": [
         {
           "title": "Drip / Automatic",
-          "image": "/media/brew/method-drip.png",
+          "image": "/media/brew/method-drip-v2.jpg",
           "alt": "Line icon of a drip coffee maker",
           "meta": "BALANCED · RELIABLE · EVERYDAY",
           "body": "Designed for consistency and ease. Produces a smooth, well-rounded cup with dependable flavor.",
@@ -40,7 +40,7 @@
         },
         {
           "title": "Pour-Over",
-          "image": "/media/brew/method-pour-over.png",
+          "image": "/media/brew/method-pour-over-v2.jpg",
           "alt": "Line icon of a pour-over dripper and kettle",
           "meta": "SMOOTH · BOLD · BRIGHT",
           "body": "A hands-on method that brings clarity and brightness to each cup. Ideal for highlighting subtle tasting notes.",
@@ -54,7 +54,7 @@
         },
         {
           "title": "French Press",
-          "image": "/media/brew/method-french-press.png",
+          "image": "/media/brew/method-french-press-v2.jpg",
           "alt": "Line icon of a French press",
           "meta": "BOLD · STRONG · RICH",
           "body": "An immersion method that pulls deeper flavors and oils through, for a heavier mouthfeel and a robust finish.",
@@ -68,7 +68,7 @@
         },
         {
           "title": "Espresso",
-          "image": "/media/brew/method-espresso.png",
+          "image": "/media/brew/method-espresso-v2.jpg",
           "alt": "Line icon of an espresso machine portafilter",
           "meta": "INTENSE · STRONG · POWERFUL",
           "body": "A fast, high-pressure method that delivers a rich, concentrated shot under a thick crema.",
@@ -82,7 +82,7 @@
         },
         {
           "title": "AeroPress",
-          "image": "/media/brew/method-aeropress.png",
+          "image": "/media/brew/method-aeropress-v2.jpg",
           "alt": "Line icon of an AeroPress",
           "meta": "SMOOTH · VERSATILE · FAST",
           "body": "A compact brewer that combines immersion and pressure for a clean, balanced cup in about two minutes.",
@@ -96,7 +96,7 @@
         },
         {
           "title": "Cold Brew",
-          "image": "/media/brew/method-cold-brew.png",
+          "image": "/media/brew/method-cold-brew-v2.jpg",
           "alt": "Line icon of a cold brew jar",
           "meta": "LOW-ACID · SMOOTH · REFRESHING",
           "body": "Brewed slowly with cold water into a naturally smooth, mellow concentrate. Made ahead, poured all week.",
@@ -110,7 +110,7 @@
         },
         {
           "title": "Siphon / Vacuum",
-          "image": "/media/brew/method-siphon.png",
+          "image": "/media/brew/method-siphon-v2.jpg",
           "alt": "Line icon of a siphon vacuum brewer",
           "meta": "CLEAN · AROMATIC · REFINED",
           "body": "A visually striking method that uses vapor pressure to produce an exceptionally clean cup.",
@@ -124,7 +124,7 @@
         },
         {
           "title": "Moka Pot",
-          "image": "/media/brew/method-moka-pot.png",
+          "image": "/media/brew/method-moka-pot-v2.jpg",
           "alt": "Line icon of a stovetop moka pot",
           "meta": "RICH · STRONG · STOVETOP",
           "body": "A stovetop brewer that makes a bold, espresso-adjacent coffee with real intensity.",
@@ -171,3 +171,4 @@
     }
   ]
 }
+
