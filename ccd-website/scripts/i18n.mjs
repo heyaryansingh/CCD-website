@@ -34,13 +34,14 @@ const DICT_DIR = join(ROOT, "content", "translations");
 const WORK_DIR = join(ROOT, ".i18n");
 const UI_STRINGS = join(ROOT, "content", "generated", "ui-strings.json");
 
-const { defaultLocale, locales, translatable } = await import("../lib/i18n.ts");
+const { SKIP_SUBTREES, defaultLocale, locales, translatable } = await import("../lib/i18n.ts");
 const siteData = await import("../lib/siteData.ts");
 const pageData = await import("../lib/pages.server.ts");
 
 // --- The full set of English strings the site can show -----------------------
 
 function collect(value, into, key) {
+  if (key !== undefined && SKIP_SUBTREES.has(key)) return;
   if (typeof value === "string") {
     if (translatable(key, value)) into.add(value);
   } else if (Array.isArray(value)) {
@@ -66,7 +67,11 @@ function sourceStrings() {
   for (const [name, value] of Object.entries(siteData)) {
     // Skip the re-exported helpers and config; content only.
     if (typeof value === "function" || name === "siteConfig") continue;
-    collect(value, out);
+    // Pass the export's NAME as the key. siteData re-exports `navigation.aliases`
+    // as a top-level `aliases`, so without this the subtree arrives keyless and
+    // the skip rule never fires — which is how ten route slugs ended up being
+    // offered for translation in every language.
+    collect(value, out, name);
   }
   // The organisation's own name and tagline do show on the page.
   collect(siteData.siteConfig.org, out);
@@ -189,7 +194,31 @@ function apply(sources, code, file) {
     console.error(`Cannot read "${file}".`);
     process.exit(1);
   }
-  const incoming = JSON.parse(readFileSync(file, "utf8"));
+  let incoming = JSON.parse(readFileSync(file, "utf8"));
+
+  // A batch may be either {english: translation} or a bare array of translations
+  // in the same order as the strings in the todo file. The array form exists
+  // because the keys are the full English text: repeating all of it back just to
+  // return a translation doubles the work for no benefit.
+  if (Array.isArray(incoming)) {
+    const todoPath = join(WORK_DIR, `todo.${code}.json`);
+    if (!existsSync(todoPath)) {
+      console.error(`An array batch needs ${todoPath} to line up against. Re-run extract.`);
+      process.exit(1);
+    }
+    const todo = JSON.parse(readFileSync(todoPath, "utf8")).strings;
+    if (todo.length !== incoming.length) {
+      // Silently zipping mismatched lists would attach translations to the wrong
+      // English — worse than not translating at all, and invisible afterwards.
+      console.error(
+        `Batch has ${incoming.length} translations but the todo file has ${todo.length} strings.` +
+          " They must line up one-to-one; nothing was written.",
+      );
+      process.exit(1);
+    }
+    incoming = Object.fromEntries(todo.map((source, i) => [source, incoming[i]]));
+  }
+
   const dict = readDict(code);
   const known = new Set(sources);
   let added = 0;

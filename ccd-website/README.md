@@ -92,6 +92,18 @@ half-translated language is safe to ship and is never blank. `localize()` in
 current language, which is why no component has to know about languages to link
 correctly.
 
+All nine languages are fully translated. Two limits are worth knowing:
+
+- **A string is the unit of translation, so a fragment shared by two headings
+  gets one translation.** Hero headlines are stored as `title` + `accent` and
+  rendered as two lines; `"the block."` is the accent on the events page *and*
+  part of the home hero, so a language that needs a different case or particle
+  in those two positions cannot have both. Give the two headings different
+  English if it matters more than the duplication.
+- **Machine-translated, not natively reviewed.** Fine for wayfinding; have a
+  speaker check anything legally or financially load-bearing before relying on
+  it.
+
 Strings written into components are marked by being passed to `t("…")`;
 `scripts/bundle-pages.mjs` finds them at build time. **A string built at runtime
 — `t(label)`, or a template literal — is invisible to that scan and will never

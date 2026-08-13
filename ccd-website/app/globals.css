@@ -2958,10 +2958,20 @@ a.partner-card:hover {
    physical side.
    ========================================================================== */
 
+/* Hidden by clipping, NOT by `left: -9999px`.
+   In a left-to-right page, content parked at -9999px sits before the origin and
+   costs nothing. In a right-to-left page the scroll direction is mirrored, so
+   the same rule became 9999px of real scrollable width — every Arabic page
+   reported a 10374px-wide document at a 375px viewport, which on a phone means
+   the page can be panned and zoomed out. `body { overflow-x: hidden }` hid the
+   scrollbar and hid the bug with it. */
 .skip-link {
   position: absolute;
-  left: -9999px;
-  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
   z-index: 100;
   padding: 12px 18px;
   background: var(--green-deep);
@@ -2970,7 +2980,12 @@ a.partner-card:hover {
 }
 
 .skip-link:focus {
-  left: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip-path: none;
+  inset-inline-start: 0;
+  top: 0;
 }
 
 .lang-switch {

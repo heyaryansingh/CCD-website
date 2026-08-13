@@ -14,7 +14,7 @@
 // every page, in a language the visitor is already reading.
 // =============================================================================
 
-import { type Dictionary, translatable } from "./i18n";
+import { type Dictionary, SKIP_SUBTREES, translatable } from "./i18n";
 
 import am from "@/content/translations/am.json";
 import ar from "@/content/translations/ar.json";
@@ -55,6 +55,7 @@ export function getDictionary(locale: string): Dictionary | undefined {
 
 /** Every translatable string in a loaded JSON tree. */
 function collect(value: unknown, into: Set<string>, key?: string): void {
+  if (key !== undefined && SKIP_SUBTREES.has(key)) return;
   if (typeof value === "string") {
     if (translatable(key, value)) into.add(value);
   } else if (Array.isArray(value)) {

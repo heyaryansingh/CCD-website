@@ -13,9 +13,15 @@ and no API key. Work in `C:\Aryan\GitHub Projects\CCD\ccd-website`.
 1. `npm run i18n -- extract --locale=$1 --limit=${2:-150}`
    Writes `.i18n/todo.$1.json`. Read it. Interface text comes first on purpose.
 
-2. Translate every string in `strings`. Write `.i18n/done.$1.json` as a flat
-   `{"English source": "translation"}` object — the key must be the English
-   string **character for character**, or it will not be found at render time.
+2. Translate every string in `strings`. Write `.i18n/done.$1.json` as a **JSON
+   array of translations in the same order as `strings`** — element `i` is the
+   translation of `strings[i]`. The count must match exactly; `apply` refuses a
+   mismatched batch rather than pairing translations with the wrong English.
+
+   (A `{"English source": "translation"}` object also works and is what you want
+   for correcting a handful of specific strings. For a whole batch prefer the
+   array: repeating every English string back just to return its translation
+   doubles the writing for no benefit.)
 
    - Keep `{placeholders}` such as `{email}`, `{n}`, `{year}` exactly as they are.
    - Keep proper nouns: CCD, Cooperative Community Development, H.E.A.R.T.,

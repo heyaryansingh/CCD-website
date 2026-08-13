@@ -158,6 +158,16 @@ export const NON_TEXT_KEYS = new Set([
   "y",
 ]);
 
+// Whole branches of the content tree that are never prose, whatever their keys
+// look like. `aliases` maps an old URL to a page key — {"the-4th-brew":
+// "4th-brew"} — so its VALUES read like ordinary words ("shop", "membership",
+// "tool-bank") and were being offered up for translation in every language. A
+// translated alias points an old printed link at a page that does not exist.
+//
+// Skipped as a subtree because the keys inside it are arbitrary old URLs; there
+// is no per-key rule that could catch them.
+export const SKIP_SUBTREES = new Set(["aliases"]);
+
 /**
  * Whether a value under `key` should be looked up in the dictionary.
  *
@@ -198,6 +208,7 @@ export function localize<T>(
   dict: Dictionary | undefined,
   key?: string,
 ): T {
+  if (key !== undefined && SKIP_SUBTREES.has(key)) return value;
   if (typeof value === "string") {
     if (key !== undefined && LINK_KEYS.has(key)) return localePath(value, locale) as T;
     return (translatable(key, value) ? t(dict, value) : value) as T;
