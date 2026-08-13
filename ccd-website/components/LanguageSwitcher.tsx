@@ -32,7 +32,11 @@ export function LanguageSwitcher() {
             href={switchLocalePath(pathname, option.code)}
             lang={option.tag}
             hrefLang={option.tag}
-            dir={option.dir}
+            // Deliberately no dir here. The PAGE mirrors for a right-to-left
+            // language, but this row is one word inside a menu that does not:
+            // dir="rtl" pushed the Arabic entry to the opposite edge of the list
+            // while the other eight stayed left. The bidi algorithm renders the
+            // word correctly on its own.
             className={option.code === locale ? "current" : undefined}
             aria-current={option.code === locale ? "true" : undefined}
           >

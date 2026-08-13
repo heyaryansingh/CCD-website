@@ -254,18 +254,21 @@ video {
   background: var(--ink);
 }
 
+/* min-height, NOT height. These used to be fixed boxes with overflow:hidden, so
+   a hero whose text ran one line longer than the English simply lost the bottom
+   of itself — on a 1366x768 laptop the Vietnamese home page had its "Become a
+   member" and "See the work" buttons clipped away entirely, unreachable. The
+   hero still fills the viewport; it just grows instead of cutting. */
 .home-hero,
 .page-hero {
   position: relative;
-  min-height: 640px;
-  height: 88vh;
+  min-height: max(640px, 88vh);
   overflow: hidden;
   background: #000;
 }
 
 .page-hero {
-  height: 62vh;
-  min-height: 480px;
+  min-height: max(480px, 62vh);
 }
 
 .home-hero > img,
