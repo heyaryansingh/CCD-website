@@ -57,11 +57,31 @@ Your change is live in about a minute. Refresh the real page to see it.
 
 Put new items at the top of the list — that is the order they appear on the site.
 
-### Add someone to the team
+### Add someone to the team, or an intern
 
-**Lists** → **Team** → **Add**. If you have no photo yet, leave the photo field
-empty and the site shows their initials in a circle. That looks deliberate, not
-broken.
+**People** → **Team** or **Interns** → **Add**, fill it in, **Save**.
+
+Only three fields matter to get someone on the site: **Name**, **Role**, and a
+**one-line description** (that is what shows on their card — keep it to one
+line). The **Biography** is the longer text that appears when someone clicks the
+card, and can wait.
+
+**Photos.** Use the **Photo** field and upload a picture that is already cropped
+square, centred on the face. The site draws it inside a small circle, so
+anything near the edges of a rectangular photo gets cut off. No photo yet? Leave
+it empty — the site shows their initials in a circle, which looks deliberate
+rather than broken, and you can add the picture later without touching anything
+else.
+
+**Announcement graphics.** If someone was introduced with a designed card (the
+2026 interns all were), put it in **Introduction graphic** and it appears under
+their biography. Type the wording into **Biography** as well — words inside a
+picture cannot be read aloud by a screen reader or translated into the other
+eight languages.
+
+Everything about a person lives in this one entry, so adding a photo later, or
+swapping one, never means hunting through pages: change it here and it updates
+everywhere that person appears.
 
 ### Fix a translation
 

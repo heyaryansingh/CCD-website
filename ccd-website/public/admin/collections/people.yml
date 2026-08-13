@@ -25,7 +25,26 @@ collections:
               - { name: bio, label: Biography, widget: text, required: false }
               - { name: quote, label: Quote, widget: text, required: false }
               - { name: email, label: Email, widget: string, required: false }
-              - { name: photo, label: Photo, widget: image, required: false, choose_url: true, hint: 'Leave empty to show their initials instead.' }
+              - name: photo
+                label: Photo
+                widget: image
+                required: false
+                choose_url: true
+                hint: >-
+                  A square close-up of their face. It is shown as a small circle,
+                  so anything near the edges is cut off — crop it square before
+                  uploading. Leave empty to show their initials instead, which
+                  looks deliberate rather than broken.
+              - name: card
+                label: Introduction graphic
+                widget: image
+                required: false
+                choose_url: true
+                hint: >-
+                  Optional. A full designed card for this person, if one was made
+                  — shown under their biography. The wording must also be typed
+                  into Biography above, because words inside a picture cannot be
+                  read aloud or translated.
 
       - name: interns
         label: Interns
