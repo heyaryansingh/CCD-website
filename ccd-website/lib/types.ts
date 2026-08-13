@@ -271,6 +271,10 @@ export type TeamMember = {
   quote?: string;
   email?: string;
   photo?: string; // empty -> initials/silhouette avatar
+  // The full designed intro card a person was announced with (interns have one).
+  // Shown in their bio panel; the text still lives in `bio` so it stays readable
+  // to screen readers and translatable.
+  card?: string;
   order?: number;
 };
 

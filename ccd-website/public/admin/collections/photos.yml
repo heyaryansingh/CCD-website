@@ -1,0 +1,53 @@
+collections:
+
+  # ========================================================= PHOTOS AND MAP ====
+  - name: photos
+    label: Photos & map
+    icon: photo_library
+    description: >-
+      Picture sets used by blocks on several pages — the home page slideshow,
+      before-and-after pairs, and the pins on the projects map.
+    files:
+      - name: home-hero
+        label: Home page slideshow
+        file: ccd-website/content/collections/home-hero.json
+        fields:
+          - name: items
+            label: Slides
+            label_singular: Slide
+            widget: list
+            summary: '{{kicker}}'
+            fields:
+              - { name: src, label: Photo, widget: image, choose_url: true }
+              - { name: alt, label: Photo description, widget: string }
+              - { name: kicker, label: Caption, widget: string }
+
+      - name: before-after
+        label: Before and after photos
+        file: ccd-website/content/collections/before-after.json
+        fields:
+          - name: items
+            label: Pairs
+            label_singular: Pair
+            widget: list
+            summary: '{{label}}'
+            fields:
+              - { name: before, label: Before, widget: image, choose_url: true }
+              - { name: after, label: After, widget: image, choose_url: true }
+              - { name: label, label: Caption, widget: string }
+
+      - name: project-pins
+        label: Map pins
+        file: ccd-website/content/collections/project-pins.json
+        fields:
+          - name: items
+            label: Pins on the map
+            label_singular: Pin
+            widget: list
+            summary: '{{name}}'
+            fields:
+              - { name: name, label: Place, widget: string }
+              - { name: status, label: Status, widget: string }
+              - { name: href, label: Link, widget: string }
+              - { name: x, label: Position across (%), widget: number, value_type: float, hint: '0 is the far left, 100 the far right.' }
+              - { name: y, label: Position down (%), widget: number, value_type: float, hint: '0 is the top, 100 the bottom.' }

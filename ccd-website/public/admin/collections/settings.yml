@@ -1,0 +1,153 @@
+collections:
+  # A separator line in the sidebar — purely visual.
+  - divider: true
+
+
+  # ============================================================== SETTINGS ====
+  - name: settings
+    label: Settings
+    icon: settings
+    description: Contact details, social links, menus, and the buttons that lead to payments.
+    files:
+      - name: contact
+        label: Contact and organisation
+        file: ccd-website/content/settings.json
+        fields:
+          - name: org
+            label: Organisation
+            widget: object
+            collapsed: true
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: shortName, label: Short name, widget: string }
+              - { name: legalName, label: Legal name, widget: string, hint: 'Used in the copyright line at the bottom of every page.' }
+              - { name: tagline, label: Tagline, widget: text }
+              - { name: founded, label: Year founded, widget: number, value_type: int }
+          - name: contact
+            label: Contact details
+            widget: object
+            collapsed: true
+            hint: Changing these updates every page that shows them.
+            fields:
+              - { name: email, label: General email, widget: string }
+              - { name: cleanGreenEmail, label: 'Clean & Green email', widget: string }
+              - { name: facilitiesEmail, label: Facilities email, widget: string }
+              - { name: phone, label: Phone number, widget: string, hint: 'As it should appear, e.g. (410) 205-2488' }
+              - { name: phoneHref, label: Phone dial link, widget: string, hint: 'Digits only with country code, e.g. tel:+14102052488' }
+              - { name: addressLine1, label: Street address, widget: string }
+              - { name: addressLine2, label: 'City, state and ZIP', widget: string }
+              - { name: mapQuery, label: Address for maps, widget: string }
+          - name: social
+            label: Social media
+            widget: object
+            collapsed: true
+            hint: Leave one empty to hide that icon completely.
+            fields:
+              - { name: facebook, label: Facebook, widget: string, required: false }
+              - { name: instagram, label: Instagram, widget: string, required: false }
+              - { name: linkedin, label: LinkedIn, widget: string, required: false }
+              - { name: youtube, label: YouTube, widget: string, required: false }
+          - name: links
+            label: Buttons and payment links
+            widget: object
+            collapsed: true
+            hint: >-
+              These power the Donate, Brick Campaign and booking buttons. If one
+              is left empty its button quietly turns into an email link instead
+              of breaking.
+            fields:
+              - { name: paypalDonate, label: Donate button link, widget: string, required: false, hint: 'The PayPal donation page. Test it after changing — this takes real money.' }
+              - name: brewShop
+                label: 4th Brew shop address
+                widget: string
+                required: false
+                hint: >-
+                  ⚠️ MUST be the store's PRIMARY domain in Shopify. Shopify sends
+                  every checkout to whatever that is, so if this is wrong,
+                  customers cannot buy coffee. Ask a developer before changing it.
+              - { name: brickCampaign, label: Brick campaign link, widget: string, required: false }
+              - { name: facilitiesBooking, label: Room booking form, widget: string, required: false }
+              - { name: cleanGreenEstimate, label: 'Clean & Green estimate form', widget: string, required: false }
+              - { name: vendorRegistration, label: Market vendor sign-up, widget: string, required: false }
+              - { name: membershipSignup, label: Membership sign-up, widget: string, required: false, hint: 'Empty until a payment platform is chosen.' }
+              - { name: privacyPolicy, label: Privacy policy link, widget: string, required: false }
+              - { name: instagramFeedEmbed, label: Instagram feed embed, widget: string, required: false }
+          - name: analytics
+            label: Analytics
+            widget: object
+            collapsed: true
+            fields:
+              - { name: ga4, label: Google Analytics ID, widget: string, required: false, hint: 'Looks like G-XXXXXXX. Leave empty for no tracking.' }
+
+      - name: navigation
+        label: Menus
+        file: ccd-website/content/navigation.json
+        fields:
+          - name: groups
+            label: Main menu dropdowns
+            widget: list
+            collapsed: true
+            summary: '{{label}}'
+            fields:
+              - { name: key, label: Internal name, widget: string }
+              - { name: label, label: Menu text, widget: string }
+              - { name: href, label: Link, widget: string }
+              - name: active
+                label: Highlight group
+                widget: select
+                options: [home, about, programs, involved, projects, news, contact, brew]
+              - name: items
+                label: Dropdown links
+                widget: list
+                summary: '{{label}}'
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: href, label: Link, widget: string }
+          - name: simpleLinks
+            label: Menu links without a dropdown
+            widget: list
+            collapsed: true
+            summary: '{{label}}'
+            fields:
+              - { name: label, label: Text, widget: string }
+              - { name: href, label: Link, widget: string }
+              - name: active
+                label: Highlight group
+                widget: select
+                options: [home, about, programs, involved, projects, news, contact, brew]
+          - name: utilityLinks
+            label: Top bar links
+            widget: list
+            collapsed: true
+            summary: '{{label}}'
+            fields:
+              - { name: label, label: Text, widget: string }
+              - { name: href, label: Link, widget: string }
+          - name: donateCta
+            label: Donate button
+            widget: object
+            collapsed: true
+            fields:
+              - { name: label, label: Text, widget: string }
+              - { name: href, label: Link, widget: string }
+          - name: footerColumns
+            label: Footer link columns
+            widget: list
+            collapsed: true
+            summary: '{{title}}'
+            fields:
+              - { name: title, label: Column heading, widget: string }
+              - name: links
+                label: Links
+                widget: list
+                summary: '{{label}}'
+                fields:
+                  - { name: label, label: Text, widget: string }
+                  - { name: href, label: Link, widget: string }
+          - name: aliases
+            label: Old web addresses
+            widget: keyvalue
+            hint: >-
+              Sends an old address to its new page, so links printed on flyers
+              keep working. Left side is the old address, right side is the page
+              name it should go to.

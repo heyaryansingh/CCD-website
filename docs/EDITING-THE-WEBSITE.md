@@ -35,6 +35,11 @@ The team, news, events and partners live in **Lists**, not on a page. Add a
 person to the Team list once and they appear everywhere the team is shown. You
 never have to update the same thing twice.
 
+**3. You always write in English.**
+The site is offered in nine languages, but there is only one copy of the content
+and it is the English one. Everything else is a translation of it, kept in
+**Translations**. You do not maintain nine versions of a page — see below.
+
 ---
 
 ## The things you will actually do
@@ -57,6 +62,22 @@ Put new items at the top of the list — that is the order they appear on the si
 **Lists** → **Team** → **Add**. If you have no photo yet, leave the photo field
 empty and the site shows their initials in a circle. That looks deliberate, not
 broken.
+
+### Fix a translation
+
+**Translations** → pick the language → find the English on the left → correct
+the wording on the right → **Save**.
+
+Two things worth knowing:
+
+- **Nothing here is ever blank on the site.** A line with no translation yet
+  shows in English. A half-translated language is safe to leave live.
+- **The English on the left has to match the site exactly.** It is how the
+  translation is found. If you change the wording of a page, its old translation
+  stops being used and the line goes back to English until it is redone.
+
+You do not have to translate a page before publishing it. Write it in English,
+publish, and the translations catch up afterwards.
 
 ### Change a phone number, email or address
 

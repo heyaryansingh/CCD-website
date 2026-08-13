@@ -1,4 +1,5 @@
 import { BrewCart, BuyPicker } from "@/components/ClientBits";
+import { type Dictionary, localize } from "@/lib/i18n";
 import { brewProducts, siteConfig, type BrewProduct, type Section } from "@/lib/siteData";
 
 // Shopify publishes every storefront's catalog as public JSON. No SDK, no
@@ -43,11 +44,18 @@ function merge(curated: BrewProduct, live: ShopifyProduct | undefined): BrewProd
 
 export async function BrewProducts({
   section,
+  locale,
+  dict,
 }: {
   section: Extract<Section, { type: "products" }>;
+  locale: string;
+  dict: Dictionary | undefined;
 }) {
   const live = await liveCatalog();
-  const items = brewProducts.map((product) => merge(product, live.get(product.handle)));
+  // Editorial copy (roast, tasting notes) is translated; the Shopify half —
+  // prices, variant titles, stock — is left exactly as the store reports it.
+  const curated = localize(brewProducts, locale, dict);
+  const items = curated.map((product) => merge(product, live.get(product.handle)));
 
   return (
     <section id={section.id} className="section products-section">

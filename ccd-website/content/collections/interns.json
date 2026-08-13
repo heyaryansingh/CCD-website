@@ -1,12 +1,54 @@
 {
   "items": [
     {
-      "name": "Aryan",
-      "role": "STRATEGY & DIGITAL",
+      "name": "Alison Gunzler",
+      "role": "COMMUNITY CONNECTOR",
       "order": 1,
-      "bio": "Aryan joined CCD as a Strategy & Digital intern in summer 2026, translating community context, planning docs, and real media into the new website direction.",
+      "tagline": "Connecting neighbours to CCD's programs and the people behind them.",
+      "bio": "My name is Alison and I am working with CCD as a Community Connector. I am 21 and a rising senior at JHU. I am from Cleveland, Ohio and a few of my hobbies include reading, cooking, and digital art. During my time with CCD, I am excited to gain experience working in the industry and to learn more about web development.",
       "email": "{{contact.email}}",
-      "photo": ""
+      "photo": "/media/interns/alison-gunzler.jpg",
+      "card": "/media/interns/alison-gunzler-card.jpg"
+    },
+    {
+      "name": "Aryan Singh",
+      "role": "AI INTERN",
+      "order": 2,
+      "tagline": "Applying AI to real problems facing real communities in Baltimore.",
+      "bio": "My name is Aryan Singh and I am working with CCD as an AI Intern. I am a 19-year-old rising sophomore at Johns Hopkins University and originally from Houston, Texas. A fun fact about me is I enjoy playing rugby on the field and solving challenging puzzles and problems off of it. I'm excited to apply AI to real problems facing real communities in Baltimore, and to grow alongside the CCD team and the city this summer.",
+      "email": "{{contact.email}}",
+      "photo": "/media/interns/aryan-singh.jpg",
+      "card": "/media/interns/aryan-singh-card.jpg"
+    },
+    {
+      "name": "Immanuel Gebreyesus",
+      "role": "AI EXPLORATION INTERN",
+      "order": 3,
+      "tagline": "Exploring AI with the HealthLink360 team.",
+      "bio": "My name is Immanuel and I am working with the HL360 team as their AI Exploration Intern. I am a rising senior at JHU and I'm 20 years old from Washington DC. My hobbies are reading, playing games and going for runs. I am looking forward to working with you guys!",
+      "email": "{{contact.email}}",
+      "photo": "/media/interns/immanuel-gebreyesus.jpg",
+      "card": "/media/interns/immanuel-gebreyesus-card.jpg"
+    },
+    {
+      "name": "John Lu",
+      "role": "SOFTWARE & DESIGN INTERN",
+      "order": 4,
+      "tagline": "Software and design for HealthLink360.",
+      "bio": "My name is John Lu and I am working with CCD as a Software and Design Intern at HealthLink360. I am a 21-year-old rising senior at Johns Hopkins University and I am from Washington, DC. A fun fact about me is I enjoy going to the gym! I am excited to get more experience in software engineering, fullstack development, and experiencing startup culture.",
+      "email": "{{contact.email}}",
+      "photo": "/media/interns/john-lu.jpg",
+      "card": "/media/interns/john-lu-card.jpg"
+    },
+    {
+      "name": "Zoe Tseng",
+      "role": "AI EXPLORATION INTERN",
+      "order": 5,
+      "tagline": "Using tech to give back to the community.",
+      "bio": "My name is Zoe and I am working with CCD as an AI Exploration Intern. I am a rising sophomore at JHU and I am from New Jersey. A fun fact about me is that I can solve a Rubik's Cube. During my time with CCD, I am excited to use tech to give back to the community!",
+      "email": "{{contact.email}}",
+      "photo": "/media/interns/zoe-tseng.jpg",
+      "card": "/media/interns/zoe-tseng-card.jpg"
     },
     {
       "name": "",

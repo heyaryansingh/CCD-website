@@ -1,0 +1,57 @@
+collections:
+
+  # ============================================================== 4TH BREW ====
+  - name: brew
+    label: 4th Brew coffee
+    icon: local_cafe
+    description: >-
+      The coffee brand's own content. Prices and stock come from Shopify
+      automatically — the details here are only used if Shopify cannot be reached.
+    files:
+      - name: brew-products
+        label: Coffees
+        file: ccd-website/content/collections/brew-products.json
+        fields:
+          - name: items
+            label: Coffees
+            label_singular: Coffee
+            widget: list
+            summary: '{{title}} — {{roast}}'
+            fields:
+              - { name: handle, label: Shopify handle, widget: string, hint: 'Must match the product handle in Shopify exactly, or the live price will not be found.' }
+              - { name: title, label: Name, widget: string }
+              - { name: roast, label: Roast, widget: string, hint: 'For example Medium roast' }
+              - { name: notes, label: Tasting notes, widget: text }
+              - { name: image, label: Photo, widget: image, choose_url: true, hint: 'Only shown if Shopify is unreachable — normally the Shopify photo is used.' }
+              - { name: alt, label: Photo description, widget: string }
+              - name: variants
+                label: Sizes and grinds
+                widget: list
+                collapsed: true
+                summary: '{{title}} — ${{price}}'
+                hint: 'Backup only. Editing this does NOT change what customers are charged — Shopify does that.'
+                fields:
+                  - { name: id, label: Shopify variant ID, widget: number, value_type: int }
+                  - { name: title, label: Size / grind, widget: string, hint: 'Must match Shopify exactly, e.g. "12oz / Whole bean"' }
+                  - { name: price, label: Price, widget: string }
+                  - { name: available, label: In stock, widget: boolean }
+
+      - name: brewing-methods
+        label: Brewing guide
+        file: ccd-website/content/collections/brewing-methods.json
+        fields:
+          - name: items
+            label: Methods
+            label_singular: Method
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - { name: title, label: Method, widget: string }
+              - { name: meta, label: Descriptors, widget: string, hint: 'For example BALANCED · RELIABLE · EVERYDAY' }
+              - { name: body, label: Description, widget: text }
+              - { name: image, label: Icon, widget: image, choose_url: true }
+              - { name: alt, label: Icon description, widget: string }
+              - name: bullets
+                label: How to brew it
+                widget: list
+                field: { name: item, label: Step, widget: string }

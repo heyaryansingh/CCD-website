@@ -949,6 +949,17 @@ h2 em {
   color: var(--slate);
 }
 
+/* The designed intro card someone was announced with. The same words are in the
+   paragraph above it, so this is decorative — it never carries information a
+   screen reader or a translated page would otherwise miss. */
+.bio-card {
+  display: block;
+  width: min(320px, 100%);
+  margin: 24px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.14);
+}
+
 .modal-gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2936,5 +2947,397 @@ a.partner-card:hover {
   }
   .brew-cart-foot .button {
     flex: 1 1 100%;
+  }
+}
+
+/* ============================================================================
+   LANGUAGES
+   Language menu, the skip link beside it, and the handful of rules that have to
+   flip for a right-to-left script. Most of the layout above is grid and flexbox,
+   which mirrors on its own; what follows is the rest — the places that name a
+   physical side.
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 18px;
+  background: var(--green-deep);
+  color: #fff;
+  font-family: var(--font-body);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+.lang-switch {
+  position: relative;
+  flex: none;
+}
+
+.lang-switch > summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  /* 44px is the smallest reliably tappable target; the menu sits next to the
+     hamburger on a phone and must not be the fiddly one of the pair. */
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid rgba(26, 26, 26, 0.18);
+  border-radius: 999px;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.lang-switch > summary::-webkit-details-marker {
+  display: none;
+}
+
+.lang-switch > summary:hover,
+.lang-switch[open] > summary {
+  border-color: var(--green);
+  color: var(--green-deep);
+}
+
+.lang-switch > summary:focus-visible {
+  outline: 2px solid var(--green-deep);
+  outline-offset: 2px;
+}
+
+.lang-switch svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  z-index: 60;
+  min-width: 190px;
+  display: grid;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  box-shadow: 0 18px 40px rgba(26, 26, 26, 0.16);
+}
+
+.lang-menu a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.lang-menu a:hover,
+.lang-menu a:focus-visible {
+  background: var(--soft);
+}
+
+.lang-menu a.current {
+  font-weight: 700;
+  color: var(--green-deep);
+}
+
+/* --- Right-to-left ------------------------------------------------------- */
+
+[dir="rtl"] {
+  /* Arabic renders small and thin in the Latin body face. */
+  font-family: "Noto Sans Arabic", var(--font-body);
+}
+
+[dir="rtl"] .eyebrow,
+[dir="rtl"] .split-copy,
+[dir="rtl"] .section-heading,
+[dir="rtl"] .page-hero-inner,
+[dir="rtl"] .home-hero-content,
+[dir="rtl"] .footer-main,
+[dir="rtl"] .timeline article,
+[dir="rtl"] .event-row,
+[dir="rtl"] .faq-list summary {
+  text-align: start;
+}
+
+/* A partly-translated page is normal here — anything without a translation yet
+   falls back to the English it was written in. `plaintext` lets each block pick
+   its own direction from its own first letter, so an untranslated English
+   paragraph reads left-to-right inside an Arabic page instead of having its
+   punctuation thrown to the wrong end. */
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] p,
+[dir="rtl"] li,
+[dir="rtl"] summary,
+[dir="rtl"] figcaption,
+[dir="rtl"] blockquote,
+[dir="rtl"] .eyebrow,
+[dir="rtl"] .tier-price,
+[dir="rtl"] .tier-elig {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+[dir="rtl"] .faq-list summary {
+  padding: 22px 0 22px 48px;
+}
+
+[dir="rtl"] .faq-list summary::after {
+  right: auto;
+  left: 8px;
+}
+
+[dir="rtl"] .bio-modal blockquote {
+  border-left: 0;
+  border-right: 4px solid var(--gold);
+  padding-left: 0;
+  padding-right: 18px;
+}
+
+[dir="rtl"] .modal-close {
+  right: auto;
+  left: 18px;
+}
+
+[dir="rtl"] .check-list li {
+  padding-left: 0;
+  padding-right: 24px;
+}
+
+[dir="rtl"] .check-list li::before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .card-specs {
+  padding: 0 18px 0 0;
+}
+
+/* The marquee is a decorative loop of partner names; run it the other way so it
+   reads outward from the same edge the text starts at. */
+[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+
+/* Map pins are positioned from real coordinates — mirroring them would put
+   Irvington's projects on the wrong streets. */
+[dir="rtl"] .map-frame {
+  direction: ltr;
+}
+
+[dir="rtl"] .pin-label {
+  direction: rtl;
+}
+
+/* ============================================================================
+   MOBILE PASS
+   Fixes found by driving the site at 360–768px rather than by reading the
+   stylesheet. Grouped here so the whole set is reviewable in one place; each
+   rule notes what it was actually fixing.
+   ========================================================================== */
+
+/* --- Header ---------------------------------------------------------------
+   The language menu sits between the logo and the hamburger on its own column.
+   Without this it auto-placed into the hamburger's cell, got pushed to a second
+   row and stretched across the full width. */
+@media (max-width: 1050px) {
+  .main-nav {
+    grid-template-columns: minmax(0, 1fr) auto 44px;
+    gap: 10px;
+  }
+
+  .lang-switch {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .mobile-toggle {
+    grid-column: 3;
+  }
+
+  .nav-links {
+    grid-column: 1 / -1;
+  }
+
+  /* Dropdown entries were 38px — under the 44px a fingertip can reliably hit,
+     and they are the only way to reach most of the site on a phone. */
+  .dropdown a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .nav-utility {
+    display: grid;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .nav-utility a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  /* The open menu was a fixed 640px of max-height with overflow hidden, while
+     its contents are ~1200px tall: everything past "Events" — including the
+     Donate button — was silently unreachable on a phone. Bound it to the
+     viewport instead and let it scroll. dvh, so the browser's own collapsing
+     toolbar does not re-clip it. */
+  .nav-links.open {
+    max-height: calc(100vh - 76px);
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Shown only inside the collapsed menu — the utility bar already has these on
+   a wide screen. */
+.nav-utility {
+  display: none;
+}
+
+/* --- Forms ----------------------------------------------------------------
+   Every field was 12px/40px. Under 16px, iOS Safari zooms the whole page in
+   the moment a field is focused and does not zoom back out, which is the single
+   most common way a mobile form becomes unusable. */
+@media (max-width: 1050px) {
+  .ccd-form input,
+  .ccd-form select,
+  .ccd-form textarea,
+  .donation-box input,
+  .newsletter-form input,
+  .buy-picker select {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .ccd-form textarea {
+    min-height: 120px;
+  }
+
+  .amounts button,
+  .newsletter-form button {
+    min-height: 44px;
+  }
+}
+
+/* --- Touch targets --------------------------------------------------------
+   The slideshow controls were 32px squares with an 11px glyph. The dot inside
+   is drawn with ::before, so the hit area grows without the design changing. */
+@media (max-width: 1050px) {
+  .hero-dots button {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-dots {
+    gap: 0;
+    left: calc(6vw - 10px);
+  }
+
+  .hero-pause {
+    width: 44px;
+    height: 44px;
+    font-size: 13px;
+  }
+}
+
+/* 11px is below what most people can read on a phone held at arm's length. */
+.map-corner,
+.partner-tag {
+  font-size: 12px;
+}
+
+/* --- Blocks that assumed a wide screen ------------------------------------ */
+@media (max-width: 720px) {
+  /* Heading and "Show all roles" were fighting over one row, squeezing the
+     button into three stacked words. */
+  .intern-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .intern-head .button {
+    align-self: start;
+  }
+
+  .intern-head h3 {
+    font-size: 30px;
+  }
+
+  /* 38px of padding on a 375px screen left ~300px for a bio. */
+  .bio-modal,
+  .news-modal {
+    padding: 30px 20px;
+  }
+
+  .news-modal > img {
+    margin: -30px -20px 22px;
+    max-width: calc(100% + 40px);
+    max-height: 220px;
+  }
+
+  .bio-modal h2,
+  .news-modal h2 {
+    font-size: 30px;
+  }
+}
+
+/* The marquee pulls itself out to the section's bleed with -6vw, but below
+   640px the section switches to a fixed 22px gutter. At 375px the two disagree
+   by half a pixel on each side, which is what put a horizontal scrollbar on
+   every page with a partner wall. */
+@media (max-width: 640px) {
+  .marquee {
+    margin-inline: -22px;
+  }
+}
+
+/* The event row hid its photo AND its category tag on every screen under
+   1050px — that is dropping content rather than adapting to the width. Keep
+   both down to phone size, and only then fall back to text alone. */
+@media (max-width: 1050px) and (min-width: 481px) {
+  .event-row {
+    grid-template-columns: 84px 120px 1fr auto;
+    gap: 14px;
+  }
+
+  .event-row img,
+  .event-row em {
+    display: block;
+  }
+
+  .event-row img {
+    width: 120px;
+    height: 84px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-row {
+    grid-template-columns: 74px 1fr;
+    gap: 12px;
+    padding: 14px;
   }
 }

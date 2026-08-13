@@ -52,3 +52,6 @@ next-env.d.ts
 
 # Generated at build time from content/pages — see scripts/bundle-pages.mjs
 content/generated/
+
+# Translation working files — batches in flight, not content.
+.i18n/

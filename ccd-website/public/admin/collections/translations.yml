@@ -1,0 +1,108 @@
+# The site is written in English and translated by lookup: each file below maps
+# an English string to its translation, and anything with no entry falls back to
+# the English. Editing here is for CORRECTING a translation — the bulk of the
+# work is done by `npm run i18n` (see ccd-website/scripts/i18n.mjs), which fills
+# in whatever is missing.
+#
+# The left column must match the English on the site EXACTLY, including
+# punctuation and capitals, or it will never be found. Changing the English text
+# of a page leaves its old translations behind; `npm run i18n -- prune` clears
+# those out.
+#
+# ADDING A LANGUAGE: add it to `locales` in ccd-website/lib/i18n.ts, import the
+# new file in lib/i18n.server.ts, then add an entry here.
+collections:
+  - name: translations
+    label: Translations
+    icon: translate
+    description: >-
+      Every language the website is offered in. Open one to correct a
+      translation. Anything not translated yet simply shows in English.
+    files:
+      - name: es
+        label: Español — Spanish
+        file: ccd-website/content/translations/es.json
+        fields:
+          - name: strings
+            label: Spanish translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: Español
+
+      - name: fr
+        label: Français — French
+        file: ccd-website/content/translations/fr.json
+        fields:
+          - name: strings
+            label: French translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: Français
+
+      - name: ht
+        label: Kreyòl Ayisyen — Haitian Creole
+        file: ccd-website/content/translations/ht.json
+        fields:
+          - name: strings
+            label: Haitian Creole translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: Kreyòl
+
+      - name: am
+        label: አማርኛ — Amharic
+        file: ccd-website/content/translations/am.json
+        fields:
+          - name: strings
+            label: Amharic translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: አማርኛ
+
+      - name: ar
+        label: العربية — Arabic
+        file: ccd-website/content/translations/ar.json
+        fields:
+          - name: strings
+            label: Arabic translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: العربية
+
+      - name: zh
+        label: 简体中文 — Simplified Chinese
+        file: ccd-website/content/translations/zh.json
+        fields:
+          - name: strings
+            label: Simplified Chinese translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: 简体中文
+
+      - name: ko
+        label: 한국어 — Korean
+        file: ccd-website/content/translations/ko.json
+        fields:
+          - name: strings
+            label: Korean translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: 한국어
+
+      - name: vi
+        label: Tiếng Việt — Vietnamese
+        file: ccd-website/content/translations/vi.json
+        fields:
+          - name: strings
+            label: Vietnamese translations
+            widget: keyvalue
+            root: true
+            key_label: English
+            value_label: Tiếng Việt

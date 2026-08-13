@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { siteConfig } from "@/lib/siteData";
+import { navigation, siteConfig } from "@/lib/siteData";
 import { activeSocials } from "@/lib/siteConfig";
 import { submitForm } from "@/lib/submit";
+import { useT, useTranslated } from "@/components/LocaleProvider";
 
 const socials = activeSocials();
 
@@ -13,6 +14,11 @@ export function SiteFooter() {
   const [subscribed, setSubscribed] = useState(false);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
+  const t = useT();
+  // The columns used to be hardcoded here, which meant editing them in the CMS
+  // changed the menu and not the footer. They come from the same file now.
+  const nav = useTranslated(navigation);
+  const org = useTranslated(siteConfig.org);
 
   async function subscribe(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,29 +34,32 @@ export function SiteFooter() {
     <footer className="site-footer">
       <section className="newsletter">
         <div>
-          <p className="eyebrow">STAY CONNECTED</p>
-          <h2>Get the block report.</h2>
-          <p>Markets, meetings, volunteer days, and campaign updates from CCD.</p>
+          <p className="eyebrow">{t("STAY CONNECTED")}</p>
+          <h2>{t("Get the block report.")}</h2>
+          <p>{t("Markets, meetings, volunteer days, and campaign updates from CCD.")}</p>
         </div>
         <form onSubmit={subscribe} className="newsletter-form">
           {subscribed ? (
-            <strong>Thanks. You are on the list.</strong>
+            <strong>{t("Thanks. You are on the list.")}</strong>
           ) : (
             <>
               <input
                 type="email"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                placeholder="Email address"
-                aria-label="Email address"
+                placeholder={t("Email address")}
+                aria-label={t("Email address")}
                 required
               />
               <button type="submit" disabled={busy}>
-                {busy ? "..." : "Subscribe"}
+                {busy ? "..." : t("Subscribe")}
               </button>
               {failed ? (
                 <p className="form-error" role="alert">
-                  Something went wrong — email {siteConfig.contact.email} to join the list.
+                  {t("Something went wrong — email {email} to join the list.").replace(
+                    "{email}",
+                    siteConfig.contact.email,
+                  )}
                 </p>
               ) : null}
             </>
@@ -61,8 +70,8 @@ export function SiteFooter() {
       <div className="footer-main">
         <div className="footer-brand">
           <img src="/media/ccd-logo.png" alt="" />
-          <h2>{siteConfig.org.name}</h2>
-          <p>{siteConfig.org.tagline}</p>
+          <h2>{org.name}</h2>
+          <p>{org.tagline}</p>
           {socials.length ? (
             <div className="footer-socials">
               {socials.map((s) => (
@@ -73,23 +82,18 @@ export function SiteFooter() {
             </div>
           ) : null}
         </div>
+        {nav.footerColumns.map((column) => (
+          <div key={column.title}>
+            <h3>{column.title}</h3>
+            {column.links.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        ))}
         <div>
-          <h3>Quick Links</h3>
-          <Link href="/about">About</Link>
-          <Link href="/membership">Membership</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/news">News &amp; Events</Link>
-        </div>
-        <div>
-          <h3>Programs</h3>
-          <Link href="/center-for-social-impact">Center for Social Impact</Link>
-          <Link href="/clean-and-green">Clean &amp; Green</Link>
-          <Link href="/coop-market">Co-op Market</Link>
-          <Link href="/tool-bank">Tool Bank</Link>
-          <Link href="/shop">4th Brew Coffee</Link>
-        </div>
-        <div>
-          <h3>Contact</h3>
+          <h3>{t("Contact")}</h3>
           <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
           <a href={siteConfig.contact.phoneHref}>{siteConfig.contact.phone}</a>
           <span>{siteConfig.contact.addressLine1}</span>
@@ -97,10 +101,18 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span suppressHydrationWarning>Copyright {new Date().getFullYear()} {siteConfig.org.legalName}</span>
+        <span suppressHydrationWarning>
+          {t("Copyright {year} {org}")
+            .replace("{year}", String(new Date().getFullYear()))
+            .replace("{org}", siteConfig.org.legalName)}
+        </span>
         <span className="footer-member">
-          <img className="footer-mano" src="/media/logo-maryland-nonprofits.png" alt="Proud member of Maryland Nonprofits" />
-          Built for the block.
+          <img
+            className="footer-mano"
+            src="/media/logo-maryland-nonprofits.png"
+            alt={t("Proud member of Maryland Nonprofits")}
+          />
+          {t("Built for the block.")}
         </span>
       </div>
     </footer>

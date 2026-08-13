@@ -60,6 +60,51 @@ for (const [from, to] of Object.entries(ALIASES)) {
   ok(`/${from} -> ${to}`, res.status >= 300 && res.status < 400 && loc === to, `got ${res.status} ${loc}`);
 }
 
+// --- languages ---------------------------------------------------------------
+// English keeps its bare URLs; every other language is prefixed. The failure
+// this catches is a page that renders but forgets which language it is in —
+// links pointing back at English, or a right-to-left script laid out left-to-right.
+console.log("\nLanguages");
+const LOCALES = ["es", "fr", "ht", "am", "ar", "zh", "ko", "vi"];
+const unreachable = [];
+for (const code of LOCALES) {
+  for (const path of [`/${code}`, `/${code}/about`, `/${code}/projects/oasis-240`]) {
+    const res = await get(path);
+    if (res.status !== 200) unreachable.push(`${path} -> ${res.status}`);
+  }
+}
+ok(`all ${LOCALES.length} languages serve home, a page and a project`, unreachable.length === 0, unreachable.join(", "));
+
+const canonical = await get("/en/about");
+ok(
+  "/en/about redirects to /about",
+  canonical.status >= 300 && canonical.status < 400 && (canonical.headers.get("location") || "").endsWith("/about"),
+  `got ${canonical.status} ${canonical.headers.get("location") || ""}`,
+);
+
+const arabic = await fetch(`${BASE}/ar/membership`);
+const arabicHtml = await arabic.text();
+ok('Arabic pages declare lang="ar" dir="rtl"', /lang="ar"[^>]*dir="rtl"/.test(arabicHtml));
+ok("Arabic pages link within Arabic", arabicHtml.includes('href="/ar/donate"'));
+ok("translated wording reaches the page", arabicHtml.includes("العضوية"));
+
+const spanish = await fetch(`${BASE}/es`);
+const spanishHtml = await spanish.text();
+ok("language menu offers every language", LOCALES.every((c) => spanishHtml.includes(`href="/${c}"`)));
+// The whole point of the fallback: a language with no translation for a string
+// shows the English, never an empty heading.
+ok(
+  "untranslated text falls back to English rather than blank",
+  !/<(h1|h2)>\s*<\/>/.test(spanishHtml),
+);
+
+// Next writes the attribute as hrefLang, so match without regard to case.
+const alternates = await fetch(`${BASE}/about`).then((r) => r.text());
+ok(
+  "hreflang alternates are published",
+  /hreflang="es"/i.test(alternates) && /hreflang="zh-Hans"/i.test(alternates),
+);
+
 // --- the CMS -----------------------------------------------------------------
 console.log("\nCMS");
 // Cloudflare serves a directory index at /admin/, so a redirect here is fine as
@@ -71,6 +116,19 @@ ok("/admin loads the editor", admin.status === 200 && adminHtml.includes("svelti
 const cfg = await fetch(`${BASE}/admin/config.yml`);
 const cfgText = await cfg.text();
 ok("config.yml is served", cfg.status === 200 && cfgText.includes("backend:"));
+
+// The collections are separate files now, listed in index.html. One of them
+// 404ing loses a whole section of the editor while everything still "loads".
+const configUrls = [...adminHtml.matchAll(/rel="cms-config-url"[^>]*href="([^"]+)"/g)].map((m) => m[1]);
+const brokenConfigs = [];
+for (const url of configUrls) {
+  const res = await fetch(`${BASE}${url}`);
+  const body = res.status === 200 ? await res.text() : "";
+  if (res.status !== 200 || !/^(collections|backend):/m.test(body)) {
+    brokenConfigs.push(`${url} -> ${res.status}`);
+  }
+}
+ok(`all ${configUrls.length} editor config files load`, configUrls.length > 1 && brokenConfigs.length === 0, brokenConfigs.join(", "));
 
 const baseUrlMatch = cfgText.match(/base_url:\s*(\S+)/);
 const configuredBase = baseUrlMatch?.[1]?.replace(/\/$/, "");

@@ -1,0 +1,54 @@
+collections:
+
+  # ================================================ PARTNERS AND SUPPORTERS ====
+  - name: partners
+    label: Partners & supporters
+    icon: handshake
+    description: Organisations that fund or work with CCD, and what neighbours say about it.
+    files:
+      - name: partners
+        label: Partners and funders
+        file: ccd-website/content/collections/partners.json
+        fields:
+          - name: items
+            label: Partners
+            label_singular: Partner
+            widget: list
+            summary: '{{name}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: description, label: Description, widget: text }
+              - { name: url, label: Website, widget: string, required: false, hint: 'Full address starting with https:// — or a page on this site starting with /' }
+              - name: category
+                label: Type
+                widget: select
+                options: [program, community, funder, member]
+              - { name: logo, label: Logo, widget: image, required: false, choose_url: true }
+
+      - name: supporters
+        label: Supporter logos
+        file: ccd-website/content/collections/supporters.json
+        fields:
+          - name: items
+            label: Logos
+            label_singular: Logo
+            widget: list
+            summary: '{{alt}}'
+            fields:
+              - { name: src, label: Logo, widget: image, choose_url: true }
+              - { name: alt, label: Organisation name, widget: string }
+
+      - name: testimonials
+        label: Quotes from neighbours
+        file: ccd-website/content/collections/testimonials.json
+        fields:
+          - name: items
+            label: Quotes
+            label_singular: Quote
+            widget: list
+            summary: '{{name}}'
+            fields:
+              - { name: quote, label: Quote, widget: text }
+              - { name: name, label: Who said it, widget: string }
+              - { name: role, label: Their role, widget: string, required: false }
+              - { name: photo, label: Photo, widget: image, required: false, choose_url: true }

@@ -6,6 +6,26 @@
     <meta name="robots" content="noindex, nofollow" />
     <title>Edit the CCD website</title>
     <link rel="icon" href="/media/ccd-logo.png" />
+
+    <!--
+      The editor's configuration, split one file per sidebar section. Sveltia
+      merges these in the order they appear here, and that order is the order of
+      the sidebar — so moving a line moves a section.
+
+      Adding a section: write collections/<name>.yml and add one line below.
+      See collections/README.md.
+    -->
+    <link rel="cms-config-url" type="application/yaml" href="/admin/config.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/pages.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/projects.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/news-events.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/people.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/partners.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/programs.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/brew.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/photos.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/translations.yml" />
+    <link rel="cms-config-url" type="application/yaml" href="/admin/collections/settings.yml" />
     <style>
       /* Shown only until the editor loads, and if it never does. */
       .boot {
@@ -45,12 +65,23 @@
 
     <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     <script>
-      // The CMS replaces the page body once it mounts. If it has not after a few
-      // seconds, leave the explanation above on screen rather than a blank page.
-      setTimeout(() => {
+      // The CMS mounts alongside this notice rather than replacing it, so remove
+      // the notice once it appears. If it never appears, the explanation stays on
+      // screen instead of a blank page.
+      //
+      // `.app-shell` is Sveltia's own root element. The selector used to look for
+      // #nc-root / #app / .sveltia-cms, none of which Sveltia renders, so the
+      // "Loading the editor…" text sat above the working editor forever.
+      const mounted = () => document.querySelector(".app-shell, #nc-root");
+      const stop = setTimeout(() => clearInterval(poll), 20000);
+      const poll = setInterval(() => {
         const boot = document.getElementById("boot");
-        if (boot && document.querySelector("#nc-root, #app, .sveltia-cms")) boot.remove();
-      }, 4000);
+        if (!boot || mounted()) {
+          boot?.remove();
+          clearInterval(poll);
+          clearTimeout(stop);
+        }
+      }, 250);
     </script>
   </body>
 </html>

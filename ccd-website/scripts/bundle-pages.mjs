@@ -1,5 +1,6 @@
 // Bundles content/pages/*.json and content/projects/*.json into two single JSON
-// files that the app imports statically.
+// files that the app imports statically, and collects the translatable strings
+// written into the components into a third.
 //
 // WHY THIS EXISTS
 // Pages are one file each so the CMS can create and delete whole pages. Reading
@@ -51,6 +52,53 @@ if (Object.keys(pages).length === 0) {
 writeFileSync(join(OUT, "pages.json"), `${JSON.stringify(pages)}\n`, "utf8");
 writeFileSync(join(OUT, "projects.json"), `${JSON.stringify(projects)}\n`, "utf8");
 
+// --- Translatable strings written into components ---------------------------
+//
+// Content strings come from content/, but the words inside the components do
+// not. They are marked by being passed to `t("…")` (see LocaleProvider), and
+// this finds them so both the translate script and the browser dictionary know
+// the full set. Only a plain double-quoted literal is found: `t(label)` or a
+// template string is invisible here and would silently never be translated.
+const T_CALL = /\bt\(\s*"((?:[^"\\]|\\.)*)"/g;
+
+function sourceFiles(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...sourceFiles(full));
+    else if (/\.tsx?$/.test(entry.name)) out.push(full);
+  }
+  return out;
+}
+
+// Comments explaining how to call t("…") are not themselves translatable text.
+// Block comments go entirely; line comments only when the // starts the line, so
+// a "https://…" inside a real string survives.
+function stripComments(code) {
+  return code.replace(/\/\*[\s\S]*?\*\//g, "").replace(/^[ \t]*\/\/.*$/gm, "");
+}
+
+const uiStrings = new Set();
+for (const dir of ["components", "app"]) {
+  for (const file of sourceFiles(join(ROOT, dir))) {
+    const code = stripComments(readFileSync(file, "utf8"));
+    for (const [, literal] of code.matchAll(T_CALL)) {
+      // Undo the JS string escapes so the key matches the runtime value.
+      const value = literal.replace(/\\(["\\/bfnrt])/g, (_, c) =>
+        ({ b: "\b", f: "\f", n: "\n", r: "\r", t: "\t" })[c] ?? c,
+      );
+      if (value.trim()) uiStrings.add(value);
+    }
+  }
+}
+
+writeFileSync(
+  join(OUT, "ui-strings.json"),
+  `${JSON.stringify([...uiStrings].sort(), null, 2)}\n`,
+  "utf8",
+);
+
 console.log(
-  `bundled ${Object.keys(pages).length} pages + ${Object.keys(projects).length} project pages -> content/generated/`,
+  `bundled ${Object.keys(pages).length} pages + ${Object.keys(projects).length} project pages` +
+    ` + ${uiStrings.size} interface strings -> content/generated/`,
 );

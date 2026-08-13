@@ -1,0 +1,84 @@
+collections:
+
+  # ================================================================ PEOPLE ====
+  - name: people
+    label: People
+    icon: group
+    description: >-
+      Staff, interns and who to contact. Change someone here and they update on
+      every page that shows them.
+    files:
+      - name: team
+        label: Team
+        file: ccd-website/content/collections/team.json
+        fields:
+          - name: items
+            label: Team members
+            label_singular: Person
+            widget: list
+            summary: '{{name}} — {{role}}'
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: order, label: Position in the list, widget: number, required: false, value_type: int }
+              - { name: tagline, label: One-line description, widget: string, required: false }
+              - { name: bio, label: Biography, widget: text, required: false }
+              - { name: quote, label: Quote, widget: text, required: false }
+              - { name: email, label: Email, widget: string, required: false }
+              - { name: photo, label: Photo, widget: image, required: false, choose_url: true, hint: 'Leave empty to show their initials instead.' }
+
+      - name: interns
+        label: Interns
+        file: ccd-website/content/collections/interns.json
+        fields:
+          - name: items
+            label: Interns
+            label_singular: Intern
+            widget: list
+            summary: '{{name}} — {{role}}'
+            fields:
+              - { name: name, label: Name, widget: string, required: false, hint: 'Leave empty for an unfilled placeholder spot.' }
+              - { name: role, label: Role, widget: string }
+              - { name: order, label: Position in the list, widget: number, required: false, value_type: int }
+              - name: tagline
+                label: One-line description
+                widget: string
+                required: false
+                hint: >-
+                  Shown on their card. Keep it to one line — the full biography
+                  below appears when someone opens the card.
+              - { name: bio, label: Biography, widget: text, required: false }
+              - { name: email, label: Email, widget: string, required: false }
+              - name: photo
+                label: Photo
+                widget: image
+                required: false
+                choose_url: true
+                hint: >-
+                  A square close-up of their face. Shown as a small circle, so
+                  anything at the edges is cut off. Leave empty to show initials.
+              - name: card
+                label: Introduction graphic
+                widget: image
+                required: false
+                choose_url: true
+                hint: >-
+                  The full designed card they were announced with, if there is
+                  one. Shown under their biography. Optional — the wording must
+                  also be typed into Biography above, because words inside a
+                  picture cannot be read aloud or translated.
+
+      - name: directory
+        label: Who to contact
+        file: ccd-website/content/collections/directory.json
+        fields:
+          - name: items
+            label: Contacts
+            label_singular: Contact
+            widget: list
+            summary: '{{area}} — {{person}}'
+            fields:
+              - { name: area, label: Area, widget: string }
+              - { name: person, label: Person, widget: string }
+              - { name: title, label: Their role, widget: string }
+              - { name: email, label: Email, widget: string }

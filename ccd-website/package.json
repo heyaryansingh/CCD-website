@@ -13,6 +13,7 @@
     "content:extract": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/extract-content.mjs",
     "content:verify": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/verify-content.mjs",
     "dev": "next dev",
+    "i18n": "node --experimental-strip-types --import ./scripts/register-ts.mjs scripts/i18n.mjs",
     "lint": "eslint",
     "prebuild": "node scripts/bundle-pages.mjs",
     "start": "next start",

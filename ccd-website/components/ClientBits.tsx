@@ -36,6 +36,7 @@ import {
   subscribe,
 } from "@/lib/brewCart";
 import { submitForm } from "@/lib/submit";
+import { useLocalePath, useT, useTranslated } from "@/components/LocaleProvider";
 
 function initials(name: string | null) {
   if (!name) return "+";
@@ -120,20 +121,23 @@ function Avatar({ name, photo, large }: { name: string | null; photo?: string; l
 export function HomeHero() {
   const [slide, setSlide] = useState(0);
   const [paused, setPaused] = useState(false);
-  const current = homeHeroSlides[slide % homeHeroSlides.length];
+  const t = useT();
+  const path = useLocalePath();
+  const slides = useTranslated(homeHeroSlides);
+  const current = slides[slide % slides.length];
 
   useEffect(() => {
     // Respect reduced-motion and the pause control: no auto-advance.
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => {
-      setSlide((value) => (value + 1) % homeHeroSlides.length);
+      setSlide((value) => (value + 1) % slides.length);
     }, 5800);
     return () => window.clearInterval(id);
-  }, [paused]);
+  }, [paused, slides.length]);
 
   return (
     <section className="home-hero">
-      {homeHeroSlides.map((item, index) => (
+      {slides.map((item, index) => (
         <img
           key={item.src}
           className={index === slide ? "active" : ""}
@@ -146,27 +150,28 @@ export function HomeHero() {
       <div className="home-hero-content">
         <p className="eyebrow">{current.kicker}</p>
         <h1>
-          Building
+          {t("Building")}
           <br />
-          the block.
+          {t("the block.")}
           <br />
-          <em>Brick by brick.</em>
+          <em>{t("Brick by brick.")}</em>
         </h1>
         <p>
-          A member-owned cooperative turning vacant spaces into markets, gardens,
-          services, and neighborhood wealth in Baltimore&apos;s 21229.
+          {t(
+            "A member-owned cooperative turning vacant spaces into markets, gardens, services, and neighborhood wealth in Baltimore's 21229.",
+          )}
         </p>
         <div className="hero-actions">
-          <Link className="button gold" href="/membership">
-            Become a member
+          <Link className="button gold" href={path("/membership")}>
+            {t("Become a member")}
           </Link>
-          <Link className="button ghost" href="/projects">
-            See the work
+          <Link className="button ghost" href={path("/projects")}>
+            {t("See the work")}
           </Link>
         </div>
       </div>
-      <div className="hero-dots" aria-label="Hero slides">
-        {homeHeroSlides.map((item, index) => (
+      <div className="hero-dots" aria-label={t("Hero slides")}>
+        {slides.map((item, index) => (
           <button
             key={item.src}
             type="button"
@@ -175,21 +180,21 @@ export function HomeHero() {
               setSlide(index);
               setPaused(true);
             }}
-            aria-label={`Show slide ${index + 1}`}
+            aria-label={t("Show slide {n}").replace("{n}", String(index + 1))}
           />
         ))}
         <button
           type="button"
           className="hero-pause"
           onClick={() => setPaused((value) => !value)}
-          aria-label={paused ? "Play slideshow" : "Pause slideshow"}
+          aria-label={paused ? t("Play slideshow") : t("Pause slideshow")}
           aria-pressed={paused}
         >
           {paused ? "▶" : "❚❚"}
         </button>
       </div>
       <span className="hero-counter">
-        {String(slide + 1).padStart(2, "0")} / {String(homeHeroSlides.length).padStart(2, "0")}
+        {String(slide + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
       </span>
     </section>
   );
@@ -203,26 +208,32 @@ type Person = {
   quote?: string;
   email?: string;
   photo?: string;
+  card?: string;
 };
 
 export function AboutTeam() {
   const [active, setActive] = useState<Person | null>(null);
   const [showAllInterns, setShowAllInterns] = useState(false);
-  const visibleInterns = showAllInterns ? interns : interns.slice(0, 6);
+  const t = useT();
+  const team = useTranslated(leadership);
+  const allInterns = useTranslated(interns);
+  const partnerList = useTranslated(partnerNames);
+  const visibleInterns = showAllInterns ? allInterns : allInterns.slice(0, 6);
 
   return (
     <section id="team" className="section team-section">
       <div className="section-heading">
-        <p className="eyebrow">TEAM & PARTNERS</p>
-        <h2>The people moving CCD forward.</h2>
+        <p className="eyebrow">{t("TEAM & PARTNERS")}</p>
+        <h2>{t("The people moving CCD forward.")}</h2>
         <p>
-          Leadership, interns, open roles, and partner organizations turn the
-          cooperative model into daily work.
+          {t(
+            "Leadership, interns, open roles, and partner organizations turn the cooperative model into daily work.",
+          )}
         </p>
       </div>
 
       <div className="person-grid">
-        {leadership.map((person, index) => (
+        {team.map((person, index) => (
           <button
             type="button"
             className="person-card"
@@ -241,11 +252,11 @@ export function AboutTeam() {
 
       <div className="intern-head">
         <div>
-          <p className="eyebrow">INTERNS & FELLOWS</p>
-          <h3>Open lanes for new talent.</h3>
+          <p className="eyebrow">{t("INTERNS & FELLOWS")}</p>
+          <h3>{t("Open lanes for new talent.")}</h3>
         </div>
         <button type="button" className="button line" onClick={() => setShowAllInterns((value) => !value)}>
-          {showAllInterns ? "Show less" : "Show all roles"}
+          {showAllInterns ? t("Show less") : t("Show all roles")}
         </button>
       </div>
       <div className="person-grid intern-grid">
@@ -259,15 +270,17 @@ export function AboutTeam() {
             style={{ transitionDelay: `${Math.min(index, 5) * 90}ms` }}
           >
             <Avatar name={person.name} photo={person.photo} />
-            <strong>{person.name ?? "Open Position"}</strong>
+            <strong>{person.name || t("Open Position")}</strong>
             <small>{person.role}</small>
-            <p>{person.name ? person.bio : "A future CCD intern or fellow role."}</p>
+            {/* Card shows the short line; the full bio is in the panel. Interns
+                write a paragraph, and a paragraph per card made the grid ragged. */}
+            <p>{person.name ? (person.tagline ?? person.bio) : t("A future CCD intern or fellow role.")}</p>
           </button>
         ))}
       </div>
 
       <div className="partner-strip">
-        {partnerNames.map((partner) => (
+        {partnerList.map((partner) => (
           <span key={partner}>{partner}</span>
         ))}
       </div>
@@ -279,16 +292,24 @@ export function AboutTeam() {
               type="button"
               className="modal-close"
               onClick={() => setActive(null)}
-              aria-label="Close bio"
+              aria-label={t("Close bio")}
             >
               x
             </button>
             <Avatar name={active.name} photo={active.photo} large />
             <p className="eyebrow">{active.role}</p>
-            <h2>{active.name ?? "Open Position"}</h2>
-            <p>{active.bio ?? "CCD is building this role as the program grows."}</p>
+            <h2>{active.name || t("Open Position")}</h2>
+            <p>{active.bio || t("CCD is building this role as the program grows.")}</p>
             {active.quote ? <blockquote>{active.quote}</blockquote> : null}
-            {active.email ? <a href={`mailto:${active.email}`}>Email</a> : null}
+            {active.card ? (
+              <img
+                className="bio-card"
+                src={active.card}
+                alt={t("{name} introduction card").replace("{name}", active.name ?? "")}
+                loading="lazy"
+              />
+            ) : null}
+            {active.email ? <a href={`mailto:${active.email}`}>{t("Email")}</a> : null}
           </article>
         </ModalShell>
       ) : null}
@@ -298,33 +319,40 @@ export function AboutTeam() {
 
 export function MembershipFaq() {
   const [open, setOpen] = useState(0);
+  const t = useT();
   const faqs = [
     {
-      q: "Do I have to live in the 21229 to join?",
-      a: "No. Non-Resident membership is open to anyone who believes in the mission. Resident membership is for people living in the community CCD serves.",
+      q: t("Do I have to live in the 21229 to join?"),
+      a: t(
+        "No. Non-Resident membership is open to anyone who believes in the mission. Resident membership is for people living in the community CCD serves.",
+      ),
     },
     {
-      q: "What does my monthly fee actually fund?",
-      a: "Dues fund CCD programs directly: green spaces, the Tool Bank, markets, events, and the Center for Social Impact.",
+      q: t("What does my monthly fee actually fund?"),
+      a: t(
+        "Dues fund CCD programs directly: green spaces, the Tool Bank, markets, events, and the Center for Social Impact.",
+      ),
     },
     {
-      q: "How does voting work?",
-      a: "Every voting membership carries exactly one vote. Major decisions come to the membership at community meetings.",
+      q: t("How does voting work?"),
+      a: t(
+        "Every voting membership carries exactly one vote. Major decisions come to the membership at community meetings.",
+      ),
     },
     {
-      q: "Can I cancel anytime?",
-      a: "Yes. Memberships are month-to-month with no long-term commitment.",
+      q: t("Can I cancel anytime?"),
+      a: t("Yes. Memberships are month-to-month with no long-term commitment."),
     },
     {
-      q: "Is my membership tax-deductible?",
-      a: "CCD is a nonprofit; consult your tax advisor on dues versus donations.",
+      q: t("Is my membership tax-deductible?"),
+      a: t("CCD is a nonprofit; consult your tax advisor on dues versus donations."),
     },
   ];
 
   return (
     <section className="section faq-section">
       <div className="section-heading">
-        <h2>Questions, answered.</h2>
+        <h2>{t("Questions, answered.")}</h2>
       </div>
       <div className="faq-list">
         {faqs.map((faq, index) => (
@@ -349,6 +377,8 @@ export function EstimateForm() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const t = useT();
+  const services = useTranslated(cleanGreenServices);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -356,7 +386,7 @@ export function EstimateForm() {
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
     if (!name || !phone) {
-      setError("Name and phone are required.");
+      setError(t("Name and phone are required."));
       return;
     }
     setError(null);
@@ -371,7 +401,12 @@ export function EstimateForm() {
     });
     setBusy(false);
     if (!ok) {
-      setError(`Something went wrong sending your request. Please email ${siteConfig.contact.cleanGreenEmail} directly.`);
+      setError(
+        t("Something went wrong sending your request. Please email {email} directly.").replace(
+          "{email}",
+          siteConfig.contact.cleanGreenEmail,
+        ),
+      );
       return;
     }
     setSent(true);
@@ -380,43 +415,43 @@ export function EstimateForm() {
   return (
     <section id="estimate" className="section form-band dark-form">
       <div>
-        <p className="eyebrow">FREE ESTIMATE</p>
-        <h2>Tell us about the job.</h2>
-        <p>Resident members receive 15% off Clean &amp; Green services.</p>
+        <p className="eyebrow">{t("FREE ESTIMATE")}</p>
+        <h2>{t("Tell us about the job.")}</h2>
+        <p>{t("Resident members receive 15% off Clean & Green services.")}</p>
       </div>
       <form onSubmit={submit} className="ccd-form">
         {sent ? (
-          <strong>Thanks. CCD will follow up about your estimate.</strong>
+          <strong>{t("Thanks. CCD will follow up about your estimate.")}</strong>
         ) : (
           <>
             <label>
-              Name
+              {t("Name")}
               <input name="name" required />
             </label>
             <label>
-              Phone
+              {t("Phone")}
               <input name="phone" type="tel" required />
             </label>
             <label className="full">
-              Property address
+              {t("Property address")}
               <input name="address" />
             </label>
             <label className="full">
-              Service
-              <select name="service" defaultValue={cleanGreenServices[0]}>
-                {cleanGreenServices.map((service) => (
+              {t("Service")}
+              <select name="service" defaultValue={services[0]}>
+                {services.map((service) => (
                   <option key={service}>{service}</option>
                 ))}
               </select>
             </label>
             <label className="full">
-              Details
+              {t("Details")}
               <textarea name="details" rows={4} />
             </label>
             <input className="hp-field" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             {error ? <p className="form-error" role="alert">{error}</p> : null}
             <button type="submit" disabled={busy}>
-              {busy ? "Sending..." : "Request my free estimate"}
+              {busy ? t("Sending...") : t("Request my free estimate")}
             </button>
           </>
         )}
@@ -431,6 +466,7 @@ export function DonatePanel() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const t = useT();
   const digits = custom.replace(/[^0-9]/g, "");
   const chosenAmount = digits || String(amount);
   const chosen = `$${chosenAmount}`;
@@ -447,7 +483,7 @@ export function DonatePanel() {
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     if (!name || !email) {
-      setError("Name and email are required.");
+      setError(t("Name and email are required."));
       return;
     }
     setError(null);
@@ -461,7 +497,12 @@ export function DonatePanel() {
     });
     setBusy(false);
     if (!ok) {
-      setError(`Something went wrong. Please email ${siteConfig.contact.email} directly.`);
+      setError(
+        t("Something went wrong. Please email {email} directly.").replace(
+          "{email}",
+          siteConfig.contact.email,
+        ),
+      );
       return;
     }
     setSent(true);
@@ -470,8 +511,8 @@ export function DonatePanel() {
   return (
     <section id="volunteer" className="section donate-grid">
       <div className="donation-box">
-        <p className="eyebrow">DONATE</p>
-        <h2>{chosen} toward the block.</h2>
+        <p className="eyebrow">{t("DONATE")}</p>
+        <h2>{t("{amount} toward the block.").replace("{amount}", chosen)}</h2>
         <div className="amounts">
           {[25, 50, 100, 500].map((value) => (
             <button
@@ -491,44 +532,46 @@ export function DonatePanel() {
         <input
           value={custom}
           onChange={(event) => setCustom(event.target.value)}
-          placeholder="$ custom"
-          aria-label="Custom donation amount"
+          placeholder={t("$ custom")}
+          aria-label={t("Custom donation amount")}
         />
         <a className="button gold" href={donateHref} target="_blank" rel="noopener noreferrer">
-          Continue donation
+          {t("Continue donation")}
         </a>
       </div>
       <form onSubmit={submit} className="ccd-form">
-        <p className="eyebrow">VOLUNTEER</p>
-        <h2>Give time, not just money.</h2>
+        <p className="eyebrow">{t("VOLUNTEER")}</p>
+        <h2>{t("Give time, not just money.")}</h2>
         {sent ? (
-          <strong>Thanks. CCD will follow up about volunteering.</strong>
+          <strong>{t("Thanks. CCD will follow up about volunteering.")}</strong>
         ) : (
           <>
             <label>
-              Name
+              {t("Name")}
               <input name="name" required />
             </label>
             <label>
-              Email
+              {t("Email")}
               <input name="email" type="email" required />
             </label>
             <label className="full">
-              Skills &amp; interests
-              <input name="skills" placeholder="gardening, carpentry, photography" />
+              {t("Skills & interests")}
+              <input name="skills" placeholder={t("gardening, carpentry, photography")} />
             </label>
             <label className="full">
-              Availability
+              {t("Availability")}
+              {/* The value posted to the form store stays English on purpose, so
+                  submissions from every language land in one readable column. */}
               <select name="availability" defaultValue="Weekends">
-                <option>Weekends</option>
-                <option>Weekdays</option>
-                <option>Evenings</option>
+                <option value="Weekends">{t("Weekends")}</option>
+                <option value="Weekdays">{t("Weekdays")}</option>
+                <option value="Evenings">{t("Evenings")}</option>
               </select>
             </label>
             <input className="hp-field" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             {error ? <p className="form-error" role="alert">{error}</p> : null}
             <button type="submit" disabled={busy}>
-              {busy ? "Sending..." : "Sign up to volunteer"}
+              {busy ? t("Sending...") : t("Sign up to volunteer")}
             </button>
           </>
         )}
@@ -556,17 +599,18 @@ export function BuyPicker({
   const [size, setSize] = useState(sizes[0]);
   const [grind, setGrind] = useState(grinds[0]);
   const [justAdded, setJustAdded] = useState(false);
+  const t = useT();
   const wanted = [size, grind].filter(Boolean).join(" / ");
   const variant = variants.find((v) => v.title === wanted);
 
   return (
     <div className="buy-picker">
       <label>
-        <span>Size</span>
+        <span>{t("Size")}</span>
         <select
           value={size}
           onChange={(event) => setSize(event.target.value)}
-          aria-label={`${productTitle} — size`}
+          aria-label={`${productTitle} — ${t("size")}`}
         >
           {sizes.map((value) => (
             <option key={value}>{value}</option>
@@ -575,11 +619,11 @@ export function BuyPicker({
       </label>
       {grinds.filter(Boolean).length > 1 ? (
         <label>
-          <span>Grind</span>
+          <span>{t("Grind")}</span>
           <select
             value={grind}
             onChange={(event) => setGrind(event.target.value)}
-            aria-label={`${productTitle} — grind`}
+            aria-label={`${productTitle} — ${t("grind")}`}
           >
             {grinds.map((value) => (
               <option key={value}>{value}</option>
@@ -602,16 +646,18 @@ export function BuyPicker({
             setJustAdded(true);
           }}
         >
-          Add to cart &mdash; ${variant.price}
+          {t("Add to cart")} &mdash; ${variant.price}
         </button>
       ) : (
         <span className="button gold is-disabled" aria-disabled="true">
-          {variant ? "Sold out" : "Unavailable"}
+          {variant ? t("Sold out") : t("Unavailable")}
         </span>
       )}
       {/* Announced to screen readers; the visible cart below is the real feedback. */}
       <p className="buy-added" role="status" aria-live="polite">
-        {justAdded ? `${productTitle} — ${wanted} added to cart` : ""}
+        {justAdded
+          ? t("{item} added to cart").replace("{item}", `${productTitle} — ${wanted}`)
+          : ""}
       </p>
     </div>
   );
@@ -628,12 +674,16 @@ export function useBrewCart() {
 export function CartIndicator() {
   const lines = useBrewCart();
   const count = cartCount(lines);
+  const t = useT();
+  const path = useLocalePath();
   if (!count) return null;
   return (
-    <Link className="nav-cart" href="/shop#cart">
-      Cart
+    <Link className="nav-cart" href={path("/shop#cart")}>
+      {t("Cart")}
       <span aria-hidden="true">{count}</span>
-      <span className="sr-only">{count === 1 ? "1 item" : `${count} items`} in cart</span>
+      <span className="sr-only">
+        {count === 1 ? t("1 item in cart") : t("{n} items in cart").replace("{n}", String(count))}
+      </span>
     </Link>
   );
 }
@@ -642,6 +692,7 @@ export function CartIndicator() {
 // check out with three different coffees in a single handoff.
 export function BrewCart() {
   const lines = useBrewCart();
+  const t = useT();
   if (!lines.length) return null;
 
   const total = cartTotal(lines);
@@ -650,9 +701,9 @@ export function BrewCart() {
   return (
     <div className="brew-cart" id="cart">
       <div className="brew-cart-head">
-        <h3>Your cart</h3>
+        <h3>{t("Your cart")}</h3>
         <button type="button" className="brew-cart-clear" onClick={clearCart}>
-          Clear
+          {t("Clear")}
         </button>
       </div>
       <ul className="brew-cart-lines">
@@ -667,7 +718,7 @@ export function BrewCart() {
               <button
                 type="button"
                 onClick={() => setQty(line.variantId, line.qty - 1)}
-                aria-label={`Decrease ${line.product} ${line.variant}`}
+                aria-label={`${t("Decrease")} ${line.product} ${line.variant}`}
               >
                 &minus;
               </button>
@@ -675,7 +726,7 @@ export function BrewCart() {
               <button
                 type="button"
                 onClick={() => setQty(line.variantId, line.qty + 1)}
-                aria-label={`Increase ${line.product} ${line.variant}`}
+                aria-label={`${t("Increase")} ${line.product} ${line.variant}`}
               >
                 +
               </button>
@@ -687,7 +738,7 @@ export function BrewCart() {
               type="button"
               className="brew-cart-remove"
               onClick={() => removeLine(line.variantId)}
-              aria-label={`Remove ${line.product} ${line.variant}`}
+              aria-label={`${t("Remove")} ${line.product} ${line.variant}`}
             >
               &times;
             </button>
@@ -696,16 +747,17 @@ export function BrewCart() {
       </ul>
       <div className="brew-cart-foot">
         <p>
-          <span>Subtotal</span>
+          <span>{t("Subtotal")}</span>
           <strong>${total.toFixed(2)}</strong>
         </p>
         <a className="button gold" href={href} target="_blank" rel="noopener noreferrer">
-          Check out &mdash; ${total.toFixed(2)}
+          {t("Check out")} &mdash; ${total.toFixed(2)}
         </a>
       </div>
       <p className="brew-cart-note">
-        Shipping and tax are calculated at checkout, which runs on The 4th Brew&rsquo;s
-        secure Shopify store.
+        {t(
+          "Shipping and tax are calculated at checkout, which runs on The 4th Brew's secure Shopify store.",
+        )}
       </p>
     </div>
   );
@@ -715,6 +767,7 @@ export function ContactPanel() {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const t = useT();
   const bookingHref = actionLink(
     siteConfig.links.facilitiesBooking,
     "Facilities booking",
@@ -731,7 +784,7 @@ export function ContactPanel() {
     const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
     if (!first || !email || !message) {
-      setError("First name, email, and message are required.");
+      setError(t("First name, email, and message are required."));
       return;
     }
     setError(null);
@@ -746,7 +799,12 @@ export function ContactPanel() {
     });
     setBusy(false);
     if (!ok) {
-      setError(`Something went wrong. Please email ${siteConfig.contact.email} directly.`);
+      setError(
+        t("Something went wrong. Please email {email} directly.").replace(
+          "{email}",
+          siteConfig.contact.email,
+        ),
+      );
       return;
     }
     setSent(true);
@@ -756,7 +814,7 @@ export function ContactPanel() {
     <section id="booking" className="section contact-grid">
       <div className="map-card">
         <iframe
-          title="CCD location map"
+          title={t("CCD location map")}
           className="contact-map"
           src={mapSrc}
           loading="lazy"
@@ -771,45 +829,47 @@ export function ContactPanel() {
             <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
           </p>
           <a className="button ghost" href={bookingHref} target="_blank" rel="noopener noreferrer">
-            Book facilities
+            {t("Book facilities")}
           </a>
         </div>
       </div>
       <form onSubmit={submit} className="ccd-form">
-        <p className="eyebrow">MESSAGE CCD</p>
+        <p className="eyebrow">{t("MESSAGE CCD")}</p>
         {sent ? (
-          <strong>Thanks. Your message is ready for CCD follow-up.</strong>
+          <strong>{t("Thanks. Your message is ready for CCD follow-up.")}</strong>
         ) : (
           <>
             <label>
-              First name
+              {t("First name")}
               <input name="first" required />
             </label>
             <label>
-              Last name
+              {t("Last name")}
               <input name="last" />
             </label>
             <label>
-              Email
+              {t("Email")}
               <input name="email" type="email" required />
             </label>
             <label>
-              Topic
+              {t("Topic")}
+              {/* Values stay English so every submission lands in one column
+                  whatever language the visitor wrote in. */}
               <select name="topic" defaultValue="General question">
-                <option>General question</option>
-                <option>Membership</option>
-                <option>Facilities booking</option>
-                <option>Clean & Green</option>
+                <option value="General question">{t("General question")}</option>
+                <option value="Membership">{t("Membership")}</option>
+                <option value="Facilities booking">{t("Facilities booking")}</option>
+                <option value="Clean & Green">{t("Clean & Green")}</option>
               </select>
             </label>
             <label className="full">
-              Message
+              {t("Message")}
               <textarea name="message" rows={5} required />
             </label>
             <input className="hp-field" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             {error ? <p className="form-error" role="alert">{error}</p> : null}
             <button type="submit" disabled={busy}>
-              {busy ? "Sending..." : "Send message"}
+              {busy ? t("Sending...") : t("Send message")}
             </button>
           </>
         )}
@@ -848,6 +908,7 @@ export function BeforeAfter({
 
 function BeforeAfterCard({ pair }: { pair: { before: string; after: string; label: string } }) {
   const [pos, setPos] = useState(50);
+  const t = useT();
   const wrapRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
 
@@ -874,12 +935,12 @@ function BeforeAfterCard({ pair }: { pair: { before: string; after: string; labe
         }}
         onPointerUp={() => (dragging.current = false)}
       >
-        <img className="ba-after" src={pair.after} alt={`${pair.label} — after`} />
+        <img className="ba-after" src={pair.after} alt={`${pair.label} — ${t("after")}`} />
         <div className="ba-before" style={{ width: `${pos}%` }}>
-          <img src={pair.before} alt={`${pair.label} — before`} />
+          <img src={pair.before} alt={`${pair.label} — ${t("before")}`} />
         </div>
-        <span className="ba-tag ba-tag-before">Before</span>
-        <span className="ba-tag ba-tag-after">After</span>
+        <span className="ba-tag ba-tag-before">{t("Before")}</span>
+        <span className="ba-tag ba-tag-after">{t("After")}</span>
         <input
           className="ba-range"
           type="range"
@@ -887,7 +948,7 @@ function BeforeAfterCard({ pair }: { pair: { before: string; after: string; labe
           max={100}
           value={pos}
           onChange={(e) => setPos(Number(e.target.value))}
-          aria-label={`Reveal ${pair.label} before and after`}
+          aria-label={t("Reveal {label} before and after").replace("{label}", pair.label)}
         />
         <span className="ba-handle" style={{ left: `${pos}%` }} aria-hidden="true" />
       </div>
@@ -919,17 +980,23 @@ type FeedItem = {
 
 export function NewsEvents() {
   const [openId, setOpenId] = useState<string | null>(null);
-  const allItems = useMemo<FeedItem[]>(() => [...events, ...news], []);
+  const t = useT();
+  const eventList = useTranslated(events);
+  const newsList = useTranslated(news);
+  const allItems = useMemo<FeedItem[]>(
+    () => [...eventList, ...newsList],
+    [eventList, newsList],
+  );
   const modal = allItems.find((item) => item.id === openId) ?? null;
 
   return (
     <section id="events" className="section news-section">
       <div className="section-heading">
-        <p className="eyebrow">UPCOMING</p>
-        <h2>Events on the block.</h2>
+        <p className="eyebrow">{t("UPCOMING")}</p>
+        <h2>{t("Events on the block.")}</h2>
       </div>
       <div className="event-list">
-        {events.map((event, index) => (
+        {eventList.map((event, index) => (
           <button
             className="event-row"
             type="button"
@@ -953,11 +1020,11 @@ export function NewsEvents() {
       </div>
 
       <div className="section-heading">
-        <p className="eyebrow">LATEST NEWS</p>
-        <h2>Updates from CCD.</h2>
+        <p className="eyebrow">{t("LATEST NEWS")}</p>
+        <h2>{t("Updates from CCD.")}</h2>
       </div>
       <div className="card-grid">
-        {news.map((item, index) => (
+        {newsList.map((item, index) => (
           <button
             className="news-card"
             type="button"
@@ -977,7 +1044,7 @@ export function NewsEvents() {
       {modal ? (
         <ModalShell onClose={() => setOpenId(null)}>
           <article className="news-modal" onClick={(event) => event.stopPropagation()}>
-            <button type="button" className="modal-close" onClick={() => setOpenId(null)} aria-label="Close detail">
+            <button type="button" className="modal-close" onClick={() => setOpenId(null)} aria-label={t("Close detail")}>
               x
             </button>
             <img src={modal.thumb} alt="" />
@@ -986,25 +1053,25 @@ export function NewsEvents() {
             <p>{modal.body}</p>
             {modal.time || modal.location || modal.cost ? (
               <div className="modal-facts">
-                {modal.time ? <p><strong>When:</strong> {modal.time}</p> : null}
+                {modal.time ? <p><strong>{t("When:")}</strong> {modal.time}</p> : null}
                 {modal.location ? (
                   <p>
-                    <strong>Where:</strong> {modal.location}{" "}
+                    <strong>{t("Where:")}</strong> {modal.location}{" "}
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(modal.location)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Get directions
+                      {t("Get directions")}
                     </a>
                   </p>
                 ) : null}
-                {modal.cost ? <p><strong>Cost:</strong> {modal.cost}</p> : null}
+                {modal.cost ? <p><strong>{t("Cost:")}</strong> {modal.cost}</p> : null}
               </div>
             ) : null}
             {modal.instructions?.length ? (
               <div className="modal-instructions">
-                <h3>How to take part</h3>
+                <h3>{t("How to take part")}</h3>
                 <ul className="check-list">
                   {modal.instructions.map((step) => (
                     <li key={step}>{step}</li>
@@ -1015,13 +1082,13 @@ export function NewsEvents() {
             {modal.contactEmail ? (
               <p>
                 <a className="button line" href={`mailto:${modal.contactEmail}?subject=${encodeURIComponent(modal.title)}`}>
-                  {modal.contactLabel ?? "Email CCD about this"}
+                  {modal.contactLabel ?? t("Email CCD about this")}
                 </a>
               </p>
             ) : null}
             <div className="modal-gallery">
               {modal.photos.map((photo) => (
-                <img key={photo} src={photo} alt="" />
+                <img key={photo} src={photo} alt="" loading="lazy" />
               ))}
             </div>
           </article>

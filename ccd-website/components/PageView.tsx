@@ -10,6 +10,7 @@ import {
   MembershipFaq,
   NewsEvents,
 } from "@/components/ClientBits";
+import { type Dictionary, localePath, localize, makeT } from "@/lib/i18n";
 import {
   membershipTiers,
   partners,
@@ -21,6 +22,13 @@ import {
   type Section,
   type SitePage,
 } from "@/lib/siteData";
+
+// The page itself arrives already translated (lib/routes.server.ts). What still
+// needs the language are the two things that do not come from the page file: the
+// sidebar collections these blocks pull in, and the words written into the
+// components below. Both are handled with the same `l` pair — `l.t("…")` for a
+// literal, `localize(collection, …)` for a loaded list.
+type L = { locale: string; dict: Dictionary | undefined; t: (source: string) => string };
 
 function ButtonLink({ href, children }: { href: string; children: React.ReactNode }) {
   if (href.startsWith("mailto:") || href.startsWith("tel:")) {
@@ -218,21 +226,23 @@ function TimelineSection({ section }: { section: Extract<Section, { type: "timel
   );
 }
 
-function HeartSection({ section }: { section: Extract<Section, { type: "heart" }> }) {
-  // Official H.E.A.R.T. framework (from CCD's own materials).
+function HeartSection({ section, l }: { section: Extract<Section, { type: "heart" }>; l: L }) {
+  // Official H.E.A.R.T. framework (from CCD's own materials). The letters are an
+  // English acronym and stay as they are in every language; the words beside them
+  // are translated.
   const items = [
-    ["H", "Homeownership", "Homeownership and affordable housing for the community."],
-    ["E", "Economic Independence", "Building economic strength that stays on the block."],
-    ["A", "Agricultural Access", "Food sovereignty and productive green spaces."],
-    ["R", "Retail Revitalization", "Bringing neighborhood-owned retail back to the corridor."],
-    ["T", "Tranquil Spaces", "Tranquil community spaces for rest and gathering."],
+    ["H", l.t("Homeownership"), l.t("Homeownership and affordable housing for the community.")],
+    ["E", l.t("Economic Independence"), l.t("Building economic strength that stays on the block.")],
+    ["A", l.t("Agricultural Access"), l.t("Food sovereignty and productive green spaces.")],
+    ["R", l.t("Retail Revitalization"), l.t("Bringing neighborhood-owned retail back to the corridor.")],
+    ["T", l.t("Tranquil Spaces"), l.t("Tranquil community spaces for rest and gathering.")],
   ];
 
   return (
     <section id={section.id} className="section heart-section">
       <div className="heart-copy">
-        <p className="eyebrow">MISSION</p>
-        <h2>H.E.A.R.T. is how CCD works.</h2>
+        <p className="eyebrow">{l.t("MISSION")}</p>
+        <h2>{l.t("H.E.A.R.T. is how CCD works.")}</h2>
       </div>
       <div className="heart-list">
         {items.map(([letter, title, body]) => (
@@ -257,7 +267,7 @@ function GallerySection({ section }: { section: Extract<Section, { type: "galler
       </div>
       <div className="media-grid">
         {section.images.map((image) => (
-          <img key={image.src} src={image.src} alt={image.alt} />
+          <img key={image.src} src={image.src} alt={image.alt} loading="lazy" />
         ))}
       </div>
       {section.credit ? <p className="media-credit">{section.credit}</p> : null}
@@ -359,23 +369,30 @@ function StepsSection({ section }: { section: Extract<Section, { type: "steps" }
   );
 }
 
-function MembershipTiersSection({ section }: { section: Extract<Section, { type: "membershipTiers" }> }) {
+function MembershipTiersSection({
+  section,
+  l,
+}: {
+  section: Extract<Section, { type: "membershipTiers" }>;
+  l: L;
+}) {
+  const tiers = localize(membershipTiers, l.locale, l.dict);
   return (
     <section id={section.id} className="section tiers-section">
       <div className="section-heading">
-        <p className="eyebrow">MEMBERSHIP</p>
-        <h2>Five ways in.</h2>
-        <p>Dues fund programs directly. Voting members help decide what CCD does next.</p>
+        <p className="eyebrow">{l.t("MEMBERSHIP")}</p>
+        <h2>{l.t("Five ways in.")}</h2>
+        <p>{l.t("Dues fund programs directly. Voting members help decide what CCD does next.")}</p>
       </div>
       <div className="tier-grid">
-        {membershipTiers.map((tier, index) => (
+        {tiers.map((tier, index) => (
           <article
             key={tier.name}
             className={`tier-card ${tier.featured ? "featured" : ""}`}
             data-reveal
             style={{ transitionDelay: `${Math.min(index, 5) * 80}ms` }}
           >
-            {tier.featured ? <span className="tier-flag">Most popular</span> : null}
+            {tier.featured ? <span className="tier-flag">{l.t("Most popular")}</span> : null}
             <h3>{tier.name}</h3>
             <p className="tier-price">
               {tier.price} <em>{tier.setup}</em>
@@ -387,30 +404,37 @@ function MembershipTiersSection({ section }: { section: Extract<Section, { type:
               ))}
             </ul>
             <p className={tier.vote ? "tier-vote yes" : "tier-vote no"}>
-              {tier.vote ? "✓ Includes 1 vote" : "Non-voting"}
+              {tier.vote ? l.t("✓ Includes 1 vote") : l.t("Non-voting")}
             </p>
           </article>
         ))}
       </div>
       <div className="tier-cta">
-        <ButtonLink href={siteConfig.links.membershipSignup || "/contact"}>
-          Choose your membership
+        <ButtonLink href={siteConfig.links.membershipSignup || localePath("/contact", l.locale)}>
+          {l.t("Choose your membership")}
         </ButtonLink>
       </div>
     </section>
   );
 }
 
-function DirectorySection({ section }: { section: Extract<Section, { type: "directory" }> }) {
+function DirectorySection({
+  section,
+  l,
+}: {
+  section: Extract<Section, { type: "directory" }>;
+  l: L;
+}) {
+  const entries = localize(serviceDirectory, l.locale, l.dict);
   return (
     <section id={section.id} className="section directory-section">
       <div className="section-heading">
-        <p className="eyebrow">WHO TO CONTACT</p>
+        <p className="eyebrow">{l.t("WHO TO CONTACT")}</p>
         <h2>{section.title}</h2>
         {section.body ? <p>{section.body}</p> : null}
       </div>
       <div className="directory-grid">
-        {serviceDirectory.map((entry, index) => (
+        {entries.map((entry, index) => (
           <a
             key={entry.area}
             className="directory-card"
@@ -429,16 +453,26 @@ function DirectorySection({ section }: { section: Extract<Section, { type: "dire
   );
 }
 
-function TestimonialsSection({ section }: { section: Extract<Section, { type: "testimonials" }> }) {
-  if (!testimonials.length) {
+function TestimonialsSection({
+  section,
+  l,
+}: {
+  section: Extract<Section, { type: "testimonials" }>;
+  l: L;
+}) {
+  const quotes = localize(testimonials, l.locale, l.dict);
+  if (!quotes.length) {
     return (
       <section id={section.id} className="section testimonials-section empty">
         <div className="section-heading">
           <h2>{section.title}</h2>
-          <p>{section.body ?? "Are you a member, resident, or Clean & Green customer? Share your story with CCD."}</p>
+          <p>
+            {section.body ??
+              l.t("Are you a member, resident, or Clean & Green customer? Share your story with CCD.")}
+          </p>
         </div>
         <ButtonLink href={`mailto:${siteConfig.contact.email}?subject=My%20CCD%20story`}>
-          Share your story
+          {l.t("Share your story")}
         </ButtonLink>
       </section>
     );
@@ -450,7 +484,7 @@ function TestimonialsSection({ section }: { section: Extract<Section, { type: "t
         {section.body ? <p>{section.body}</p> : null}
       </div>
       <div className="quote-grid">
-        {testimonials.map((t, index) => (
+        {quotes.map((t, index) => (
           <figure key={t.name} data-reveal style={{ transitionDelay: `${index * 90}ms` }}>
             <blockquote>{t.quote}</blockquote>
             <figcaption>
@@ -464,17 +498,24 @@ function TestimonialsSection({ section }: { section: Extract<Section, { type: "t
   );
 }
 
-function ProjectMapSection({ section }: { section: Extract<Section, { type: "projectMap" }> }) {
+function ProjectMapSection({
+  section,
+  l,
+}: {
+  section: Extract<Section, { type: "projectMap" }>;
+  l: L;
+}) {
+  const pins = localize(projectPins, l.locale, l.dict);
   return (
     <section id={section.id} className="section map-section">
       <div className="section-heading">
-        <p className="eyebrow">IMPACT MAP</p>
+        <p className="eyebrow">{l.t("IMPACT MAP")}</p>
         <h2>{section.title}</h2>
         {section.body ? <p>{section.body}</p> : null}
       </div>
       <div className="map-frame" data-reveal>
         <div className="map-grid-lines" aria-hidden="true" />
-        {projectPins.map((pin) => (
+        {pins.map((pin) => (
           <Link
             key={pin.name}
             href={pin.href}
@@ -488,37 +529,58 @@ function ProjectMapSection({ section }: { section: Extract<Section, { type: "pro
             </span>
           </Link>
         ))}
-        <span className="map-corner">Irvington · 21229 — map © OpenStreetMap contributors</span>
+        <span className="map-corner">
+          {l.t("Irvington · 21229 — map © OpenStreetMap contributors")}
+        </span>
       </div>
     </section>
   );
 }
 
-function PartnerWallSection({ section }: { section: Extract<Section, { type: "partnerWall" }> }) {
+function PartnerWallSection({
+  section,
+  l,
+}: {
+  section: Extract<Section, { type: "partnerWall" }>;
+  l: L;
+}) {
+  const orgs = localize(partners, l.locale, l.dict);
+  const logos = localize(supporterLogos, l.locale, l.dict);
+  // Category is a fixed set, not free text, so each option is translated by name
+  // rather than by whatever an editor happened to type.
+  const categoryLabel: Record<string, string> = {
+    funder: l.t("funder"),
+    design: l.t("design"),
+    community: l.t("community"),
+    program: l.t("program"),
+    member: l.t("member"),
+  };
   return (
     <section id={section.id} className="section partner-wall-section">
       <div className="section-heading">
-        <p className="eyebrow">PARTNERS & FUNDERS</p>
+        <p className="eyebrow">{l.t("PARTNERS & FUNDERS")}</p>
         <h2>{section.title}</h2>
         {section.body ? <p>{section.body}</p> : null}
       </div>
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
-          {[...partners, ...partners].map((partner, i) => (
+          {[...orgs, ...orgs].map((partner, i) => (
             <span key={`${partner.name}-${i}`}>{partner.name}</span>
           ))}
         </div>
       </div>
       <div className="partner-cards">
-        {partners.map((partner, index) => {
+        {orgs.map((partner, index) => {
           const inner = (
             <>
               {partner.logo ? (
-                <img className="partner-logo" src={partner.logo} alt={`${partner.name} logo`} />
+                <img className="partner-logo" src={partner.logo} alt={`${partner.name} logo`} loading="lazy" />
               ) : null}
               <strong>{partner.name}</strong>
               <p>{partner.description}</p>
-              <span className={`partner-tag tag-${partner.category}`}>{partner.category}</span>
+              <span className={`partner-tag tag-${partner.category}`}>
+                {categoryLabel[partner.category] ?? partner.category}
+              </span>
             </>
           );
           // Partners CCD now hosts itself (e.g. The 4th Brew) carry an internal
@@ -549,9 +611,9 @@ function PartnerWallSection({ section }: { section: Extract<Section, { type: "pa
         })}
       </div>
       <div className="supporter-wall">
-        <h3>Friends &amp; supporters</h3>
+        <h3>{l.t("Friends & supporters")}</h3>
         <div className="supporter-logos" data-reveal>
-          {supporterLogos.map((logo) => (
+          {logos.map((logo) => (
             <img key={logo.src} src={logo.src} alt={logo.alt} loading="lazy" />
           ))}
         </div>
@@ -560,7 +622,7 @@ function PartnerWallSection({ section }: { section: Extract<Section, { type: "pa
   );
 }
 
-function RenderSection({ section }: { section: Section }) {
+function RenderSection({ section, l }: { section: Section; l: L }) {
   switch (section.type) {
     case "split":
       return <SplitSection section={section} />;
@@ -571,7 +633,7 @@ function RenderSection({ section }: { section: Section }) {
     case "timeline":
       return <TimelineSection section={section} />;
     case "heart":
-      return <HeartSection section={section} />;
+      return <HeartSection section={section} l={l} />;
     case "gallery":
       return <GallerySection section={section} />;
     case "cta":
@@ -585,15 +647,15 @@ function RenderSection({ section }: { section: Section }) {
     case "steps":
       return <StepsSection section={section} />;
     case "directory":
-      return <DirectorySection section={section} />;
+      return <DirectorySection section={section} l={l} />;
     case "membershipTiers":
-      return <MembershipTiersSection section={section} />;
+      return <MembershipTiersSection section={section} l={l} />;
     case "testimonials":
-      return <TestimonialsSection section={section} />;
+      return <TestimonialsSection section={section} l={l} />;
     case "projectMap":
-      return <ProjectMapSection section={section} />;
+      return <ProjectMapSection section={section} l={l} />;
     case "partnerWall":
-      return <PartnerWallSection section={section} />;
+      return <PartnerWallSection section={section} l={l} />;
     case "beforeAfter":
       // Hidden until real before/after pairs exist (see beforeAfterPairs in siteData).
       if (!section.pairs.length) return null;
@@ -620,27 +682,36 @@ function RenderSection({ section }: { section: Section }) {
     case "eventsFull":
       return <NewsEvents />;
     case "products":
-      return <BrewProducts section={section} />;
+      return <BrewProducts section={section} locale={l.locale} dict={l.dict} />;
   }
 }
 
-export function PageView({ page }: { page: SitePage }) {
+export function PageView({
+  page,
+  locale,
+  dict,
+}: {
+  page: SitePage;
+  locale: string;
+  dict: Dictionary | undefined;
+}) {
   const isHome = page.slug === "";
+  const l: L = { locale, dict, t: makeT(dict) };
 
   return (
-    <main className={page.brand}>
+    <main className={page.brand} id="main-content">
       {isHome ? <HomeHero /> : <StandardHero page={page} />}
       {page.slug === "projects" ? (
         <section className="video-band">
           <video src="/media/video/memorial-garden.mp4" autoPlay muted loop playsInline />
           <div>
-            <p className="eyebrow">MEMORIAL GARDEN</p>
-            <h2>Real footage from the work.</h2>
+            <p className="eyebrow">{l.t("MEMORIAL GARDEN")}</p>
+            <h2>{l.t("Real footage from the work.")}</h2>
           </div>
         </section>
       ) : null}
       {page.sections.map((section, index) => (
-        <RenderSection section={section} key={`${section.type}-${index}`} />
+        <RenderSection section={section} l={l} key={`${section.type}-${index}`} />
       ))}
     </main>
   );

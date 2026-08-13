@@ -1,0 +1,112 @@
+collections:
+
+  # ============================================================== PROJECTS ====
+  - name: projects
+    label: Project pages
+    label_singular: Project page
+    icon: location_on
+    description: The detail pages for individual projects, such as Oasis @ 240.
+    folder: ccd-website/content/projects
+    extension: json
+    format: json
+    create: true
+    slug: '{{fields.key}}'
+    summary: '{{seo.title}}'
+    sortable_fields: [seo.title, slug]
+    fields:
+      - { name: key, label: File name, widget: string, pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and dashes only'] }
+      - { name: slug, label: Web address, widget: string, hint: 'Appears as /projects/…' }
+      - { name: active, label: Highlighted menu item, widget: hidden, default: projects }
+      - name: seo
+        label: Google & browser tab
+        widget: object
+        collapsed: true
+        fields:
+          - { name: title, label: Browser tab title, widget: string }
+          - { name: description, label: Search description, widget: text }
+      - name: hero
+        label: Top of the page
+        widget: object
+        collapsed: true
+        fields:
+          - { name: eyebrow, label: Small label above the headline, widget: string, required: false }
+          - { name: title, label: Headline, widget: string }
+          - { name: accent, label: Headline second line, widget: string, required: false }
+          - name: body
+            label: Opening paragraph
+            widget: text
+            hint: >-
+              Note: no page layout currently displays this. Kept so existing
+              wording is not lost — ask a developer before relying on it.
+          - { name: image, label: Top image, widget: image, required: false, choose_url: true }
+          - { name: alt, label: Image description, widget: string, required: false }
+          - { name: position, label: Image crop position, widget: string, required: false }
+          - name: cta
+            label: Button
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string }
+      - name: sections
+        label: Page blocks
+        label_singular: Block
+        widget: list
+        required: false
+        collapsed: true
+        types:
+          - name: split
+            label: 'Text — beside an image'
+            summary: 'Text + image — {{title}}'
+            fields:
+              - { name: id, label: Link anchor, widget: string, required: false }
+              - { name: eyebrow, label: Small label, widget: string, required: false }
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - name: bullets
+                label: Bullet points
+                widget: list
+                required: false
+                field: { name: item, label: Point, widget: string }
+              - { name: image, label: Image, widget: image, required: false, choose_url: true }
+              - { name: alt, label: Image description, widget: string, required: false }
+              - { name: reverse, label: Put the image on the left, widget: boolean, required: false, default: false }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [light, green, dark, blue]
+              - { name: ctaText, label: Button text, widget: string, required: false }
+              - { name: ctaHref, label: Button link, widget: string, required: false }
+          - name: cta
+            label: 'Text — call to action band'
+            summary: 'Call to action — {{title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - { name: body, label: Paragraph, widget: text }
+              - { name: label, label: Button text, widget: string }
+              - { name: href, label: Button link, widget: string }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [green, dark, gold]
+          - name: gallery
+            label: 'Photos — gallery'
+            summary: 'Gallery — {{title}}'
+            fields:
+              - { name: title, label: Heading, widget: string }
+              - { name: credit, label: Photo credit, widget: string, required: false }
+              - name: theme
+                label: Colour
+                widget: select
+                required: false
+                options: [light, dark]
+              - name: images
+                label: Photos
+                widget: list
+                summary: '{{alt}}'
+                fields:
+                  - { name: src, label: Photo, widget: image, choose_url: true }
+                  - { name: alt, label: Photo description, widget: string }

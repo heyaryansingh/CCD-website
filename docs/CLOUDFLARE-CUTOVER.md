@@ -68,7 +68,8 @@ likely to be missed, and it looks like "the migration broke editing".
    https://<your-new-url>/api/auth/callback
    ```
 
-2. **`ccd-website/public/admin/config.yml`** → change `base_url` to
+2. **`ccd-website/public/admin/config.yml`** (globals only; the collections
+   now live in `public/admin/collections/`) → change `base_url` to
    `https://<your-new-url>`, commit and push.
 
 3. **Cloudflare** → Workers → `ccdgroup` → Settings → Variables → add

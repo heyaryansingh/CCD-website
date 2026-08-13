@@ -18,14 +18,18 @@ npm run build    # must pass before you push
 
 ## How this site is built
 
-**There are only four route files.** Everything else is data.
+**There are only three route files.** Everything else is data.
 
 | File | Serves |
 |---|---|
-| `app/page.tsx` | `/` |
-| `app/[slug]/page.tsx` | **all 20 inner pages**, from `generateStaticParams()` |
-| `app/projects/[project]/page.tsx` | the 4 project detail pages |
+| `app/page.tsx` | `/` — the English home page |
+| `app/[...path]/page.tsx` | **everything else, in every language**, from `generateStaticParams()` — 228 pages |
 | `app/api/submit/route.ts` | form intake (the only dynamic route) |
+
+One catch-all resolves `/about`, `/projects/oasis-240`, `/es`, `/es/about` and
+`/es/projects/oasis-240` through the same lookup — see `lib/routes.server.ts`.
+A required catch-all cannot match the site root, which is the only reason
+`app/page.tsx` still exists.
 
 **Content is not in the code.** It lives as JSON in `content/` and is edited by
 CCD staff at **/admin** (Sveltia CMS). Adding a page means adding a file in
@@ -43,11 +47,15 @@ lib/types.ts          the shapes content must match (Section union lives here)
 lib/siteData.ts       loads the collections — CLIENT-SAFE, no fs
 lib/pages.server.ts   loads pages via fs — SERVER ONLY, never import from a client component
 lib/content.ts        resolves {{settings}} tokens inside content
+lib/i18n.ts           languages, the translate/link walk — CLIENT-SAFE
+lib/i18n.server.ts    loads the dictionaries — SERVER ONLY
+lib/routes.server.ts  turns a URL into a page (one catch-all route serves all)
 lib/siteConfig.ts     loads settings.json, keeps the link helpers
 components/PageView.tsx   RenderSection(): maps a section `type` to a component
 components/ClientBits.tsx every "use client" island (forms, carousels, cart)
 app/globals.css       the entire stylesheet, hand-written
-public/admin/         the CMS itself (index.html + config.yml)
+content/translations/*.json  one dictionary per language, English -> translation
+public/admin/         the CMS (index.html + config.yml + collections/*.yml)
 ```
 
 **The one rule that will bite you:** `lib/siteData.ts` is imported by
@@ -65,10 +73,43 @@ switch that renders each one. Adding a section kind means **four** edits:
 1. the union in `lib/types.ts`
 2. a `case` in `RenderSection()`
 3. the CSS in `app/globals.css`
-4. an entry under `sections` → `types:` in `public/admin/config.yml`
+4. an entry under `sections` → `types:` in `public/admin/collections/pages.yml`
 
 Miss step 4 and the section works but editors cannot create one. TypeScript
 catches the first two; nothing catches the fourth, so do not skip it.
+
+### Languages
+
+The site is written in English and served in nine languages. English keeps its
+bare URLs (`/about`); every other language is prefixed (`/es/about`), so no
+existing link, printed flyer or search result changed.
+
+Translation is a **lookup, not a second set of content**. Every translatable
+string in `content/` is a key in `content/translations/<code>.json`, and anything
+without an entry falls back to the English it was written in — so a
+half-translated language is safe to ship and is never blank. `localize()` in
+`lib/i18n.ts` does the swap in the same walk that rewrites in-site links for the
+current language, which is why no component has to know about languages to link
+correctly.
+
+Strings written into components are marked by being passed to `t("…")`;
+`scripts/bundle-pages.mjs` finds them at build time. **A string built at runtime
+— `t(label)`, or a template literal — is invisible to that scan and will never
+be translated.** Use a literal with a `{placeholder}` and substitute afterwards.
+
+```bash
+npm run i18n -- report            # coverage per language
+npm run i18n -- extract --locale=es --limit=150
+npm run i18n -- apply --locale=es
+npm run i18n -- prune             # drop entries whose English no longer exists
+```
+
+There is no translation API and no API key: the translating is done by an agent.
+Run `/translate es` in Claude Code and it drives those commands. Staff can
+correct any single string in the CMS under **Translations**.
+
+Adding a language: one entry in `locales` (`lib/i18n.ts`), one import in
+`lib/i18n.server.ts`, one entry in `public/admin/collections/translations.yml`.
 
 ### Styling
 

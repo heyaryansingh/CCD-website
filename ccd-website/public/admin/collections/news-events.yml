@@ -1,0 +1,79 @@
+collections:
+  # A separator line in the sidebar — purely visual.
+  - divider: true
+
+
+  # ========================================================= NEWS & EVENTS ====
+  - name: news-events
+    label: News & events
+    icon: newspaper
+    description: >-
+      Articles and events. These appear wherever a page has a "Latest news and
+      events" or "All events" block.
+    files:
+      - name: news
+        label: News
+        file: ccd-website/content/collections/news.json
+        fields:
+          - name: items
+            label: News articles
+            label_singular: Article
+            widget: list
+            summary: '{{title}}'
+            fields:
+              - { name: id, label: Short name, widget: string, hint: 'Lowercase, dashes instead of spaces. Used in the link to this article.' }
+              - { name: title, label: Headline, widget: string }
+              - { name: meta, label: Date line, widget: string, hint: 'For example: Jun 2026 · Baltimore Sun' }
+              - { name: thumb, label: Photo, widget: image, choose_url: true }
+              - { name: excerpt, label: Short summary, widget: text, hint: 'One or two sentences shown in the list.' }
+              - { name: body, label: Full article, widget: text }
+              - name: photos
+                label: More photos
+                widget: list
+                required: false
+                field: { name: src, label: Photo, widget: image, choose_url: true }
+              - name: instructions
+                label: Steps or details
+                widget: list
+                required: false
+                field: { name: item, label: Line, widget: string }
+              - { name: contactEmail, label: Contact email, widget: string, required: false }
+              - { name: contactLabel, label: Contact button text, widget: string, required: false }
+
+      - name: events
+        label: Events
+        file: ccd-website/content/collections/events.json
+        fields:
+          - name: items
+            label: Events
+            label_singular: Event
+            widget: list
+            summary: '{{date}} — {{title}}'
+            fields:
+              - { name: id, label: Short name, widget: string, hint: 'Lowercase, dashes instead of spaces.' }
+              - { name: title, label: Event name, widget: string }
+              - { name: date, label: Month, widget: string, hint: 'For example JUN' }
+              - { name: day, label: Day, widget: string, hint: 'For example 21' }
+              - { name: time, label: Time, widget: string }
+              - { name: location, label: Place, widget: string }
+              - { name: cost, label: Cost, widget: string, hint: 'For example Free' }
+              - { name: tag, label: Category label, widget: string }
+              - name: tagColor
+                label: Category colour
+                widget: select
+                options: [green, gold, blue, slate]
+              - { name: thumb, label: Photo, widget: image, choose_url: true }
+              - { name: blurb, label: Short summary, widget: text }
+              - { name: body, label: Full description, widget: text }
+              - name: instructions
+                label: What to bring or know
+                widget: list
+                required: false
+                field: { name: item, label: Line, widget: string }
+              - name: photos
+                label: More photos
+                widget: list
+                required: false
+                field: { name: src, label: Photo, widget: image, choose_url: true }
+              - { name: contactEmail, label: Contact email, widget: string, required: false }
+              - { name: contactLabel, label: Contact button text, widget: string, required: false }

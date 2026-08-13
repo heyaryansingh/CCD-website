@@ -1,0 +1,38 @@
+collections:
+
+  # ============================================================== PROGRAMS ====
+  - name: programs
+    label: Programs
+    icon: workspaces
+    description: Membership levels and the services Clean & Green offers.
+    files:
+      - name: membership-tiers
+        label: Membership tiers
+        file: ccd-website/content/collections/membership-tiers.json
+        fields:
+          - name: items
+            label: Tiers
+            label_singular: Tier
+            widget: list
+            summary: '{{name}} — {{price}}'
+            fields:
+              - { name: name, label: Tier name, widget: string }
+              - { name: price, label: Price, widget: string }
+              - { name: setup, label: Joining fee, widget: string }
+              - { name: eligibility, label: Who can join, widget: string }
+              - { name: vote, label: Includes a vote, widget: boolean }
+              - { name: featured, label: Highlight this tier, widget: boolean, required: false }
+              - name: benefits
+                label: What is included
+                widget: list
+                field: { name: item, label: Benefit, widget: string }
+
+      - name: cleangreen-services
+        label: 'Clean & Green services'
+        file: ccd-website/content/collections/cleangreen-services.json
+        fields:
+          - name: items
+            label: Services offered
+            label_singular: Service
+            widget: list
+            field: { name: item, label: Service, widget: string }
