@@ -189,8 +189,20 @@ const contact = await (await fetch(`${BASE}/contact`)).text();
 ok("settings resolve into pages", contact.includes("info@ccdgroup.org"));
 ok("no unresolved {{tokens}} leak", !contact.includes("{{"));
 
+// Asserted by fetching them, not by matching a filename. The old version looked
+// for `method-*.png` and started failing the moment the icons were redrawn as
+// `-v2.jpg` — reporting a break where the page was fine.
 const brewing = await (await fetch(`${BASE}/brewing`)).text();
-ok("all 8 brewing icons load", (brewing.match(/media\/brew\/method-[a-z-]+\.png/g) || []).length >= 8);
+const icons = [...new Set(brewing.match(/\/media\/brew\/method-[a-z0-9-]+\.(?:png|jpg|webp|avif)/g) || [])];
+const missingIcons = [];
+for (const icon of icons) {
+  if ((await fetch(`${BASE}${icon}`)).status !== 200) missingIcons.push(icon);
+}
+ok(
+  `all ${icons.length} brewing icons load`,
+  icons.length >= 8 && missingIcons.length === 0,
+  missingIcons.join(", "),
+);
 
 const asset = await fetch(`${BASE}/media/brew/method-drip.png`);
 ok("static media is served", asset.status === 200);
