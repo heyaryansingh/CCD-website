@@ -73,11 +73,11 @@ it empty — the site shows their initials in a circle, which looks deliberate
 rather than broken, and you can add the picture later without touching anything
 else.
 
-**Announcement graphics.** If someone was introduced with a designed card (the
-2026 interns all were), put it in **Introduction graphic** and it appears under
-their biography. Type the wording into **Biography** as well — words inside a
-picture cannot be read aloud by a screen reader or translated into the other
-eight languages.
+**Designed announcement cards.** You do not need to upload one. The site builds
+that card itself from the fields above — name, photo, role, biography — so the
+words stay selectable, readable by a screen reader, and translated into the
+other eight languages, which none of them are when they are baked into a
+picture. Just fill the fields in.
 
 Everything about a person lives in this one entry, so adding a photo later, or
 swapping one, never means hunting through pages: change it here and it updates

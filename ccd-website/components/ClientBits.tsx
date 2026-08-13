@@ -111,11 +111,24 @@ function ModalShell({ onClose, children }: { onClose: () => void; children: Reac
   );
 }
 
-function Avatar({ name, photo, large }: { name: string | null; photo?: string; large?: boolean }) {
+function Avatar({
+  name,
+  photo,
+  large,
+  portrait,
+}: {
+  name: string | null;
+  photo?: string;
+  large?: boolean;
+  // `portrait` is the big ringed one on the introduction card; `large` is the
+  // in-between size still used elsewhere.
+  portrait?: boolean;
+}) {
+  const size = portrait ? "avatar portrait" : large ? "avatar large" : "avatar";
   if (photo) {
-    return <img className={large ? "avatar large" : "avatar"} src={photo} alt="" />;
+    return <img className={size} src={photo} alt="" />;
   }
-  return <span className={large ? "avatar large" : "avatar"}>{initials(name)}</span>;
+  return <span className={size}>{initials(name)}</span>;
 }
 
 export function HomeHero() {
@@ -208,7 +221,6 @@ type Person = {
   quote?: string;
   email?: string;
   photo?: string;
-  card?: string;
 };
 
 export function AboutTeam() {
@@ -287,7 +299,13 @@ export function AboutTeam() {
 
       {active ? (
         <ModalShell onClose={() => setActive(null)}>
-          <article className="bio-modal" onClick={(event) => event.stopPropagation()}>
+          {/* Laid out like the designed introduction cards the 2026 interns were
+              announced with — name, ringed portrait, role pill, then the words.
+              Built in markup rather than shown as a picture of one, so the text
+              is selectable, readable by a screen reader, and translated with the
+              rest of the site. A picture of the same words underneath it was
+              just the same thing twice. */}
+          <article className="bio-modal intro-card" onClick={(event) => event.stopPropagation()}>
             <button
               type="button"
               className="modal-close"
@@ -296,19 +314,13 @@ export function AboutTeam() {
             >
               x
             </button>
-            <Avatar name={active.name} photo={active.photo} large />
-            <p className="eyebrow">{active.role}</p>
             <h2>{active.name || t("Open Position")}</h2>
-            <p>{active.bio || t("CCD is building this role as the program grows.")}</p>
+            <Avatar name={active.name} photo={active.photo} portrait />
+            <p className="intro-role">{active.role}</p>
+            <p className="intro-bio">
+              {active.bio || t("CCD is building this role as the program grows.")}
+            </p>
             {active.quote ? <blockquote>{active.quote}</blockquote> : null}
-            {active.card ? (
-              <img
-                className="bio-card"
-                src={active.card}
-                alt={t("{name} introduction card").replace("{name}", active.name ?? "")}
-                loading="lazy"
-              />
-            ) : null}
             {active.email ? <a href={`mailto:${active.email}`}>{t("Email")}</a> : null}
           </article>
         </ModalShell>

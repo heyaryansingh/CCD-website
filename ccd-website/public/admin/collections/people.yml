@@ -35,16 +35,6 @@ collections:
                   so anything near the edges is cut off — crop it square before
                   uploading. Leave empty to show their initials instead, which
                   looks deliberate rather than broken.
-              - name: card
-                label: Introduction graphic
-                widget: image
-                required: false
-                choose_url: true
-                hint: >-
-                  Optional. A full designed card for this person, if one was made
-                  — shown under their biography. The wording must also be typed
-                  into Biography above, because words inside a picture cannot be
-                  read aloud or translated.
 
       - name: interns
         label: Interns
@@ -76,16 +66,6 @@ collections:
                 hint: >-
                   A square close-up of their face. Shown as a small circle, so
                   anything at the edges is cut off. Leave empty to show initials.
-              - name: card
-                label: Introduction graphic
-                widget: image
-                required: false
-                choose_url: true
-                hint: >-
-                  The full designed card they were announced with, if there is
-                  one. Shown under their biography. Optional — the wording must
-                  also be typed into Biography above, because words inside a
-                  picture cannot be read aloud or translated.
 
       - name: directory
         label: Who to contact

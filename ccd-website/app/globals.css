@@ -952,15 +952,70 @@ h2 em {
   color: var(--slate);
 }
 
-/* The designed intro card someone was announced with. The same words are in the
-   paragraph above it, so this is decorative — it never carries information a
-   screen reader or a translated page would otherwise miss. */
-.bio-card {
-  display: block;
-  width: min(320px, 100%);
+/* ============================================================================
+   INTRODUCTION CARD
+   The panel behind a person's name, laid out like the designed cards the 2026
+   interns were announced with. Markup, not a picture of a card: the text stays
+   selectable, reaches a screen reader, and gets translated with everything else.
+   ========================================================================== */
+.intro-card {
+  text-align: center;
+  background: linear-gradient(180deg, #f4f8ef, #fff 42%);
+  border-top: 6px solid var(--green);
+}
+
+.intro-card h2 {
+  margin: 0 0 22px;
+  color: var(--green-deep);
+  font-size: clamp(28px, 6vw, 44px);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* The portrait is the point of the card, so it is not a thumbnail. The source
+   crops are 560px square and centred on the face (scripts/crop_intern_cards.py). */
+.avatar.portrait {
+  /* grid, not the inherited inline-grid: as an inline box it shared a line with
+     the role pill below it, which put the pill beside the face instead of under
+     it. Block-level and auto-margined, it takes its own centred row. */
+  display: grid;
+  margin: 0 auto;
+  width: clamp(150px, 42vw, 200px);
+  height: clamp(150px, 42vw, 200px);
+  font-size: 54px;
+  border: 7px solid var(--gold);
+  box-shadow: 0 10px 26px rgba(26, 26, 26, 0.16);
+}
+
+.intro-role {
+  display: inline-block;
+  margin: 22px 0 0;
+  padding: 9px 22px;
+  border: 3px solid var(--gold);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.intro-card .intro-bio {
+  margin: 22px auto 0;
+  max-width: 46ch;
+  text-align: center;
+}
+
+.intro-card blockquote {
   margin: 24px auto 0;
-  border-radius: 10px;
-  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.14);
+  max-width: 46ch;
+  text-align: start;
+}
+
+.intro-card > a[href^="mailto:"] {
+  display: inline-block;
+  margin-top: 22px;
+  font-weight: 700;
+  color: var(--green-deep);
 }
 
 .modal-gallery {
@@ -3315,7 +3370,6 @@ a.partner-card:hover {
     max-height: 220px;
   }
 
-  .bio-modal h2,
   .news-modal h2 {
     font-size: 30px;
   }
