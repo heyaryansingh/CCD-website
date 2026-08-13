@@ -2,8 +2,19 @@
   --gold: #fec630;
   --gold-dark: #e6ac00;
   --green: #209765;
+  /* Brand green is 3.7:1 on white — fine for a fill, a border or a 40px number,
+     under the 4.5:1 that small text needs. Anything set in green at body size or
+     below uses this instead; it is the same hue, dark enough to read. */
+  --green-text: #177049;
+  /* Same idea for a green FILL that carries white text: white on #209765 is
+     3.7:1, so the paragraphs on the mission band and the newsletter strip were
+     under the bar. This is the darkest step that still reads as the brand green. */
+  --green-band: #198052;
   --green-deep: #124a34;
   --blue: #0797d4;
+  /* Brand blue is 3.3:1 either way round — too light for small text on white and
+     too light behind white text. */
+  --blue-text: #0676a5;
   --slate: #37474f;
   --ink: #1a1a1a;
   --muted: #5b6b72;
@@ -226,7 +237,24 @@ video {
   background: var(--gold-dark);
 }
 
+/* Readable by default. This used to be white-only, which is right over a hero
+   photo and invisible everywhere else — "Book facilities" on the contact page
+   was white text on a white card, a 1:1 contrast ratio. The white treatment is
+   scoped to the dark places that actually need it. */
 .button.ghost {
+  border-color: rgba(26, 26, 26, 0.34);
+  color: var(--ink);
+}
+
+.home-hero .button.ghost,
+.page-hero .button.ghost,
+.band-section .button.ghost,
+.cta-section .button.ghost,
+.split-section.dark .button.ghost,
+.split-section.green .button.ghost,
+.split-section.blue .button.ghost,
+.stats-section.dark .button.ghost,
+.form-band .button.ghost {
   border-color: rgba(255, 255, 255, 0.55);
   color: #fff;
 }
@@ -351,7 +379,9 @@ video {
 .form-band.dark-form .eyebrow,
 .newsletter .eyebrow,
 .site-footer .eyebrow {
-  color: var(--gold);
+  /* Brand gold on the green newsletter band is 3.14:1 at 12px. A pale tint of it
+     reaches 4.58:1 and still reads as gold rather than as white. */
+  color: #fff6dd;
 }
 
 h1,
@@ -512,7 +542,7 @@ h2 em {
 .split-section.green,
 .stats-section.green,
 .heart-section {
-  background: var(--green);
+  background: var(--green-band);
   color: #fff;
 }
 
@@ -636,7 +666,7 @@ h2 em {
 
 .feature-card span,
 .news-card span {
-  color: var(--blue);
+  color: var(--blue-text);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -684,6 +714,20 @@ h2 em {
   font-weight: 400;
 }
 
+/* On a coloured band the number and its label have to invert; brand green on the
+   green band measured 1.34:1 and the muted label 1.12:1. */
+.stats-section.green .stats-grid strong,
+.stats-section.dark .stats-grid strong,
+.heart-section .stats-grid strong {
+  color: #fff;
+}
+
+.stats-section.green .stats-grid span,
+.stats-section.dark .stats-grid span,
+.heart-section .stats-grid span {
+  color: rgba(255, 255, 255, 0.86);
+}
+
 .stats-grid span {
   color: var(--muted);
   font-size: 14px;
@@ -704,7 +748,7 @@ h2 em {
 }
 
 .timeline span {
-  color: var(--green);
+  color: var(--green-text);
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -750,7 +794,9 @@ h2 em {
 }
 
 .heart-list strong {
-  color: var(--gold);
+  /* Brand gold on the green band is 2.35:1 — under the 3:1 that even large text
+     needs. A paler tint of the same gold reads at 3.08:1 and still looks gold. */
+  color: #ffe9a8;
   font-family: var(--font-head);
   font-size: 64px;
   font-weight: 400;
@@ -776,13 +822,23 @@ h2 em {
 
 .cta-section {
   text-align: center;
-  background: var(--green);
+  background: var(--green-band);
   color: #fff;
+}
+
+/* The band is green or slate, so its paragraph cannot keep the light-background
+   muted grey — on the partners page that was 1.12:1, effectively unreadable. */
+.cta-section p {
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .cta-section.gold {
   background: var(--gold);
   color: #000;
+}
+
+.cta-section.gold p {
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .cta-section.gold p {
@@ -826,7 +882,7 @@ h2 em {
 }
 
 .person-card small {
-  color: var(--green);
+  color: var(--green-text);
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -1093,7 +1149,7 @@ h2 em {
 .ccd-form label {
   display: grid;
   gap: 6px;
-  color: var(--green);
+  color: var(--green-text);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1314,7 +1370,7 @@ h2 em {
 }
 
 .newsletter {
-  background: var(--green);
+  background: var(--green-band);
   display: grid;
   grid-template-columns: 1fr minmax(320px, 520px);
   gap: 36px;
@@ -1338,7 +1394,7 @@ h2 em {
 
 .newsletter-form strong {
   background: #fff;
-  color: var(--green);
+  color: var(--green-text);
   padding: 18px;
   width: 100%;
 }
@@ -1807,7 +1863,7 @@ img.avatar {
   font-size: 13px;
   letter-spacing: 0.04em;
 }
-.tier-vote.yes { color: var(--green); }
+.tier-vote.yes { color: var(--green-text); }
 .tier-vote.no { color: var(--muted); }
 .tier-cta {
   margin-top: 34px;
@@ -1904,7 +1960,7 @@ img.avatar {
   box-shadow: var(--shadow);
 }
 .pin-label strong { display: block; font-family: var(--font-head); font-size: 15px; }
-.pin-label em { font-style: normal; font-size: 12px; color: var(--green); letter-spacing: 0.04em; }
+.pin-label em { font-style: normal; font-size: 12px; color: var(--green-text); letter-spacing: 0.04em; }
 .map-pin:hover .pin-label,
 .map-pin:focus-visible .pin-label {
   opacity: 1;
@@ -1986,8 +2042,8 @@ a.partner-card:hover {
   color: #fff;
   background: var(--slate);
 }
-.tag-funder { background: var(--green); }
-.tag-design { background: var(--blue); }
+.tag-funder { background: var(--green-band); }
+.tag-design { background: var(--blue-text); }
 .tag-community { background: var(--slate); }
 .tag-program { background: var(--gold-dark); color: #000; }
 .tag-member { background: var(--green-deep); }
@@ -2018,7 +2074,7 @@ a.partner-card:hover {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--green-text);
 }
 .directory-card strong {
   font-family: var(--font-head);
@@ -2104,7 +2160,7 @@ a.partner-card:hover {
   margin: 6px 0;
 }
 .modal-facts a {
-  color: var(--green);
+  color: var(--green-text);
   font-weight: 700;
 }
 .modal-instructions {
@@ -2700,6 +2756,8 @@ a.partner-card:hover {
   margin-bottom: 18px;
   background: var(--gold-dark);
 }
+/* h2 when the strip has no heading of its own — see ValuesSection. */
+.values-grid h2,
 .values-grid h3 {
   font-family: var(--font-head);
   font-size: 22px;

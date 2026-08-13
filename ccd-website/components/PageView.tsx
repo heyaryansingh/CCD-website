@@ -312,17 +312,24 @@ function ValuesSection({ section }: { section: Extract<Section, { type: "values"
         </div>
       ) : null}
       <div className="values-grid">
-        {section.items.map((item, index) => (
-          <article
-            key={item.title}
-            data-reveal
-            style={{ transitionDelay: `${Math.min(index, 5) * 90}ms` }}
-          >
-            <span className="value-mark" aria-hidden="true" />
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-          </article>
-        ))}
+        {section.items.map((item, index) => {
+          // These sit under the section's own h2 when it has one. When it does
+          // not — the 4th Brew page opens with a bare values strip — an h3 would
+          // follow the page h1 with nothing at h2, leaving a hole in the outline
+          // that screen-reader users navigate by.
+          const Heading = hasHeading ? "h3" : "h2";
+          return (
+            <article
+              key={item.title}
+              data-reveal
+              style={{ transitionDelay: `${Math.min(index, 5) * 90}ms` }}
+            >
+              <span className="value-mark" aria-hidden="true" />
+              <Heading>{item.title}</Heading>
+              <p>{item.body}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
