@@ -1,11 +1,12 @@
 // =============================================================================
 // ROUTING
 //
-// One route file serves the whole site (app/[...path]), so every URL shape is
-// resolved here instead of being spread across three page files that each had
-// their own copy of the lookup:
+// Two route files serve the whole site, so every URL shape is resolved here
+// instead of being spread across page files that each had their own copy of the
+// lookup:
 //
-//   /about                      English page
+//   /                           English home  (rewritten to /en)
+//   /about                      English page  (rewritten to /en/about)
 //   /projects/oasis-240         English project detail
 //   /es                         Spanish home
 //   /es/about                   Spanish page
@@ -13,11 +14,18 @@
 //   /join                       alias -> redirect to /membership
 //   /es/join                    alias -> redirect to /es/membership
 //
-// English keeps its bare URLs. Only the other languages carry a prefix, so no
-// existing link, printed flyer or search result changes.
+// Every language is a real segment under app/[lang], because <html lang> has to
+// be correct and only a layout below the language segment can set it. English's
+// prefix is then hidden by the rewrites in next.config.ts, so its URLs stay bare
+// and no existing link, printed flyer or search result changes.
+//
+// EVERY reachable URL has to appear in allPaths(). The route files set
+// `dynamicParams = false`, so anything missing here is a 404 rather than a page
+// rendered from a guess — including the legacy aliases, which is why they are
+// listed too.
 // =============================================================================
 
-import { defaultLocale, localePath, locales, localize, splitLocale } from "./i18n";
+import { localePath, locales, localize, splitLocale } from "./i18n";
 import { getDictionary } from "./i18n.server";
 import { pages, projectDetails } from "./pages.server";
 import { aliases } from "./siteData";
@@ -37,12 +45,6 @@ function projectBySlug(slug: string): SitePage | undefined {
  * Returns the page already translated into the requested language.
  */
 export function resolvePath(segments: string[]): Resolved | undefined {
-  // /en/about is the same page as /about. Send it to the canonical one rather
-  // than serving the same content at two addresses.
-  if (segments[0] === defaultLocale) {
-    return { kind: "redirect", to: `/${segments.slice(1).join("/")}` };
-  }
-
   const { locale, rest } = splitLocale(segments);
   const dict = getDictionary(locale);
   const found = (page: SitePage): Resolved => ({
@@ -67,21 +69,28 @@ export function resolvePath(segments: string[]): Resolved | undefined {
   return page ? found(page) : undefined;
 }
 
-/** Every path the site should be built as, in every language. */
+/**
+ * Every path the site should be built as, language segment first.
+ *
+ * The English entries are built at /en/… and served at /… by the rewrite; the
+ * redirect in next.config.ts keeps /en/… from being a second address for the
+ * same page.
+ */
 export function allPaths(): string[][] {
   const bare: string[][] = [];
   for (const page of Object.values(pages)) {
-    // The home page has an empty slug and is served by app/page.tsx.
+    // The home page has an empty slug and is served by app/[lang]/page.tsx.
     if (page.slug) bare.push([page.slug]);
   }
   for (const page of Object.values(projectDetails)) {
     bare.push(["projects", page.slug]);
   }
+  // Legacy addresses redirect rather than render, but they still have to be
+  // routes or they would 404 before the redirect could happen.
+  for (const from of Object.keys(aliases)) bare.push([from]);
 
-  const out: string[][] = [...bare];
+  const out: string[][] = [];
   for (const { code } of locales) {
-    if (code === defaultLocale) continue;
-    out.push([code]); // that language's home page
     for (const path of bare) out.push([code, ...path]);
   }
   return out;

@@ -1,31 +1,26 @@
 // =============================================================================
 // SITE SHELL
 //
-// Header, page, footer — everything a visitor sees, wrapped in the active
-// language. The header and footer sit here rather than in app/layout.tsx because
-// they have words in them: they have to know which language they are in, and the
-// root layout cannot, since it renders above the route that carries the language.
+// Header, page, footer — everything a visitor sees. The header and footer sit
+// here rather than in the layout because they have words in them, so they need
+// the language and the client-side dictionary.
 //
-// The lang/dir attributes go on this wrapper for the same reason. That is enough
-// for screen readers and for the [dir="rtl"] rules in globals.css; only the
-// <html> element itself still says "en", which affects nothing but the browser's
-// own "translate this page?" prompt.
+// lang/dir are NOT set here: app/[lang]/layout.tsx puts them on <html>, where
+// they belong, and the [dir="rtl"] rules in globals.css match from there.
 // =============================================================================
 
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { PageView } from "@/components/PageView";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { localeInfo } from "@/lib/i18n";
 import { getClientDictionary, getDictionary } from "@/lib/i18n.server";
 import { activeNavMap } from "@/lib/pages.server";
 import type { SitePage } from "@/lib/types";
 
 export function SiteShell({ locale, page }: { locale: string; page: SitePage }) {
-  const info = localeInfo(locale);
   return (
     <LocaleProvider locale={locale} dict={getClientDictionary(locale)}>
-      <div className="site-root" lang={info.tag} dir={info.dir}>
+      <div className="site-root">
         <SiteHeader activeMap={activeNavMap()} />
         <PageView page={page} locale={locale} dict={getDictionary(locale)} />
         <SiteFooter />

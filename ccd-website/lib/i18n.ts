@@ -69,15 +69,19 @@ export function localeInfo(code: string): LocaleInfo {
 export type Dictionary = Record<string, string>;
 
 /**
- * Split a URL's path segments into [language, rest].
+ * Split path segments into [language, rest].
  *
- * English has no prefix, so /about stays /about and only /es/about carries one.
- * Existing links, printed flyers and search results therefore keep working
- * unchanged — that is the whole reason English is not at /en.
+ * Handles both forms, because both exist: the PUBLIC url of an English page has
+ * no prefix (/about), while INTERNALLY every page lives under one (/en/about) so
+ * that app/[lang]/layout.tsx can set <html lang>. A missing prefix means English.
+ *
+ * This does assume no page slug is ever two letters matching a language code —
+ * `about`, `team`, `shop` and the rest are safe, but a page called `es` would be
+ * read as Spanish.
  */
 export function splitLocale(segments: string[]): { locale: string; rest: string[] } {
   const [first, ...rest] = segments;
-  if (first !== defaultLocale && isLocale(first)) return { locale: first, rest };
+  if (isLocale(first)) return { locale: first, rest };
   return { locale: defaultLocale, rest: segments };
 }
 

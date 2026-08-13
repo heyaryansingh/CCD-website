@@ -1,11 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
+import "../globals.css";
 import { ScrollFX } from "@/components/ScrollFX";
+import { localeInfo, locales } from "@/lib/i18n";
 
-// Header and footer are NOT here — they live in components/SiteShell, below the
-// route segment that carries the language, because their wording is translated.
-// This layout renders above that, so it cannot know which language a page is in;
-// lang/dir are set on the shell's wrapper instead.
+// THE root layout. It lives under [lang] rather than at app/layout.tsx because
+// <html lang> and <html dir> have to be right, and a layout above the language
+// segment cannot know the language without making every page render on demand.
+//
+// English keeps its bare URLs — /about, not /en/about. next.config.ts rewrites
+// those onto this tree and redirects /en/* back to the bare form, so there is
+// exactly one address for every page. See the comments there.
+
+export async function generateStaticParams() {
+  return locales.map(({ code }) => ({ lang: code }));
+}
 
 export const metadata: Metadata = {
   title: {
@@ -24,13 +32,18 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  const info = localeInfo(lang);
+
   return (
-    <html lang="en">
+    <html lang={info.tag} dir={info.dir}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
