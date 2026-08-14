@@ -27,12 +27,28 @@ billing relationship cannot lapse.
 | Address | `ccdgroup.vercel.app` | `ccdgroup.org` (`www` redirects to it) |
 | The old Wix site | Serving `ccdgroup.org` | Gone. Its content is not needed. |
 | CCD's email | Microsoft 365, DNS records held at Wix | Microsoft 365, **same records**, held at Cloudflare |
+| DNS nameservers | `ns4`/`ns5.wixdns.net` | Cloudflare's — see step 3, which is the hard part |
 | Editing | `/admin`, commits to GitHub | Identical — the CMS talks to GitHub, not to the host |
 | Cost | $0 (in breach) or $240/yr | $0 |
 
 The one genuinely dangerous part is the DNS move, because CCD's **email** rides
-on the same zone as the website. Step 3 exists entirely to keep that from
-breaking.
+on the same zone as the website, and the domain currently has DNSSEC switched on.
+Step 3 exists entirely to keep those from breaking, and it is the only step with
+a real failure mode.
+
+### If step 3 stalls
+
+If the registration turns out to be locked inside Wix and transferring it is not
+something CCD wants to do right now, the site does not have to stay on
+`ccdgroup.vercel.app`. Wix's DNS panel can point `A` records anywhere, so the
+same Next build can go to any host that publishes a stable IP address for an
+apex domain, and `ccdgroup.org` would be live within the hour with no transfer at
+all.
+
+That is a genuinely different project, though — it means abandoning the
+Cloudflare build that is finished and verified, and adopting a host that has not
+been tested against this site. It is a fallback, not a shortcut. Take it only if
+the transfer is refused outright.
 
 ---
 
@@ -83,16 +99,99 @@ sign-in and its CSRF guard, the forms, the shop, the content.
 Everything else must pass. If a page 500s, the page bundle did not build — check
 that `prebuild` ran and printed "bundled 21 pages".
 
-## 3. Move ccdgroup.org's DNS to Cloudflare — carefully
+## 3. Get ccdgroup.org onto Cloudflare's nameservers
 
-Cloudflare can only put a Worker on a domain whose **nameservers point at
-Cloudflare**. There is no way around this on the free plan. So the zone moves.
+This is the whole difficulty of the migration, and it is not a technical problem
+with the site. Read this section before starting anything in it.
 
-Right now the nameservers are `ns4.wixdns.net` / `ns5.wixdns.net`, and that Wix
-zone is also what routes CCD's email to Microsoft 365. Copy the records first,
-switch nameservers second.
+**Cloudflare can only put a Worker on a domain whose nameservers point at
+Cloudflare.** Not a CNAME, not an A record — the zone itself has to be
+authoritative on Cloudflare. That is documented, and the CNAME-only alternative
+("partial setup") is a Business-plan feature at roughly $200/month, so it is not
+an option here.
 
-### 3a. Add the domain and check what Cloudflare imported
+Today the nameservers are `ns4.wixdns.net` / `ns5.wixdns.net`, and **Wix does not
+permit changing them.** Their own help centre is explicit: *"Currently, it's not
+possible to change name servers (edit NS records) for a Wix domain."* The only
+routes they offer are pointing the domain at an external site, or transferring
+the registration away.
+
+So the answer depends on one fact nobody has confirmed yet:
+
+### 3a. Find out where ccdgroup.org is actually registered
+
+The public record says the registrar is **Tucows Domains Inc.**, which is a
+wholesale registrar — Wix resells through them, but so do a dozen other
+companies. Tucows on the record therefore does *not* prove the domain lives at
+Wix. Registered 2021-06-02, last transferred between registrars 2025-06-11,
+expires 2027-06-02.
+
+**Ask the boss who sends the renewal invoice.** That single answer decides
+between an afternoon and a week:
+
+| If the renewal comes from… | Then |
+|---|---|
+| **Wix** | The registration has to be transferred away before anything else can happen. Path B. |
+| **Anyone else** (Hover, Namecheap, GoDaddy, an OpenSRS reseller, a web person who set it up) | The nameservers can be changed there today. Path A — skip to 3c. |
+
+The domain merely *uses* Wix's nameservers; that is a setting, and it is
+independent of who holds the registration.
+
+### 3b. Path B — transferring the registration off Wix
+
+Only if 3a says Wix. Budget **6 to 9 days**, most of it ICANN's mandatory waiting
+period, not work.
+
+Cloudflare Registrar cannot be the destination: it requires the domain to already
+be on Cloudflare's nameservers, which is the thing being fixed. So the
+registration goes to any registrar that permits nameserver edits — Porkbun,
+Namecheap, Dynadot and Hover all do, for roughly $12–15, which buys an extra
+year rather than being a fee.
+
+1. **Turn DNSSEC off at Wix first** (see 3c — this is the dangerous step, and it
+   has to be finished and verified before the transfer, not during it).
+2. Wix → Domains → the domain → **Advanced → Transfer away from Wix**. Unlock it
+   and copy the authorisation code.
+3. At the new registrar, start the transfer and paste the code. Approve the
+   confirmation email quickly; Wix will otherwise let the full five days run.
+4. **The moment it completes, set the nameservers to Cloudflare** (3d). Wix has
+   no obligation to keep answering DNS for a domain that has left, and if their
+   zone goes quiet before Cloudflare's is live, CCD's email goes down with it.
+   Having the Cloudflare zone already built and waiting (3c) is what closes that
+   window to minutes.
+
+The 60-day ICANN lock does not apply — the last transfer was over a year ago.
+
+### 3c. Turn off DNSSEC — do this first, and do not skip it
+
+**`ccdgroup.org` has DNSSEC enabled** (there is a signed DS record at the `.org`
+registry, key tag 31645). If the nameservers change while that record is still
+published, every validating resolver on the internet will reject the answers as
+forged, and `ccdgroup.org` **stops existing** — website and email both, for
+everyone, until it is undone and propagates back.
+
+This is the one step in the whole migration that can take CCD offline.
+
+Wix → Domains → the Domain Actions icon → **Edit contact info → Show more**, next
+to *Privacy and DNSSEC protection* → **Turn off protection**. If 3a found another
+registrar, it is in that registrar's DNSSEC or Security panel instead.
+
+Then wait, and confirm the registry has actually dropped it:
+
+```bash
+nslookup -type=DS ccdgroup.org 1.1.1.1     # must return NOTHING
+```
+
+It can take a few hours. **Nothing else in step 3 starts until that command comes
+back empty.** Cloudflare can re-enable DNSSEC with one click once the zone is
+live there.
+
+### 3d. Build the Cloudflare zone before it is needed
+
+Do this while the domain is still served by Wix. A Cloudflare zone sits inactive
+and harmless until nameservers point at it, so the whole record set can be
+entered, checked and left ready — which is what turns the nameserver switch into
+a moment rather than an outage.
 
 Cloudflare → **Add a site** → `ccdgroup.org` → Free plan. It scans the current
 zone and imports what it can find. Scanning is best-effort — **verify it against
@@ -117,24 +216,25 @@ There is currently **no DKIM and no DMARC** on this domain. That is how it
 already is, so the move does not make it worse, but it is worth adding in
 Microsoft 365 afterwards.
 
-### 3b. Switch the nameservers
+### 3e. Switch the nameservers
 
-Cloudflare gives two nameservers. Set them at whoever the domain is *registered*
-with — that is a different screen from Wix's DNS records, and if the domain was
-bought through Wix it is under **Domains → Manage → Nameservers**.
+Cloudflare gives two nameservers. Set them at the registrar found in 3a — the
+registrar's control panel, not Wix's DNS records screen; they are different
+things.
 
-This is not a transfer of ownership. The registrar and the renewal stay exactly
-where they are; only who answers DNS queries changes.
+This is not a change of ownership. The registration and the renewal stay where
+they are; only who answers DNS queries changes.
 
-Propagation is usually under an hour. While it is happening, **the Wix site keeps
-serving and email keeps working** — the records are identical on both sides, which
-is the entire point of doing 3a properly.
+Propagation is usually under an hour. Because 3d copied the records exactly,
+**email keeps working throughout** — resolvers get the same MX answer from
+whichever side they reach.
 
 Confirm before continuing:
 
 ```bash
 nslookup -type=NS ccdgroup.org 1.1.1.1     # must show two *.ns.cloudflare.com
 nslookup -type=MX ccdgroup.org 1.1.1.1     # must still show ...outlook.com
+nslookup -type=TXT ccdgroup.org 1.1.1.1    # must still show the v=spf1 line
 ```
 
 Then **send a test email to `info@ccdgroup.org` from an outside address and
@@ -248,7 +348,14 @@ Once Cloudflare has served `ccdgroup.org` correctly for a few days:
 - Tell staff the editor is now at **https://ccdgroup.org/admin**
 - Delete the Vercel project (or leave it idle — just never pay for Pro)
 - Delete `.vercelignore` and the `.vercel/` directories from the repo
-- Cancel the Wix subscription
+- Cancel the Wix **site** subscription
+
+⚠️ **Cancelling Wix is not the same as cancelling the domain.** If step 3a found
+the registration still at Wix and Path B was never completed, the domain renews
+through that same Wix account — cancelling it can let `ccdgroup.org` lapse, and a
+lapsed domain is far harder to get back than a website. Confirm the domain shows
+an active registration and auto-renew at whichever registrar now holds it
+*before* cancelling anything at Wix.
 
 ---
 
@@ -267,7 +374,8 @@ talks to GitHub, not to whoever is hosting the site.
 | Sign-in popup opens then does nothing | The GitHub callback URL and `base_url` do not both say `https://ccdgroup.org` (step 5b) |
 | "not configured yet" on sign-in | `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` missing in Cloudflare (step 5c) |
 | Editor saves, site does not change | Step 6 not done |
-| Email stops arriving | The MX or SPF record did not survive the zone move. Re-add from the table in 3a. |
+| The whole domain vanishes — site *and* email, everywhere | DNSSEC was still published when the nameservers changed (3c). Point the nameservers back, or get the DS record removed at the registrar, and wait for propagation. |
+| Email stops arriving | The MX or SPF record did not survive the zone move. Re-add from the table in 3d. |
 | Outlook cannot auto-configure a new mailbox | The `autodiscover` CNAME is proxied (orange cloud). It must be DNS-only. |
 | `wrangler deploy` fails on the custom domain | The zone is not in this Cloudflare account yet — step 3 is incomplete |
 
