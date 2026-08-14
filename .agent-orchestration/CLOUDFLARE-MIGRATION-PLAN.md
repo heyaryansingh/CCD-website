@@ -94,14 +94,71 @@ Also confirmed the branch still builds for Vercel, so merging risks nothing.
    shop prices, no token leakage.
 7. Commit the branch. Do not merge until a real Cloudflare deploy is verified.
 
+## Re-verification 2026-08-14 — two blockers the first pass could not have caught
+
+The August 7 battery passed, and then the site changed underneath it. The nine
+language rebuild (`cc2d169`, `07e6d50`) landed after Cloudflare was last checked,
+and nobody re-ran the battery in workerd. Both of these were sitting in the
+branch, and both look like routing bugs while being nothing of the kind.
+
+**1. Every page 404'd. The incremental cache was never configured.** Next does
+not emit prerendered App Router pages as static files — it writes them to the
+incremental cache, and OpenNext reads them back out of whatever cache the config
+names. `defineCloudflareConfig()` with no argument names none, so all 355 pages
+sat unread in `.open-next/cache/` and the Worker answered 404 for every one.
+`/admin`, `/media/*` and the three `/api` routes kept working, because those are
+the only things that are genuinely files or genuinely dynamic — which is exactly
+what makes it read as a rewrite bug.
+
+The old note in `wrangler.jsonc` ("no ISR, so no cache needed") had the premise
+right and the conclusion wrong: no ISR means the cache never has to be *written*,
+not that it never has to be *read*.
+
+Fixed with `static-assets-incremental-cache`, which serves them read-only from
+the assets bundle the Worker already has. Still no R2, no KV, nothing billable.
+
+It also needs a build step, not just config: `opennextjs-cloudflare build` leaves
+the cache where it is, and `populateCache` is what copies it into the assets. So
+`cf:build` now runs both — which matters because that is the command Cloudflare's
+git integration will run.
+
+**2. Every bare English URL 404'd. `fallback` rewrites do not survive OpenNext.**
+`/es/about` worked; `/about` did not. OpenNext applies fallback rewrites only
+when nothing matched a route *pattern*, and `/about` matches `app/[lang]` with
+lang="about". Next itself then 404s that (the segment sets
+`dynamicParams = false`) and moves on to the fallback; OpenNext has already
+concluded a route was found and skips it. Nothing in `next build` reports this.
+
+Moved into `beforeFiles`, which runs unconditionally and behaves identically on
+both hosts. Cost is an explicit exclusion list, now generated from `localeCodes`
+so adding a language cannot leave it behind.
+
+Verified after the fixes:
+
+| Host | Result |
+|---|---|
+| workerd (`wrangler dev`) | 33/35 — the two failures are `base_url` pointing at the future domain, and the unconfigured form database |
+| `next start` (Vercel semantics) | 30/33 — same two, plus OAuth vars absent locally |
+
+The lesson worth keeping: `npm run build` passing proves nothing about
+Cloudflare. `npm run verify:site` against a real workerd is the only gate.
+
 ## Human steps (need a Cloudflare account)
 
-1. `npx wrangler login`
-2. `npm run deploy:cf` → gives a `*.workers.dev` preview URL
-3. Re-run the verification battery against that URL
-4. Only then: update `base_url`, update the OAuth callback URL, connect the git
-   integration, and cut over
-5. Cancel/avoid Vercel Pro once Cloudflare is serving
+Written up properly for a non-developer in `docs/CLOUDFLARE-CUTOVER.md`, which
+also covers the part this plan originally missed: `ccdgroup.org`'s DNS is at Wix
+and CCD's Microsoft 365 email rides on the same zone, so the nameserver move has
+to carry the MX, SPF and autodiscover records across or email stops.
+
+1. CCD-owned Cloudflare account (not a personal one — that is the failure mode
+   this whole migration exists to avoid)
+2. `npx wrangler login`, `npm run cf:deploy` → a `*.workers.dev` URL
+3. `npm run verify:site` against it
+4. Move the zone to Cloudflare, records first, nameservers second
+5. Stage on `new.ccdgroup.org`, verify again
+6. Cut over: merge the branch, uncomment `routes` in `wrangler.jsonc`, repoint
+   the GitHub OAuth callback, add the secrets, connect Workers Builds
+7. Stand down Vercel and Wix
 
 ## Not doing
 

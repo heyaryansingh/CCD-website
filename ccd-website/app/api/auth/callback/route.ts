@@ -1,7 +1,11 @@
 // Step 2 of the CMS sign-in: GitHub sends the editor back here with a code.
 //
 // Register this exact URL as the OAuth App's "Authorization callback URL":
-//   https://ccdgroup.vercel.app/api/auth/callback
+//   https://ccdgroup.org/api/auth/callback
+//
+// /api/auth deliberately sends no redirect_uri, so GitHub always returns to the
+// address registered on the app — one OAuth App serves one hostname. It has to
+// stay in step with `base_url` in public/admin/config.yml.
 
 import { authErrorPage, authSuccessPage } from "../handshake";
 

@@ -16,7 +16,14 @@ backend:
   name: github
   repo: heyaryansingh/CCD-website
   branch: main
-  base_url: https://ccdgroup.vercel.app
+  # Where the sign-in popup goes. It must be the SAME origin editors open /admin
+  # on, and it must match the GitHub OAuth App's callback URL — /api/auth sends
+  # no redirect_uri, so GitHub always returns to the one address registered on
+  # the app. One OAuth App therefore serves exactly one hostname.
+  #
+  # Change this and the GitHub callback together, or sign-in breaks in a way that
+  # looks like "the editor is down". docs/CLOUDFLARE-CUTOVER.md step 4.
+  base_url: https://ccdgroup.org
   auth_endpoint: api/auth
   commit_messages:
     create: 'Add {{collection}} "{{slug}}"'

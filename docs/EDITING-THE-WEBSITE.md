@@ -4,13 +4,13 @@ You do not need to know how to code, and you cannot break anything permanently.
 Every change is saved with a record of who made it and when, so anything can be
 put back.
 
-**The editor lives at https://ccdgroup.vercel.app/admin**
+**The editor lives at https://ccdgroup.org/admin**
 
 ---
 
 ## Signing in
 
-1. Go to **https://ccdgroup.vercel.app/admin**
+1. Go to **https://ccdgroup.org/admin**
 2. Click **Sign in with GitHub**
 3. Approve the request
 

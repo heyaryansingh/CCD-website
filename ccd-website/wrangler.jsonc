@@ -7,6 +7,8 @@
   // global_fetch_strictly_public makes fetch() behave like a real browser
   // request rather than looping back inside the Worker.
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // The binding is not optional decoration: open-next.config.ts serves all 355
+  // prerendered pages through it. Remove it and the whole site 404s.
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
@@ -19,14 +21,28 @@
     "enabled": true
   }
 
+  // The public addresses. Commented out until ccdgroup.org's nameservers point
+  // at Cloudflare — `wrangler deploy` fails outright if it is asked to attach a
+  // custom domain on a zone the account does not hold, and that failure would
+  // block every deploy, not just the domain step.
+  //
+  // Uncomment at cutover (docs/CLOUDFLARE-CUTOVER.md step 3). Declaring them
+  // here rather than clicking in the dashboard means a redeploy re-asserts them,
+  // so the binding cannot be quietly lost.
+  //
+  // "routes": [
+  //   { "pattern": "ccdgroup.org", "custom_domain": true },
+  //   { "pattern": "www.ccdgroup.org", "custom_domain": true }
+  // ]
+
   // Deliberately NOT configured, and why:
   //
-  // r2_buckets / WORKER_SELF_REFERENCE — the adapter's default sets up an R2
-  //   incremental cache. This site has no ISR: every page is Static or SSG and
-  //   only the three /api routes are dynamic (confirmed in the build output).
-  //   There is nothing to incrementally cache, and adding R2 would mean a
-  //   billable resource — the opposite of why CCD moved here. If ISR is ever
-  //   introduced, restore both from the adapter docs.
+  // r2_buckets / WORKER_SELF_REFERENCE — the usual home for the incremental
+  //   cache. This site has no ISR: every page is Static or SSG and only the
+  //   three /api routes are dynamic, so the prerendered pages are served
+  //   read-only out of the assets bundle instead (open-next.config.ts) and R2
+  //   would be a billable resource for nothing. Adding ISR or Next 16's `use
+  //   cache` means restoring both from the adapter docs.
   //
   // images — image optimization. This site uses plain <img> everywhere and does
   //   not use next/image, so the binding would sit unused.

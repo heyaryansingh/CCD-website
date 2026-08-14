@@ -4,7 +4,7 @@
 //
 //   npm run verify:site                         # localhost:3000
 //   npm run verify:site -- http://localhost:8788
-//   npm run verify:site -- https://ccdgroup.vercel.app
+//   npm run verify:site -- https://ccdgroup.org
 //
 // Written so the cutover does not depend on anyone remembering a list of curl
 // commands. Exits non-zero if anything fails, so it can gate a deploy.

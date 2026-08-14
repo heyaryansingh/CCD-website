@@ -7,15 +7,16 @@ Founded 2020 · 4004 Frederick Ave, Baltimore MD 21229 · info@ccdgroup.org · (
 
 | | |
 |---|---|
-| **New site (this repo)** | https://ccdgroup.vercel.app |
-| **Edit the site (CCD staff)** | https://ccdgroup.vercel.app/admin — guide: [docs/EDITING-THE-WEBSITE.md](docs/EDITING-THE-WEBSITE.md) |
+| **The site** | https://ccdgroup.org |
+| **Edit the site (CCD staff)** | https://ccdgroup.org/admin — guide: [docs/EDITING-THE-WEBSITE.md](docs/EDITING-THE-WEBSITE.md) |
 
 > ⚠️ **The CMS needs two setup steps before editors can use it** — see
 > [docs/CMS-SETUP.md](docs/CMS-SETUP.md). Until they are done, saves will not reach the site.
-| **Current live site** | https://ccdgroup.org — still the old Wix site, untouched |
 
-The new site is **not** yet on `ccdgroup.org`. Pointing the real domain at it is a
-deliberate, separate decision.
+The site runs on **Cloudflare Workers**, not Vercel: Vercel's free plan forbids
+asking for donations, and a paid plan is a bill that can lapse once the developer
+is gone. The move, including what happens to CCD's email when the domain's DNS
+changes hands, is written up in [docs/CLOUDFLARE-CUTOVER.md](docs/CLOUDFLARE-CUTOVER.md).
 
 ## Start here
 

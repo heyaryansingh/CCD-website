@@ -1,8 +1,13 @@
 # Finishing the CMS setup
 
-**Steps 1 and 2 are DONE** (completed 2026-08-06): Vercel is connected to GitHub
-with Root Directory `ccd-website`, and the GitHub OAuth App is live with its
-credentials in Vercel. Sign-in at `/admin` works — verified end to end.
+> **Host note.** Steps 1 and 2 were originally done on Vercel and are recorded
+> below as history. On Cloudflare the same two things are steps 6 and 5b–5c of
+> [CLOUDFLARE-CUTOVER.md](CLOUDFLARE-CUTOVER.md) — do them there, not here. Step 3
+> and step 4 below are host-independent and still apply.
+
+**Steps 1 and 2 are DONE** (completed 2026-08-06): the host is connected to
+GitHub with root directory `ccd-website`, and the GitHub OAuth App is live with
+its credentials set on the host. Sign-in at `/admin` works — verified end to end.
 
 **Step 3 is the only thing left for the CMS**: give your editors access.
 
@@ -11,11 +16,13 @@ is not a CMS issue, but it is losing real enquiries.
 
 ---
 
-## 1. Connect Vercel to GitHub — ✅ DONE
+## 1. Connect the host to GitHub — ✅ DONE (on Vercel; redo on Cloudflare)
 
 Without this, a staff member saves in the CMS, the change lands on GitHub, and
 **the website never updates.** The CMS would look like it works and silently do
 nothing.
+
+On Cloudflare this is CLOUDFLARE-CUTOVER.md step 6. What was done on Vercel:
 
 1. https://vercel.com/account/login-connections → connect your **GitHub** account
 2. Open the **ccdgroup** project → **Settings → Git** → connect
@@ -29,32 +36,37 @@ nothing.
 4. Confirm **Production Branch** is `main`
 
 Check it worked: make any small edit at `/admin`, save, and watch a deployment
-start in the Vercel dashboard within a few seconds.
+start within a few seconds.
 
-## 2. Create the GitHub OAuth App — ✅ DONE
+## 2. Create the GitHub OAuth App — ✅ DONE (URLs change at cutover)
 
 This is what "Sign in with GitHub" at `/admin` talks to.
 
 1. https://github.com/settings/developers → **New OAuth App**
    - **Application name:** `CCD Website Editor`
-   - **Homepage URL:** `https://ccdgroup.vercel.app`
+   - **Homepage URL:** `https://ccdgroup.org`
    - **Authorization callback URL:**
-     `https://ccdgroup.vercel.app/api/auth/callback`
+     `https://ccdgroup.org/api/auth/callback`
 
      This must match exactly — no trailing slash.
 2. Generate a client secret. Copy both values now; GitHub shows the secret once.
-3. In Vercel → **ccdgroup → Settings → Environment Variables**, add for
-   **Production**:
+3. Put them in the host's environment — Cloudflare → Workers & Pages →
+   `ccdgroup` → Settings → **Variables and Secrets**, as *Secrets*:
 
    | Name | Value |
    |---|---|
    | `GITHUB_CLIENT_ID` | the Client ID |
    | `GITHUB_CLIENT_SECRET` | the client secret |
 
-4. Redeploy so the variables take effect (`npx vercel --prod --yes`, or push a
-   commit once step 1 is done).
+4. Redeploy so the variables take effect (`npm run cf:deploy`, or push a commit
+   once step 1 is done).
 
-Check it worked: `https://ccdgroup.vercel.app/admin` → **Sign in with GitHub** →
+The two URLs above and `base_url` in `ccd-website/public/admin/config.yml` must
+all name the same hostname. `/api/auth` sends no `redirect_uri`, so GitHub always
+returns to the callback registered on the app — one OAuth App serves exactly one
+address, and changing hosts means changing all three together.
+
+Check it worked: `https://ccdgroup.org/admin` → **Sign in with GitHub** →
 you land in the editor. Before this step it correctly shows a
 "not configured yet" message rather than an error page.
 
@@ -83,7 +95,7 @@ than vanishing. That is a fallback, not a fix.
 4. Redeploy, then check with:
 
    ```bash
-   cd ccd-website && npm run verify:site -- https://ccdgroup.vercel.app
+   cd ccd-website && npm run verify:site -- https://ccdgroup.org
    ```
 
    "submissions are actually stored" must pass.
@@ -96,7 +108,7 @@ than vanishing. That is a fallback, not a fix.
 
 ## Then hand out
 
-Send staff **https://ccdgroup.vercel.app/admin** and
+Send staff **https://ccdgroup.org/admin** and
 [EDITING-THE-WEBSITE.md](EDITING-THE-WEBSITE.md).
 
 Worth doing once, live: walk one person through adding a news item. The concepts
@@ -110,9 +122,9 @@ than one place". Everything else is self-evident.
 | Symptom | Cause |
 |---|---|
 | "not configured yet" on sign-in | Step 2 not done, or the app was not redeployed after adding the variables |
-| Sign-in popup opens then nothing happens | Callback URL does not exactly match `https://ccdgroup.vercel.app/api/auth/callback` |
-| Editor saves, but the site does not change | Step 1 not done — check GitHub for the commit; if it is there, Vercel is not building it |
-| Automatic deploys fail | Root Directory is not set to `ccd-website` |
+| Sign-in popup opens then nothing happens | Callback URL does not exactly match `https://ccdgroup.org/api/auth/callback` |
+| Editor saves, but the site does not change | Step 1 not done — check GitHub for the commit; if it is there, the host is not building it |
+| Automatic deploys fail | Root directory is not set to `ccd-website` |
 | "not authorised" | That person is not a collaborator on the repo yet |
 
 ## Still open, unrelated to the CMS
@@ -120,5 +132,6 @@ than one place". Everything else is self-evident.
 - **Shopify:** move the store's primary domain to `shop.the4thbrew.com` before
   retiring `the4thbrew.com`, or every checkout breaks. See
   `.agent-orchestration/HANDOFF.md`.
-- **`ccdgroup.org`** still points at the old Wix site. Moving it is a separate
-  decision — and CCD should not run both sites indefinitely.
+- **`ccdgroup.org`** — moving the domain off Wix onto Cloudflare, including the
+  DNS records CCD's Microsoft 365 email depends on:
+  [CLOUDFLARE-CUTOVER.md](CLOUDFLARE-CUTOVER.md).
