@@ -1,5 +1,4 @@
-import { BrewCart, BuyPicker } from "@/components/ClientBits";
-import { type Dictionary, localize } from "@/lib/i18n";
+import { type Dictionary, localize, makeT } from "@/lib/i18n";
 import { brewProducts, siteConfig, type BrewProduct, type Section } from "@/lib/siteData";
 
 // Shopify publishes every storefront's catalog as public JSON. No SDK, no
@@ -42,6 +41,12 @@ function merge(curated: BrewProduct, live: ShopifyProduct | undefined): BrewProd
   };
 }
 
+/** Lowest live price across a product's variants, e.g. "from $16.00". */
+function cheapest(product: BrewProduct): string | null {
+  const prices = product.variants.map((v) => Number(v.price)).filter((n) => Number.isFinite(n));
+  return prices.length ? `from $${Math.min(...prices).toFixed(2)}` : null;
+}
+
 export async function BrewProducts({
   section,
   locale,
@@ -51,6 +56,8 @@ export async function BrewProducts({
   locale: string;
   dict: Dictionary | undefined;
 }) {
+  const t = makeT(dict);
+  const productsUrl = siteConfig.links.brewProducts || "https://the4thbrew.com/products";
   const live = await liveCatalog();
   // Editorial copy (roast, tasting notes) is translated; the Shopify half —
   // prices, variant titles, stock — is left exactly as the store reports it.
@@ -77,16 +84,27 @@ export async function BrewProducts({
               <span className="product-roast">{product.roast}</span>
               <h3>{product.title}</h3>
               <p>{product.notes}</p>
-              <BuyPicker
-                productTitle={product.title}
-                image={product.image}
-                variants={product.variants}
-              />
+              {cheapest(product) ? <p className="product-price">{cheapest(product)}</p> : null}
+              {/* Coffee is bought on The 4th Brew's own site, not here. The
+                  in-page cart (ClientBits: BuyPicker / BrewCart / CartIndicator)
+                  is still wired up for things CCD may sell directly later, such
+                  as a membership plan; it simply has nothing adding to it now,
+                  so it never appears. */}
+              <a
+                className="button gold"
+                href={productsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("Buy on the4thbrew.com")}
+              </a>
             </div>
           </article>
         ))}
       </div>
-      <BrewCart />
+      <p className="products-note">
+        {t("Orders are placed on The 4th Brew's own shop, which handles payment and delivery.")}
+      </p>
     </section>
   );
 }

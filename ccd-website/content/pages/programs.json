@@ -41,6 +41,18 @@
     },
     {
       "type": "split",
+      "id": "brew",
+      "eyebrow": "ENTREPRENEURSHIP",
+      "title": "The 4th Brew",
+      "body": "CCD's coffee brand, and the programme behind it. Roasting and selling coffee is how CCD trains people in a real business — buying, branding, packing, selling — and the margin comes back to the block. Learn how it works, then buy a bag from The 4th Brew's own shop.",
+      "image": "/media/brew/brew-hero-beans.jpg",
+      "alt": "Roasted coffee beans for The 4th Brew",
+      "reverse": true,
+      "ctaText": "How The 4th Brew works",
+      "ctaHref": "/4th-brew"
+    },
+    {
+      "type": "split",
       "id": "workforce",
       "title": "Workforce development",
       "body": "CCD connects training to actual neighborhood work: landscaping, facilities, events, media, market operations, and cooperative business skills. The 4th Brew, CCD's own coffee brand, teaches the roasting and retail trades - and DeWalt backs the construction side.",

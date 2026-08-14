@@ -166,9 +166,8 @@
       "theme": "dark",
       "title": "Got the method. Need the beans.",
       "body": "The Pawn, The Knight, and The Rook — 12oz or 5lb, whole bean or ground.",
-      "href": "/shop",
+      "href": "{{action:links.brewProducts|Coffee order}}",
       "label": "Shop the coffee"
     }
   ]
 }
-

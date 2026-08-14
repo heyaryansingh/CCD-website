@@ -95,7 +95,7 @@ ok("language menu offers every language", LOCALES.every((c) => spanishHtml.inclu
 // shows the English, never an empty heading.
 ok(
   "untranslated text falls back to English rather than blank",
-  !/<(h1|h2)>\s*<\/>/.test(spanishHtml),
+  !/<(h1|h2)>\s*<\/\1>/.test(spanishHtml),
 );
 
 // Next writes the attribute as hrefLang, so match without regard to case.
@@ -179,9 +179,23 @@ ok(
 console.log("\nShop");
 const shop = await (await fetch(`${BASE}/shop`)).text();
 ok("three coffees render", (shop.match(/class="product-card"/g) || []).length === 3);
-ok("add-to-cart buttons render", (shop.match(/<button[^>]*class="button gold"/g) || []).length === 3);
-ok("live prices present", /\$<!-- -->\d+\.\d\d/.test(shop));
+// Coffee is sold on The 4th Brew's own site. Each card links out; the in-page
+// cart stays in the codebase for anything CCD sells directly later, but must not
+// appear on a coffee page.
+ok(
+  "each coffee links to the4thbrew.com/products",
+  (shop.match(/href="https:\/\/the4thbrew\.com\/products"/g) || []).length >= 3,
+);
+ok("no on-site cart on the shop", !/brew-cart|buy-picker/.test(shop));
+ok("live prices present", /from \$\d+\.\d\d/.test(shop));
 ok("4th Brew skin applied", /<main class="brew"/.test(shop));
+
+// It is a CCD programme, not an outside partner.
+const partners = await (await fetch(`${BASE}/partners`)).text();
+const wall = partners.split('class="partner-cards"')[1] || "";
+ok("4th Brew is not on the partner wall", !wall.split("</section>")[0].includes("4th Brew"));
+const programs = await (await fetch(`${BASE}/programs`)).text();
+ok("4th Brew is listed as a programme", programs.includes("The 4th Brew"));
 
 // --- content integrity -------------------------------------------------------
 console.log("\nContent");

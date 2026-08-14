@@ -65,6 +65,15 @@ collections:
                   ⚠️ MUST be the store's PRIMARY domain in Shopify. Shopify sends
                   every checkout to whatever that is, so if this is wrong,
                   customers cannot buy coffee. Ask a developer before changing it.
+              - name: brewProducts
+                label: 4th Brew shop page
+                widget: string
+                required: false
+                hint: >-
+                  Where "Buy on the4thbrew.com" sends people —
+                  https://the4thbrew.com/products. Coffee is sold on The 4th
+                  Brew's own site, not on this one, so this is the link that
+                  takes an order.
               - { name: brickCampaign, label: Brick campaign link, widget: string, required: false }
               - { name: facilitiesBooking, label: Room booking form, widget: string, required: false }
               - { name: cleanGreenEstimate, label: 'Clean & Green estimate form', widget: string, required: false }

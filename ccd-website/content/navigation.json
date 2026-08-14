@@ -53,6 +53,10 @@
         {
           "label": "Workforce Development",
           "href": "/programs#workforce"
+        },
+        {
+          "label": "4th Brew Coffee",
+          "href": "/4th-brew"
         }
       ]
     },
@@ -183,7 +187,7 @@
         },
         {
           "label": "4th Brew Coffee",
-          "href": "/shop"
+          "href": "/4th-brew"
         }
       ]
     }

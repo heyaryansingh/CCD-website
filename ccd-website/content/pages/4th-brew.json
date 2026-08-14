@@ -125,7 +125,7 @@
       "alt": "A hand holding a bag of 4th Brew coffee",
       "cta": {
         "label": "Shop the coffee",
-        "href": "/shop"
+        "href": "{{action:links.brewProducts|Coffee order}}"
       }
     },
     {

@@ -31,7 +31,8 @@
     "brewShop": "https://the4thbrew.com",
     "membershipSignup": "",
     "privacyPolicy": "",
-    "instagramFeedEmbed": ""
+    "instagramFeedEmbed": "",
+    "brewProducts": "https://the4thbrew.com/products"
   },
   "analytics": {
     "ga4": ""

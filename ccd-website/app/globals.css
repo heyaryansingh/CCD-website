@@ -3471,3 +3471,34 @@ a.partner-card:hover {
     padding: 14px;
   }
 }
+
+/* ============================================================================
+   COFFEE — bought on The 4th Brew's own shop
+   The product cards on ccdgroup.org are a showcase: roast, notes, price, and a
+   link out. The size/grind picker and the in-page cart still exist in
+   ClientBits for anything CCD sells directly later; nothing feeds them today.
+   ========================================================================== */
+
+.product-price {
+  margin: 10px 0 0;
+  color: var(--ink);
+  font-family: var(--font-head);
+  font-size: 20px;
+}
+
+.brew .product-price {
+  color: var(--brew-ink, var(--ink));
+}
+
+.product-card .button.gold {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.products-note {
+  margin: 26px auto 0;
+  max-width: 60ch;
+  text-align: center;
+  color: var(--muted);
+  font-size: 15px;
+}
