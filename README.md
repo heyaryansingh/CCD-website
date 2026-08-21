@@ -44,16 +44,15 @@ before changing anything in there.
 ccd-website/    THE WEBSITE — Next.js 16. Everything the public sees.
 docs/           Editing guide, setup steps, the domain move, developer notes
 assets/         CCD flyers, event slides, campaign graphics
-media-library/  283 sorted CCD photographs, web-sized, plus a catalog of every
-                original CCD holds — browsable on GitHub, see its README
+media-library/  283 sorted CCD photographs and all 43 videos, web-sized, plus a
+                catalog of every original CCD holds — browsable on GitHub
 scripts/        Media organiser, colour-contrast guard
 ```
 
 Not in version control: the full-resolution originals (61GB), which live in CCD's
 OneDrive in the folders shared from Johnny Martin Jr.'s account —
 `Cooperative Community Development Inc/`, `website-media-filebase/`,
-`Shoe Drive CCD/`. `media-library/media-catalog.csv` indexes all 986 of them,
-including the 3.3GB of video too large for git.
+`Shoe Drive CCD/`. `media-library/media-catalog.csv` indexes all 986 of them.
 
 Most of this repo's older commit history is Wix Studio work. The Wix migration kit
 and an early HTML design prototype were removed at the 2026-08-21 handoff and are
