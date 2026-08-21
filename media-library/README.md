@@ -1,8 +1,9 @@
 # CCD media library
 
-283 photographs, sorted by what they show, at a size suitable for the website.
-Browse the folders below on GitHub — every image previews in the browser, so you
-do not need to download anything to see what CCD has.
+**283 photographs and 43 videos** — every piece of footage CCD has — sorted by
+what they show and sized for the web. Browse the folders below on GitHub: photos
+preview in the browser and videos play in it, so you do not need to download
+anything, or install anything, to see what CCD has.
 
 **These are copies.** The full-resolution originals live in CCD's OneDrive, in
 the folders shared from Johnny Martin Jr.'s account. Nothing here replaces them
@@ -48,12 +49,19 @@ Use it to answer "does CCD have a photo of X, and where is it".
 ## How this folder was made
 
 Each image was rotated upright, scaled so its longest edge is 1600 pixels, and
-saved as JPEG at quality 80. That is large enough for any use on the site and
-small enough that the whole library is 65MB rather than 699MB.
+saved as JPEG at quality 80.
 
-Video was deliberately left out. There is 3.3GB of it, and ten files exceed
-GitHub's 100MB per-file limit, so it cannot go here without a paid plan. It is
-all listed in the catalog and all still in OneDrive.
+Each video was scaled to fit within 1280×720, capped at 30 frames a second, and
+re-encoded as H.264 — the format every browser and phone plays without help. All
+67 minutes are here in full; nothing was shortened or cut into parts.
+
+The originals were recorded at far higher bitrates than anything needs: the 4K
+drone clips ran about 75 megabits a second, which is why thirty seconds of
+footage took 284MB. Re-encoding them is what makes the whole library 428MB
+instead of 4GB, and what keeps every file under GitHub's 100MB limit.
+
+These are viewing copies, the same as the photographs. Use the OneDrive originals
+for anything that will be edited, re-cut, or projected.
 
 To rebuild the sorted library from the shared drive:
 `python scripts/organize_ccd_media.py` — it only ever copies, never moves.

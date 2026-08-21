@@ -178,19 +178,20 @@ lapse when nobody is watching the invoice.
 ```
 ccd-website/    THE WEBSITE. Everything the public sees. Start at its README.
 docs/           Guides — editing the site, finishing the setup, moving the domain
-media-library/  283 CCD photographs, sorted by subject and viewable straight on
-                GitHub, plus a catalog of every original CCD holds
+media-library/  283 CCD photographs and all 43 videos, sorted by subject and
+                viewable straight on GitHub, plus a catalog of every original
 assets/         CCD flyers, event slides and campaign graphics
 scripts/        Small tools: the media organiser and the colour-contrast checker
 ```
 
-**Photographs.** The full-resolution originals — 61GB, including 3.3GB of drone
-and event video — are not in here. They live in CCD's OneDrive, in the folders
-shared from Johnny Martin Jr.'s account, so they already belong to CCD and do not
-leave with any developer. `media-library/` holds web-sized copies of 283 of them
-so anyone can see what CCD has without a 61GB download, and
-`media-library/media-catalog.csv` lists all 986 files with their OneDrive
-locations.
+**Photographs and video.** The full-resolution originals — 61GB — are not in
+here. They live in CCD's OneDrive, in the folders shared from Johnny Martin Jr.'s
+account, so they already belong to CCD and do not leave with any developer.
+
+`media-library/` holds viewing copies of 283 photographs and all 43 videos, 67
+minutes of footage in full, so anyone can see and play what CCD has without a
+61GB download. `media-library/media-catalog.csv` lists all 986 original files
+with their OneDrive locations.
 
 ---
 
