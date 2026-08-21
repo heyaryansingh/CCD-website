@@ -2,8 +2,8 @@
 
 The Next.js rebuild of [ccdgroup.org](https://ccdgroup.org) for Cooperative Community Development Inc.
 
-**Live:** https://ccdgroup.vercel.app
-**Editing (CCD staff):** https://ccdgroup.vercel.app/admin — see
+**Live:** https://ccdgroup.org — on Cloudflare Workers
+**Editing (CCD staff):** https://ccdgroup.org/admin — see
 [docs/EDITING-THE-WEBSITE.md](../docs/EDITING-THE-WEBSITE.md)
 
 ```bash
@@ -138,8 +138,9 @@ unless there is a real reason not to.
 Gold `#fec630` on white is **1.57:1** and fails WCAG AA. **Gold is a fill behind dark
 text, or text on a dark background — never text on a light one.** Eyebrows on light
 backgrounds use `#8a6d00`. The same rule applies to The 4th Brew's tan `#c2b27f`
-(2.11:1). The measured table for every token pair is in
-`../.agent-orchestration/HANDOFF.md`.
+(2.11:1). Run `node ../scripts/contrast-check.js` for the measured table of every
+token pair; it also asserts the prescribed fixes still hold and exits 1 if one has
+been reverted.
 
 ### Sub-brand skin
 
@@ -181,35 +182,34 @@ work with no credentials. Schema: `supabase/schema.sql`.
 
 ## Deploying
 
-Pushing to `main` deploys automatically — the project is connected to GitHub, so
-a CMS save or a `git push` is all it takes.
+The site is a Cloudflare Worker, compiled from this Next build by
+`@opennextjs/cloudflare`. Pushing to `main` deploys automatically, so a CMS save
+or a `git push` is all it takes.
 
-To deploy by hand, run it from the **repository root**, not from `ccd-website/`:
-
-```bash
-cd ..            # repo root
-npx vercel --prod --yes
-```
-
-The project's Root Directory is `ccd-website`, so running the CLI from inside
-that folder makes Vercel look for `ccd-website/ccd-website` and fail. The root
-also carries a `.vercelignore` — without it the CLI tries to upload the 61GB
-OneDrive media archives and dies with EBUSY. **`ccdgroup.vercel.app` updates automatically** — it is the
-Vercel project's own domain (the project is named `ccdgroup`, and Vercel assigns
-`<project>.vercel.app` to whatever is in production).
-
-It did not always work that way. It used to be a manual alias pinned to one specific
-build with `vercel alias set`, so production deploys silently did not move it and the
-site appeared not to update. If you ever see stale content there again, check:
+By hand, from this directory:
 
 ```bash
-npx vercel projects ls          # "Latest Production URL" must read ccdgroup.vercel.app
+npm run cf:deploy      # build, populate the cache, upload
+npm run cf:preview     # the same build, served locally by the real workerd
+npm run verify:site -- https://ccdgroup.org
 ```
 
-Do **not** run `vercel alias set ccdgroup.vercel.app` — that re-pins it and reintroduces
-the bug.
+Two things about this build are load-bearing, and both look like routing bugs
+when they go wrong:
 
-`ccdgroup.org` itself still points at the old Wix site and is untouched.
+- **`npm run cf:build` is not `opennextjs-cloudflare build`.** It also runs
+  `populateCache`, which copies the 355 prerendered pages into the assets bundle.
+  Skip it and every page 404s while `/admin` and `/media/*` keep working. See
+  `open-next.config.ts`.
+- **Bare English URLs are rewritten in `beforeFiles`, not `fallback`.** OpenNext
+  skips fallback rewrites whenever a dynamic route *pattern* matched, and
+  `/about` matches `[lang]`. See the comment at the top of `next.config.ts`.
+
+Neither is caught by `npm run build`. `npm run verify:site` catches both, which
+is what it is for — run it against any deploy before trusting it.
+
+Vercel is the previous host. `main` still builds there unchanged, and
+`docs/CLOUDFLARE-CUTOVER.md` is the sequence for standing it down.
 
 
 
