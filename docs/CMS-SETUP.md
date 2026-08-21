@@ -131,7 +131,7 @@ than one place". Everything else is self-evident.
 
 - **Shopify:** move the store's primary domain to `shop.the4thbrew.com` before
   retiring `the4thbrew.com`, or every checkout breaks. See
-  `.agent-orchestration/HANDOFF.md`.
+  [DEVELOPER-NOTES.md](DEVELOPER-NOTES.md).
 - **`ccdgroup.org`** — moving the domain off Wix onto Cloudflare, including the
   DNS records CCD's Microsoft 365 email depends on:
   [CLOUDFLARE-CUTOVER.md](CLOUDFLARE-CUTOVER.md).

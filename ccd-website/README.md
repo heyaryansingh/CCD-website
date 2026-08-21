@@ -138,8 +138,9 @@ unless there is a real reason not to.
 Gold `#fec630` on white is **1.57:1** and fails WCAG AA. **Gold is a fill behind dark
 text, or text on a dark background — never text on a light one.** Eyebrows on light
 backgrounds use `#8a6d00`. The same rule applies to The 4th Brew's tan `#c2b27f`
-(2.11:1). The measured table for every token pair is in
-`../.agent-orchestration/HANDOFF.md`.
+(2.11:1). Run `node ../scripts/contrast-check.js` for the measured table of every
+token pair; it also asserts the prescribed fixes still hold and exits 1 if one has
+been reverted.
 
 ### Sub-brand skin
 

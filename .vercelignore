@@ -12,11 +12,8 @@
 /Cooperative Community Development Inc/
 /website-media-filebase/
 /Shoe Drive CCD/
-/building-the-block-prototype/
 
 # Repo-root docs and tooling — not needed to build the site
 /assets/
 /docs/
-/wix-migration-kit/
 /scripts/
-/.agent-orchestration/
