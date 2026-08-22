@@ -99,15 +99,21 @@ Every save is recorded with who made it and when, so anything can be undone.
 Three things. Each is written up properly in the linked document — hand the link
 to whoever picks the work up.
 
-### The contact forms do not reach anybody yet
+### The contact forms need one setting before they reach anybody
 
-**This is losing real enquiries.** When somebody fills in the contact, volunteer,
-or estimate form, nothing is stored. The site currently tells them *"Something
-went wrong — please email info@ccdgroup.org directly"*, so messages are not
-vanishing silently, but people are being turned away.
+**This is losing real enquiries today.** When somebody fills in the contact,
+volunteer or estimate form, the site tells them *"Something went wrong — please
+email info@ccdgroup.org directly"*, so messages are not vanishing silently, but
+people are being turned away.
 
-Fixing it is about twenty minutes of a developer's time and costs nothing:
-[docs/CMS-SETUP.md](docs/CMS-SETUP.md), step 4.
+**The code is done.** Submissions are emailed straight to CCD — and replying to
+one goes back to whoever wrote in — as soon as a single setting is added. What
+is left is a five-minute free signup at resend.com, done **as
+`info@ccdgroup.org`** so the account belongs to CCD, then pasting the key into
+the host as `RESEND_API_KEY`.
+
+Step by step: [docs/CMS-SETUP.md](docs/CMS-SETUP.md), step 4. No developer
+needed beyond adding the setting, and it costs nothing.
 
 ### `ccdgroup.org` still points at Wix
 

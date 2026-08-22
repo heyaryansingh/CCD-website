@@ -13,8 +13,8 @@ Founded 2020 · 4004 Frederick Ave, Baltimore MD 21229 · info@ccdgroup.org · (
 | Edit the site, no code needed | `/admin` — guide: [docs/EDITING-THE-WEBSITE.md](docs/EDITING-THE-WEBSITE.md) |
 
 > ⚠️ **Three things are unfinished** and each is written up for whoever picks it
-> up: the contact forms reach nobody ([docs/CMS-SETUP.md](docs/CMS-SETUP.md) step
-> 4), `ccdgroup.org` still points at Wix
+> up: the contact forms need one free API key before enquiries arrive
+> ([docs/CMS-SETUP.md](docs/CMS-SETUP.md) step 4), `ccdgroup.org` still points at Wix
 > ([docs/CLOUDFLARE-CUTOVER.md](docs/CLOUDFLARE-CUTOVER.md)), and the code lives
 > on a departing developer's personal GitHub account
 > ([HANDOFF.md](HANDOFF.md), item 1). The last of those is the urgent one.
