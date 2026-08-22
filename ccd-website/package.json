@@ -18,7 +18,7 @@
     "lint": "eslint",
     "prebuild": "node scripts/bundle-pages.mjs",
     "start": "next start",
-    "test": "node --experimental-strip-types lib/brewCart.test.mts",
+    "test": "node --experimental-strip-types lib/brewCart.test.mts && node --experimental-strip-types lib/formEmail.test.mts",
     "verify:site": "node scripts/verify-site.mjs"
   },
   "dependencies": {

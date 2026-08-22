@@ -13,3 +13,20 @@ GITHUB_CLIENT_SECRET=local_test_client_secret
 # visitors are told to email instead. See ccd-website/supabase/schema.sql.
 # SUPABASE_URL=
 # SUPABASE_SERVICE_KEY=
+
+# Where contact / volunteer / estimate form submissions go.
+#
+# Set RESEND_API_KEY and the forms start emailing CCD. Without it (and without
+# Supabase below) the forms tell visitors to email directly instead — they are
+# never told a submission worked when nobody received it.
+#
+# Get a key free at https://resend.com — sign up AS info@ccdgroup.org, because
+# until ccdgroup.org is verified there, Resend will only deliver to the address
+# the account was opened with.
+# RESEND_API_KEY=
+#
+# Optional. FORM_EMAIL_TO defaults to the contact address in the CMS
+# (Settings -> Contact details), so staff can redirect enquiries without a
+# developer. FORM_EMAIL_FROM needs a Resend-verified domain to change.
+# FORM_EMAIL_TO=
+# FORM_EMAIL_FROM=

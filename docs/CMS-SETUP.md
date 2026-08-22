@@ -11,8 +11,10 @@ its credentials set on the host. Sign-in at `/admin` works — verified end to e
 
 **Step 3 is the only thing left for the CMS**: give your editors access.
 
-⚠️ **Separately, the contact forms do not reach anyone yet** — see step 4. That
-is not a CMS issue, but it is losing real enquiries.
+⚠️ **Separately, the contact forms need one environment variable** before
+enquiries reach CCD — see step 4. The code is written and tested; what is left
+is a five-minute free signup. Not a CMS issue, but it is losing real enquiries
+until it is done.
 
 ---
 
@@ -79,30 +81,71 @@ person with **Write**. They need a free GitHub account.
 
 To revoke someone's editing, remove them here. Nothing else to change.
 
-## 4. Make the contact forms work — ⚠️ NOT DONE
+## 4. Make the contact forms work — ⚠️ ONE STEP LEFT
 
-`SUPABASE_URL` and `SUPABASE_SERVICE_KEY` are not set, so nothing is saved when
-somebody submits the contact, volunteer, or estimate form.
+The code is done. Contact, volunteer and estimate submissions are **emailed to
+CCD** as soon as one environment variable is set. Nothing else to build.
 
-Until this is configured the forms tell visitors *"Something went wrong — please
-email info@ccdgroup.org directly"*, so enquiries still reach CCD by email rather
-than vanishing. That is a fallback, not a fix.
+Until it is set the forms tell visitors *"Something went wrong — please email
+info@ccdgroup.org directly"*. That is deliberate: the site never tells somebody
+their message was sent when nobody received it. But it is a fallback, not a fix.
+
+### Do this (about five minutes, free)
+
+1. Go to **https://resend.com** and sign up **as `info@ccdgroup.org`**.
+
+   > Sign up as the CCD address, not a personal one. Until `ccdgroup.org` is
+   > verified with Resend, they will only deliver to the address the account was
+   > opened with — which is the address enquiries should reach anyway. It also
+   > keeps the account CCD's rather than a developer's.
+
+2. Create an API key and copy it.
+3. Add it to the host's environment variables as a **Secret**:
+
+   | Name | Value |
+   |---|---|
+   | `RESEND_API_KEY` | the key you just copied |
+
+   Cloudflare → Workers & Pages → `ccdgroup` → Settings → **Variables and
+   Secrets**. On Vercel, Project → Settings → **Environment Variables**.
+
+4. Redeploy, then send yourself a test message through the contact form on the
+   live site. It should arrive at `info@ccdgroup.org` within a few seconds, and
+   **replying to it goes straight back to whoever wrote in**.
+
+Free tier is 3,000 emails a month — far beyond anything CCD will send.
+
+### Where the emails go
+
+`FORM_EMAIL_TO` sets the recipient, but it defaults to the contact address in
+the CMS (**Settings → Contact details**). So staff can change where enquiries
+land without a developer and without touching any environment variable.
+
+### Optional: also keep a database record
+
+Email is what makes enquiries reach a person. If CCD also wants a durable,
+searchable record, set up Supabase as well — the endpoint writes to both, and a
+submission survives either one failing:
 
 1. Create a free Supabase project
 2. Run `ccd-website/supabase/schema.sql` in its SQL editor (4 tables)
-3. Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (the **service role** key) to the
-   host's environment variables
-4. Redeploy, then check with:
-
-   ```bash
-   cd ccd-website && npm run verify:site -- https://ccdgroup.org
-   ```
-
-   "submissions are actually stored" must pass.
+3. Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (the **service role** key)
 
 > The service role key bypasses row-level security. It belongs only in the
 > host's environment settings — never in the repo, and never in a `NEXT_PUBLIC_`
 > variable.
+
+> ⚠️ Supabase pauses free projects after a week of inactivity. For a form that
+> may sit quiet for weeks, treat it as the optional extra and email as the
+> thing that must work.
+
+### Check it worked
+
+```bash
+cd ccd-website && npm run verify:site -- https://ccdgroup.org
+```
+
+"submissions are actually stored" must pass.
 
 ---
 

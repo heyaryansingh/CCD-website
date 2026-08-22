@@ -1,11 +1,24 @@
 // Form intake endpoint.
 //
-// Persists submissions to Supabase when env vars are present; otherwise it
-// simply acknowledges (200) so the site works end-to-end before a database is
-// connected. To turn on real storage, set SUPABASE_URL + SUPABASE_SERVICE_KEY
-// (server env) and run supabase/schema.sql — no code change needed.
+// A submission counts as delivered if it reaches CCD by EITHER route:
+//
+//   Email    RESEND_API_KEY  — arrives in a person's inbox. This is the one
+//                             that matters: a database nobody signs into is
+//                             not the same as an enquiry somebody answers.
+//   Database SUPABASE_URL + SUPABASE_SERVICE_KEY — a durable record, optional.
+//
+// Set up either and the forms start working; set up both and one can fail
+// without losing the enquiry. With neither configured the endpoint still
+// returns 200 with {stored:false}, so local development and previews work, and
+// the forms then show their "please email us directly" fallback rather than
+// telling a visitor it worked when nobody received it.
+//
+// Recipient: FORM_EMAIL_TO, defaulting to the contact address in the CMS
+// (Settings -> Contact details), so staff can redirect enquiries themselves.
 
 import { NextResponse } from "next/server";
+import { siteConfig } from "@/lib/siteConfig";
+import { formatSubmissionEmail, type FormType } from "@/lib/formEmail";
 
 // Per-type field allowlist: only these keys are forwarded, everything else is
 // dropped, and every value is coerced to a length-capped string.
@@ -66,13 +79,22 @@ export async function POST(req: Request) {
 
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_KEY;
+  const resendKey = process.env.RESEND_API_KEY;
+  const emailTo = process.env.FORM_EMAIL_TO || siteConfig.contact.email;
+  // Resend only accepts a From on a domain you have verified. Until ccdgroup.org
+  // is verified there, their shared onboarding sender works and can reach the
+  // address the account was opened with — which is the CCD inbox anyway.
+  const emailFrom = process.env.FORM_EMAIL_FROM || "CCD website <onboarding@resend.dev>";
 
-  // No database configured yet — acknowledge without storing.
-  if (!url || !key) {
+  const canStore = Boolean(url && key);
+  const canEmail = Boolean(resendKey && emailTo);
+
+  // Nothing configured yet — acknowledge without claiming delivery.
+  if (!canStore && !canEmail) {
     return NextResponse.json({ ok: true, stored: false });
   }
 
-  try {
+  async function store(): Promise<boolean> {
     // ignore-duplicates keeps repeat newsletter signups idempotent and avoids
     // turning unique-constraint errors into an email-enumeration oracle.
     const conflict = type === "newsletter" ? "?on_conflict=email" : "";
@@ -80,19 +102,58 @@ export async function POST(req: Request) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        apikey: key,
+        apikey: key as string,
         Authorization: `Bearer ${key}`,
         Prefer: type === "newsletter" ? "return=minimal,resolution=ignore-duplicates" : "return=minimal",
       },
       body: JSON.stringify({ ...payload, source: "ccd-website" }),
     });
     if (!res.ok) {
-      // Log upstream detail server-side only — never echo to the client.
+      // Log upstream detail server-side only — never echo it to the client.
       console.error("submit store_failed", type, res.status, await res.text());
-      return NextResponse.json({ ok: false, error: "store_failed" }, { status: 502 });
+      return false;
     }
-    return NextResponse.json({ ok: true, stored: true });
-  } catch {
-    return NextResponse.json({ ok: false, error: "network" }, { status: 502 });
+    return true;
   }
+
+  async function email(): Promise<boolean> {
+    const { subject, text, replyTo } = formatSubmissionEmail(type as FormType, payload);
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${resendKey}`,
+      },
+      body: JSON.stringify({
+        from: emailFrom,
+        to: [emailTo],
+        subject,
+        text,
+        // Staff hit reply and it goes to whoever wrote in. Omitted entirely
+        // when the address could not be trusted — see isReplyableEmail.
+        ...(replyTo ? { reply_to: replyTo } : {}),
+      }),
+    });
+    if (!res.ok) {
+      console.error("submit email_failed", type, res.status, await res.text());
+      return false;
+    }
+    return true;
+  }
+
+  // Both routes are tried; the enquiry survives either one failing.
+  const attempts: Promise<boolean>[] = [];
+  if (canEmail) attempts.push(email());
+  if (canStore) attempts.push(store());
+
+  const results = await Promise.allSettled(attempts);
+  const delivered = results.some((r) => r.status === "fulfilled" && r.value === true);
+
+  if (!delivered) {
+    for (const r of results) {
+      if (r.status === "rejected") console.error("submit delivery_threw", type, r.reason);
+    }
+    return NextResponse.json({ ok: false, error: "not_delivered" }, { status: 502 });
+  }
+  return NextResponse.json({ ok: true, stored: true });
 }
